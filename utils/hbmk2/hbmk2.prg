@@ -683,7 +683,7 @@ EXTERNAL hb_FileExists
 
 /* For hbshell */
 
-EXTERNAL __dbgEntry
+// EXTERNAL __dbgEntry
 
 #define HB_HISTORY_LEN          2000
 #define HB_LINE_LEN             256
@@ -2025,7 +2025,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       ENDIF
       aLIB_BASE_2       := { "hbrtl", "hbvm" }
       aLIB_BASE_2_MT    := iif( hbmk[ _HBMK_nHBMODE ] != _HBMODE_HB10, { "hbrtl", "hbvmmt" }, aLIB_BASE_2 )
-      aLIB_BASE_GT      := { "gtcgi", "gtstd", "gtpca" }
+      aLIB_BASE_GT      := { "gtcgi", "gtstd" }
       aLIB_BASE_NULRDD  := { "hbnulrdd" }
       /* Double 'hbrdd' is required for linkers which otherwise need lib grouping. */
       SWITCH hbmk[ _HBMK_nHBMODE ]
@@ -2061,7 +2061,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       aLIB_BASE_1_MT    := { "vmmt", "rtlmt", "lang", "codepage" }
       aLIB_BASE_2       := { "rtl"  , "vm"   }
       aLIB_BASE_2_MT    := { "rtlmt", "vmmt" }
-      aLIB_BASE_GT      := { "gtcgi", "gtstd", "gtpca" }
+      aLIB_BASE_GT      := { "gtcgi", "gtstd" }
       aLIB_BASE_NULRDD  := { "nulsys" }
       aLIB_BASE_RDD     := { "rdd"  , "usrrdd", "dbfntx", "dbfcdx", "dbfnsx", "dbffpt", "rdd"  , "hsx", "hbsix" }
       aLIB_BASE_RDD_MT  := { "rddmt", "usrrdd", "dbfntx", "dbfcdx", "dbfnsx", "dbffpt", "rddmt", "hsx", "hbsix" }
@@ -8713,7 +8713,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       IF hb_Version( HB_VERSION_UNIX_COMPAT ) .AND. hbmk[ _HBMK_cPLAT ] == "win"
          cCommand := "wine " + FNameEscape( cCommand, _ESC_NIX )
       ELSE
-         IF hbmk[ _HBMK_lGUI ] .OR. ( ! hbmk[ _HBMK_lCLI ] .AND. hbmk[ _HBMK_cGT ] != NIL .AND. ! HBMK_IS_IN( Lower( hbmk[ _HBMK_cGT ] ), "gtcgi|gtstd|gtpca" ) )
+         IF hbmk[ _HBMK_lGUI ] .OR. ( ! hbmk[ _HBMK_lCLI ] .AND. hbmk[ _HBMK_cGT ] != NIL .AND. ! HBMK_IS_IN( Lower( hbmk[ _HBMK_cGT ] ), "gtcgi|gtstd" ) )
             #if defined( __PLATFORM__DARWIN )
                cCommand := "open -a " + FNameEscape( hb_PathNormalize( PathMakeAbsolute( cCommand + ".app", hb_cwd() ) ), _ESC_NIX ) + " --args"
             #else
@@ -9629,18 +9629,13 @@ STATIC FUNCTION SetupForGT( cGT_New, /* @ */ cGT, /* @ */ lGUI )
          (please do not add contrib/3rd parties here) */
       SWITCH Lower( cGT_New )
       CASE "gtcgi"
-      CASE "gtcrs"
       CASE "gtdos"
-      CASE "gtos2"
-      CASE "gtpca"
-      CASE "gtsln"
       CASE "gtstd"
       CASE "gttrm"
       CASE "gtwin"
          lGUI := .F.
          EXIT
 
-      CASE "gtgui"
       CASE "gtwvt"
       CASE "gtxwc"
          lGUI := .T.

@@ -1495,7 +1495,6 @@ SYSLIBS :=
 
 # Names of portable GT drivers
 HB_GT_LIBS := \
-   gtpca \
    gtcgi \
    gtstd \
 
@@ -1504,25 +1503,18 @@ ifneq ($(HB_HAS_X11),)
    HB_GT_LIBS += gtxwc
 endif
 
-ifneq ($(HB_PLATFORM),dos)
-   HB_PKGNAME := harbour
-   ifneq ($(HB_PLATFORM_UNIX),)
-      HB_VERSION := $(HB_VER_MAJOR).$(HB_VER_MINOR).$(HB_VER_RELEASE)
-      ifneq ($(HB_VER_STATUS),)
-         HB_VERSION := $(HB_VERSION)-$(HB_VER_STATUS)
-      endif
-      HB_PKGNAME := $(HB_PKGNAME)-$(HB_VERSION)
-   else
-      HB_VERSION := $(HB_VER_MAJOR).$(HB_VER_MINOR).$(HB_VER_RELEASE)$(HB_VER_STATUS)
-      HB_PKGNAME := $(HB_PKGNAME)-$(HB_VERSION)-$(HB_PLATFORM)-$(HB_COMPILER)
-   endif
-   HB_PKGNAMI := $(HB_PKGNAME)
+HB_PKGNAME := harbour
+ifneq ($(HB_PLATFORM_UNIX),)
+    HB_VERSION := $(HB_VER_MAJOR).$(HB_VER_MINOR).$(HB_VER_RELEASE)
+    ifneq ($(HB_VER_STATUS),)
+       HB_VERSION := $(HB_VERSION)-$(HB_VER_STATUS)
+    endif
+    HB_PKGNAME := $(HB_PKGNAME)-$(HB_VERSION)
 else
-   # Use short names in MS-DOS
-   HB_VERSION := $(HB_VER_MAJOR)$(HB_VER_STATUS_SH)
-   HB_PKGNAME := hb$(HB_VERSION)
-   HB_PKGNAMI := $(HB_PKGNAME)
+    HB_VERSION := $(HB_VER_MAJOR).$(HB_VER_MINOR).$(HB_VER_RELEASE)$(HB_VER_STATUS)
+    HB_PKGNAME := $(HB_PKGNAME)-$(HB_VERSION)-$(HB_PLATFORM)-$(HB_COMPILER)
 endif
+HB_PKGNAMI := $(HB_PKGNAME)
 
 export HB_VERSION
 export HB_PKGNAME
@@ -1534,12 +1526,6 @@ ifeq ($(HB_BUILD_PKG),yes)
 
       ifeq ($(HB_PLATFORM),darwin)
          HB_BUILD_PKG_PREFIX := /usr/local
-         HB_SYSLOC := yes
-      else ifeq ($(HB_PLATFORM),sunos)
-         HB_BUILD_PKG_PREFIX := /opt
-         HB_SYSLOC := yes
-      else ifeq ($(HB_PLATFORM),beos)
-         HB_BUILD_PKG_PREFIX := /boot/common
          HB_SYSLOC := yes
       else ifneq ($(HB_PLATFORM_UNIX),)
          HB_BUILD_PKG_PREFIX := /usr/local

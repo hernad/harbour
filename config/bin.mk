@@ -13,28 +13,18 @@ ifeq ($(flavor LIBS),recursive)
 endif
 
 ifeq ($(BUILD_SHARED),yes)
+   #hbdebug
    HB_LIBS_TPL := \
       hbcplr \
-      hbdebug \
 
    ifeq ($(HB_PLATFORM),cygwin)
       HB_LIBS_TPL += hbmainstd
    else ifneq ($(filter $(HB_PLATFORM),win wce),)
       ifneq ($(filter $(HB_COMPILER),mingw mingw64 mingwarm),)
          HB_LIBS_TPL += hbmainstd
-      else ifeq ($(HB_COMPILER),watcom)
-         HB_LDFLAGS += FILE $(LIB_DIR)/hbmainstd.lib
       else
          HB_LIBS_TPL += hbmainstd hbmainwin
       endif
-   else ifeq ($(HB_PLATFORM),os2)
-      ifeq ($(HB_COMPILER),watcom)
-         HB_LDFLAGS += FILE $(LIB_DIR)/hbmainstd.lib
-      else
-         HB_LIBS_TPL += hbmainstd
-      endif
-   else ifeq ($(HB_PLATFORM)-$(HB_COMPILER),dos-watcom)
-      HB_LDFLAGS += FILE $(LIB_DIR)/hbmainstd.lib
    endif
 
    HB_LIBS_ST_RDD := $(HB_LIBS_TPL) $(HB_IMPLIB_BASE)
@@ -45,9 +35,9 @@ ifeq ($(BUILD_SHARED),yes)
    HB_LIBS_TPL :=
 else
    # (have to use '=' operator here)
+   #hbdebug 
    HB_LIBS_TPL = \
       hbextern \
-      hbdebug \
       $(_HB_VM) \
       hbrtl \
       hblang \
@@ -63,8 +53,6 @@ else
 
    ifneq ($(HB_HAS_PCRE2_LOCAL),)
       HB_LIBS_TPL += hbpcre2
-   else ifneq ($(HB_HAS_PCRE_LOCAL),)
-      HB_LIBS_TPL += hbpcre
    endif
    ifneq ($(HB_HAS_ZLIB_LOCAL),)
       HB_LIBS_TPL += hbzlib
@@ -74,9 +62,9 @@ else
    _HB_RDD := \
       hbrdd \
       rddntx \
-      rddnsx \
       rddcdx \
       rddfpt \
+      rddnsx \
       hbsix \
       hbhsx \
       hbusrrdd

@@ -298,11 +298,6 @@ PRG_SOURCES := \
 LIBNAME := hbrtl
 
 DIRS := \
-   gtcrs \
-   gtdos \
-   gtgui \
-   gtpca \
-   gtsln \
    gtstd \
    gttrm \
    gtcgi \

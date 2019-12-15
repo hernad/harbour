@@ -31,7 +31,6 @@ else
          src/rdd/hbsix \
          src/rdd/hsx \
          src/rdd/usrrdd \
-         src/rtl/gtpca \
          src/rtl/gtstd \
          src/rtl/gtcgi 
 
