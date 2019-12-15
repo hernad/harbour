@@ -1,0 +1,7 @@
+/* Encoding: UTF-8 (No BOM)  Notation (in 5th column):
+     * Change  ! Fix  % Optimize  + Add  - Remove  ; Comment
+   Entries may not always be in chronological/commit order.
+   See license at the end of file. */
+
+2019-15-12 22:00 UTC Ernad Husremovic (hernad@bring.out.ba)
+  * init
