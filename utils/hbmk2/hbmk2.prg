@@ -16148,6 +16148,7 @@ STATIC FUNCTION hbmk_CoreHeaderFiles()
       ADD HEADER TO t_hHeaders FILE "simpleio.ch"
       ADD HEADER TO t_hHeaders FILE "std.ch"
       ADD HEADER TO t_hHeaders FILE "tbrowse.ch"
+      ADD HEADER TO t_hHeaders FILE "harupdf.ch"
       ADD HEADER TO t_hHeaders FILE "harbour.hbx"
       ADD HEADER TO t_hHeaders FILE "hbcpage.hbx"
       ADD HEADER TO t_hHeaders FILE "hblang.hbx"

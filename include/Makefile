@@ -72,6 +72,7 @@ C_HEADERS := \
    hbhpdf.h \
    hbznet.h \
    hb_io.h \
+   hbhpdf.h \
 
 PRG_HEADERS := \
    harbour.hbx \
@@ -139,5 +140,7 @@ PRG_HEADERS := \
    simpleio.ch \
    std.ch \
    tbrowse.ch \
+   harupdf.ch \
+   hbhpdf.hbx \
 
 include $(TOP)$(ROOT)config/header.mk
