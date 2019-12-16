@@ -1,11 +1,16 @@
+
 #require "rddsql"
 #require "sddpg"
 
-#include "dbinfo.ch"
+#include "hbrddsql.ch"
 #include "error.ch"
 
 REQUEST SDDPG
 REQUEST SQLMIX
+REQUEST HB_CODEPAGE_UTF8
+REQUEST HB_CODEPAGE_SL852
+REQUEST HB_CODEPAGE_SLISO
+REQUEST HB_CODEPAGE_SLWIN
 
 ANNOUNCE RDDSYS
 
@@ -13,58 +18,67 @@ FIELD RESIDENTS, CODE, NAME
 
 PROCEDURE Main()
 
-   LOCAL tmp
+   LOCAL hSqlParams, oServer, pConn
 
-#if defined( __HBSCRIPT__HBSHELL )
-   rddRegister( "SQLBASE" )
-   rddRegister( "SQLMIX" )
-   hb_SDDPG_Register()
-#endif
-
-   rddSetDefault( "SQLMIX" )
+   hb_cdpSelect( "SL852" )
 
    ? "RDDs:"; AEval( rddList(), {| x | QQOut( "", x ) } )
 
-   IF rddInfo( RDDI_CONNECT, { "POSTGRESQL", "postgresql://localhost/postgres" } ) == 0
-      ? "Could not connect to the server"
+   hSqlParams := hb_hash()
+   hSqlParams[ "host" ] := "192.168.168.1"
+   hSqlParams[ "database" ] := "bringout"
+   hSqlParams[ "user" ] := "user"
+   hSqlParams[ "password" ] := "userpassword"
+   hSqlParams[ "port" ] := 5432
+   hSqlParams[ "schema" ] := "fmk"
+
+   oServer := TPQServer():New( hSqlParams[ "host" ], ;
+      hSqlParams[ "database" ], ;
+      hSqlParams[ "user" ], ;
+      hSqlParams[ "password" ], ;
+      hSqlParams[ "port" ], ;
+      hSqlParams[ "schema" ] )
+
+   IF oServer:NetErr()
+      Alert(oServer:ErrorMsg())
       RETURN
    ENDIF
 
-   CreateTable()
+   ? "oServer", oServer:pDb
 
-   ? "Let's browse table (press any key)"
-   Inkey( 0 )
+   pConn := oServer:pDb
+
+   IF pConn == NIL
+      ? "SQLMIX pDB NIL?! "
+      RETURN
+   ENDIF
+
+   rddSetDefault( "SQLMIX" )
+   IF rddInfo( RDDI_CONNECT, { "POSTGRESQL", pConn } ) == 0 
+      ? "Unable connect to the PSQLserver"
+      RETURN 
+   ENDIF
+
+
+   CreateCountryTable()
+
    dbUseArea( .T., , "SELECT * FROM country", "country" )
    Browse()
 
-   ? "Let's browse table ordered by resident count (press any key)"
-   Inkey( 0 )
-   INDEX ON field->RESIDENTS TAG residents TO country
+   dbUseArea( .T., , "SELECT * FROM tnal", "tnal" )
+   Browse()
+
+   INDEX ON field->naz TAG naz
    Browse()
 
    dbCloseArea()
 
-   /* append and goto tests */
-
-   dbUseArea( .T., "SQLMIX" , "SELECT * FROM country", "country" )
-
-   FOR tmp := 500 TO 600
-      dbAppend()
-      field->CODE := StrZero( tmp, 3 )
-      field->NAME := "Test append " + hb_ntos( tmp )
-   NEXT
-
-   dbGoto( 101 )
-
-   INDEX ON field->RESIDENTS TAG residents TO country
-
-   dbCloseAll()
 
    RETURN
 
-STATIC PROCEDURE CreateTable()
+STATIC PROCEDURE CreateCountryTable()
 
-   LOCAL tmp
+   LOCAL nI
 
    ? rddInfo( RDDI_EXECUTE, "DROP TABLE country" )
    ? rddInfo( RDDI_EXECUTE, "CREATE TABLE country " + ;
@@ -78,9 +92,10 @@ STATIC PROCEDURE CreateTable()
       "('FRA', 'France', 64473140), " + ;
       "('RUS', 'Russia', 141900000)" )
 
-   FOR tmp := 1 TO 100
+   FOR nI := 1 TO 100
       rddInfo( RDDI_EXECUTE, "INSERT INTO country VALUES " + ;
-         "('" + StrZero( tmp, 3 ) + "', 'TestSQL " + hb_ntos( tmp ) + "', 3369600)")
+         "('" + StrZero( nI, 3 ) + "', 'TestSQL " + hb_ntos( nI ) + "', 3369600)")
    NEXT
 
    RETURN
+
