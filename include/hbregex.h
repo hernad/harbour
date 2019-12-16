@@ -61,9 +61,6 @@
 #  include <sys/types.h>
 #  include <regex.h>
 #  define HB_POSIX_REGEX
-#elif defined( __BORLANDC__ )
-#  include <pcreposi.h>
-#  define HB_POSIX_REGEX
 #else
 #  error pcre component required, but not available
 #endif

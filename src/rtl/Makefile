@@ -313,23 +313,20 @@ ifneq ($(HB_HAS_ZLIB),)
          HB_CFLAGS += -DPCRE2_STATIC
       endif
       HB_CFLAGS += -DPCRE2_CODE_UNIT_WIDTH=8
-   else
-   ifneq ($(HB_HAS_PCRE),)
-      HB_CFLAGS += -DHB_HAS_PCRE $(QUOTE)-I$(HB_HAS_PCRE)$(QUOTE)
-      ifneq ($(HB_HAS_PCRE_LOCAL),)
-         HB_CFLAGS += -DPCRE_STATIC
-      endif
-   endif
    endif
    ifneq ($(HB_HAS_ZLIB),)
       HB_CFLAGS += -DHB_HAS_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    endif
-   ifneq ($(HB_HAS_WATT),)
-      HB_CFLAGS += -DHB_HAS_WATT $(QUOTE)-I$(HB_HAS_WATT)$(QUOTE)
-   endif
    ifneq ($(HB_HAS_GPM),)
       HB_CFLAGS += -DHB_HAS_GPM
    endif
+   ifneq ($(HB_HAS_PNG),)
+      HB_CFLAGS += -DHB_HAS_PNG
+   endif
+   ifneq ($(HB_HAS_HARUPDF),)
+      HB_CFLAGS += -DHB_HAS_HARUPDF
+   endif
+
 
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk

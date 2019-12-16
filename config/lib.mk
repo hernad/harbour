@@ -21,13 +21,9 @@ HB_DYN_LIBS := \
    hbusrrdd \
    gtstd \
    gtwvt \
-   gtgui \
    gtwin \
-   gtdos \
    gtcgi \
-   gtele \
    gttrm \
-   gtcrs \
    gtxwc \
    hbvm \
    hbvmmt \
@@ -35,16 +31,10 @@ HB_DYN_LIBS := \
 
 ifneq ($(HB_HAS_PCRE2_LOCAL),)
    HB_DYN_LIBS += hbpcre2
-else ifneq ($(HB_HAS_PCRE_LOCAL),)
-   HB_DYN_LIBS += hbpcre
 endif
 ifneq ($(HB_HAS_ZLIB_LOCAL),)
    HB_DYN_LIBS += hbzlib
 endif
-ifeq ($(HB_PLATFORM),dos)
-   HB_DYN_LIBS += hbdossrl
-endif
-
 
 # Added only for hbpp
 -include $(TOP)$(ROOT)config/$(HB_PLATFORM)/libs.mk

@@ -1,14 +1,10 @@
 SYSLIBPATHS :=
 
 ifneq ($(HB_LINKING_RTL),)
-   ifeq ($(HB_LIBNAME_CURSES),)
-      HB_LIBNAME_CURSES := ncurses
-   endif
-   ifneq ($(HB_HAS_CURSES),)
-      SYSLIBS += $(HB_LIBNAME_CURSES)
-   endif
-   ifneq ($(HB_HAS_SLANG),)
-      SYSLIBS += slang
+   ifneq ($(HB_HAS_PNG),)
+      ifeq ($(HB_HAS_PNG_LOCAL),)
+         SYSLIBS += png
+      endif
    endif
    ifneq ($(HB_HAS_X11),)
       SYSLIBS += X11

@@ -23,6 +23,7 @@ else
          src/lang \
          src/codepage \
          src/hbextern \
+         src/hbhpdf \
          src/rdd \
          src/rdd/dbfntx \
          src/rdd/dbfnsx \
@@ -45,11 +46,16 @@ else
       endif
 
       ifneq ($(HB_HAS_PCRE2_LOCAL),)
-         DYNDIRLIST_BASE += src/3rd/pcre2
-      else
+         DYNDIRLIST_BASE += 3rd/pcre2
       endif
       ifneq ($(HB_HAS_ZLIB_LOCAL),)
-         DYNDIRLIST_BASE += src/3rd/zlib
+         DYNDIRLIST_BASE += 3rd/zlib
+      endif
+      ifneq ($(HB_HAS_PNG_LOCAL),)
+         DYNDIRLIST_BASE += 3rd/png
+      endif
+      ifneq ($(HB_HAS_HARUPDF_LOCAL),)
+         DYNDIRLIST_BASE += 3rd/libharu
       endif
 
       export DYNDIRLIST_BASE
@@ -79,10 +85,11 @@ else
       lang \
       rdd$(HB_COMP_REF) \
       hbextern$(HB_COMP_REF) \
+      hbhpdf$(HB_COMP_REF) \
       debug$(HB_COMP_REF)
 
       ifneq ($(__HB_BUILD_DYN),no)
-         DIRS += dynlib{3rd,codepage,common,hbextern,lang,macro,pp,rdd,rtl,vm}
+         DIRS += dynlib{3rd,codepage,common,hbextern,hbhpdf,lang,macro,pp,rdd,rtl,vm}
       endif
 
 endif

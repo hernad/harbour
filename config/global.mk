@@ -196,12 +196,8 @@ ifeq ($(HB_INIT_DONE),)
 endif
 
 # Make platform detection
-ifneq ($(findstring COMMAND,$(SHELL)),)
-   HB_MAKE_PLAT := dos
-else ifneq ($(findstring sh.exe,$(SHELL)),)
+ifneq ($(findstring sh.exe,$(SHELL)),)
    HB_MAKE_PLAT := win
-else ifneq ($(findstring CMD.EXE,$(SHELL)),)
-   HB_MAKE_PLAT := os2
 else
    HB_MAKE_PLAT := unix
 endif
@@ -474,11 +470,7 @@ HB_PLAT_AUTO :=
 ifeq ($(HB_PLATFORM),)
    HB_PLATFORM := $(HB_HOST_PLAT)
    ifneq ($(HB_COMPILER),)
-      ifeq ($(HB_COMPILER),djgpp)
-         HB_PLATFORM := dos
-      else ifneq ($(filter $(HB_COMPILER),msvcarm msvcmips msvcsh mingwarm poccarm),)
-         HB_PLATFORM := wce
-      else ifneq ($(filter $(HB_COMPILER),mingw mingw64 clang64 msvc msvc64 msvcia64 clang-cl clang-cl64 bcc bcc64 pocc pocc64),)
+      ifneq ($(filter $(HB_COMPILER),mingw mingw64 clang64 msvc msvc64 msvcia64 clang-cl clang-cl64 bcc bcc64 pocc pocc64),)
          HB_PLATFORM := win
       endif
    endif

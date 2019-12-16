@@ -1,16 +1,6 @@
 ROOT := ../
 
 C_HEADERS := \
-   error.api \
-   extend.api \
-   filesys.api \
-   fm.api \
-   gt.api \
-   hbundoc.api \
-   item.api \
-   rdd.api \
-   vm.api \
-   \
    clipdefs.h \
    extend.h \
    hbapi.h \
@@ -79,6 +69,7 @@ C_HEADERS := \
    hbwince.h \
    hbwinuni.h \
    hbzlib.h \
+   hbhpdf.h \
    hbznet.h \
    hb_io.h \
 
