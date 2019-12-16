@@ -3,5 +3,8 @@
    Entries may not always be in chronological/commit order.
    See license at the end of file. */
 
+2019-16-12 16:36 UTC Ernad Husremovic (hernad@bring.out.ba)
+  * hbxlsxwriter
+
 2019-15-12 22:00 UTC Ernad Husremovic (hernad@bring.out.ba)
   * init
