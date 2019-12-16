@@ -4,7 +4,6 @@ include $(TOP)$(ROOT)config/global.mk
 
 HB_PRGFLAGS += -gc3
 
-
 C_SOURCES := \
    annot.c \
    core.c \

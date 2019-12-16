@@ -1,0 +1,48 @@
+# -lharbour required for the zlib API exported from there
+-stop{hbdyn&!(HB_BUILD_3RD_DYN='yes')} -env:__HB_3RD_DYN=yes{hbdyn} -lharbour${_HB_DYNSUFF}{hbdyn}
+
+-hblib
+-inc
+
+-o${hb_name}
+
+-warn=low
+-cpp=no
+-pic
+
+{wce}-cflag=-DNO_MSCVER_FILE64_FUNC
+-cflag=-DHB_USE_CORE_ALLOC{!hbdyn}
+
+# for f*64() functions
+#-c=gnu90
+
+ioapi.c
+zip.c
+unzip.c
+
+-depurlbase=zlib:https://zlib.net/
+-deppkgname=zlib:zlib1g-dev{deb}
+-deppkgname=zlib:zlib-devel{rpm}
+-deppkgname=zlib:zlib{homebrew}
+-deppkgname=zlib:zlib{pacman}
+-deppkgname=zlib:mingw-w64-i686-zlib{msys2&x86}
+-deppkgname=zlib:mingw-w64-x86_64-zlib{msys2&x86_64}
+-depkeyhead=zlib:zlib.h
+-depcontrol=zlib:local{HB_BUILD_3RDEXT='no'}
+-depcontrol=zlib:${HB_WITH_ZLIB}
+-depincpath=zlib:/usr/include
+-depincpath=zlib:/usr/local/include
+-depincpath=zlib:/boot/develop/headers/3rdparty
+-depincpathlocal=zlib:../../../../src/3rd/zlib
+
+# URL    https://github.com/madler/zlib/archive/v1.2.11.tar.gz
+# DIFF   minizip.diff
+#
+# MAP    README
+# MAP    contrib/minizip/crypt.h crypt.h
+# MAP    contrib/minizip/ioapi.c ioapi.c
+# MAP    contrib/minizip/ioapi.h ioapi.h
+# MAP    contrib/minizip/unzip.c unzip.c
+# MAP    contrib/minizip/unzip.h unzip.h
+# MAP    contrib/minizip/zip.c   zip.c
+# MAP    contrib/minizip/zip.h   zip.h

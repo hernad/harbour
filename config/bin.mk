@@ -57,6 +57,10 @@ else
    ifneq ($(HB_HAS_ZLIB_LOCAL),)
       HB_LIBS_TPL += hbzlib
    endif
+   ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
+      HB_LIBS_TPL += xlswriter
+   endif
+
 
    # Create a few common core lib lists
    _HB_RDD := \

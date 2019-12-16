@@ -35,6 +35,10 @@ endif
 ifneq ($(HB_HAS_ZLIB_LOCAL),)
    HB_DYN_LIBS += hbzlib
 endif
+ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
+   HB_DYN_LIBS += xlswriter
+endif
+
 
 # Added only for hbpp
 -include $(TOP)$(ROOT)config/$(HB_PLATFORM)/libs.mk

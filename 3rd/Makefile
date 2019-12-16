@@ -5,7 +5,7 @@ DIRS := \
 	zlib \
 	png \
 	harupdf \
-
-#libharu 
+	minizip \
+        xlswriter \
 
 include $(TOP)$(ROOT)config/dir.mk

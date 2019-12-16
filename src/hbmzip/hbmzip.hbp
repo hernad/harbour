@@ -1,0 +1,49 @@
+-hblib
+-inc
+
+-o${hb_name}
+
+-w3 -es2
+
+# localtime_r, gmtime_r
+#-c=gnu90
+
+# Refactored minizip (used by MSYS2): https://github.com/nmoinvaz/minizip
+-depurlbase=minizip:https://zlib.net/
+-depurlbase=minizip:http://winimage.com/zLibDll/minizip.html
+-deppkgname=minizip:libminizip-dev{deb}
+-deppkgname=minizip:minizip-devel{rpm}
+-deppkgname=minizip:minizip{homebrew|pkgng}
+-deppkgname=minizip:minizip{pacman}
+-deppkgname=minizip:mingw-w64-i686-zlib{msys2&x86}
+-deppkgname=minizip:mingw-w64-x86_64-zlib{msys2&x86_64}
+-depkeyhead=minizip:unzip.h
+-depcontrol=minizip:local{HB_BUILD_3RDEXT='no'}
+-depcontrol=minizip:${HB_WITH_MINIZIP}
+-depincpath=minizip:/usr/include/minizip
+-depincpath=minizip:/usr/local/include/minizip
+-depincpathlocal=minizip:3rd/minizip
+-depfinish=minizip
+
+# This is a dependency of minizip
+-depurlbase=zlib:https://zlib.net/
+-deppkgname=zlib:zlib1g-dev{deb}
+-deppkgname=zlib:zlib-devel{rpm}
+-deppkgname=zlib:zlib{homebrew}
+-deppkgname=zlib:zlib{pacman}
+-deppkgname=zlib:mingw-w64-i686-zlib{msys2&x86}
+-deppkgname=zlib:mingw-w64-x86_64-zlib{msys2&x86_64}
+-depkeyhead=zlib:zlib.h
+-depcontrol=zlib:local{HB_BUILD_3RDEXT='no'}
+-depcontrol=zlib:${HB_WITH_ZLIB}
+-depincpath=zlib:/usr/include
+-depincpath=zlib:/usr/local/include
+-depincpath=zlib:/boot/develop/headers/3rdparty
+-depincpathlocal=zlib:../../src/3rd/zlib
+
+-hbx=${hb_name}
+
+mzip.c
+mziperr.prg
+
+3rd/minizip/minizip.hbc{HBMK_HAS_MINIZIP_LOCAL}

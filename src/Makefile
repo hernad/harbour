@@ -60,6 +60,10 @@ else
       ifneq ($(HB_HAS_HARUPDF_LOCAL),)
          DYNDIRLIST_BASE += 3rd/libharu
       endif
+      ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
+         DYNDIRLIST_BASE += 3rd/xlswriter
+      endif
+
 
       export DYNDIRLIST_BASE
    endif
@@ -91,7 +95,8 @@ else
       hbhpdf$(HB_COMP_REF) \
       debug$(HB_COMP_REF) \
       hbpgsql \
-      sddpg
+      sddpg \
+      hbmzip
 
 
       ifneq ($(__HB_BUILD_DYN),no)

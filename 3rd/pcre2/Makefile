@@ -47,11 +47,6 @@ ifneq ($(HB_HAS_PCRE2_LOCAL),)
 
    HB_CFLAGS += -DHAVE_CONFIG_H
 
-   # suppress bcc warnings
-   ifeq ($(HB_COMPILER),bcc)
-      HB_CFLAGS += -w-use -w-csu -w-aus -w-sig
-   endif
-
    include $(TOP)$(ROOT)config/lib.mk
 else
    HB_SKIP_REASON := local copy unused
