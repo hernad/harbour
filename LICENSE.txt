@@ -1,7 +1,7 @@
 LICENSES 
 
 harbour compiler & tools (harbour, hbmk2) = GPL2
- - see LICENSE
+ - see LICENSE_BIN
 
 harbour libraries => LGPL2
  - see LICENSE_LIBRARIES
