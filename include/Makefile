@@ -151,5 +151,7 @@ PRG_HEADERS := \
    hbmzip.ch \
    hbmzip.hbx \
    hbxlsxwriter.ch \
+   hbssl.ch \
+   hbssl.hbx \
 
 include $(TOP)$(ROOT)config/header.mk
