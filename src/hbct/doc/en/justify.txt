@@ -1,0 +1,59 @@
+/* $DOC$
+   $NAME$
+      JustLeft()
+   $CATEGORY$
+      CT3 string functions
+   $ONELINER$
+      Move characters from the beginning to the end of a string
+   $SYNTAX$
+      JustLeft( <[@]cString>, [<cChar>|<nChar>] ) --> cJustifiedString
+   $ARGUMENTS$
+
+   $RETURNS$
+
+   $DESCRIPTION$
+      TODO: add documentation
+   $EXAMPLES$
+
+   $STATUS$
+      R
+   $COMPLIANCE$
+      C
+   $PLATFORMS$
+      All
+   $FILES$
+      Library is hbct.
+   $SEEALSO$
+      JustRight()
+   $END$
+ */
+
+/* $DOC$
+   $NAME$
+      JustRight()
+   $CATEGORY$
+      CT3 string functions
+   $ONELINER$
+      Move characters from the end to the beginning of a string
+   $SYNTAX$
+      JustRight( <[@]cString>, [<cChar>|<nChar>] ) --> cJustifiedString
+   $ARGUMENTS$
+
+   $RETURNS$
+
+   $DESCRIPTION$
+      TODO: add documentation
+   $EXAMPLES$
+
+   $STATUS$
+      R
+   $COMPLIANCE$
+      C
+   $PLATFORMS$
+      All
+   $FILES$
+      Library is hbct.
+   $SEEALSO$
+      JustLeft()
+   $END$
+ */

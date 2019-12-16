@@ -388,15 +388,11 @@ ifeq ($(HB_HOST_PLAT),)
 endif
 
 ifeq ($(HB_HOST_PLAT),)
-   ifneq ($(OS2_SHELL),)
-      HB_HOST_PLAT := os2
-   else ifneq ($(windir)$(WINDIR),)
+   ifneq ($(windir)$(WINDIR),)
       HB_HOST_PLAT := win
       ifeq ($(OS),)
          HB_HOST_PLAT_WIN9X := yes
       endif
-   else ifeq ($(HB_SHELL),dos)
-      HB_HOST_PLAT := dos
    else ifneq ($(HB_PLATFORM),)
       HB_HOST_PLAT := $(HB_PLATFORM)
    endif

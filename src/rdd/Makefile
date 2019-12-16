@@ -53,6 +53,7 @@ DIRS = \
    hsx \
    usrrdd \
    rddsql \
+   rddmisc \
 
 include $(TOP)$(ROOT)config/lib.mk
 include $(TOP)$(ROOT)config/dir.mk

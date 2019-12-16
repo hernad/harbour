@@ -17,5 +17,5 @@ libpaths=/usr/local/lib{darwin}
 # To achieve that, `HB_LIBS_LIBHARU=hpdfs png`
 # setting shall by used.
 
-libs=3rd/libharu/hpdf.hbc{!HB_LIBS_LIBHARU}
+libs=harupdf.hbc
 libs=${HB_LIBS_LIBHARU}

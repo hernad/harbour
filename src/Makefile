@@ -98,8 +98,13 @@ else
       sddpg \
       hbmzip \
       hbxlsxwriter \
+      hbssl \
       hbtip \
       hbct \
+
+      ifeq ($(HB_HOST_PLAT),win)
+	 DIRS += hbwin
+      endif
 
       ifneq ($(__HB_BUILD_DYN),no)
          DIRS += dynlib{3rd,codepage,common,hbextern,hbhpdf,lang,macro,pp,rdd,rtl,vm}
