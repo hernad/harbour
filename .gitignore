@@ -1,0 +1,7 @@
+include/hbverbld.h
+include/_repover.txt
+src/**/obj/
+utils/**/obj/
+3rd/**/obj/
+bin/
+lib/

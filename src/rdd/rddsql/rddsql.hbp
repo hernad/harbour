@@ -1,0 +1,9 @@
+-hblib
+-inc
+
+-o${hb_name}
+
+-w3 -es2
+
+sqlbase.c
+sqlmix.c
