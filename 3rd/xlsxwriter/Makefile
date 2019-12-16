@@ -2,7 +2,7 @@ ROOT := ../../
 
 include $(TOP)$(ROOT)config/global.mk
 
-LIBNAME := xlswriter
+LIBNAME := xlsxwriter
 
 HB_BUILD_WARN := no
 HB_BUILD_MODE := c
@@ -29,6 +29,7 @@ C_SOURCES := \
 
 
 ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
+   HB_CFLAGS += -DUSE_STANDARD_TMPFILE
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_PNG)$(QUOTE)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_MINIZIP)$(QUOTE)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_XLSWRITER)$(QUOTE)

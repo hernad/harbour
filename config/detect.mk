@@ -107,8 +107,8 @@ _DET_VAR_HAS_ := HB_HAS_XLSWRITER
 _DET_FLT_PLAT :=
 _DET_FLT_COMP :=
 _DET_INC_DEFP := /usr/include /usr/local/include
-_DET_INC_LOCL := 3rd/xlswriter
-_DET_INC_HEAD := /xlswriter.hbc
+_DET_INC_LOCL := 3rd/xlsxwriter
+_DET_INC_HEAD := /xlsxwriter.hbc
 include $(TOP)$(ROOT)config/detfun.mk
 
 

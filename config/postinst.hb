@@ -128,7 +128,7 @@ PROCEDURE Main( ... )
             OutStd( "Copying hbc to LIB ..." + hb_eol() )
 
             IF hb_DirBuild( hb_DirSepToOS( tmp ) )
-               FOR EACH cFile IN { "src/rdd/rddsql/rddsql.hbc", "src/sddpg/sddpg.hbc", "src/hbpgsql/hbpgsql.hbc", "src/hbhpdf/hbhpdf.hbc", "3rd/minizip/minizip.hbc", "src/hbmzip/hbmzip.hbc" }
+               FOR EACH cFile IN { "src/rdd/rddsql/rddsql.hbc", "src/sddpg/sddpg.hbc", "src/hbpgsql/hbpgsql.hbc", "src/hbhpdf/hbhpdf.hbc", "3rd/minizip/minizip.hbc", "src/hbmzip/hbmzip.hbc", "3rd/xlsxwriter/xlsxwriter.hbc", "src/hbxlsxwriter/hbxlsxwriter.hbc" }
                   mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
                NEXT
 

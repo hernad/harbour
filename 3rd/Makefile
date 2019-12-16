@@ -6,6 +6,6 @@ DIRS := \
 	png \
 	harupdf \
 	minizip \
-        xlswriter \
+        xlsxwriter \
 
 include $(TOP)$(ROOT)config/dir.mk

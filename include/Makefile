@@ -150,5 +150,6 @@ PRG_HEADERS := \
    sddpg.hbx\
    hbmzip.ch \
    hbmzip.hbx \
+   hbxlsxwriter.ch \
 
 include $(TOP)$(ROOT)config/header.mk

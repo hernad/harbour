@@ -121,7 +121,7 @@ lxw_format_free(lxw_format *format)
  * Check a user input color.
  */
 lxw_color_t
-lxw_format_check_colorz(lxw_color_t color)
+lxw_format_check_color(lxw_color_t color)
 {
     if (color == LXW_COLOR_UNSET)
         return color;

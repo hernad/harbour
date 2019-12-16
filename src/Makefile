@@ -61,7 +61,7 @@ else
          DYNDIRLIST_BASE += 3rd/libharu
       endif
       ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/xlswriter
+         DYNDIRLIST_BASE += 3rd/xlsxwriter
       endif
 
 
@@ -96,7 +96,8 @@ else
       debug$(HB_COMP_REF) \
       hbpgsql \
       sddpg \
-      hbmzip
+      hbmzip \
+      hbxlsxwriter \
 
 
       ifneq ($(__HB_BUILD_DYN),no)
