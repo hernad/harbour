@@ -33,7 +33,9 @@ else
          src/rdd/hsx \
          src/rdd/usrrdd \
          src/rtl/gtstd \
-         src/rtl/gtcgi 
+         src/rtl/gtcgi \
+	 src/hbpgsql \
+	 src/sddpg 
 
       ifeq ($(HB_PLATFORM),win)
          DYNDIRLIST_BASE += src/rtl/gtwvt src/rtl/gtgui src/rtl/gtwin

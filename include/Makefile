@@ -142,5 +142,10 @@ PRG_HEADERS := \
    tbrowse.ch \
    harupdf.ch \
    hbhpdf.hbx \
-
+   hbrddsql.ch \
+   hbrddsql.h \
+   hbpgsql.h \
+   postgres.ch \
+   hbpgsql.hbx \
+   sddpg.hbx
 include $(TOP)$(ROOT)config/header.mk
