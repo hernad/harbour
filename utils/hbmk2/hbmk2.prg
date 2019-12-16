@@ -11923,7 +11923,7 @@ STATIC FUNCTION HBC_FindStd( hbmk, /* @ */ cFile )
    LOCAL tmp
 
    FOR EACH cLibPath IN hbmk[ _HBMK_aLIBPATH ]
-      IF hb_vfExists( hb_DirSepAdd( hb_DirSepToOS( MacroProc( hbmk, cLibPath, cFile, _MACRO_LATE_PREFIX ) ) ) + hb_FNameNameExt( cFile ) )
+       IF hb_vfExists( hb_DirSepAdd( hb_DirSepToOS( MacroProc( hbmk, cLibPath, cFile, _MACRO_LATE_PREFIX ) ) ) + hb_FNameNameExt( cFile ) )
          cFile := hb_DirSepAdd( hb_DirSepToOS( MacroProc( hbmk, cLibPath, cFile, _MACRO_LATE_PREFIX ) ) ) + hb_FNameNameExt( cFile )
          RETURN .T.
       ENDIF
@@ -11975,9 +11975,7 @@ STATIC PROCEDURE HintHBC( hbmk )
 
 /* shell dependent, but let's assume the platform default is used */
 STATIC FUNCTION EnvNotation( cEnvName )
-#if defined( __PLATFORM__WINDOWS ) .OR. ;
-    defined( __PLATFORM__DOS ) .OR. ;
-    defined( __PLATFORM__OS2 )
+#if defined( __PLATFORM__WINDOWS )
    RETURN "%" + cEnvName + "%"
 #else
    RETURN "$" + cEnvName

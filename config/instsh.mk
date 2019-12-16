@@ -64,42 +64,6 @@ ifeq ($(HB_SHELL),nt)
 
 endif
 
-ifeq ($(HB_SHELL),os2)
-
-   define inst_file_all
-      -@$(MDP) $(INSTALL_DIR_OS)
-      $(foreach file,$(INSTALL_FILES_OS),$(inst_file))
-   endef
-
-   # NOTE: The empty line directly before 'endef' HAS TO exist!
-   #       It causes that every command will be separated by LF
-   define inst_file
-      -@$(CP) $(file) $(INSTALL_DIR_OS)
-
-   endef
-
-   INSTALL_RULE := $(inst_file_all)
-
-endif
-
-ifeq ($(HB_SHELL),dos)
-
-   define inst_file_all
-      -@$(MDP) $(INSTALL_DIR_OS)
-      $(foreach file,$(INSTALL_FILES_OS),$(inst_file))
-   endef
-
-   # NOTE: The empty line directly before 'endef' HAS TO exist!
-   #       It causes that every command will be separated by LF
-   define inst_file
-      -@$(CP) $(file) $(INSTALL_DIR_OS)
-
-   endef
-
-   INSTALL_RULE := $(inst_file_all)
-
-endif
-
 endif # Source and destination directories are equal
 
 endif # Empty install dir

@@ -53,6 +53,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionFull
    LOCAL cDynVersionComp
    LOCAL cDynVersionless
+   LOCAL cFile
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -95,7 +96,7 @@ PROCEDURE Main( ... )
       /* Installing some misc files */
       tmp := GetEnvC( "HB_INSTALL_DOC" )
       IF ! tmp == "no"
-         IF GetEnvC( "HB_PLATFORM" ) $ "win|wce|os2|dos"
+         IF GetEnvC( "HB_PLATFORM" ) == "win"
             tmp := GetEnvC( "HB_INSTALL_PREFIX" )
          ENDIF
          IF ! Empty( tmp )
@@ -104,7 +105,31 @@ PROCEDURE Main( ... )
 
             IF hb_DirBuild( hb_DirSepToOS( tmp ) )
                FOR EACH aFile IN hb_vfDirectory( "Change*" )
-                  mk_hb_vfCopyFile( aFile[ F_NAME ], tmp + hb_ps() + iif( GetEnvC( "HB_PLATFORM" ) == "dos", "CHANGES.txt", "" ), .T.,, .T. )
+                  mk_hb_vfCopyFile( aFile[ F_NAME ], tmp + hb_ps(), .T.,, .T. )
+               NEXT
+
+               mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
+               mk_hb_vfCopyFile( ".github/CONTRIBUTING.md", tmp + hb_ps(), .T.,, .T. )
+               mk_hb_vfCopyFile( "README.md", tmp + hb_ps(), .T.,, .T. )
+               mk_hb_vfCopyFile( "CODE_OF_CONDUCT.md", tmp + hb_ps(), .T.,, .T. )
+            ELSE
+               OutStd( hb_StrFormat( "! Error: Cannot create directory '%1$s'", tmp ) + hb_eol() )
+            ENDIF
+         ENDIF
+      ENDIF
+
+      tmp := GetEnvC( "HB_INSTALL_LIB" )
+      IF ! tmp == "no"
+         IF GetEnvC( "HB_PLATFORM" ) == "win"
+            tmp := GetEnvC( "HB_INSTALL_PREFIX" )
+         ENDIF
+         IF ! Empty( tmp )
+
+            OutStd( "Copying hbc to LIB ..." + hb_eol() )
+
+            IF hb_DirBuild( hb_DirSepToOS( tmp ) )
+               FOR EACH cFile IN { "src/rdd/rddsql/rddsql.hbc", "src/sddpg/sddpg.hbc", "src/hbpgsql/hbpgsql.hbc", "src/hbhpdf/hbhpdf.hbc" }
+                  mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
                NEXT
 
                mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
@@ -175,7 +200,7 @@ PROCEDURE Main( ... )
          ENDIF
       ENDIF
 
-      IF ! GetEnvC( "HB_PLATFORM" ) $ "win|wce|os2|dos|cygwin" .AND. ;
+      IF ! GetEnvC( "HB_PLATFORM" ) $ "win|cygwin" .AND. ;
          ! Empty( GetEnvC( "HB_INSTALL_DYN" ) ) .AND. ;
          hb_vfExists( hb_DirSepToOS( GetEnvC( "HB_DYNLIB_DIR" ) ) + hb_ps() + GetEnvC( "HB_DYNLIB_PREF" ) + GetEnvC( "HB_DYNLIB_BASE" ) + GetEnvC( "HB_DYNLIB_POST" ) + GetEnvC( "HB_DYNLIB_EXT" ) + GetEnvC( "HB_DYNLIB_PEXT" ) )
 
@@ -218,22 +243,22 @@ PROCEDURE Main( ... )
          ENDCASE
       ENDIF
 
-      /* Creating language files */
-
-      IF ! Empty( GetEnvC( "HB_INSTALL_DOC" ) ) .AND. ;
-         ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
-
-         OutStd( "! Creating core translation (.hbl) files..." + hb_eol() )
-
-         FOR EACH tmp IN hb_vfDirectory( "utils" + hb_ps() + hb_osFileMask(), "D" )
-            IF "D" $ tmp[ F_ATTR ] .AND. !( tmp[ F_NAME ] == "." .OR. tmp[ F_NAME ] == ".." )
-               FOR EACH aFile IN hb_vfDirectory( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/*.po" ) )
-                  mk_hbl( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/" + aFile[ F_NAME ] ), ;
-                     hb_DirSepToOS( GetEnvC( "HB_INSTALL_DOC" ) ) + hb_ps() + hb_FNameExtSet( aFile[ F_NAME ], ".hbl" ) )
-               NEXT
-            ENDIF
-         NEXT
-      ENDIF
+      /* Creating language files doc/ .hbl - out */
+      // IF ! Empty( GetEnvC( "HB_INSTALL_DOC" ) ) .AND. ;
+      //    ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
+      // 
+      //    OutStd( "! Creating core translation (.hbl) files..." + hb_eol() )
+      // 
+      //    FOR EACH tmp IN hb_vfDirectory( "utils" + hb_ps() + hb_osFileMask(), "D" )
+      //       IF "D" $ tmp[ F_ATTR ] .AND. !( tmp[ F_NAME ] == "." .OR. tmp[ F_NAME ] == ".." )
+      //          FOR EACH aFile IN hb_vfDirectory( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/*.po" ) )
+      //             mk_hbl( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/" + aFile[ F_NAME ] ), ;
+      //                hb_DirSepToOS( GetEnvC( "HB_INSTALL_DOC" ) ) + hb_ps() + hb_FNameExtSet( aFile[ F_NAME ], ".hbl" ) )
+      //          NEXT
+      //       ENDIF
+      //    NEXT
+      // ENDIF
+      
 
       /* Creating docs for core */
 
@@ -259,7 +284,7 @@ PROCEDURE Main( ... )
          ! Empty( GetEnvC( "HB_TOP" ) ) .AND. ;
          ! GetEnvC( "_HB_BUILD_PKG_ARCHIVE" ) == "no"
 
-         IF GetEnvC( "HB_PLATFORM" ) $ "win|wce|os2|dos"
+         IF GetEnvC( "HB_PLATFORM" ) == "win"
 
             OutStd( "! Creating Harbour release package..." + hb_eol() )
 
@@ -453,6 +478,7 @@ STATIC FUNCTION mk_hb_vfTimeSet( cFileName )
       ! GetEnvC( "HB_BUILD_PKG" ) == "yes" .OR. ;
       Empty( s_tVCS ) .OR. ;
       hb_vfTimeSet( cFileName, s_tVCS )
+
 
 STATIC FUNCTION mk_hb_MemoWrit( cFileName, cContent )
 
@@ -776,21 +802,15 @@ STATIC FUNCTION __hb_extern_get_list( cInputName )
    DO CASE
    CASE "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|clang|clang64|" .AND. GetEnv( "HB_PLATFORM" ) == "win"
       cCommand := "llvm-nm -g --defined-only -C {I}"
-   CASE "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|gcc|mingw|mingw64|clang|djgpp|"
+   CASE "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|gcc|mingw|mingw64|clang|"
       cCommand := "nm -g" + iif( GetEnv( "HB_PLATFORM" ) == "darwin", "", " --defined-only -C" ) + " {I}"
-   CASE "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|msvc|msvc64|pocc|pocc64|"
+   CASE "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|msvc|msvc64|"
       IF "|" + GetEnv( "HB_COMPILER" ) + "|" $ "|msvc|msvc64|"
          cCommand := "dumpbin -symbols {I}"
       ELSE
          cCommand := "podump -symbols {I}"
       ENDIF
       cRegex := "SECT[0-9A-Z][0-9A-Z ].*[Ee]xternal.*_?HB_FUN_([A-Z0-9_]*)[\s]"
-   CASE GetEnv( "HB_COMPILER" ) == "watcom"
-      cCommand := "wlib {I}"
-   CASE GetEnv( "HB_COMPILER" ) == "bcc"
-      cCommand := "tlib {I}, {T}"
-   CASE GetEnv( "HB_COMPILER" ) == "bcc64"
-      cCommand := "tlib64 {I}, {T}"
    ENDCASE
 
    IF ! Empty( cCommand ) .AND. ;

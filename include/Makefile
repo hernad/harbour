@@ -148,4 +148,5 @@ PRG_HEADERS := \
    postgres.ch \
    hbpgsql.hbx \
    sddpg.hbx
+
 include $(TOP)$(ROOT)config/header.mk

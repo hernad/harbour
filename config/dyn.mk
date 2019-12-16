@@ -26,11 +26,7 @@ include $(TOP)$(ROOT)config/c.mk
 include $(TOP)$(ROOT)config/prg.mk
 include $(TOP)$(ROOT)config/res.mk
 
-ifeq ($(HB_LINKING_VMMT),yes)
-   _HB_VM := hbvmmt
-else
-   _HB_VM := hbvm
-endif
+_HB_VM := hbvmmt
 
 HB_DYN_LIBS := \
    hbcommon \

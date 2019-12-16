@@ -21,6 +21,7 @@ else
          src/rtl \
          src/macro \
          src/lang \
+	 src/debug \
          src/codepage \
          src/hbextern \
          src/hbhpdf \
@@ -88,7 +89,10 @@ else
       rdd$(HB_COMP_REF) \
       hbextern$(HB_COMP_REF) \
       hbhpdf$(HB_COMP_REF) \
-      debug$(HB_COMP_REF)
+      debug$(HB_COMP_REF) \
+      hbpgsql \
+      sddpg
+
 
       ifneq ($(__HB_BUILD_DYN),no)
          DIRS += dynlib{3rd,codepage,common,hbextern,hbhpdf,lang,macro,pp,rdd,rtl,vm}
