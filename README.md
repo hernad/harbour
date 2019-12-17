@@ -17,7 +17,7 @@ Besises the fact harbour is multiplatform project, mature GUI applications are e
 Harbour community is (like most IT communities) enthusiastic about programming language.
 The truth is crude:
   - There are NO notable NEW projects built with harbour. 
-  - The programming language project is in stalled state. Two lead developers recently abandoned project ([Przemyslaw Czerpak](https://github.com/druzus), [Viktor Szakats](https://github.com/vszakats))
+  - The programming language project is in stalled state. Two lead developers recently abandoned project.
   - Already small community is additionaly fragmented by pratices and vision of future
 
 ### 1.4 Future directions
@@ -97,7 +97,7 @@ Developer has to have simple workflow:
     - codepage
     - pp
     - main
-    - compiler
+    - compiler (hbcplr)
     - debug
     - lang
     - macro

@@ -19,7 +19,7 @@ ifeq ($(BUILD_SHARED),yes)
 
    ifeq ($(HB_PLATFORM),cygwin)
       HB_LIBS_TPL += hbmainstd
-   else ifneq ($(filter $(HB_PLATFORM),win wce),)
+   else ifneq ($(filter $(HB_PLATFORM),win),)
       ifneq ($(filter $(HB_COMPILER),mingw mingw64 mingwarm),)
          HB_LIBS_TPL += hbmainstd
       else

@@ -120,9 +120,9 @@ PROCEDURE Main( ... )
 
       tmp := GetEnvC( "HB_INSTALL_LIB" )
       IF ! tmp == "no"
-         IF GetEnvC( "HB_PLATFORM" ) == "win"
-            tmp := GetEnvC( "HB_INSTALL_PREFIX" )
-         ENDIF
+         //IF GetEnvC( "HB_PLATFORM" ) == "win"
+         //   tmp := GetEnvC( "HB_INSTALL_PREFIX" )
+         //ENDIF
          IF ! Empty( tmp )
 
             OutStd( "Copying hbc to LIB ..." + hb_eol() )
