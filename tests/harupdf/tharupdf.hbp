@@ -1,0 +1,14 @@
+-otharupdf
+-b
+-inc
+
+DemoPdf.prg
+HaruFonts.prg
+HaruPrintMgr.prg
+HaruUtils.prg
+i2of5txt.prg
+THaruPDFBase.prg
+THaruPDF.prg
+
+hbhpdf.hbc
+hbct.hbc

@@ -1,0 +1,7 @@
+https://github.com/FiveTechSoft/THaruPDF.git
+
+http://mscorefonts2.sourceforge.net/
+
+/usr/share/fonts/msttcore
+
+
