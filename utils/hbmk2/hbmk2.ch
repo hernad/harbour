@@ -65,7 +65,8 @@
          method is to supply and maintain .hbc files in their respective
          directories, usually under tests (or utils, examples). As of this
          writing, most of them has one created.
-         Thank you. [vszakats] */
+         Thank you. [vszakats] 
+*/
 
 /* TODOs:
    - Support debug/release modes. Some default setting can be set
@@ -104,7 +105,7 @@
  */
 
 
-//#ifndef _HBMK_EMBEDDED_
+#ifndef _HBMK_EMBEDDED_
 
 
 #include "hbextcdp.ch"
@@ -113,7 +114,8 @@
 
 /* For -u support we use 'WHILE' instead of 'DO WHILE',
    'EXTERNAL' instead of 'REQUEST'
-   'END' instead of 'END SEQUENCE' */
+   'END' instead of 'END SEQUENCE' 
+ */
 
 ANNOUNCE HB_GTSYS
 EXTERNAL HB_GT_CGI_DEFAULT
@@ -133,7 +135,7 @@ EXTERNAL HB_GT_CGI_DEFAULT
 #endif
 
 
-//#endif /* ! _HBMK_EMBEDDED_ */
+#endif /* ! _HBMK_EMBEDDED_ */
 
 EXTERNAL hbmk_KEYW
 
@@ -565,7 +567,6 @@ EXTERNAL hbmk_KEYW
 
 
 
-
 #ifndef _HBMK_EMBEDDED_
 
 /* Request for runner and shell */
@@ -659,6 +660,7 @@ PROCEDURE __hbmk_public_entry( ... )
    hbmk_local_entry( ... )
 
    RETURN
+
 #elif defined( HBMK_USE_APPMAIN )
 /* for GNU Make build (we cannot override default entry, so we use this alternate built-in one */
 PROCEDURE _APPMAIN( ... )
@@ -674,7 +676,6 @@ PROCEDURE __hbmk_fake_entry( ... )
 
    RETURN
 #endif
-
 
 
 #define _EXT_FILE_NORMAL "hb_extension"

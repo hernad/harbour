@@ -36,6 +36,7 @@
 
 #include "hbmk2.ch"
 
+
 STATIC PROCEDURE hbmk_local_entry( ... )
 
    LOCAL aArgsProc
@@ -238,11 +239,8 @@ STATIC FUNCTION hbmk_new( lShellMode )
 
    hbmk[ _HBMK_lStopAfterInit ] := .F.
    hbmk[ _HBMK_lStopAfterHarbour ] := .F.
-
    hbmk[ _HBMK_nExitCode ] := _EXIT_OK
-
    hbmk[ _HBMK_cWorkDir ] := NIL
-
    hbmk[ _HBMK_lCreateLib ] := .F.
    Set_lCreateDyn( hbmk, .F. )
    hbmk[ _HBMK_lCreateImpLib ] := .F.
@@ -724,8 +722,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL nStart := hb_MilliSeconds()
 
    LOCAL hbmk
-
-
    LOCAL aLIB_BASE_EXTERN
    LOCAL aLIB_BASE_DEBUG
    LOCAL aLIB_BASE_1
@@ -741,13 +737,10 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL aLIB_BASE_3_MT
    LOCAL cLIB_BASE_PCRE
    LOCAL cLIB_BASE_ZLIB
-
    LOCAL l_cHRBSTUB
    LOCAL l_cCSTUB
    LOCAL l_cCPPSTUB
-
    LOCAL l_cRESSTUB
-
    LOCAL l_aPRG_TO_DO
    LOCAL l_aC_TO_DO
    LOCAL l_aCPP_TO_DO
@@ -794,7 +787,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       does not have such bad side-effect.
       [vszakats] */
    LOCAL l_lLIBGROUPING := .T.
-
    LOCAL l_nJOBS := NumberOfCPUs()
 
    LOCAL aCOMPDET := NIL
@@ -907,7 +899,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL thread
 
    LOCAL lDeleteWorkDir := .F.
-
    LOCAL cStdOutErr
    LOCAL aParamINC
 
@@ -1372,9 +1363,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       CASE "poccarm"
          hbmk[ _HBMK_cPLAT ] := "wce"
          EXIT
-      CASE "djgpp"
-         hbmk[ _HBMK_cPLAT ] := "dos"
-         EXIT
       OTHERWISE
          hbmk[ _HBMK_cPLAT ] := hb_Version( HB_VERSION_BUILD_PLAT )
       ENDSWITCH
@@ -1404,7 +1392,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    cBin_CompPRG := "harbour" + l_cHBSUFFIX
 
    DO CASE
-   CASE HBMK_ISPLAT( "darwin|bsd|android|linux|cygwin" )
+   CASE HBMK_ISPLAT( "darwin|linux|cygwin" )
       DO CASE
       CASE hbmk[ _HBMK_cPLAT ] == "linux"
          aCOMPSUP := { "gcc", "clang", "icc", "watcom", "sunpro", "open64", "pcc" }
@@ -1601,13 +1589,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                      NEXT
                   NEXT
                NEXT
-            CASE hbmk[ _HBMK_cPLAT ] == "wce"
-               AAdd( aCOMPDET_EMBED, { {| cPrefix, tmp1 | iif( hb_vfExists( tmp1 + hb_ps() + cPrefix + "gcc" + hbmk[ _HBMK_cCCEXT ] ), tmp1, NIL ) }, "wce", "mingwarm", "arm-mingw32ce-"      , "/opt/mingw32ce/bin"   , NIL } )
-               AAdd( aCOMPDET_EMBED, { {| cPrefix, tmp1 | iif( hb_vfExists( tmp1 + hb_ps() + cPrefix + "gcc" + hbmk[ _HBMK_cCCEXT ] ), tmp1, NIL ) }, "wce", "mingwarm", "arm-wince-mingw32ce-", "/opt/mingw32ce/bin"   , NIL } )
-               AAdd( aCOMPDET_EMBED, { {| cPrefix, tmp1 | iif( hb_vfExists( tmp1 + hb_ps() + cPrefix + "gcc" + hbmk[ _HBMK_cCCEXT ] ), tmp1, NIL ) }, "wce", "mingw"   , "i386-mingw32ce-"     , "/opt/x86mingw32ce/bin", NIL } )
-            CASE hbmk[ _HBMK_cPLAT ] == "dos"
-               AAdd( aCOMPDET_EMBED, { {| cPrefix, tmp1 | iif( hb_vfExists( tmp1 + hb_ps() + cPrefix + "gcc" + hbmk[ _HBMK_cCCEXT ] ), tmp1, NIL ) }, "dos", "djgpp"   , "i586-pc-msdosdjgpp-" , NIL                    , NIL } )
-               AAdd( aCOMPDET_EMBED, { {| cPrefix, tmp1 | iif( hb_vfExists( tmp1 + hb_ps() + cPrefix + "gcc" + hbmk[ _HBMK_cCCEXT ] ), tmp1, NIL ) }, "dos", "djgpp"   , "i586-pc-msdosdjgpp-" , "/usr/local"           , NIL } )
             ENDCASE
          ENDIF
       #endif
@@ -3234,11 +3215,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       hbmk[ _HBMK_lPIC ] := .T.
    ENDIF
 
-#if 0 /* Disabled to experiment with '-hbdyn -shared' combination. */
-   IF hbmk[ _HBMK_lCreateDyn ] .AND. hbmk[ _HBMK_lSHARED ]
-      hbmk[ _HBMK_lSHARED ] := .F.
-   ENDIF
-#endif
 
    /* Force MT mode off in 1.0.x and xHarbour/MS-DOS compatibility modes. */
    IF hbmk[ _HBMK_nHBMODE ] == _HBMODE_HB10 .OR. ;
@@ -3246,9 +3222,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       hbmk[ _HBMK_lMT ] := .F.
    ENDIF
 
-   IF hbmk[ _HBMK_cPLAT ] == "wce"
-      hbmk[ _HBMK_lWINUNI ] := .T.
-   ENDIF
 
    /* Start doing the make process. */
    IF ! hbmk[ _HBMK_lStopAfterInit ] .AND. ! hbmk[ _HBMK_lCreateImpLib ] .AND. ;
@@ -3285,10 +3258,11 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       ENDIF
    ENDIF
 
-   /* Decide about working dir */
+/* Decide about working dir */
+   
    IF ! hbmk[ _HBMK_lStopAfterInit ] .AND. ! hbmk[ _HBMK_lCreateImpLib ] .AND. ! hbmk[ _HBMK_lDumpInfo ] .AND. ;
       !( hbmk[ _HBMK_lCreateLib ] .AND. hbmk[ _HBMK_lCreateHRB ] )
-      IF hbmk[ _HBMK_lINC ]
+      //IF hbmk[ _HBMK_lINC ]
          hb_default( @hbmk[ _HBMK_cWorkDir ], hb_FNameDir( hbmk[ _HBMK_cPROGNAME ] ) + _WORKDIR_DEF_ + hbmk[ _HBMK_cWorkDirDynSub ] )
          IF ! Empty( hbmk[ _HBMK_cWorkDir ] )
             IF ! hb_DirBuild( hbmk[ _HBMK_cWorkDir ] )
@@ -3297,13 +3271,13 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                   DoBeep( .F. )
                ENDIF
                RETURN _EXIT_WORKDIRCREATE
-            ENDIF
-            #if ! defined( __PLATFORM__UNIX )
+         ENDIF
+         #if ! defined( __PLATFORM__UNIX )
                IF ( tmp := hb_AtI( _WORKDIR_BASE_ + hb_ps(), hbmk[ _HBMK_cWorkDir ] + hb_ps() ) ) > 0
                   hb_vfAttrSet( Left( hbmk[ _HBMK_cWorkDir ], tmp - 1 ) + _WORKDIR_BASE_, FC_HIDDEN )
                ENDIF
-            #endif
-         ENDIF
+         #endif
+         //ENDIF
       ELSE
          IF hbmk[ _HBMK_lStopAfterInit ] .OR. ;
             hbmk[ _HBMK_lStopAfterHarbour ] .OR. ;
