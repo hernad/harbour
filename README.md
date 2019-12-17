@@ -1,4 +1,4 @@
-# SIMPLE harbour
+# hernad's harbour
 
 ## 1. Harbour programming language
 
