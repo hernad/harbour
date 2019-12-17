@@ -17,20 +17,24 @@ Besises the fact harbour is multiplatform project, mature GUI applications are e
 Harbour community is (like most IT communities) enthusiastic about programming language.
 The truth is crude:
   - There are NO notable NEW projects built with harbour. 
-  - The programming language project is in stalled state. Two lead developers recently abandoned project( [Przemyslaw Czerpak](https://github.com/druzus), [Viktor Szakats](https://github.com/vszakats))
-  - Alread small community is quite fragmented 
-  
+  - The programming language project is in stalled state. Two lead developers recently abandoned project ([Przemyslaw Czerpak](https://github.com/druzus), [Viktor Szakats](https://github.com/vszakats))
+  - Already small community is additionaly fragmented by pratices and vision of future
+
 ### 1.4 Future directions
 
 Because of all this facts, let's be realistic.
 Community have to explore ways to revive project in directions which can be *achived* in short term with small engineering workforce and *applied* to existing projects! 
-So, investing into mobile and web technologies is not a good direction. We don't have enough time and engineering resources (either skills or man's power) to make competitive platform for mobile or web. Because of that target and effort should target exclusively *standard desktop* and *server* systems. Also, our efforts needs to be directed to projects and applications where harbour still have its competitive value.
+So, investing into mobile and web technologies is not a good direction. We don't have enough time and engineering resources (either skills or man's power) to make competitive platform for mobile or web. Because of that we should focus on *standard desktop* and *server* systems. Also, our efforts needs to be directed to projects and applications where harbour still have its competitive value.
 
 ### 1.5 Harbour's strengths and weaknesses
 
 #### 1.5.1 business application know-how
 
-Harbour community is old. It is problem. The other side of that fact, harbour developer's are REALLY experienced in the field of business applications. They build and maintain in production for decades. This is HUGE potential totally unused at the moment.
+Harbour community is old. It is problem. The other side of the coin is this: 
+
+**Most of us have GREAT experience in the area of building and maintaing business applications.** 
+
+We build and maintain in this kind of application **production** for decades. This is HUGE potential unused for the sake of the common project at this moment.
 
 #### 1.5.2 CUI (character user interface) applications
 
@@ -47,12 +51,12 @@ Clipper have raised its popularity with straightforward data manipulation langua
 ## 3. Solution: Make GOOD bridges
 
 Let us make good connection with other systems and technologies:
-    - SQL
-    - java
+- SQL
+- java
 
 HINT: This harbour repository contains PostgreSQL libraries used in production since 2011.
 
-## 4. Goals of thi repository
+## 4. Goals of this repository
 
 ### 4.1 Simple to use
 
