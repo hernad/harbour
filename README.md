@@ -39,7 +39,7 @@ We build and maintain this kind of applications in **production** for decades. T
 
 #### 1.5.2 CUI (character user interface) applications
 
-Harbour is great for building data-entry CUI applications. These applications are robust, effective and **supperior** in many use cases over GUI applications. Harbour is top-notch tool for building these kind of applications.
+Harbour is great for building data-entry CUI applications. These applications are robust, effective and **superior** in many use cases over GUI applications. Harbour is top-notch tool for building these kind of applications.
 
 #### 1.5.3. built-in xBase Data manipulation
 
