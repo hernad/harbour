@@ -1385,7 +1385,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    CASE HBMK_ISPLAT( "darwin|linux|cygwin" )
       DO CASE
       CASE hbmk[ _HBMK_cPLAT ] == "linux"
-         aCOMPSUP := { "gcc", "clang", "icc", "watcom", "sunpro", "open64", "pcc" }
+         aCOMPSUP := { "gcc", "clang", "icc" }
       CASE hbmk[ _HBMK_cPLAT ] == "darwin"
          aCOMPSUP := { "gcc", "clang", "icc", "pcc" }
       CASE hbmk[ _HBMK_cPLAT ] == "bsd"
@@ -1414,10 +1414,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       ENDCASE
 
       DO CASE
-      CASE hbmk[ _HBMK_cPLAT ] == "vxworks"
-         l_aLIBHBGT := {}
-         hbmk[ _HBMK_cGTDEFAULT ] := "gtstd"
-         cBinExt := ".vxe"
       CASE hbmk[ _HBMK_cPLAT ] == "abstr"
          l_aLIBHBGT := { "gttrm" }
          hbmk[ _HBMK_cGTDEFAULT ] := "gttrm"
@@ -1439,32 +1435,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       CASE "cygwin"  ; hbmk[ _HBMK_cDynLibExt ] := ".dll" ; EXIT
       OTHERWISE      ; hbmk[ _HBMK_cDynLibExt ] := ".so"
       ENDSWITCH
-   CASE hbmk[ _HBMK_cPLAT ] == "dos"
-#if ! defined( __PLATFORM__UNIX )
-      aCOMPDET := { ;
-         { {|| FindInPath( "gcc"      ) }, "djgpp"  }, ;
-         { {|| FindInPath( "wcc386"   ) }, "watcom" } }
-#endif
-      aCOMPSUP := { "djgpp", "gcc", "watcom" }
-      l_aLIBHBGT := { "gtdos" }
-      hbmk[ _HBMK_cGTDEFAULT ] := "gtdos"
-      hbmk[ _HBMK_cDynLibPrefix ] := ""
-      hbmk[ _HBMK_cDynLibExt ] := "" /* NOTE: This will be reset later if djgpp is detected. */
-      cBinExt := ".exe"
-      cOptPrefix := "-/"
-   CASE hbmk[ _HBMK_cPLAT ] == "os2"
-#if ! defined( __PLATFORM__UNIX )
-      aCOMPDET := { ;
-         { {|| FindInPath( "gcc"      ) }, "gcc"    }, ;
-         { {|| FindInPath( "wcc386"   ) }, "watcom" } }
-#endif
-      aCOMPSUP := { "gcc", "gccomf", "watcom" }
-      l_aLIBHBGT := { "gtos2" }
-      hbmk[ _HBMK_cGTDEFAULT ] := "gtos2"
-      hbmk[ _HBMK_cDynLibPrefix ] := ""
-      hbmk[ _HBMK_cDynLibExt ] := ".dll"
-      cBinExt := ".exe"
-      cOptPrefix := "-/"
    CASE hbmk[ _HBMK_cPLAT ] == "win"
       /* Order is significant.
          watcom also keeps a cl.exe in its binary dir. */
