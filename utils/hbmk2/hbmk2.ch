@@ -20,29 +20,6 @@
 #pragma -km+
 #pragma -ko+
 
-/*
-   Interesting C build overview from the author of a similar tool:
-      http://nethack4.org/blog/building-c.html
-   About autotools:
-      https://autotools.io/
-
-   Program Library HOWTO:
-      https://www.dwheeler.com/program-library/Program-Library-HOWTO.pdf
-
-   Markdown syntax:
-      https://daringfireball.net/projects/markdown/syntax
-      http://spec.commonmark.org/ (CommonMark)
-      https://johnmacfarlane.net/babelmark2/
-
-   Markdown to man page converter:
-      https://github.com/sunaku/md2man
-   Requires Ruby. Install with:
-      gem install md2man
-   Convert with:
-      md2man man.md > man.1
-      (man.md should come out from this executable as output, so
-      the manual does not have to be updated in two distinct places)
- */
 
 #include "directry.ch"
 #include "error.ch"
@@ -53,60 +30,6 @@
 #include "hbgtinfo.ch"
 #include "hbhrb.ch"
 #include "hbver.ch"
-
-/* NOTE: Keep this code clean from any kind of contribs and Harbour level
-         3rd party library/tool information. This component shall only
-         contain hard-wired knowledge on Harbour _core_ (official interfaces
-         preferred), C compilers and OS details on the smallest possible level.
-         Instead, 3rd party Harbour packages are recommended to maintain
-         and provide .hbc files themselves, as part of their standard
-         distribution packages. You can find a few such .hbc examples in
-         the 'extras' directory. For Harbour contribs, the recommended
-         method is to supply and maintain .hbc files in their respective
-         directories, usually under tests (or utils, examples). As of this
-         writing, most of them has one created.
-         Thank you. [vszakats] 
-*/
-
-/* TODOs:
-   - Support debug/release modes. Some default setting can be set
-     accordingly, and user can use it to further tweak settings.
-   - Further clean hbmk context var usage (global scope, project scope,
-     adding rest of variables).
-   - Add a way to fallback to stop if required headers could not be found.
-     This needs a way to spec what key headers to look for.
-   - Consider renaming the tool to simply 'hb'.
-   - Turn off lib grouping by default
-   - Avoid adding certain options and input files twice
-   - Clean up compiler auto-detection and add those few feature only
-     found in GNU Make / global.mk, like *nix native auto-detection,
-     auto-detection of watcom cross-build setups, poccarm/pocc64 setups,
-     clang/clang64, etc.
-   - Next gen compiler auto-detection:
-     1. Gather supported compilers by Harbour installation
-        (look for lib/<plat>/*[/<name>] subdirs)
-        Show error if nothing is found
-     2. Look if any supported compilers are found embedded, in PATH
-        or on HB_CCPATH for target <plat>.
-        Show error if nothing is found
-     3. If HB_COMPILER is set to one of them, select it.
-        (TODO: handle multiple installations of the same compiler.
-        E.g. embedded mingw and one in PATH, or two versions of MSVC)
-     4. If HB_COMPILER is set, but not to one of them, show warning and
-        use the highest one on the priority list.
-     5. If HB_COMPILER is not set,
-        use the highest one on the priority list.
-     NOTES: - Priority list: HB_CCPATH, PATH, embedded.
-            - Priority list: mingw, msvc, watcom
-            - Compilers of native CPU target have higher priority. (extra)
-              On x86_64 Windows: msvc64, msvc, msvcia64, mingw64, mingw, ...
-              On x86 Windows: msvc, msvc64, msvcia64, mingw, mingw64, ...
-              On IA64 Windows: msvcia64, msvc, msvc64, mingw, mingw64, ...
- */
-
-
-#ifndef _HBMK_EMBEDDED_
-
 
 #include "hbextcdp.ch"
 #include "hbextlng.ch"
@@ -134,8 +57,6 @@ EXTERNAL HB_GT_CGI_DEFAULT
    #endif
 #endif
 
-
-#endif /* ! _HBMK_EMBEDDED_ */
 
 EXTERNAL hbmk_KEYW
 
@@ -210,7 +131,6 @@ EXTERNAL hbmk_KEYW
 
 #define HB_HAS_OPTION( str )    ( " " + ( str ) + " " $ " " + hb_Version( HB_VERSION_OPTIONS ) + " " )
 
-/* Not implemented yet */
 #define _CONF_RELEASE           0  /* No debug */
 #define _CONF_DEBUG             1  /* Harbour level debug */
 #define _CONF_FULLDEBUG         2  /* Harbour + C level debug */
@@ -285,7 +205,6 @@ EXTERNAL hbmk_KEYW
 #define _CONFDIR_UNIX_             "harbour"
 #define _CONFDIR_BASE_          ".harbour"
 #define _WORKDIR_BASE_          ".hbmk"
-
 
 #define _WORKDIR_DEF_           ( _WORKDIR_BASE_ + hb_ps() + hbmk[ _HBMK_cPLAT ] + hb_ps() + hbmk[ _HBMK_cCOMP ] )
 
@@ -515,7 +434,6 @@ EXTERNAL hbmk_KEYW
 #define _HBMK_lInitHBL          172
 
 #define _HBMK_MAX_              172
-
 #define _HBMK_DEP_CTRL_MARKER   ".control."  /* must be an invalid path */
 
 #define _HBMKDEP_cName          1
@@ -557,21 +475,14 @@ EXTERNAL hbmk_KEYW
 #define _EXIT_PLUGINPREALL      20
 #define _EXIT_DEEPPROJNESTING   30
 #define _EXIT_STOP              50
-
 #define HBMK_IS_IN( str, list ) ( "|" + ( str ) + "|" $ "|" + ( list ) + "|" )
-
 #define HBMK_ISPLAT( list )     HBMK_IS_IN( hbmk[ _HBMK_cPLAT ], list )
 #define HBMK_ISCOMP( list )     HBMK_IS_IN( hbmk[ _HBMK_cCOMP ], list )
-
 #define PathMakeAbsolute( cPathR, cPathA ) hb_PathJoin( cPathA, cPathR )
 
 
-
-#ifndef _HBMK_EMBEDDED_
-
 /* Request for runner and shell */
 EXTERNAL __HB_EXTERN__
-
 /* Request some functions for plugins */
 EXTERNAL HBClass
 EXTERNAL __clsLockDef
@@ -680,10 +591,7 @@ PROCEDURE __hbmk_fake_entry( ... )
 
 #define _EXT_FILE_NORMAL "hb_extension"
 #define _EXT_FILE_MSDOS  "hb_ext.ini"
-
-
 #define _EXT_FILE_       _EXT_FILE_MSDOS
 #define _EXT_FILE_ALT    _EXT_FILE_NORMAL
 #define _EXT_FILE_ALT_OS I_( "non-MS-DOS" )
-
 #define _EXT_ENV_  "HB_EXTENSION"
