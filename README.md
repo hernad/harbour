@@ -34,11 +34,11 @@ Harbour community is old. It is problem. The other side of the coin is this:
 
 **Most of us have GREAT experience in the area of building and maintaing business applications.** 
 
-We build and maintain in this kind of application **production** for decades. This is HUGE potential unused for the sake of the common project at this moment.
+We build and maintain this kind of applications in **production** for decades. This is HUGE potential unused by harbour project at this moment.
 
 #### 1.5.2 CUI (character user interface) applications
 
-CUI - harbour is great for building data intensive CUI applications. These applications are robust, effective and **supperior** in many use cases over GUI applications. Harbour is top-notch language for building these kind of applications.
+Harbour is great for building data-entry CUI applications. These applications are robust, effective and **supperior** in many use cases over GUI applications. Harbour is top-notch tool for building these kind of applications.
 
 #### 1.5.3. built-in xBase Data manipulation
 
