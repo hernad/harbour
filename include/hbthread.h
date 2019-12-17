@@ -50,32 +50,15 @@
 #include "hbapi.h"
 #include "hbset.h"
 
-#if defined( HB_TASK_THREAD )
-   /* Harbour tasks explicitly requested */
-#elif ( defined( HB_OS_LINUX ) && defined( __WATCOMC__ ) ) || \
-      defined( HB_OS_DOS ) || defined( HB_OS_MINIX )
-#  define HB_TASK_THREAD
-#elif defined( HB_OS_LINUX ) || defined( HB_OS_DARWIN ) || \
-      defined( HB_OS_SUNOS ) || defined( HB_OS_HPUX ) || \
-      defined( HB_OS_BSD ) || defined( HB_OS_BEOS ) || \
-      defined( HB_OS_QNX ) || defined( HB_OS_VXWORKS ) || \
-      defined( HB_OS_CYGWIN ) || \
-      defined( HB_OS_AIX )
+
+#if defined( HB_OS_LINUX ) || defined( HB_OS_DARWIN ) || \
+      defined( HB_OS_CYGWIN )
 #  include <pthread.h>
 #  define HB_PTHREAD_API
-#  if defined( HB_OS_VXWORKS )
-#     /* Avoids compiler warnings in mutex initialization. MT still doesn't work though. */
-#     define HB_CRITICAL_NEED_INIT
-#  endif
 #elif defined( HB_OS_WIN )
 #  include <windows.h>
 #  if ! defined( HB_OS_WIN_CE )
 #    include <process.h>
-#  endif
-#elif defined( HB_OS_OS2 )
-#  include <os2.h>
-#  if defined( __WATCOMC__ )
-#     include <process.h>
 #  endif
 #endif
 
@@ -212,48 +195,6 @@ HB_EXTERN_BEGIN
 
 #  define HB_THREAD_INFINITE_WAIT   INFINITE
 
-#elif defined( HB_OS_OS2 )
-
-   /* In OS2 thread ID is continuous integer number so we can use it directly
-    * anyhow I'd prefer to not make such strict binding to OS values because
-    * it may cause troubles when code will be ported to other platforms.
-    */
-   #if 0
-   typedef TID                HB_THREAD_NO;
-   #endif
-   typedef HB_MAXINT          HB_THREAD_NO;
-   typedef TID                HB_THREAD_ID;
-   typedef TID                HB_THREAD_HANDLE;
-   typedef HMTX               HB_RAWCRITICAL_T;
-   typedef HEV                HB_OSCOND_T;
-
-   extern ULONG _hb_gettid( void );
-
-#  define HB_THREAD_STARTFUNC( func )     void func( void * Cargo )
-#  define HB_THREAD_END                   _endthread(); return;
-#  define HB_THREAD_RAWEND                return;
-
-#  if defined( __GNUC__ ) && 0
-#     define HB_THREAD_SELF()    ( ( TID ) _gettid() )
-#  else
-#     define HB_THREAD_SELF()    ( ( TID ) _hb_gettid() )
-#  endif
-
-#  define HB_CRITICAL_INIT(v)       DosCreateMutexSem( NULL, &(v), 0L, FALSE )
-#  define HB_CRITICAL_DESTROY(v)    DosCloseMutexSem( v )
-#  define HB_CRITICAL_LOCK(v)       DosRequestMutexSem( (v), SEM_INDEFINITE_WAIT )
-#  define HB_CRITICAL_UNLOCK(v)     DosReleaseMutexSem( v )
-
-#  undef  HB_COND_OS_SUPPORT
-#  undef  HB_COND_NEED_INIT
-#  define HB_COND_HARBOUR_SUPPORT
-#  define HB_CRITICAL_NEED_INIT
-
-#  define HB_THREAD_INFINITE_WAIT   SEM_INDEFINITE_WAIT
-
-#  ifndef SEM_INDEFINITE_WAIT
-#     define SEM_INDEFINITE_WAIT    ( ( HB_ULONG ) -1 )
-#  endif
 
 #else
 

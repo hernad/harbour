@@ -48,7 +48,7 @@
 
 #include "hbapi.h"
 
-#define _DEFAULT_ORIGIN_URL  "https://github.com/hernad/my-harbour/"
+#define _DEFAULT_ORIGIN_URL  "https://github.com/hernad/harbour/"
 
 int hb_verCommitRev( void )
 {
