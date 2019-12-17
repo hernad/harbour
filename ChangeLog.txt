@@ -1,7 +1,6 @@
-/* Encoding: UTF-8 (No BOM)  Notation (in 5th column):
-     * Change  ! Fix  % Optimize  + Add  - Remove  ; Comment
-   Entries may not always be in chronological/commit order.
-   See license at the end of file. */
+2019-17-12 22:00 UTC Ernad Husremovic (hernad@bring.out.ba)
+  * 3rd/pq - postgresql client library
+  * fix hbmk2 windows version (gtgui out)
 
 2019-17-12 13:00 UTC Ernad Husremovic (hernad@bring.out.ba)
   * utils/ +hbformat, hbmk2 cleanup
