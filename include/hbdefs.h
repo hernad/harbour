@@ -1479,12 +1479,8 @@ typedef HB_U32 HB_FATTR;
 #define HB_DECONST( c, p )    ( ( c ) HB_UNCONST( p ) )
 
 
-#if defined( __POCC__ )
-   #define HB_SYMBOL_UNUSED( symbol )  do if( symbol ) {;} while( 0 )
-#else
-   #define HB_SYMBOL_UNUSED( symbol )  ( void ) symbol
-#endif
 
+#define HB_SYMBOL_UNUSED( symbol )  ( void ) symbol
 #define HB_SOURCE_FILE_UNUSED()  static void * dummy = &dummy
 
 /*
