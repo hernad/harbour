@@ -42,7 +42,7 @@
  *
  */
 
-#require "hbhpdf"
+#include "harupdf.ch"
 
 REQUEST HB_CODEPAGE_UTF8EX
 REQUEST HB_CODEPAGE_HUISO  /* for iso8859-2 */
@@ -64,6 +64,7 @@ PROCEDURE Main( cFileToSave )
    ENDIF
 
    RETURN
+
 
 FUNCTION DesignHaruPDF( cFileToSave )
 
@@ -109,6 +110,8 @@ FUNCTION DesignHaruPDF( cFileToSave )
    HPDF_SetEncryptionMode( pdf, HPDF_ENCRYPT_R3, 16 )
 #endif
 
+
+
    page := HPDF_AddPage( pdf )
    height := HPDF_Page_GetHeight( page )
    width  := HPDF_Page_GetWidth( page )
@@ -133,10 +136,11 @@ FUNCTION DesignHaruPDF( cFileToSave )
    HPDF_Page_TextOut( page, 60, height - 80, "<Standard Type1 fonts samples>" )
    HPDF_Page_EndText( page )
 
+
    HPDF_Page_BeginText( page )
    HPDF_Page_MoveTextPos( page, 60, height - 105 )
 
-
+ 
    FOR EACH cFont IN font_list
       samp_text := "abcdefgABCDEFG12345!#$%&+-@?"
       font := HPDF_GetFont( pdf, cFont, NIL )
@@ -149,10 +153,11 @@ FUNCTION DesignHaruPDF( cFileToSave )
       HPDF_Page_ShowText( page, samp_text )
       HPDF_Page_MoveTextPos( page, 0, -20 )
    NEXT
+
    HPDF_Page_EndText( page )
 
    Page_Lines( pdf )
-
+  
    Page_Text( pdf )
 
    Page_TextScaling( pdf )
@@ -163,8 +168,10 @@ FUNCTION DesignHaruPDF( cFileToSave )
 
    Page_Images( pdf )
 
+
    // Comment out the following line if you need ASCII chart by Codepages
    Page_CodePages( pdf )
+
 
    IF HPDF_SaveToStream( pdf ) == HPDF_OK
       ? "Size:", hb_ntos( HPDF_GetStreamSize( pdf ) )
@@ -176,6 +183,7 @@ FUNCTION DesignHaruPDF( cFileToSave )
    HPDF_Free( pdf )
 
    RETURN hb_vfExists( cFileToSave )
+
 
 STATIC PROCEDURE Page_Lines( pdf )
 
@@ -454,6 +462,7 @@ STATIC PROCEDURE draw_line( page, x, y, label )
 
    RETURN
 
+
 STATIC PROCEDURE draw_line2( page, x, y, label )
 
    HPDF_Page_BeginText( page )
@@ -674,7 +683,7 @@ STATIC PROCEDURE Page_TextScaling( pdf )
    LOCAL samp_text  := "abcdefgABCDEFG123!#$%&+-@?"
    LOCAL samp_text2 := "The quick brown fox jumps over the lazy dog."
    LOCAL page_title := "Text Demo"
-
+   
    /* set compression mode */
 #if 0
    HPDF_SetCompressionMode( pdf, HPDF_COMP_ALL )
@@ -951,6 +960,7 @@ STATIC PROCEDURE show_description( page, x, y, text )
 STATIC PROCEDURE Page_CodePages( pdf )
 
    LOCAL page, outline, font2, font_name, root, cEncoding, font, dst
+   LOCAL cFontName
    LOCAL encodings := { ;
       "Symbol-Set"       , ;
       "ZapfDingbats-Set" , ;
@@ -985,7 +995,9 @@ STATIC PROCEDURE Page_CodePages( pdf )
    font := HPDF_GetFont( pdf, "Helvetica", NIL )
 
    /* load font object */
-   font_name := HPDF_LoadTTFontFromFile( pdf, hb_DirBase() + "files" + hb_ps() + "ubuntu-mono.ttf", .T. )
+   cFontName := hb_DirBase() + "files" + hb_ps() + "ubuntu-mono.ttf"
+   ? "Loading font:", cFontName
+   font_name := HPDF_LoadTTFontFromFile( pdf, cFontName, .T. )
 
    /* create outline root. */
    root := HPDF_CreateOutline( pdf, , "Encoding list", NIL )
@@ -1075,6 +1087,7 @@ STATIC PROCEDURE draw_graph( page )
    NEXT
 
    RETURN
+
 
 STATIC PROCEDURE draw_fonts( page, lUTF8 )
 
@@ -1408,6 +1421,7 @@ STATIC PROCEDURE Page_Images( pdf )
    show_description_1( page, x, y, "Color Mask" )
 
    RETURN
+
 
 STATIC PROCEDURE show_description_1( page, x, y, text )
 
