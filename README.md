@@ -10,7 +10,7 @@ Harbour programming language is used in production exclusively for business appl
 
 Many harbour developers are relying on commercial GUI and reporting libraries (eg. FiveWin, Xailer).
 These library vendors primarily targets `windos/WinAPI` (32-bit) platform. Linux and MacOS are not used in production evironments (fronted).
-The exception are those who use client/server client/server DBF base applications (backend). They often targes `linux`. 
+The exception are those who use client/server DBF base applications (letodb, netio backend). They often target `linux`. 
 In the summary, most of harbour applications in production are running in Windows OS environments. 
 
 ### 1.3 Current state
