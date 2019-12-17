@@ -184,7 +184,10 @@ A: The same answer as [libreoffice developers](https://wiki.documentfoundation.o
 
  A: Nobody sane is going to use harbour for mobile development in *production* :)
 
+### Q5.3: Why not DOS ?
 
+ A: I am sure existing versions of harbour in the wild (3.0, 3.2, 3.4) or even original Clipper compiler do wanderfull job if you still target DOS platform.
+ 
 ## 6. References:
 
  - https://github.com/vszakats/hb
