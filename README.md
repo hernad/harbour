@@ -176,7 +176,7 @@ Support for these platforms/compilers is removed (or in the process of removal):
 
 ## 5. Why!?
 
-# Q5.1: Why NOT msys2/mingw on windows?
+### Q5.1: Why NOT msys2/mingw on windows?
 
 A: The same answer as [libreoffice developers](https://wiki.documentfoundation.org/Development/BuildingOnWindows), section 
   `"Why MSVC?"`
