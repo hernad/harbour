@@ -4,7 +4,7 @@
 
 ### 1.1 Harbour based projects - common scenario 
 
-Harbour programming language is used in production exclusively for business applications (ERP, accounting). Harbour applications are first built with Clipper/DOS (now abandoned programing environment). Projects are built and maintained by dominantly `old school` and also mostly old age :( developers.  
+Harbour programming language is used in production exclusively for business applications (ERP, accounting). Harbour applications are first built with Clipper/DOS (now abandoned programing environment). Projects are built and maintained by dominantly `"old school"` and also mostly old age :( developers.  
 
 ### 1.2 Harbour eco-system
 
