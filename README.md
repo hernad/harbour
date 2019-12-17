@@ -4,13 +4,14 @@
 
 ### 1.1 Harbour based projects - common scenario 
 
-Harbour programming language is used in production exclusively for business applications (ERP, accounting). Harbour applications are first built with Clipper/DOS (now abandoned programing environment). Projects are built and maintained by dominantly `"old school"` and also mostly old age :( developers.  
+Harbour programming language is used in production exclusively for business applications (ERP, accounting). Harbour applications have had built at first place with Clipper/DOS (now abandoned programing environment). Projects are built and maintained dominantly by `"old school"` and old age developers :(.  
 
-### 1.2 Harbour Ecosystem
+### 1.2 Harbour Ecosystem (target platforms)
 
-Many developers are relying on commercial tools GUI and reporting libraries (eg. FiveWin, Xailer).
-Developers and library vendors mostly targets `win32` platform, minorly `linux`. 
-Besises the fact harbour is multiplatform project, mature GUI applications are exclusively built for windos/WinAPI.
+Many harbour developers are relying on commercial GUI and reporting libraries (eg. FiveWin, Xailer).
+These library vendors primarily targets `windos/WinAPI` (32-bit) platform. Linux and MacOS are not used in production evironments (fronted).
+The exception are those who use client/server client/server DBF base applications (backend). They often targes `linux`. 
+In the summary, most of harbour applications in production are running in Windows OS environments. 
 
 ### 1.3 Current state
 
