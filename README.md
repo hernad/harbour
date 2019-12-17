@@ -89,6 +89,7 @@ Developer has to have simple workflow:
   - png
   - xlswriter
   - zlib
+  - pq (postgresql client)
 - utils:
   - hbmk2
   - hbformat
