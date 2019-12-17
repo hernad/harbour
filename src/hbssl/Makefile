@@ -28,5 +28,10 @@ PRG_SOURCES := \
 
 LIBNAME := hbssl
 
+HB_CFLAGS += -I$(HB_HOST_INC)/openssl
+ifeq ($(HB_PLATFORM),win)
+      HB_CFLAGS += -I$(HB_HOST_INC)/openssl/port/win32
+endif
+
 include $(TOP)$(ROOT)config/lib.mk
 

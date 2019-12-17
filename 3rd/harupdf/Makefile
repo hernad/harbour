@@ -69,6 +69,7 @@ C_SOURCES := \
    hpdf_xref.c \
 
 ifneq ($(HB_HAS_HARUPDF_LOCAL),)
+   HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_PNG)$(QUOTE)
    include $(TOP)$(ROOT)config/lib.mk
 

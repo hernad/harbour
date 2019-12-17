@@ -44,7 +44,7 @@ STATIC lxw_error _add_buffer_to_zip(lxw_packager *self, unsigned char *buffer,
 #ifdef USE_SYSTEM_MINIZIP
 #include "minizip/iowin32.h"
 #else
-#include "../third_party/minizip/iowin32.h"
+#include "xlsxwriter/third_party/minizip/iowin32.h"
 #endif
 
 zipFile

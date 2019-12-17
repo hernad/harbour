@@ -72,7 +72,7 @@ _DET_DSP_NAME := pcre2
 _DET_VAR_INC_ := HB_INC_PCRE2
 _DET_VAR_HAS_ := HB_HAS_PCRE2
 _DET_FLT_PLAT :=
-_DET_FLT_COMP := !bcc
+_DET_FLT_COMP := 
 _DET_INC_DEFP := /usr/include /usr/local/include /usr/pkg/include /opt/csw/include
 _DET_INC_LOCL := 3rd/pcre2
 _DET_INC_HEAD := /pcre2.h
@@ -122,6 +122,15 @@ _DET_INC_LOCL := 3rd/minizip
 _DET_INC_HEAD := /minizip.hbc
 include $(TOP)$(ROOT)config/detfun.mk
 
+_DET_DSP_NAME := pq
+_DET_VAR_INC_ := HB_INC_PQ
+_DET_VAR_HAS_ := HB_HAS_PQ
+_DET_FLT_PLAT :=
+_DET_FLT_COMP := 
+_DET_INC_DEFP := /usr/include /usr/local/include
+_DET_INC_LOCL := 3rd/pq
+_DET_INC_HEAD := /libpq.rc
+include $(TOP)$(ROOT)config/detfun.mk
 
 # Detect X11
 # libx11-dev{deb}

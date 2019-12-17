@@ -82,11 +82,11 @@ ifeq ($(__HB_COMPILER_LLVM),yes)
 endif
 
 ifneq ($(HB_BUILD_OPTIM),no)
-   ifneq ($(filter $(__HB_COMPILER_VER),1200 1300 1310),)
-      CFLAGS += -Ogt2yb1p -GX- -G6
-   else
+   #ifneq ($(filter $(__HB_COMPILER_VER),1200 1300 1310),)
+   #   CFLAGS += -Ogt2yb1p -GX- -G6
+   #else
       CFLAGS += -O2
-   endif
+   #endif
 endif
 
 ifeq ($(HB_BUILD_DEBUG),yes)
