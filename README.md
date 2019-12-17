@@ -6,7 +6,7 @@
 
 Harbour programming language is used in production exclusively for business applications (ERP, accounting). Harbour applications are first built with Clipper/DOS (now abandoned programing environment). Projects are built and maintained by dominantly `"old school"` and also mostly old age :( developers.  
 
-### 1.2 Harbour eco-system
+### 1.2 Harbour ecosystem
 
 Many developers are relying on commercial tools GUI and reporting libraries (eg. FiveWin, Xailer).
 Developers and library vendors mostly targets `win32` platform, minorly `linux`. 
