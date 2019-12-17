@@ -23,7 +23,6 @@ HB_RCFLAGS += -D_HB_INCLUDE_ICON
 # to build, so we're using _APPMAIN(), which
 # is better than Main()
 HB_PRGFLAGS += -DHBMK_USE_APPMAIN
-
 HB_PRGFLAGS += -DHBMK_WITH_BUILTIN_HEADERS_ALL
 
 include $(TOP)$(ROOT)config/bin.mk

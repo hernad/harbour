@@ -55,8 +55,8 @@
 
 #define HB_VER_MAJOR    4        /* Major version number */
 #define HB_VER_MINOR    3        /* Minor version number */
-#define HB_VER_RELEASE  1       /* Release number */
+#define HB_VER_RELEASE  2        /* Release number */
 #define HB_VER_STATUS   "hernad"    /* Build status (all lowercase) */
-#define __HARBOUR__     0x040301 /* Three bytes: Major + Minor + Release. This is recommented for 3rd party .c and .prg level code. */
+#define __HARBOUR__     0x040302 /* Three bytes: Major + Minor + Release. This is recommented for 3rd party .c and .prg level code. */
 
 #endif /* HB_VER_H_ */
