@@ -45,9 +45,9 @@ Harbour is great for building data-entry CUI applications. These applications ar
 
 Clipper have raised its popularity with straightforward data manipulation language integrated into language. But there is the *catch*. This concept is good fit for separate data tables, not databases (related tables). Today, SQL system is no-brain solution for structured tata storage. The core concept of SQL server is `client/server`. File servers are not good solution for shared data access. There are remarkable projects (letodb, netio) which provided the access of DBF tables in client/server regime instead file-server. But, that approach is long-term also "blind path". Why?
 
-1. Because SQL is standard expected by other data users and applications (other systems within organization)
+1. SQL is **standard** for business data. It is expected to provide by other data users and applications (other systems within organization).
 
-2. More important, harbour community has no resources to develop this **VITAL** part of business applicatin. If we sum all harbour developer resources, it is going to be ~ 1/1.000.000 resources available to principal SQL projects (PostgreSQL, MySQL, Oracle, MSSQL). SQL is **standard** for business data.
+2. More important, harbour community has no **resources** to develop robust solutions in this area. If we sum all harbour developer resources, they cannot achieve 1/1.000.000 resources available to prominent SQL projects (PostgreSQL, MySQL, Oracle, MSSQL).
 
 ## 3. Solution: Make GOOD bridges
 
