@@ -73,7 +73,7 @@ Developer has to have simple workflow:
 #### B) from binary code
 
 - prerequisite C compiler
-- download actual binaries from github
+- download binaries from github
 - set binaries PATH
 - start application's development
 
