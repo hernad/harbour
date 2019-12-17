@@ -1,10 +1,11 @@
 
-set ROOT=c:\Users\hernad\x86
-set PSQL_VER=10.11-1
+REM set ROOT=c:\Users\hernad\x86
+REM set PSQL_VER=10.11-1
 
-set HB_WITH_PGSQL=%ROOT%\postgresql-%PSQL_VER%\pgsql\include
+REM set HB_WITH_PGSQL=%ROOT%\postgresql-%PSQL_VER%\pgsql\include
 
-
+set PATH=c:\windows;c:\windows\system32
+set PATH=%PATH%;C:\Program Files\Git\cmd
 
 REM call "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual C++ Build Tools\Windows Desktop Command Prompts\Visual C++ 2015 x86 Native Build Tools Command Prompt.lnk"
 
