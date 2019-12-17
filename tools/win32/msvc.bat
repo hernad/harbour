@@ -7,6 +7,8 @@ REM set HB_WITH_PGSQL=%ROOT%\postgresql-%PSQL_VER%\pgsql\include
 set PATH=c:\windows;c:\windows\system32
 set PATH=%PATH%;C:\Program Files\Git\cmd
 
+set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
+
 REM call "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual C++ Build Tools\Windows Desktop Command Prompts\Visual C++ 2015 x86 Native Build Tools Command Prompt.lnk"
 
 REM amd64 ili x86
