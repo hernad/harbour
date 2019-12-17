@@ -36,6 +36,6 @@ ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_XLSWRITER)$(QUOTE)
    include $(TOP)$(ROOT)config/lib.mk
 else
-    HB_SKIP_REASON := xlswriter local copy unused
+    HB_SKIP_REASON := xlsxwriter local copy unused
     include $(TOP)$(ROOT)config/none.mk
 endif

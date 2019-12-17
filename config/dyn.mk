@@ -48,7 +48,6 @@ HB_DYN_LIBS := \
    gtele \
    gtstd \
    gtwvt \
-   gtgui \
    gtwin \
    gttrm \
    gtsln \

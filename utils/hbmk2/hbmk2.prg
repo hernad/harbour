@@ -1466,7 +1466,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       aCOMPSUP := { ;
          "mingw", "clang", "msvc", "clang-cl", "watcom", "icc", "bcc", "pocc", ;
          "mingw64", "clang64", "msvc64", "clang-cl64", "msvcia64", "icc64", "iccia64", "bcc64", "pocc64" }
-      l_aLIBHBGT := { "gtwin", "gtwvt", "gtgui" }
+      l_aLIBHBGT := { "gtwin", "gtwvt" }
       hbmk[ _HBMK_cGTDEFAULT ] := "gtwin"
       hbmk[ _HBMK_cDynLibPrefix ] := ""
       hbmk[ _HBMK_cDynLibExt ] := ".dll"
@@ -1488,7 +1488,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                FindInPath( hbmk[ _HBMK_cCCPREFIX ] + "gcc" + hbmk[ _HBMK_cCCSUFFIX ] ) ) }, "mingwarm" } }
 #endif
       aCOMPSUP := { "mingwarm", "msvcarm", "poccarm" }
-      l_aLIBHBGT := { "gtwvt", "gtgui" }
+      l_aLIBHBGT := { "gtwvt" }
       hbmk[ _HBMK_cGTDEFAULT ] := "gtwvt"
       hbmk[ _HBMK_cDynLibPrefix ] := ""
       hbmk[ _HBMK_cDynLibExt ] := ".dll"

@@ -39,7 +39,7 @@ else
 	 src/sddpg 
 
       ifeq ($(HB_PLATFORM),win)
-         DYNDIRLIST_BASE += src/rtl/gtwvt src/rtl/gtgui src/rtl/gtwin
+         DYNDIRLIST_BASE += src/rtl/gtwin
       endif
       ifneq ($(HB_PLATFORM_UNIX),)
          DYNDIRLIST_BASE += src/rtl/gttrm

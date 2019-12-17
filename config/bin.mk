@@ -55,10 +55,16 @@ else
       HB_LIBS_TPL += hbpcre2
    endif
    ifneq ($(HB_HAS_ZLIB_LOCAL),)
-      HB_LIBS_TPL += hbzlib
+      HB_LIBS_TPL += zlib
    endif
    ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
-      HB_LIBS_TPL += xlswriter
+      HB_LIBS_TPL += xlsxwriter
+   endif
+   ifneq ($(HB_HAS_PQ_LOCAL),)
+      HB_LIBS_TPL += pq
+   endif
+   ifneq ($(HB_HAS_PNG_LOCAL),)
+      HB_LIBS_TPL += png
    endif
 
 

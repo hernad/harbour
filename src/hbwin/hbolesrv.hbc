@@ -2,9 +2,7 @@ stop={!hbdynvm}Warning: Target must be '-hbdynvm' when using '${hb_self}'. Proce
 
 libs=hbwin.hbc
 
-gt=gtgui
-
-cflags={watcom}-6r
+gt=gtwin
 
 sources={allwinar}hbolesrv-mingw.def
 sources={watcom}hbolesrv-watcom.def

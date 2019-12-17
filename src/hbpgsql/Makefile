@@ -15,8 +15,11 @@ PRG_SOURCES := \
 LIBNAME := hbpgsql
 
 
-ifneq ($(HB_HAS_ZLIB),)
+HB_CFLAGS += -I$(HB_HOST_INC)/postgres
+HB_CFLAGS += -DHB_HAS_PQ $(QUOTE)-I$(HB_HAS_PQ)$(QUOTE)
 
+ifneq ($(HB_HAS_ZLIB),)
+  
    ifneq ($(HB_HAS_ZLIB),)
       HB_CFLAGS += -DHB_HAS_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    endif

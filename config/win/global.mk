@@ -6,7 +6,7 @@ DYN_EXT := .dll
 
 HB_CFLAGS += -DUNICODE
 
-HB_GT_LIBS += gtwvt gtgui gtwin
+HB_GT_LIBS += gtwvt gtwin
 
 HB_SIGN_TIMEURL := http://timestamp.digicert.com
 
