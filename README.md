@@ -46,7 +46,7 @@ Clipper have raised its popularity with straightforward data manipulation langua
 
 1. Because SQL is standard expected by other data users and applications (other systems within organization)
 
-2. More important, harbour community has no resources to develop this **VITAL** part of business applicatin.  Sum all harbour developers and you cannot provide 1/1000 000 of dominant SQL systems (eg PostgreSQL, MySQL, MSSQL)
+2. More important, harbour community has no resources to develop this **VITAL** part of business applicatin. Sum all harbour developers and we cannot 1/1.000.000 resources like SQL projects (eg. PostgreSQL, MySQL, Oracle, MSSQL)
 
 ## 3. Solution: Make GOOD bridges
 
