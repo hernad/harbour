@@ -54,7 +54,7 @@ Let us make good connection with other systems and technologies:
 - SQL
 - java
 
-HINT: This harbour repository contains PostgreSQL libraries used in production since 2011.
+HINT: This harbour repository contains PostgreSQL libraries used in production since 2011 [here](https://github.com/hernad/F18).
 
 ## 4. Goals of this repository
 
