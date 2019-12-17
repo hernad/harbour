@@ -161,18 +161,17 @@ Developer has to have simple workflow:
 ### 4.3.3 NO support
 
 Support for these platforms/compilers is removed (or in the process of removal):
-    * Operating systems:
-        - DOS
-        - android
-        - IOS
-        - beos
-        - various unixes
-    * Compilers:
-        - mingw
-        - borland bcc
-        - djgpp
-        - watcom
-
+* Operating systems:
+    - DOS
+    - android
+    - IOS
+    - beos
+    - various unixes
+* Compilers:
+    - mingw
+    - borland bcc
+    - djgpp
+    - watcom
 
 ## 5. Why!?
 
