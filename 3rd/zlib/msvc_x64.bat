@@ -1,41 +1,43 @@
 set PATH=c:\windows;c:\windows\system32
-set PATH=%PATH%;C:\Program Files\Git\cmd
-set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
-set WINSDK_VER=10.0.18362.0
-set ZLIB_DIR=zlib-1.2.11
-set POSTGRESQL_TARGET=c:\users\hernad\x64\zlib
-
-set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
 
 REM amd64 ili x86
 call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" amd64
 
-set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\x64
-
-
-
 SET PATH=%PATH%;C:\Strawberry\c\bin
 SET PATH=%PATH%;C:\Strawberry\perl\bin
 SET PATH=%PATH%;C:\Strawberry\perl\site\bin
-
 SET PATH=%PATH%;C:\users\hernad\NASM64
 
+set PATH=%PATH%;C:\Program Files\Git\cmd
+set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
 
-cd \users\hernad\harbour\3rd\zlib\%ZLIB_DIR%
+set WINSDK_VER=10.0.18362.0
+set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\x64
 
-echo this location should be root location of git repository
-echo Setup configure script:
+
+set LIBRARY=zlib
+set ROOT=\users\hernad\harbour
+set LIB_TARGET=%ROOT%\3rd\x64\%LIBRARY%
+
+set LIB_SOURCE_DIR=zlib-1.2.11
+
+set HB_INSTALL_PREFIX=%ROOT%\build\x64\harbour
+
+
+cd %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 nmake -f win32/Makefile.msc
 
-mkdir c:\users\hernad\x64\zlib
-mkdir c:\users\hernad\x64\zlib\include
-mkdir c:\users\hernad\x64\zlib\lib
+mkdir %ROOT%\3rd\x64
+mkdir %LIB_TARGET%
+mkdir %LIB_TARGET%\include
+mkdir %LIB_TARGET%\lib
 
-copy *.lib c:\users\hernad\x64\zlib\lib
-copy zlib*.dll c:\users\hernad\x64\zlib\lib
+copy *.lib %LIB_TARGET%\lib
+copy zlib*.dll %LIB_TARGET%\lib
+copy *.h %LIB_TARGET%\include
 
-copy *.h c:\users\hernad\x64\zlib\include
 
-cd \users\hernad\harbour\3rd\zlib
+cd %ROOT%\3rd\%LIBRARY%
 
+dir /s %LIB_TARGET%
