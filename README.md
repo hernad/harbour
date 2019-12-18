@@ -140,6 +140,14 @@ Developer has to have simple workflow:
      - hbssl 
      - hbwin
      - sddpg
+- tests:
+  - all sample and testing code here, arranged by libraries
+- binary:
+- tools:
+  - win32 (gnu make for Windows - win-make.exe, scripts or setting up msvc compiler)
+- binary:
+  - dll/win32 (openssl dll-s/32-bit)
+  - lib/win32 (openssl msvc lib/32-bin)
 
 ### 4.3 Pragmatic Operating system / compiler support
 
@@ -156,11 +164,11 @@ Developer has to have simple workflow:
    - small interest
    - can be changed if there is *users's* interest
 - windows/cygwin
-     I suppose this is used by ... nobody, so candidate for removal is nobody 
+     I suppose this is used by ... nobody, so candidate for removal
 - linux (32 bit)
    - also "rear animal"
 
-### 4.3.3 NO support
+### 4.3.3 DROP support
 
 Support for these platforms/compilers is removed (or in the process of removal):
 * Operating systems:
@@ -168,12 +176,14 @@ Support for these platforms/compilers is removed (or in the process of removal):
     - android
     - IOS
     - beos
-    - various unixes
+    - various exotic unixes
 * Compilers:
     - mingw
     - borland bcc
     - djgpp
     - watcom
+    - rtlink
+    - blinker
 
 ## 5. Why!?
 
