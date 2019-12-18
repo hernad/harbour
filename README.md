@@ -142,12 +142,8 @@ Developer has to have simple workflow:
      - sddpg
 - tests:
   - all sample and testing code here, arranged by libraries
-- binary:
 - tools:
   - win32 (gnu make for Windows - win-make.exe, scripts or setting up msvc compiler)
-- binary:
-  - dll/win32 (openssl dll-s/32-bit)
-  - lib/win32 (openssl msvc lib/32-bin)
 
 ### 4.3 Pragmatic Operating system / compiler support
 
