@@ -32,7 +32,9 @@ mkdir c:\users\hernad\x64\zlib
 mkdir c:\users\hernad\x64\zlib\include
 mkdir c:\users\hernad\x64\zlib\lib
 
-copy zlib.lib c:\users\hernad\x64\zlib\lib
+copy *.lib c:\users\hernad\x64\zlib\lib
+copy zlib*.dll c:\users\hernad\x64\zlib\lib
+
 copy *.h c:\users\hernad\x64\zlib\include
 
 cd \users\hernad\harbour\3rd\zlib

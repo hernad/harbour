@@ -29,3 +29,7 @@ echo Setup configure script:
 perl src\tools\msvc\build.pl
 
 perl src\tools\msvc\install.pl %POSTGRESQL_TARGET% client
+
+echo podesiti: C:\Users\hernad\harbour\3rd\postgresql\postgresql-12.1\src\tools\msvc\config_default.pl
+
+cd \users\hernad\harbour\3rd\postgresql
