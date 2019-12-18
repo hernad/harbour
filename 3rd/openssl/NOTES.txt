@@ -1,0 +1,40 @@
+CLONE openssl REPOS
+===================================
+
+REM url = https://github.com/openssl/openssl.git
+REM C:\Users\hernad\harbour\3rd\openssl>
+
+git clone https://github.com/openssl/openssl.git
+git checkout OpenSSL_1_1_1-stable
+
+REM Already on 'OpenSSL_1_1_1-stable'
+REM Your branch is up to date with 'origin/OpenSSL_1_1_1-stable'.
+
+
+PREREQS
+=============
+
+1. Install Strawberry perl
+
+C:\Strawberry\c\bin
+C:\Strawberry\perl\bin
+C:\Strawberry\perl\site\bin
+
+2. NASM asembler
+
+64bit
+
+https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/
+
+
+C:\users\hernad\NASM
+
+C:\users\hernad\NASM64
+
+
+COPY to binary/
+=============================================
+copy C:\Users\hernad\harbour\3rd\openssl\apps\*.dll  C:\Users\hernad\harbour\binary\dll\win64\
+
+copy C:\Users\hernad\harbour\3rd\openssl\apps\*.lib  C:\Users\hernad\harbour\binary\lib\win64\
+
