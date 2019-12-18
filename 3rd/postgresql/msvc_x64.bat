@@ -25,30 +25,30 @@ SET PATH=%PATH%;C:\Strawberry\perl\bin
 SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 
 
-set ROOT=\users\%USERNAME%\%GIT_REPOS%
-set LIB_BIN_ROOT=%ROOT%\3rd\x64
+set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
+set LIB_BIN_ROOT=%ROOT_DIR%\3rd\x64
 set LIB_TARGET=%LIB_BIN_ROOT%\%LIBRARY%
 
-set HB_INSTALL_PREFIX=%ROOT%\build\x64\harbour
+set HB_INSTALL_PREFIX=%ROOT_DIR%\build\x64\harbour
 
-echo === cd %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ==
+echo === cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ==
 
-cd %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
+cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
 dir ..\config_default.pl
-copy /Y ..\config_default.pl   %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
+copy /Y ..\config_default.pl   %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 
 REM call src\tools\msvc\clean.bat
 
 cd src\tools\msvc
-perl build.pl
 
+perl build.pl
 perl install.pl %LIB_TARGET%
 
 
 REM ---------------------------------
-cd %ROOT%\3rd\%LIBRARY%
+cd %ROOT_DIR%\3rd\%LIBRARY%
 
 dir /s %LIB_TARGET%

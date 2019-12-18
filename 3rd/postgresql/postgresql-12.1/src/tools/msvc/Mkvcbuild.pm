@@ -88,6 +88,11 @@ sub mkvcbuild
 	chdir('../../..') if (-d '../msvc' && -d '../../../src');
 	die 'Must run from root or msvc directory'
 	  unless (-d 'src/tools/msvc' && -d 'src');
+	print("-------------------------\n");
+	print(getcwd);
+	print("\n");
+	print("-------------------------\n");
+
 
 	my $vsVersion = DetermineVisualStudioVersion();
 
