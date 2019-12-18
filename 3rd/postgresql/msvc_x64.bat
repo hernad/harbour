@@ -1,33 +1,41 @@
-set PATH=c:\windows;c:\windows\system32
-set PATH=%PATH%;C:\Program Files\Git\cmd
-set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
 set WINSDK_VER=10.0.18362.0
-set POSTGRES_DIR=postgresql-12.1
-REM set POSTGRESQL_TARGET=c:\users\hernad\x64\libpq
-set POSTGRESQL_TARGET=c:\users\hernad\x64\postgres
+set GIT_REPOS=harbour
+set LIBRARY=postgresql
 
-set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
+set VCBUILDTOOLS=amd64
+set BUILD_ARCH=x64
+set LIB_SOURCE_DIR=postgresql-12.1
+
+
+set PATH=c:\windows;c:\windows\system32
 
 REM amd64 ili x86
-call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" amd64
-
-set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\x64
-
-
+call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
 
 SET PATH=%PATH%;C:\Strawberry\c\bin
 SET PATH=%PATH%;C:\Strawberry\perl\bin
 SET PATH=%PATH%;C:\Strawberry\perl\site\bin
+SET PATH=%PATH%;C:\users\%USERNAME%\NASM64
 
-SET PATH=%PATH%;C:\users\hernad\NASM64
+set PATH=%PATH%;C:\Program Files\Git\cmd
+set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
 
 
-cd \users\hernad\harbour\3rd\postgresql\%POSTGRES_DIR%
+set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
 
-echo this location should be root location of git repository
-echo Setup configure script:
+set ROOT=\users\%USERNAME%\%GIT_REPOS%
+set LIB_BIN_ROOT=%ROOT%\3rd\x64
+set LIB_TARGET=%LIB_BIN_ROOT%\%LIBRARY%
 
-echo podesiti: C:\Users\hernad\harbour\3rd\postgresql\postgresql-12.1\src\tools\msvc\config_default.pl
+set HB_INSTALL_PREFIX=%ROOT%\build\x64\harbour
+
+
+cd %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
+REM ------------------------------------
+
+echo podesiti: C:\Users\%USERNAME%\harbour\3rd\postgresql\postgresql-12.1\
+
+copy /Y config_default.pl   %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config_default.pl
 
 call src\tools\msvc\clean.bat
 
@@ -36,4 +44,7 @@ perl src\tools\msvc\build.pl
 perl src\tools\msvc\install.pl %POSTGRESQL_TARGET%
 
 
-cd \users\hernad\harbour\3rd\postgresql
+REM ---------------------------------
+cd %ROOT%\3rd\%LIBRARY%
+
+dir /s %LIB_TARGET%
