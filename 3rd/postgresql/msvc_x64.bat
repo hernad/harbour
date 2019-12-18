@@ -3,7 +3,8 @@ set PATH=%PATH%;C:\Program Files\Git\cmd
 set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
 set WINSDK_VER=10.0.18362.0
 set POSTGRES_DIR=postgresql-12.1
-set POSTGRESQL_TARGET=c:\users\hernad\x64\libpq
+REM set POSTGRESQL_TARGET=c:\users\hernad\x64\libpq
+set POSTGRESQL_TARGET=c:\users\hernad\x64\postgres
 
 set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
 
@@ -26,10 +27,13 @@ cd \users\hernad\harbour\3rd\postgresql\%POSTGRES_DIR%
 echo this location should be root location of git repository
 echo Setup configure script:
 
+echo podesiti: C:\Users\hernad\harbour\3rd\postgresql\postgresql-12.1\src\tools\msvc\config_default.pl
+
+call src\tools\msvc\clean.bat
+
 perl src\tools\msvc\build.pl
 
-perl src\tools\msvc\install.pl %POSTGRESQL_TARGET% client
+perl src\tools\msvc\install.pl %POSTGRESQL_TARGET%
 
-echo podesiti: C:\Users\hernad\harbour\3rd\postgresql\postgresql-12.1\src\tools\msvc\config_default.pl
 
 cd \users\hernad\harbour\3rd\postgresql
