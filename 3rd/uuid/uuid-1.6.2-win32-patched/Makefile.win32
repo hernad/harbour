@@ -1,0 +1,139 @@
+# Makefile for Microsoft Visual C++ 9.0
+
+# Will build a static library uuid(d).lib
+# DEBUG=1 compiles with debugging symbols
+
+# CPU="i386" or CPU environment of nmake.exe (AMD64 or IA64)
+
+!IF ("$(CPU)" == "")||("$(CPU)" == "i386")
+CPU=i386
+!MESSAGE Building the Win32 static library...
+!MESSAGE
+!ELSEIF ("$(CPU)" == "IA64")||("$(CPU)" == "AMD64")
+ADD_DEFINES=/D "WIN64" /Wp64 /GS
+ADD_SECLIB=bufferoverflowU.lib
+!MESSAGE Building the Win64 static library...
+!MESSAGE
+!ELSE
+!MESSAGE Please check a CPU=$(CPU) ?
+!MESSAGE CPU=i386 or AMD64 or IA64
+!ERROR Make aborted.
+!ENDIF
+
+!IFDEF DEBUG
+OPT=/Od /Zi /MDd
+LOPT=/DEBUG
+DEBUGDEF=/D _DEBUG
+OUTFILENAME=uuidd
+!ELSE
+OPT=/O2 /MD
+LOPT=
+DEBUGDEF=/D NDEBUG
+OUTFILENAME=uuid
+!ENDIF
+
+CPP=cl.exe
+RSC=rc.exe
+
+!IFDEF DEBUG
+OUTDIR=.\Debug
+INTDIR=.\Debug
+CPP_OBJS=.\Debug/
+!ELSE
+OUTDIR=.\Release
+INTDIR=.\Release
+CPP_OBJS=.\Release/
+!ENDIF
+
+ALL : "$(OUTDIR)\$(OUTFILENAME).lib"
+
+CLEAN :
+	-@erase "$(OUTDIR)\uuid.obj"
+	-@erase "$(OUTDIR)\uuid_mac.obj"
+	-@erase "$(OUTDIR)\uuid_md5.obj"
+	-@erase "$(OUTDIR)\uuid_prng.obj"
+	-@erase "$(OUTDIR)\uuid_sha1.obj"
+	-@erase "$(OUTDIR)\uuid_str.obj"
+	-@erase "$(OUTDIR)\uuid_time.obj"
+	-@erase "$(OUTDIR)\uuid_ui128.obj"
+	-@erase "$(OUTDIR)\uuid_ui64.obj"
+	-@erase "$(OUTDIR)\$(OUTFILENAME).lib"
+	-@erase "$(OUTDIR)\vc90.idb"
+
+LIB32=link.exe -lib
+LIB32_FLAGS=$(LOPT) /nologo /out:"$(OUTDIR)\$(OUTFILENAME).lib" 
+LIB32_OBJS= \
+	"$(OUTDIR)\uuid.obj" \
+	"$(OUTDIR)\uuid_mac.obj" \
+	"$(OUTDIR)\uuid_md5.obj" \
+	"$(OUTDIR)\uuid_prng.obj" \
+	"$(OUTDIR)\uuid_sha1.obj" \
+	"$(OUTDIR)\uuid_str.obj" \
+	"$(OUTDIR)\uuid_time.obj" \
+	"$(OUTDIR)\uuid_ui128.obj" \
+	"$(OUTDIR)\uuid_ui64.obj"
+
+"$(OUTDIR)" :
+    if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
+
+CPP_PROJ=/nologo /W3 /EHsc $(OPT) /I. \
+ /D "WIN32" /D "_WINDOWS" /Fp"$(INTDIR)\uuid.pch" \
+ /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c  \
+ /D "_CRT_SECURE_NO_DEPRECATE" $(ADD_DEFINES)
+
+"$(OUTDIR)\$(OUTFILENAME).lib" : "$(OUTDIR)" $(LIB32_OBJS)
+	$(LIB32) @<<
+	$(LIB32_FLAGS) $(DEF_FLAGS) $(LIB32_OBJS)
+<<
+
+"$(OUTDIR)\uuid.obj" : uuid.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid.c
+<<
+
+"$(OUTDIR)\uuid_mac.obj" : uuid_mac.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_mac.c
+<<
+
+"$(OUTDIR)\uuid_md5.obj" : uuid_md5.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_md5.c
+<<
+
+"$(OUTDIR)\uuid_prng.obj" : uuid_prng.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_prng.c
+<<
+
+"$(OUTDIR)\uuid_sha1.obj" : uuid_sha1.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_sha1.c
+<<
+
+"$(OUTDIR)\uuid_str.obj" : uuid_str.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_str.c
+<<
+
+"$(OUTDIR)\uuid_time.obj" : uuid_time.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_time.c
+<<
+
+"$(OUTDIR)\uuid_ui128.obj" : uuid_ui128.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_ui128.c
+<<
+
+"$(OUTDIR)\uuid_ui64.obj" : uuid_ui64.c
+	$(CPP) @<<
+	$(CPP_PROJ) uuid_ui64.c
+<<
+
+.c{$(CPP_OBJS)}.obj:
+	$(CPP) $(CPP_PROJ) $<
+
+.c.obj:
+	$(CPP) $(CPP_PROJ) $<
+    
