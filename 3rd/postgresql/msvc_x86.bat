@@ -32,7 +32,7 @@ REM ------------------------------------
 
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 
-call src\tools\msvc\clean.bat
+REM call src\tools\msvc\clean.bat
 
 cd src\tools\msvc
 
