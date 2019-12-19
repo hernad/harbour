@@ -6,11 +6,12 @@ set LIB_SOURCE_DIR=postgresql-12.1
 set VCBUILDTOOLS=amd64
 set BUILD_ARCH=x64
 
-
 REM https://ss64.com/nt/if.html
 REM IF [NOT] DEFINED variable command
 
-IF NOT DEFINED POSTGRESQL_BUILD  set PATH=c:\windows;c:\windows\system32
+IF NOT DEFINED POSTGRESQL_BUILD set INCLUDE=
+IF NOT DEFINED POSTGRESQL_BUILD set LIBPATH=
+IF NOT DEFINED POSTGRESQL_BUILD set PATH=c:\windows;c:\windows\system32
 
 REM amd64 ili x86
 IF NOT DEFINED POSTGRESQL_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
@@ -26,7 +27,7 @@ REM SET PATH=%PATH%;C:\Strawberry\c\bin
 IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\bin
 IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 
-set POSTGRESQL_BUILD=set
+set POSTGRESQL_BUILD=1
 
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\x64
