@@ -2,7 +2,7 @@ set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
 set LIBRARY=postgresql
 set LIB_SOURCE_DIR=postgresql-12.1
-set VCBUILDTOOLS=amd64
+set VCBUILDTOOLS=x86
 set BUILD_ARCH=x64
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 
@@ -11,9 +11,9 @@ IF NOT DEFINED POSTGRESQL_BUILD set LIBPATH=
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=c:\windows;c:\windows\system32
 
 IF NOT DEFINED POSTGRESQL_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
-IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Program Files\Git\cmd
-IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
-IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
+IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Program Files\Git\cmd
+IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
+IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
 
 REM perl path has to be on the end
 REM SET PATH=%PATH%;C:\Strawberry\c\bin
