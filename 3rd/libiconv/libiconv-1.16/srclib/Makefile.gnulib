@@ -56,7 +56,7 @@
 MOSTLYCLEANFILES += core *.stackdump
 # No GNU Make output.
 
-noinst_LIBRARIES += libicrt.a
+noinst_LIBRARIES += libicrt.lib
 
 libicrt_a_SOURCES =
 libicrt_a_LIBADD = $(gl_LIBOBJS)

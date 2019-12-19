@@ -61,7 +61,7 @@ OBJECTS_RES_yes = iconv.res
 OBJECTS_RES_no =
 
 # We cannot link with libintl until libiconv is installed. (When we call
-# libtool with arguments "../lib/libiconv.la -lintl", libtool will call ld
+# libtool with arguments "../lib/iconv.lib -lintl", libtool will call ld
 # with "../lib/.libs/libiconv.so $libdir/libintl.so $libdir/libiconv.so",
 # (remember that $libdir/libintl.la lists $libdir/libiconv.so as a dependency),
 # and this gives a fatal linker error on Solaris because the two libiconv.so
@@ -74,8 +74,8 @@ all : iconv_no_i18n$(EXEEXT) iconv.obj $(OBJECTS_RES_yes)
 	test `ls -ld . | sed -e 's/^d\(.........\).*/\1/'` = rwxrwxrwx || chmod 777 .
 
 # This is the temporary iconv executable, without internationalization.
-iconv_no_i18n$(EXEEXT) : iconv_no_i18n.obj ../lib/libiconv.la $(OBJECTS_RES_yes)
-	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) iconv_no_i18n.obj ../srclib/libicrt.a ../lib/libiconv.la $(OBJECTS_RES_yes) -o $@
+iconv_no_i18n$(EXEEXT) : iconv_no_i18n.obj ../lib/iconv.lib $(OBJECTS_RES_yes)
+	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) iconv_no_i18n.obj ../srclib/libicrt.lib ../lib/iconv.lib $(OBJECTS_RES_yes) -o $@
 
 iconv_no_i18n.obj : $(srcdir)/iconv_no_i18n.c $(srcdir)/iconv.c
 	$(CC) -c $(INCLUDES) -I../lib $(CFLAGS) $(CPPFLAGS) -DINSTALLDIR=\"$(bindir)\" -DLOCALEDIR=\"$(localedir)\" $(srcdir)/iconv_no_i18n.c
@@ -87,8 +87,8 @@ iconv.res : $(srcdir)/../windows/iconv.rc
 	$(WINDRES) `$(SHELL) $(srcdir)/../windows/windres-options --escape $(PACKAGE_VERSION)` -i $(srcdir)/../windows/iconv.rc -o iconv.res --output-format=coff
 
 # The following rule is necessary to avoid a toplevel "make -n check" failure.
-../lib/libiconv.la :
-	cd ../lib && $(MAKE) libiconv.la
+../lib/iconv.lib :
+	cd ../lib && $(MAKE) iconv.lib
 
 # Support for relocatability.
 RELOCATABLE_LIBRARY_PATH = $(libdir)
@@ -108,12 +108,12 @@ iconv_LDFLAGS = `if test -n '$(RELOCATABLE_LDFLAGS)'; then $(RELOCATABLE_LDFLAGS
 # On Solaris, the linker gives an error if we are using libintl.so and it
 # refers to a libiconv.so in $prefix/lib since then it sees two libiconv.so's,
 # one in $prefix/lib and one in ../lib/.libs. So we have to avoid using
-# ../lib/libiconv.la entirely.
+# ../lib/iconv.lib entirely.
 install : all force
 	if [ ! -d $(DESTDIR)$(bindir) ] ; then $(mkinstalldirs) $(DESTDIR)$(bindir) ; fi
 	case "mingw32" in \
-	  hpux*) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.obj ../srclib/libicrt.a -L$(DESTDIR)$(libdir) -liconv  $(OBJECTS_RES_yes) `if test -n '$(DESTDIR)'; then echo " -Wl,+b -Wl,$(libdir)"; fi` -o iconv$(EXEEXT);; \
-	  *) $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.obj ../srclib/libicrt.a $(DESTDIR)$(libdir)/libiconv.la  $(OBJECTS_RES_yes) -o iconv$(EXEEXT);; \
+	  hpux*) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.obj ../srclib/libicrt.lib -L$(DESTDIR)$(libdir) -liconv  $(OBJECTS_RES_yes) `if test -n '$(DESTDIR)'; then echo " -Wl,+b -Wl,$(libdir)"; fi` -o iconv$(EXEEXT);; \
+	  *) $(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) $(iconv_LDFLAGS) iconv.obj ../srclib/libicrt.lib $(DESTDIR)$(libdir)/iconv.lib  $(OBJECTS_RES_yes) -o iconv$(EXEEXT);; \
 	esac
 	$(INSTALL_PROGRAM_ENV) $(LIBTOOL_INSTALL) $(INSTALL_PROGRAM) iconv$(EXEEXT) $(DESTDIR)$(bindir)/iconv$(EXEEXT)
 

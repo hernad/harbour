@@ -31,7 +31,7 @@ all :
 check : all table-from table-to ../src/iconv_no_i18n test-shiftseq test-to-wchar
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) ASCII
 #	/* General multi-byte encodings */
-	$(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/genutf8.c ../srclib/libicrt.a -o genutf8 && \
+	$(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/genutf8.c ../srclib/libicrt.lib -o genutf8 && \
 	./genutf8 > UTF-8.TXT && \
 	$(SHELL) $(srcdir)/check-stateless . UTF-8 && \
 	$(RM) -r genutf8.exe genutf8.dSYM UTF-8.TXT
@@ -127,7 +127,7 @@ check : all table-from table-to ../src/iconv_no_i18n test-shiftseq test-to-wchar
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) EUC-CN
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) GBK
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) CP936
-	$(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/gengb18030z.c ../srclib/libicrt.a -o gengb18030z && \
+	$(CC) $(LDFLAGS) $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/gengb18030z.c ../srclib/libicrt.lib -o gengb18030z && \
 	{ cat $(srcdir)/GB18030-BMP.TXT ; ./gengb18030z ; } | sort > GB18030.TXT && \
 	{ test $(srcdir) = . || cp $(srcdir)/GB18030.IRREVERSIBLE.TXT GB18030.IRREVERSIBLE.TXT; } && \
 	$(SHELL) $(srcdir)/check-stateless . GB18030 && \
@@ -206,33 +206,33 @@ check-extra-yes: all table-from table-to ../src/iconv_no_i18n
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) ATARIST
 	$(SHELL) $(srcdir)/check-stateless $(srcdir) RISCOS-LATIN1
 
-table-from : table-from.obj ../lib/libiconv.la
-	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) table-from.obj ../srclib/libicrt.a ../lib/libiconv.la -o $@
+table-from : table-from.obj ../lib/iconv.lib
+	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) table-from.obj ../srclib/libicrt.lib ../lib/iconv.lib -o $@
 
 table-from.obj : $(srcdir)/table-from.c
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/table-from.c
 
-table-to : table-to.obj ../lib/libiconv.la
-	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) table-to.obj ../srclib/libicrt.a ../lib/libiconv.la -o $@
+table-to : table-to.obj ../lib/iconv.lib
+	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) table-to.obj ../srclib/libicrt.lib ../lib/iconv.lib -o $@
 
 table-to.obj : $(srcdir)/table-to.c
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/table-to.c
 
-test-shiftseq : test-shiftseq.obj ../lib/libiconv.la
-	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) test-shiftseq.obj ../srclib/libicrt.a ../lib/libiconv.la -o $@
+test-shiftseq : test-shiftseq.obj ../lib/iconv.lib
+	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) test-shiftseq.obj ../srclib/libicrt.lib ../lib/iconv.lib -o $@
 
 test-shiftseq.obj : $(srcdir)/test-shiftseq.c
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/test-shiftseq.c
 
-test-to-wchar : test-to-wchar.obj ../lib/libiconv.la
-	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) test-to-wchar.obj ../srclib/libicrt.a ../lib/libiconv.la -o $@
+test-to-wchar : test-to-wchar.obj ../lib/iconv.lib
+	$(LIBTOOL_LINK) $(CC) $(LDFLAGS) $(CFLAGS) test-to-wchar.obj ../srclib/libicrt.lib ../lib/iconv.lib -o $@
 
 test-to-wchar.obj : $(srcdir)/test-to-wchar.c
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGS) $(srcdir)/test-to-wchar.c
 
 # The following rule is necessary to avoid a toplevel "make -n check" failure.
-../lib/libiconv.la :
-	cd ../lib && $(MAKE) libiconv.la
+../lib/iconv.lib :
+	cd ../lib && $(MAKE) iconv.lib
 
 mostlyclean : clean
 

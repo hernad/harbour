@@ -1069,7 +1069,7 @@
 
 	* Makefile.devel (GNULIB_MODULES): Add sigpipe, stdio.
 	* tests/Makefile.in (check, table-from, table-to, test-shiftseq): Link
-	all programs against libicrt.a. Needed for the stdio function
+	all programs against libicrt.lib. Needed for the stdio function
 	replacements on mingw.
 
 2008-09-21  Tadamasa Teranishi  <yw3t-trns@asahi-net.or.jp>
@@ -3406,7 +3406,7 @@
 	(main): Invoke set_program_name. Relocate LOCALEDIR.
 	* src/Makefile.in (top_srcdir): New variable.
 	(INCLUDES): Add .. and ../srclib.
-	(iconv_no_i18n, iconv): Link with ../srclib/libicrt.a.
+	(iconv_no_i18n, iconv): Link with ../srclib/libicrt.lib.
 	(iconv_no_i18n.@OBJEXT@, iconv.@OBJEXT@): Define INSTALLDIR.
 	(RELOCATABLE_LIBRARY_PATH, RELOCATABLE_SRC_DIR, RELOCATABLE_BUILD_DIR,
 	RELOCATABLE_CONFIG_H_DIR, @SET_RELOCATABLE@, iconv_LDFLAGS): New

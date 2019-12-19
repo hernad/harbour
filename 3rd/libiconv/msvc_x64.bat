@@ -1,7 +1,8 @@
 set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
 set LIBRARY=libiconv
-set LIB_SOURCE_DIR=libiconv-1.16
+REM set LIB_SOURCE_DIR=libiconv-1.16
+set LIB_SOURCE_DIR=libiconv-1.16-win-build
 set VCBUILDTOOLS=amd64
 set BUILD_ARCH=x64
 
@@ -45,18 +46,15 @@ REM 32-bit: ./configure --host=i686-w64-mingw32
 REM hernad@DESKTOP-A0CN7LS /cygdrive/c/users/hernad/harbour/3rd/libiconv/libiconv-1.16/build-aux
 REM $ cp compile ar-lib /usr/local/bin/
 
-/cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%BUILD_ARCH%/%LIBRARY%
 
-echo windres from C:\Strawberry\c\bin needed
-c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; cp -av /cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%LIBRARY%/%LIB_SOURCE_DIR%/build-aux/compile /usr/local/bin"
-c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; cp -av /cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%LIBRARY%/%LIB_SOURCE_DIR%/build-aux/ar-ilb /usr/local/bin"
+REM echo windres from C:\Strawberry\c\bin needed
+REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; cp -av /cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%LIBRARY%/%LIB_SOURCE_DIR%/build-aux/compile /usr/local/bin"
+REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; cp -av /cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%LIBRARY%/%LIB_SOURCE_DIR%/build-aux/ar-ilb /usr/local/bin"
 
-c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; ./configure --prefix=/cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%BUILD_ARCH%/%LIBRARY% --host=x86_64-w64-mingw32 CC=\"compile cl -nologo\" CFLAGS=\"-MD\" CXX=\"compile cl -nologo\" CXXFLAGS=\"-MD\" CPPFLAGS=\"-D_WIN32_WINNT=_WIN32_WINNT_WIN8\" LD=\"link\" NM=\"dumpbin -symbols\" STRIP=\":\" AR=\"ar-lib lib\" RANLIB=\":\""
-c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; make clean ; make; make install"
+REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; ./configure --prefix=/cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%BUILD_ARCH%/%LIBRARY% --host=x86_64-w64-mingw32 CC=\"compile cl -nologo\" CFLAGS=\"-MD\" CXX=\"compile cl -nologo\" CXXFLAGS=\"-MD\" CPPFLAGS=\"-D_WIN32_WINNT=_WIN32_WINNT_WIN8\" LD=\"link\" NM=\"dumpbin -symbols\" STRIP=\":\" AR=\"ar-lib lib\" RANLIB=\":\""
+REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; make clean ; make; make install"
 
-REM lib/Makefile
-REM libiconv.res.lo : $(srcdir)/../windows/libiconv.rc
-REM 	$(LIBTOOL_COMPILE) --tag=RC $(RC) `$(SHELL) $(srcdir)/../windows/windres-options --escape $(PACKAGE_VERSION)` -i $(srcdir)/../windows/libiconv.rc -o libiconv.res.lo --output-format=coff
+cd C:\Users\hernad\harbour\3rd\libiconv\libiconv-win-build\build-VS2015>msbuild /t:Rebuild /p:Configuration=Release /p:Platform="x64"
 
 
 
