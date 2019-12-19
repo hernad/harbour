@@ -3,9 +3,9 @@ set GIT_REPOS=harbour
 set LIBRARY=libiconv
 REM set LIB_SOURCE_DIR=libiconv-1.16
 set LIB_SOURCE_DIR=libiconv-1.16-win-build
-set VCBUILDTOOLS=amd64
-set BUILD_ARCH=x64
-set MSBUILD_ARCH=x64
+set VCBUILDTOOLS=x86
+set BUILD_ARCH=x86
+set MSBUILD_ARCH=Win32
 
 
 REM https://ss64.com/nt/if.html
@@ -62,9 +62,9 @@ REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; mak
 cd build-VS2015
 msbuild /t:Rebuild /p:Configuration=Release /p:Platform="%MSBUILD_ARCH%"
 
-copy x64\Release\libiconv.dll %LIB_TARGET%\lib\
-copy x64\Release\libiconv.lib %LIB_TARGET%\lib\libiconv.lib
-copy x64\Release\libiconv.lib %LIB_TARGET%\lib\iconv.lib
+copy Release\libiconv.dll %LIB_TARGET%\lib\
+copy Release\libiconv.lib %LIB_TARGET%\lib\libiconv.lib
+copy Release\libiconv.lib %LIB_TARGET%\lib\iconv.lib
 
 cd ..
 copy include\iconv.h %LIB_TARGET%\include\
