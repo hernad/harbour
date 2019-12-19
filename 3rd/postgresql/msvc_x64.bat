@@ -7,23 +7,26 @@ set VCBUILDTOOLS=amd64
 set BUILD_ARCH=x64
 
 
+REM https://ss64.com/nt/if.html
+REM IF [NOT] DEFINED variable command
 
-set PATH=c:\windows;c:\windows\system32
+IF NOT DEFINED POSTGRESQL_BUILD  set PATH=c:\windows;c:\windows\system32
 
 REM amd64 ili x86
-call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
+IF NOT DEFINED POSTGRESQL_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
 
-SET PATH=%PATH%;C:\users\%USERNAME%\NASM64
+IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\users\%USERNAME%\NASM64
 
-set PATH=%PATH%;C:\Program Files\Git\cmd
-set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
-set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
+IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Program Files\Git\cmd
+IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
+IF NOT DEFINED POSTGRESQL_BUILD  set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
 
 REM perl path has to be on the end
 REM SET PATH=%PATH%;C:\Strawberry\c\bin
-SET PATH=%PATH%;C:\Strawberry\perl\bin
-SET PATH=%PATH%;C:\Strawberry\perl\site\bin
+IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\bin
+IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 
+set POSTGRESQL_BUILD=set
 
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\x64
@@ -38,15 +41,14 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 REM ------------------------------------
 
 dir ..\config_default.pl
-copy /Y ..\config_default.pl   %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
+copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 
-REM call src\tools\msvc\clean.bat
+call src\tools\msvc\clean.bat
 
 cd src\tools\msvc
 
 perl build.pl
 perl install.pl %LIB_TARGET%
-
 
 REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%

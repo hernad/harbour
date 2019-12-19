@@ -1,5 +1,3 @@
-
-
 package Project;
 
 #
@@ -7,7 +5,6 @@ package Project;
 #
 # src/tools/msvc/Project.pm
 #
-use Cwd;
 use Carp;
 use strict;
 use warnings;
@@ -432,13 +429,11 @@ sub read_makefile
 	my $reldir = shift;
 	my $F;
 	my $t = $/;
-	my $current_dir = getcwd;
 
-    print("getcwd: ${current_dir} read_makefile: ${reldir}\n");
 	undef $/;
-	open($F, '<', "$current_dir/$reldir/GNUmakefile")
-	  || open($F, '<', "$current_dir/$reldir/Makefile")
-	  || confess "Could not open $current_dir/$reldir/Makefile\n";
+	open($F, '<', "$reldir/GNUmakefile")
+	  || open($F, '<', "$reldir/Makefile")
+	  || confess "Could not open $reldir/Makefile\n";
 	my $txt = <$F>;
 	close($F);
 	$/ = $t;

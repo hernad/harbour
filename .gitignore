@@ -2,10 +2,10 @@ include/hbverbld.h
 include/_repover.txt
 src/**/obj/
 utils/**/obj/
-3rd/**/obj/
+#3rd/**/obj/
 bin/
 lib/
 hb40/
 *.obj
-**/Release/
-3rd/x64/
+#**/Release/
+#3rd/x64/
