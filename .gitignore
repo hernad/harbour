@@ -4,7 +4,7 @@ src/**/obj/
 utils/**/obj/
 #3rd/**/obj/
 bin/
-lib/
+#lib/
 hb40/
 *.obj
 #**/Release/
