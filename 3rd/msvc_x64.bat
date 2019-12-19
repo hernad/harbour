@@ -1,32 +1,45 @@
-set UUID_BUILD=
-set ZLIB_BUILD=
-set OPENSSL_BUILD=
-set POSTGRESQL_BUILD=
 
+
+
+set ZLIB_BUILD=
 cd zlib
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
 
+set UUID_BUILD=
 cd uuid
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
 
+set LIBICONV_BUILD=
 cd libiconv
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
 
-cd libxslt
-call msvc_x64.bat
-cd ..
-
+set LIBXML2_BUILD=
 cd libxml2
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
 
+set LIBXSLT_BUILD=
+REM libxslt depends on libxml2
+cd libxslt
+call msvc_x64.bat
+cd ..
+IF DEFINED DEBUG_BUILD pause
+
+set OPENSSL_BUILD=
 cd openssl
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
 
+set POSTGRESQL_BUILD=
 cd postgresql
 call msvc_x64.bat
 cd ..
+IF DEFINED DEBUG_BUILD pause
