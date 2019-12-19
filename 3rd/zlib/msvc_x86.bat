@@ -9,7 +9,6 @@ set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 IF NOT DEFINED ZLIB_BUILD set INCLUDE=
 IF NOT DEFINED ZLIB_BUILD set LIBPATH=
 IF NOT DEFINED ZLIB_BUILD set PATH=c:\windows;c:\windows\system32
-REM amd64 ili x86
 IF NOT DEFINED ZLIB_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
 IF NOT DEFINED ZLIB_BUILD SET PATH=%PATH%;C:\Strawberry\c\bin
 IF NOT DEFINED ZLIB_BUILD SET PATH=%PATH%;C:\Strawberry\perl\bin

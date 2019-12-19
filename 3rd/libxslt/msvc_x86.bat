@@ -4,13 +4,11 @@ set LIBRARY=libxslt
 set LIB_SOURCE_DIR=libxslt
 set VCBUILDTOOLS=x86
 set BUILD_ARCH=x86
-cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
+set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 
 IF NOT DEFINED LIBXSLT_BUILD set INCLUDE=
 IF NOT DEFINED LIBXSLT_BUILD set LIBPATH=
 IF NOT DEFINED LIBXSLT_BUILD set PATH=c:\windows;c:\windows\system32
-
-REM amd64 ili x86
 IF NOT DEFINED LIBXSLT_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
 IF NOT DEFINED LIBXSLT_BUILD  set PATH=%PATH%;C:\Program Files\Git\cmd
 IF NOT DEFINED LIBXSLT_BUILD  set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
@@ -23,13 +21,13 @@ IF NOT DEFINED LIBXSLT_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 
 set LIBXSLT_BUILD=1
 
-set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
+
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
 set LIB_TARGET=%LIB_BIN_ROOT%\%LIBRARY%
 
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
-echo === cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ==
+cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
