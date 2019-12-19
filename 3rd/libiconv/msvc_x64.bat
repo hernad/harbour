@@ -59,7 +59,7 @@ REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; ./c
 REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; make clean ; make; make install"
 
 cd build-VS2015
-REM msbuild /t:Rebuild /p:Configuration=Release /p:Platform="x64"
+msbuild /t:Rebuild /p:Configuration=Release /p:Platform="x64"
 
 copy x64\Release\libiconv.dll %LIB_TARGET%\lib\
 copy x64\Release\libiconv.lib %LIB_TARGET%\lib\libiconv.lib
