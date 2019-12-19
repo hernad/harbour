@@ -7,11 +7,11 @@
  * https://www.openssl.org/source/license.html
  */
 
-#include <openssl/ec.h>
-#include "ec_lcl.h"
-#include <openssl/objects.h>
-
+#include "internal/nelem.h"
 #include "testutil.h"
+#include <openssl/ec.h>
+#include "ec_local.h"
+#include <openssl/objects.h>
 
 static size_t crv_len = 0;
 static EC_builtin_curve *curves = NULL;
@@ -28,46 +28,43 @@ static int group_field_tests(const EC_GROUP *group, BN_CTX *ctx)
     BN_CTX_start(ctx);
     a = BN_CTX_get(ctx);
     b = BN_CTX_get(ctx);
-    TEST_check(NULL != (c = BN_CTX_get(ctx)));
-
-    /* 1/1 = 1 */
-    TEST_check(group->meth->field_inv(group, b, BN_value_one(), ctx));
-    TEST_check(BN_is_one(b));
-
-    /* (1/a)*a = 1 */
-    TEST_check(BN_pseudo_rand(a, BN_num_bits(group->field) - 1,
-                              BN_RAND_TOP_ONE, BN_RAND_BOTTOM_ANY));
-    TEST_check(group->meth->field_inv(group, b, a, ctx));
-    if (group->meth->field_encode) {
-        TEST_check(group->meth->field_encode(group, a, a, ctx));
-        TEST_check(group->meth->field_encode(group, b, b, ctx));
-    }
-    TEST_check(group->meth->field_mul(group, c, a, b, ctx));
-    if (group->meth->field_decode) {
-        TEST_check(group->meth->field_decode(group, c, c, ctx));
-    }
-    TEST_check(BN_is_one(c));
+    if (!TEST_ptr(c = BN_CTX_get(ctx))
+        /* 1/1 = 1 */
+        || !TEST_true(group->meth->field_inv(group, b, BN_value_one(), ctx))
+        || !TEST_true(BN_is_one(b))
+        /* (1/a)*a = 1 */
+        || !TEST_true(BN_pseudo_rand(a, BN_num_bits(group->field) - 1,
+                                     BN_RAND_TOP_ONE, BN_RAND_BOTTOM_ANY))
+        || !TEST_true(group->meth->field_inv(group, b, a, ctx))
+        || (group->meth->field_encode &&
+            !TEST_true(group->meth->field_encode(group, a, a, ctx)))
+        || (group->meth->field_encode &&
+            !TEST_true(group->meth->field_encode(group, b, b, ctx)))
+        || !TEST_true(group->meth->field_mul(group, c, a, b, ctx))
+        || (group->meth->field_decode &&
+            !TEST_true(group->meth->field_decode(group, c, c, ctx)))
+        || !TEST_true(BN_is_one(c)))
+        goto err;
 
     /* 1/0 = error */
     BN_zero(a);
-    TEST_check(!group->meth->field_inv(group, b, a, ctx));
-    TEST_check(ERR_GET_LIB(ERR_peek_last_error()) == ERR_LIB_EC);
-    TEST_check(ERR_GET_REASON(ERR_peek_last_error()) == EC_R_CANNOT_INVERT);
-
-    /* 1/p = error */
-    TEST_check(!group->meth->field_inv(group, b, group->field, ctx));
-    TEST_check(ERR_GET_LIB(ERR_peek_last_error()) == ERR_LIB_EC);
-    TEST_check(ERR_GET_REASON(ERR_peek_last_error()) == EC_R_CANNOT_INVERT);
+    if (!TEST_false(group->meth->field_inv(group, b, a, ctx))
+        || !TEST_true(ERR_GET_LIB(ERR_peek_last_error()) == ERR_LIB_EC)
+        || !TEST_true(ERR_GET_REASON(ERR_peek_last_error()) ==
+                      EC_R_CANNOT_INVERT)
+        /* 1/p = error */
+        || !TEST_false(group->meth->field_inv(group, b, group->field, ctx))
+        || !TEST_true(ERR_GET_LIB(ERR_peek_last_error()) == ERR_LIB_EC)
+        || !TEST_true(ERR_GET_REASON(ERR_peek_last_error()) ==
+                      EC_R_CANNOT_INVERT))
+        goto err;
 
     ERR_clear_error();
     ret = 1;
-
+ err:
     BN_CTX_end(ctx);
     return ret;
 }
-
-#define EC_GROUP_set_curve(g,p,a,b,ctx) \
-    EC_GROUP_set_curve_GFp(g,p,a,b,ctx)
 
 /* wrapper for group_field_tests for explicit curve params and EC_METHOD */
 static int field_tests(const EC_METHOD *meth, const unsigned char *params,
@@ -78,30 +75,29 @@ static int field_tests(const EC_METHOD *meth, const unsigned char *params,
     EC_GROUP *group = NULL;
     int ret = 0;
 
-    TEST_check(NULL != (ctx = BN_CTX_new()));
+    if (!TEST_ptr(ctx = BN_CTX_new()))
+        return 0;
 
     BN_CTX_start(ctx);
     p = BN_CTX_get(ctx);
     a = BN_CTX_get(ctx);
-    TEST_check(NULL != (b = BN_CTX_get(ctx)));
-
-    TEST_check(NULL != (group = EC_GROUP_new(meth)));
-    TEST_check(BN_bin2bn(params, len, p));
-    TEST_check(BN_bin2bn(params + len, len, a));
-    TEST_check(BN_bin2bn(params + 2 * len, len, b));
-    TEST_check(EC_GROUP_set_curve(group, p, a, b, ctx));
-    TEST_check(group_field_tests(group, ctx));
-
+    if (!TEST_ptr(b = BN_CTX_get(ctx))
+        || !TEST_ptr(group = EC_GROUP_new(meth))
+        || !TEST_true(BN_bin2bn(params, len, p))
+        || !TEST_true(BN_bin2bn(params + len, len, a))
+        || !TEST_true(BN_bin2bn(params + 2 * len, len, b))
+        || !TEST_true(EC_GROUP_set_curve(group, p, a, b, ctx))
+        || !group_field_tests(group, ctx))
+        goto err;
     ret = 1;
 
-
+ err:
     BN_CTX_end(ctx);
     BN_CTX_free(ctx);
     if (group != NULL)
         EC_GROUP_free(group);
     return ret;
 }
-#undef EC_GROUP_set_curve
 
 /* NIST prime curve P-256 */
 static const unsigned char params_p256[] = {
@@ -140,7 +136,7 @@ static const unsigned char params_b283[] = {
 /* test EC_GFp_simple_method directly */
 static int field_tests_ecp_simple(void)
 {
-    fprintf(stdout, "Testing EC_GFp_simple_method()\n");
+    TEST_info("Testing EC_GFp_simple_method()\n");
     return field_tests(EC_GFp_simple_method(), params_p256,
                        sizeof(params_p256) / 3);
 }
@@ -148,7 +144,7 @@ static int field_tests_ecp_simple(void)
 /* test EC_GFp_mont_method directly */
 static int field_tests_ecp_mont(void)
 {
-    fprintf(stdout, "Testing EC_GFp_mont_method()\n");
+    TEST_info("Testing EC_GFp_mont_method()\n");
     return field_tests(EC_GFp_mont_method(), params_p256,
                        sizeof(params_p256) / 3);
 }
@@ -157,7 +153,7 @@ static int field_tests_ecp_mont(void)
 /* test EC_GF2m_simple_method directly */
 static int field_tests_ec2_simple(void)
 {
-    fprintf(stdout, "Testing EC_GF2m_simple_method()\n");
+    TEST_info("Testing EC_GF2m_simple_method()\n");
     return field_tests(EC_GF2m_simple_method(), params_b283,
                        sizeof(params_b283) / 3);
 }
@@ -171,14 +167,15 @@ static int field_tests_default(int n)
     int nid = curves[n].nid;
     int ret = 0;
 
-    fprintf(stdout, "Testing curve %s\n", OBJ_nid2sn(nid));
+    TEST_info("Testing curve %s\n", OBJ_nid2sn(nid));
 
-    TEST_check(NULL != (group = EC_GROUP_new_by_curve_name(nid)));
-    TEST_check(NULL != (ctx = BN_CTX_new()));
-    TEST_check(group_field_tests(group, ctx));
+    if (!TEST_ptr(group = EC_GROUP_new_by_curve_name(nid))
+        || !TEST_ptr(ctx = BN_CTX_new())
+        || !group_field_tests(group, ctx))
+        goto err;
 
     ret = 1;
-
+ err:
     if (group != NULL)
         EC_GROUP_free(group);
     if (ctx != NULL)
@@ -186,11 +183,12 @@ static int field_tests_default(int n)
     return ret;
 }
 
-static int setup_tests(void)
+int setup_tests(void)
 {
     crv_len = EC_get_builtin_curves(NULL, 0);
-    TEST_check(NULL != (curves = OPENSSL_malloc(sizeof(*curves) * crv_len)));
-    TEST_check(EC_get_builtin_curves(curves, crv_len));
+    if (!TEST_ptr(curves = OPENSSL_malloc(sizeof(*curves) * crv_len))
+        || !TEST_true(EC_get_builtin_curves(curves, crv_len)))
+        return 0;
 
     ADD_TEST(field_tests_ecp_simple);
     ADD_TEST(field_tests_ecp_mont);
@@ -201,20 +199,7 @@ static int setup_tests(void)
     return 1;
 }
 
-static void cleanup_tests(void)
+void cleanup_tests(void)
 {
     OPENSSL_free(curves);
-}
-
-int main(int argc, char **argv)
-{
-    int ret;
-
-    setup_tests();
-
-    ret = run_tests(argv[0]);
-
-    cleanup_tests();
-
-    return ret;
 }

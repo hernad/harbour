@@ -10,9 +10,9 @@
 #include <assert.h>
 #include <limits.h>
 #include "internal/cryptlib.h"
-#include "bn_lcl.h"
+#include "bn_local.h"
 #include <openssl/opensslconf.h>
-#include "internal/constant_time_locl.h"
+#include "internal/constant_time.h"
 
 /* This stuff appears to be completely unused, so is deprecated */
 #if OPENSSL_API_COMPAT < 0x00908000L
@@ -66,15 +66,15 @@ void BN_set_params(int mult, int high, int low, int mont)
 int BN_get_params(int which)
 {
     if (which == 0)
-        return (bn_limit_bits);
+        return bn_limit_bits;
     else if (which == 1)
-        return (bn_limit_bits_high);
+        return bn_limit_bits_high;
     else if (which == 2)
-        return (bn_limit_bits_low);
+        return bn_limit_bits_low;
     else if (which == 3)
-        return (bn_limit_bits_mont);
+        return bn_limit_bits_mont;
     else
-        return (0);
+        return 0;
 }
 #endif
 
@@ -84,7 +84,7 @@ const BIGNUM *BN_value_one(void)
     static const BIGNUM const_one =
         { (BN_ULONG *)&data_one, 1, 1, 0, BN_FLG_STATIC_DATA };
 
-    return (&const_one);
+    return &const_one;
 }
 
 int BN_num_bits_word(BN_ULONG l)
@@ -186,10 +186,12 @@ int BN_num_bits(const BIGNUM *a)
     return ((i * BN_BITS2) + BN_num_bits_word(a->d[i]));
 }
 
-static void bn_free_d(BIGNUM *a)
+static void bn_free_d(BIGNUM *a, int clear)
 {
     if (BN_get_flags(a, BN_FLG_SECURE))
-        OPENSSL_secure_free(a->d);
+        OPENSSL_secure_clear_free(a->d, a->dmax * sizeof(a->d[0]));
+    else if (clear != 0)
+        OPENSSL_clear_free(a->d, a->dmax * sizeof(a->d[0]));
     else
         OPENSSL_free(a->d);
 }
@@ -197,37 +199,24 @@ static void bn_free_d(BIGNUM *a)
 
 void BN_clear_free(BIGNUM *a)
 {
-    int i;
-
     if (a == NULL)
         return;
-    bn_check_top(a);
-    if (a->d != NULL) {
-        OPENSSL_cleanse(a->d, a->dmax * sizeof(a->d[0]));
-        if (!BN_get_flags(a, BN_FLG_STATIC_DATA))
-            bn_free_d(a);
-    }
-    i = BN_get_flags(a, BN_FLG_MALLOCED);
-    OPENSSL_cleanse(a, sizeof(*a));
-    if (i)
+    if (a->d != NULL && !BN_get_flags(a, BN_FLG_STATIC_DATA))
+        bn_free_d(a, 1);
+    if (BN_get_flags(a, BN_FLG_MALLOCED)) {
+        OPENSSL_cleanse(a, sizeof(*a));
         OPENSSL_free(a);
+    }
 }
 
 void BN_free(BIGNUM *a)
 {
     if (a == NULL)
         return;
-    bn_check_top(a);
     if (!BN_get_flags(a, BN_FLG_STATIC_DATA))
-        bn_free_d(a);
+        bn_free_d(a, 0);
     if (a->flags & BN_FLG_MALLOCED)
         OPENSSL_free(a);
-    else {
-#if OPENSSL_API_COMPAT < 0x00908000L
-        a->flags |= BN_FLG_FREE;
-#endif
-        a->d = NULL;
-    }
 }
 
 void bn_init(BIGNUM *a)
@@ -244,11 +233,11 @@ BIGNUM *BN_new(void)
 
     if ((ret = OPENSSL_zalloc(sizeof(*ret))) == NULL) {
         BNerr(BN_F_BN_NEW, ERR_R_MALLOC_FAILURE);
-        return (NULL);
+        return NULL;
     }
     ret->flags = BN_FLG_MALLOCED;
     bn_check_top(ret);
-    return (ret);
+    return ret;
 }
 
  BIGNUM *BN_secure_new(void)
@@ -256,16 +245,14 @@ BIGNUM *BN_new(void)
      BIGNUM *ret = BN_new();
      if (ret != NULL)
          ret->flags |= BN_FLG_SECURE;
-     return (ret);
+     return ret;
  }
 
 /* This is used by bn_expand2() */
 /* The caller MUST check that words > b->dmax before calling this */
 static BN_ULONG *bn_expand_internal(const BIGNUM *b, int words)
 {
-    BN_ULONG *A, *a = NULL;
-    const BN_ULONG *B;
-    int i;
+    BN_ULONG *a = NULL;
 
     if (words > (INT_MAX / (4 * BN_BITS2))) {
         BNerr(BN_F_BN_EXPAND_INTERNAL, BN_R_BIGNUM_TOO_LONG);
@@ -273,62 +260,22 @@ static BN_ULONG *bn_expand_internal(const BIGNUM *b, int words)
     }
     if (BN_get_flags(b, BN_FLG_STATIC_DATA)) {
         BNerr(BN_F_BN_EXPAND_INTERNAL, BN_R_EXPAND_ON_STATIC_BIGNUM_DATA);
-        return (NULL);
+        return NULL;
     }
     if (BN_get_flags(b, BN_FLG_SECURE))
-        a = A = OPENSSL_secure_zalloc(words * sizeof(*a));
+        a = OPENSSL_secure_zalloc(words * sizeof(*a));
     else
-        a = A = OPENSSL_zalloc(words * sizeof(*a));
-    if (A == NULL) {
+        a = OPENSSL_zalloc(words * sizeof(*a));
+    if (a == NULL) {
         BNerr(BN_F_BN_EXPAND_INTERNAL, ERR_R_MALLOC_FAILURE);
-        return (NULL);
+        return NULL;
     }
 
-#if 1
-    B = b->d;
-    /* Check if the previous number needs to be copied */
-    if (B != NULL) {
-        for (i = b->top >> 2; i > 0; i--, A += 4, B += 4) {
-            /*
-             * The fact that the loop is unrolled
-             * 4-wise is a tribute to Intel. It's
-             * the one that doesn't have enough
-             * registers to accommodate more data.
-             * I'd unroll it 8-wise otherwise:-)
-             *
-             *              <appro@fy.chalmers.se>
-             */
-            BN_ULONG a0, a1, a2, a3;
-            a0 = B[0];
-            a1 = B[1];
-            a2 = B[2];
-            a3 = B[3];
-            A[0] = a0;
-            A[1] = a1;
-            A[2] = a2;
-            A[3] = a3;
-        }
-        switch (b->top & 3) {
-        case 3:
-            A[2] = B[2];
-            /* fall thru */
-        case 2:
-            A[1] = B[1];
-            /* fall thru */
-        case 1:
-            A[0] = B[0];
-            /* fall thru */
-        case 0:
-            /* Without the "case 0" some old optimizers got this wrong. */
-            ;
-        }
-    }
-#else
-    memset(A, 0, sizeof(*A) * words);
-    memcpy(A, b->d, sizeof(b->d[0]) * b->top);
-#endif
+    assert(b->top <= words);
+    if (b->top > 0)
+        memcpy(a, b->d, sizeof(*a) * b->top);
 
-    return (a);
+    return a;
 }
 
 /*
@@ -345,10 +292,8 @@ BIGNUM *bn_expand2(BIGNUM *b, int words)
         BN_ULONG *a = bn_expand_internal(b, words);
         if (!a)
             return NULL;
-        if (b->d) {
-            OPENSSL_cleanse(b->d, b->dmax * sizeof(b->d[0]));
-            bn_free_d(b);
-        }
+        if (b->d != NULL)
+            bn_free_d(b, 1);
         b->d = a;
         b->dmax = words;
     }
@@ -377,53 +322,21 @@ BIGNUM *BN_dup(const BIGNUM *a)
 
 BIGNUM *BN_copy(BIGNUM *a, const BIGNUM *b)
 {
-    int i;
-    BN_ULONG *A;
-    const BN_ULONG *B;
-
     bn_check_top(b);
 
     if (a == b)
-        return (a);
+        return a;
     if (bn_wexpand(a, b->top) == NULL)
-        return (NULL);
+        return NULL;
 
-#if 1
-    A = a->d;
-    B = b->d;
-    for (i = b->top >> 2; i > 0; i--, A += 4, B += 4) {
-        BN_ULONG a0, a1, a2, a3;
-        a0 = B[0];
-        a1 = B[1];
-        a2 = B[2];
-        a3 = B[3];
-        A[0] = a0;
-        A[1] = a1;
-        A[2] = a2;
-        A[3] = a3;
-    }
-    /* ultrix cc workaround, see comments in bn_expand_internal */
-    switch (b->top & 3) {
-    case 3:
-        A[2] = B[2];
-        /* fall thru */
-    case 2:
-        A[1] = B[1];
-        /* fall thru */
-    case 1:
-        A[0] = B[0];
-        /* fall thru */
-    case 0:;
-    }
-#else
-    memcpy(a->d, b->d, sizeof(b->d[0]) * b->top);
-#endif
+    if (b->top > 0)
+        memcpy(a->d, b->d, sizeof(b->d[0]) * b->top);
 
     a->neg = b->neg;
     a->top = b->top;
     a->flags |= b->flags & BN_FLG_FIXED_TOP;
     bn_check_top(a);
-    return (a);
+    return a;
 }
 
 #define FLAGS_DATA(flags) ((flags) & (BN_FLG_STATIC_DATA \
@@ -467,6 +380,8 @@ void BN_swap(BIGNUM *a, BIGNUM *b)
 
 void BN_clear(BIGNUM *a)
 {
+    if (a == NULL)
+        return;
     bn_check_top(a);
     if (a->d != NULL)
         OPENSSL_cleanse(a->d, sizeof(*a->d) * a->dmax);
@@ -489,13 +404,13 @@ int BN_set_word(BIGNUM *a, BN_ULONG w)
 {
     bn_check_top(a);
     if (bn_expand(a, (int)sizeof(BN_ULONG) * 8) == NULL)
-        return (0);
+        return 0;
     a->neg = 0;
     a->d[0] = w;
     a->top = (w ? 1 : 0);
     a->flags &= ~BN_FLG_FIXED_TOP;
     bn_check_top(a);
-    return (1);
+    return 1;
 }
 
 BIGNUM *BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret)
@@ -508,7 +423,7 @@ BIGNUM *BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret)
     if (ret == NULL)
         ret = bn = BN_new();
     if (ret == NULL)
-        return (NULL);
+        return NULL;
     bn_check_top(ret);
     /* Skip leading zero's. */
     for ( ; len > 0 && *s == 0; s++, len--)
@@ -516,7 +431,7 @@ BIGNUM *BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret)
     n = len;
     if (n == 0) {
         ret->top = 0;
-        return (ret);
+        return ret;
     }
     i = ((n - 1) / BN_BYTES) + 1;
     m = ((n - 1) % (BN_BYTES));
@@ -540,7 +455,7 @@ BIGNUM *BN_bin2bn(const unsigned char *s, int len, BIGNUM *ret)
      * bit set (-ve number)
      */
     bn_correct_top(ret);
-    return (ret);
+    return ret;
 }
 
 typedef enum {big, little} endianess_t;
@@ -618,7 +533,7 @@ BIGNUM *BN_lebin2bn(const unsigned char *s, int len, BIGNUM *ret)
     if (ret == NULL)
         ret = bn = BN_new();
     if (ret == NULL)
-        return (NULL);
+        return NULL;
     bn_check_top(ret);
     s += len;
     /* Skip trailing zeroes. */
@@ -672,7 +587,7 @@ int BN_ucmp(const BIGNUM *a, const BIGNUM *b)
 
     i = a->top - b->top;
     if (i != 0)
-        return (i);
+        return i;
     ap = a->d;
     bp = b->d;
     for (i = a->top - 1; i >= 0; i--) {
@@ -681,7 +596,7 @@ int BN_ucmp(const BIGNUM *a, const BIGNUM *b)
         if (t1 != t2)
             return ((t1 > t2) ? 1 : -1);
     }
-    return (0);
+    return 0;
 }
 
 int BN_cmp(const BIGNUM *a, const BIGNUM *b)
@@ -692,11 +607,11 @@ int BN_cmp(const BIGNUM *a, const BIGNUM *b)
 
     if ((a == NULL) || (b == NULL)) {
         if (a != NULL)
-            return (-1);
+            return -1;
         else if (b != NULL)
-            return (1);
+            return 1;
         else
-            return (0);
+            return 0;
     }
 
     bn_check_top(a);
@@ -704,9 +619,9 @@ int BN_cmp(const BIGNUM *a, const BIGNUM *b)
 
     if (a->neg != b->neg) {
         if (a->neg)
-            return (-1);
+            return -1;
         else
-            return (1);
+            return 1;
     }
     if (a->neg == 0) {
         gt = 1;
@@ -717,18 +632,18 @@ int BN_cmp(const BIGNUM *a, const BIGNUM *b)
     }
 
     if (a->top > b->top)
-        return (gt);
+        return gt;
     if (a->top < b->top)
-        return (lt);
+        return lt;
     for (i = a->top - 1; i >= 0; i--) {
         t1 = a->d[i];
         t2 = b->d[i];
         if (t1 > t2)
-            return (gt);
+            return gt;
         if (t1 < t2)
-            return (lt);
+            return lt;
     }
-    return (0);
+    return 0;
 }
 
 int BN_set_bit(BIGNUM *a, int n)
@@ -742,7 +657,7 @@ int BN_set_bit(BIGNUM *a, int n)
     j = n % BN_BITS2;
     if (a->top <= i) {
         if (bn_wexpand(a, i + 1) == NULL)
-            return (0);
+            return 0;
         for (k = a->top; k < i + 1; k++)
             a->d[k] = 0;
         a->top = i + 1;
@@ -751,7 +666,7 @@ int BN_set_bit(BIGNUM *a, int n)
 
     a->d[i] |= (((BN_ULONG)1) << j);
     bn_check_top(a);
-    return (1);
+    return 1;
 }
 
 int BN_clear_bit(BIGNUM *a, int n)
@@ -765,11 +680,11 @@ int BN_clear_bit(BIGNUM *a, int n)
     i = n / BN_BITS2;
     j = n % BN_BITS2;
     if (a->top <= i)
-        return (0);
+        return 0;
 
     a->d[i] &= (~(((BN_ULONG)1) << j));
     bn_correct_top(a);
-    return (1);
+    return 1;
 }
 
 int BN_is_bit_set(const BIGNUM *a, int n)
@@ -805,7 +720,7 @@ int BN_mask_bits(BIGNUM *a, int n)
         a->d[w] &= ~(BN_MASK2 << b);
     }
     bn_correct_top(a);
-    return (1);
+    return 1;
 }
 
 void BN_set_negative(BIGNUM *a, int b)
@@ -834,7 +749,7 @@ int bn_cmp_words(const BN_ULONG *a, const BN_ULONG *b, int n)
         if (aa != bb)
             return ((aa > bb) ? 1 : -1);
     }
-    return (0);
+    return 0;
 }
 
 /*
@@ -866,26 +781,25 @@ int bn_cmp_part_words(const BN_ULONG *a, const BN_ULONG *b, int cl, int dl)
     return bn_cmp_words(a, b, cl);
 }
 
-/*
+/*-
  * Constant-time conditional swap of a and b.
- * a and b are swapped if condition is not 0.  The code assumes that at most one bit of condition is set.
- * nwords is the number of words to swap.  The code assumes that at least nwords are allocated in both a and b,
- * and that no more than nwords are used by either a or b.
- * a and b cannot be the same number
+ * a and b are swapped if condition is not 0.
+ * nwords is the number of words to swap.
+ * Assumes that at least nwords are allocated in both a and b.
+ * Assumes that no more than nwords are used by either a or b.
  */
 void BN_consttime_swap(BN_ULONG condition, BIGNUM *a, BIGNUM *b, int nwords)
 {
     BN_ULONG t;
     int i;
 
+    if (a == b)
+        return;
+
     bn_wcheck_size(a, nwords);
     bn_wcheck_size(b, nwords);
 
-    assert(a != b);
-    assert((condition & (condition - 1)) == 0);
-    assert(sizeof(BN_ULONG) >= sizeof(int));
-
-    condition = ((condition - 1) >> (BN_BITS2 - 1)) - 1;
+    condition = ((~condition & ((condition - 1))) >> (BN_BITS2 - 1)) - 1;
 
     t = (a->top ^ b->top) & condition;
     a->top ^= t;
@@ -923,41 +837,15 @@ void BN_consttime_swap(BN_ULONG condition, BIGNUM *a, BIGNUM *b, int nwords)
     a->flags ^= t;
     b->flags ^= t;
 
-#define BN_CONSTTIME_SWAP(ind) \
-        do { \
-                t = (a->d[ind] ^ b->d[ind]) & condition; \
-                a->d[ind] ^= t; \
-                b->d[ind] ^= t; \
-        } while (0)
-
-    switch (nwords) {
-    default:
-        for (i = 10; i < nwords; i++)
-            BN_CONSTTIME_SWAP(i);
-        /* Fallthrough */
-    case 10:
-        BN_CONSTTIME_SWAP(9);   /* Fallthrough */
-    case 9:
-        BN_CONSTTIME_SWAP(8);   /* Fallthrough */
-    case 8:
-        BN_CONSTTIME_SWAP(7);   /* Fallthrough */
-    case 7:
-        BN_CONSTTIME_SWAP(6);   /* Fallthrough */
-    case 6:
-        BN_CONSTTIME_SWAP(5);   /* Fallthrough */
-    case 5:
-        BN_CONSTTIME_SWAP(4);   /* Fallthrough */
-    case 4:
-        BN_CONSTTIME_SWAP(3);   /* Fallthrough */
-    case 3:
-        BN_CONSTTIME_SWAP(2);   /* Fallthrough */
-    case 2:
-        BN_CONSTTIME_SWAP(1);   /* Fallthrough */
-    case 1:
-        BN_CONSTTIME_SWAP(0);
+    /* conditionally swap the data */
+    for (i = 0; i < nwords; i++) {
+        t = (a->d[i] ^ b->d[i]) & condition;
+        a->d[i] ^= t;
+        b->d[i] ^= t;
     }
-#undef BN_CONSTTIME_SWAP
 }
+
+#undef BN_CONSTTIME_SWAP_FLAGS
 
 /* Bits of security, see SP800-57 */
 
@@ -1044,7 +932,7 @@ BN_GENCB *BN_GENCB_new(void)
 
     if ((ret = OPENSSL_malloc(sizeof(*ret))) == NULL) {
         BNerr(BN_F_BN_GENCB_NEW, ERR_R_MALLOC_FAILURE);
-        return (NULL);
+        return NULL;
     }
 
     return ret;
