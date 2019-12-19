@@ -43,15 +43,11 @@ cd src\tools\msvc
 perl build.pl
 perl install.pl %LIB_TARGET%
 
-
 cd %LIB_TARGET%
 
-echo copying DLL dependencies
-
+echo copying POSTGRESQL DLL dependencies [%LIB_TARGET%]
 copy /y ..\openssl\bin\*.dll bin\
-
 copy /y ..\libxml2\bin\libxml2.dll bin\
-      
 copy /y ..\libiconv\lib\libiconv.dll bin\
        
 

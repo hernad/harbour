@@ -14,21 +14,17 @@ IF NOT DEFINED POSTGRESQL_BUILD call "C:\Program Files (x86)\Microsoft Visual C+
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Program Files\Git\cmd
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
-
 REM perl path has to be on the end
-REM SET PATH=%PATH%;C:\Strawberry\c\bin
-IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\bin
-IF NOT DEFINED POSTGRESQL_BUILD  SET PATH=%PATH%;C:\Strawberry\perl\site\bin
+IF NOT DEFINED POSTGRESQL_BUILD SET PATH=%PATH%;C:\Strawberry\c\bin
+IF NOT DEFINED POSTGRESQL_BUILD SET PATH=%PATH%;C:\Strawberry\perl\bin
+IF NOT DEFINED POSTGRESQL_BUILD SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 
 set POSTGRESQL_BUILD=1
-
 
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
 set LIB_TARGET=%LIB_BIN_ROOT%\%LIBRARY%
 
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
-
-echo === cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ==
 
 cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
@@ -43,15 +39,12 @@ cd src\tools\msvc
 perl build.pl
 perl install.pl %LIB_TARGET%
 
-
 cd %LIB_TARGET%
 
-echo copying DLL dependencies
+echo copying PSQL DLL dependencies %LIB_TARGET%
 
 copy /y ..\openssl\bin\*.dll bin\
-
-copy /y ..\libxml2\bin\libxml2.dll bin\
-      
+copy /y ..\libxml2\bin\libxml2.dll bin\      
 copy /y ..\libiconv\lib\libiconv.dll bin\
        
 
