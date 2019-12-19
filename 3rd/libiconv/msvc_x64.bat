@@ -40,6 +40,10 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
+mkdir %ROOT_DIR%\3rd\x64
+mkdir %LIB_TARGET%
+mkdir %LIB_TARGET%\include
+mkdir %LIB_TARGET%\lib
 
 REM 32-bit: ./configure --host=i686-w64-mingw32 
 
@@ -54,8 +58,15 @@ REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; cp 
 REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; ./configure --prefix=/cygdrive/c/users/%USERNAME%/%GIT_REPOS%/3rd/%BUILD_ARCH%/%LIBRARY% --host=x86_64-w64-mingw32 CC=\"compile cl -nologo\" CFLAGS=\"-MD\" CXX=\"compile cl -nologo\" CXXFLAGS=\"-MD\" CPPFLAGS=\"-D_WIN32_WINNT=_WIN32_WINNT_WIN8\" LD=\"link\" NM=\"dumpbin -symbols\" STRIP=\":\" AR=\"ar-lib lib\" RANLIB=\":\""
 REM c:\cygwin64\bin\bash.exe  -c "export PATH=/usr/local/bin:/usr/bin:$PATH; make clean ; make; make install"
 
-cd C:\Users\hernad\harbour\3rd\libiconv\libiconv-win-build\build-VS2015>msbuild /t:Rebuild /p:Configuration=Release /p:Platform="x64"
+cd build-VS2015
+REM msbuild /t:Rebuild /p:Configuration=Release /p:Platform="x64"
 
+copy x64\Release\libiconv.dll %LIB_TARGET%\lib\
+copy x64\Release\libiconv.lib %LIB_TARGET%\lib\libiconv.lib
+copy x64\Release\libiconv.lib %LIB_TARGET%\lib\iconv.lib
+
+cd ..
+copy include\iconv.h %LIB_TARGET%\include\
 
 
 REM ---------------------------------
