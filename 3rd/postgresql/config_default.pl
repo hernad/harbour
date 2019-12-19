@@ -22,9 +22,9 @@ our $config = {
 	python    => undef,    # --with-python=<path>
 	openssl   => "$ENV{'LIB_BIN_ROOT'}\\openssl",    # --with-openssl=<path>
 	uuid      => "$ENV{'LIB_BIN_ROOT'}\\uuid",    # --with-ossp-uuid
-	xml       => undef,    # --with-libxml=<path>
-	xslt      => undef,    # --with-libxslt=<path>
-	iconv     => undef,    # (not in configure, path to iconv)
+	xml       => "$ENV{'LIB_BIN_ROOT'}\\libxml2",    # --with-libxml=<path>
+	xslt      => "$ENV{'LIB_BIN_ROOT'}\\libxslt",    # --with-libxslt=<path>
+	iconv     => "$ENV{'LIB_BIN_ROOT'}\\libiconv",    # (not in configure, path to iconv)
 	zlib      => "$ENV{'LIB_BIN_ROOT'}\\zlib",     # --with-zlib=<path>
 };
 

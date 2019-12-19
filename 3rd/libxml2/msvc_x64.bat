@@ -44,6 +44,10 @@ cscript configure.js compiler=msvc prefix=%LIB_BIN_ROOT%\%LIBRARY% include=%ROOT
 nmake -f Makefile.msvc clean install
 cd ..
 
+cd include
+xcopy /Y /E /I libxml %LIB_TARGET%\include\libxml
+RMDIR /Q/S %LIB_BIN_ROOT%\%LIBRARY%\include\libxml2
+
 REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%
 

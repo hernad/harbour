@@ -41,7 +41,7 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
-dir ..\config_default.pl
+REM dir ..\config_default.pl
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 
 call src\tools\msvc\clean.bat
@@ -50,6 +50,18 @@ cd src\tools\msvc
 
 perl build.pl
 perl install.pl %LIB_TARGET%
+
+
+cd %LIB_TARGET%
+
+echo copying DLL dependencies
+
+copy /y ..\openssl\bin\*.dll bin\
+
+copy /y ..\libxml2\bin\libxml2.dll bin\
+      
+copy /y ..\libiconv\lib\libiconv.dll bin\
+       
 
 REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%
