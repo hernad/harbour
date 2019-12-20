@@ -24,7 +24,7 @@ IF NOT DEFINED POSTGRESQL_BUILD SET PATH=%PATH%;C:\Strawberry\perl\site\bin
 set POSTGRESQL_BUILD=1
 
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
-set LIB_TARGET=%LIB_BIN_ROOT%\%LIBRARY%
+set PSQL_DEST=%LIB_BIN_ROOT%\%LIBRARY%
 
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
@@ -42,16 +42,14 @@ REM ------------------------------------
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
 
-call src\tools\msvc\clean.bat
-
 cd src\tools\msvc
 
 perl build.pl
-perl install.pl %LIB_TARGET%
+perl install.pl %PSQL_DEST%
 
-cd %LIB_TARGET%
+cd %PSQL_DEST%
 
-echo copying PSQL DLL dependencies %LIB_TARGET%
+echo copying PSQL DLL dependencies %PSQL_DEST%
 
 copy /y ..\openssl\bin\*.dll bin\
 copy /y ..\libxml2\bin\libxml2.dll bin\      
@@ -61,4 +59,4 @@ copy /y ..\libiconv\lib\libiconv.dll bin\
 REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
-dir /s %LIB_TARGET%
+dir /s %PSQL_DEST%
