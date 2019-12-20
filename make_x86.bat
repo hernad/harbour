@@ -1,5 +1,6 @@
-echo lib\win\msvc
-mkdir lib\win\msvc
+cd 3rd
+call msvc_x86.bat
+cd ..
 
 set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
@@ -36,5 +37,9 @@ set HB_HAS_ZLIB=%LIB_BIN_ROOT%\zlib\include
 set HB_HAS_POSTGRESQL=%LIB_BIN_ROOT%\postgresql\include
 
 set HB_WITH_OPENSSL=%LIB_BIN_ROOT%\openssl\include
+
+
+REM echo lib\win\msvc
+REM mkdir lib\win\msvc
 
 tools\win32\win-make.exe clean install
