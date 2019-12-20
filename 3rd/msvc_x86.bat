@@ -2,8 +2,8 @@ call ..\envars.bat
 SET ROOT_3RD=%ROOT_DIR%\3rd
 
 set ZLIB_BUILD=
-cd zlib
-call %ROOT_3RD%\msvc_x86.bat
+cd %ROOT_3RD%\zlib
+call msvc_x86.bat
 IF DEFINED DEBUG_BUILD pause
 
 set UUID_BUILD=
