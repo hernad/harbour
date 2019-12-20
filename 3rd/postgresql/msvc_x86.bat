@@ -5,6 +5,8 @@ set LIB_SOURCE_DIR=postgresql-12.1
 set VCBUILDTOOLS=x86
 set BUILD_ARCH=x86
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
+REM "ORIG c:\Program Files\7-Zip\7z.exe"
+set CMD7z=..\..\tools\win32\7z.exe
 
 IF NOT DEFINED POSTGRESQL_BUILD set INCLUDE=
 IF NOT DEFINED POSTGRESQL_BUILD set LIBPATH=
@@ -29,8 +31,8 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 echo ================ INIT postgresql-12.1 ===========================
 git clean . -f -d -X
 git clean . -f -d -x
-REM "c:\Program Files\7-Zip\7z.exe" a postgresql-12.1.7z postgresql-12.1.7z
-"c:\Program Files\7-Zip\7z.exe" x postgresql-12.1.7z
+
+%CMD7z% x postgresql-12.1.7z
 echo ==================================================================
 
 cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
