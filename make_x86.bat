@@ -33,6 +33,7 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 echo HB_INSTALL_PREFIX=%HB_INSTALL_PREFIX%
 
 set HB_HAS_ZLIB=%LIB_BIN_ROOT%\zlib\include
+set HB_HAS_POSTGRESQL=%LIB_BIN_ROOT%\postgresql\include
 
 set HB_WITH_OPENSSL=%LIB_BIN_ROOT%\openssl\include
 

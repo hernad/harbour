@@ -18,9 +18,7 @@ LIBNAME := hbpgsql
 HB_CFLAGS += -DHB_HAS_POSTGRESQL $(QUOTE)-I$(HB_HAS_POSTGRESQL)$(QUOTE)
 
 ifneq ($(HB_HAS_ZLIB),)
-
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
-   
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else

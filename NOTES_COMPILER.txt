@@ -28,6 +28,7 @@ HARBOUR COMPILE
 ==============
 HB_FLAGS := -n1 -q0 -w3 -es2 -kmo -i- $(HB_PRGFLAGS)
 
+$(HB_HOST_INC) = ROOT/include directory
 
 on windows platform, shell
 ============================== 

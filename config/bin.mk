@@ -54,6 +54,8 @@ else
    ifneq ($(HB_HAS_PCRE2_LOCAL),)
       HB_LIBS_TPL += hbpcre2
    endif
+
+   # e.g. 3rd/x86/zlib/{include, bin}
    ifneq ($(HB_HAS_ZLIB),)
       HB_LIBS_TPL += zlib
       ifeq ($(HB_PLATFORM),win)
@@ -65,8 +67,18 @@ else
          endif
       endif
    endif
-
-   
+   # e.g. 3rd/x86/postgresql/{include, bin}
+   ifneq ($(HB_HAS_POSTGRESQL),)
+      HB_LIBS_TPL += libpq
+      ifeq ($(HB_PLATFORM),win)
+         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)/../lib/libpq.lib)
+         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/libpq.lib)
+         ifeq ($(wildcard $(DESTLIB)),)
+            RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+            $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+         endif
+      endif
+   endif
 
    ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
       HB_LIBS_TPL += xlsxwriter
