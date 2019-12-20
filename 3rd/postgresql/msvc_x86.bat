@@ -31,6 +31,7 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 REM ------------------------------------
 
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
+copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
 
 call src\tools\msvc\clean.bat
 
