@@ -41,7 +41,7 @@ my $vcver = Mkvcbuild::mkvcbuild($config);
 my $bconf     = $ENV{CONFIG}   || "Release";
 my $msbflags  = $ENV{MSBFLAGS} || "";
 my $buildwhat = $ARGV[1]       || "";
-my $msbuildcmd = "msbuild pgsql.sln /verbosity:normal $msbflags /p:Configuration=$bconf";
+my $msbuildcmd = "";
 
 if (uc($ARGV[0]) eq 'DEBUG')
 {
@@ -63,7 +63,9 @@ if ($buildwhat)
 else
 {
    if ($ENV{'BUILD_ARCH'} == "x86") {
-               $msbuildcmd  = "msbuild pgsql.sln /verbosity:normal $msbflags /p:Configuration=$bconf /p:Platform=Win32";
+        $msbuildcmd = "msbuild pgsql.sln /verbosity:normal $msbflags /p:Configuration=$bconf /p:Platform=Win32";
+   } else {
+        $msbuildcmd = "msbuild pgsql.sln /verbosity:normal $msbflags /p:Configuration=$bconf";
    }
    system( $msbuildcmd );
 }

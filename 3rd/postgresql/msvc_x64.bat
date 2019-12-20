@@ -38,7 +38,6 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 echo ================ INIT postgresql-12.1 ===========================
 cd %ROOT_DIR%\3rd\%LIBRARY%
-git clean -X -d .
 
 %CMD7z% -y x postgresql-12.1.7z
 echo ==================================================================
@@ -48,10 +47,10 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 REM ------------------------------------
 
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
-copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
+REM copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
 
 cd src\tools\msvc
-
+call clean.bat
 perl build.pl
 perl install.pl %PSQL_DEST%
 
