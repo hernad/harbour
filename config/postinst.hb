@@ -31,11 +31,11 @@
 #include "directry.ch"
 #include "fileio.ch"
 #include "hbserial.ch"
+#include "hbver.ch"
 
 PROCEDURE Main( ... )
 
    LOCAL nErrorLevel := 0
-   LOCAL aFile
 
    LOCAL tmp, tmp1
    LOCAL cOldDir
@@ -53,7 +53,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionFull
    LOCAL cDynVersionComp
    LOCAL cDynVersionless
-   LOCAL cFile
+   LOCAL cFile, cSrcLibDir, aLibs
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -61,8 +61,8 @@ PROCEDURE Main( ... )
    ENDIF
 
    IF Empty( GetEnvC( "HB_PLATFORM" ) ) .OR. ;
-      Empty( GetEnvC( "HB_COMPILER" ) ) .OR. ;
-      Empty( GetEnvC( "HB_HOST_BIN_DIR" ) )
+         Empty( GetEnvC( "HB_COMPILER" ) ) .OR. ;
+         Empty( GetEnvC( "HB_HOST_BIN_DIR" ) )
 
       OutStd( "! Error: This script has to be called from the GNU Make process." + hb_eol() )
       ErrorLevel( 1 )
@@ -84,73 +84,74 @@ PROCEDURE Main( ... )
          OutStd( "! Timestamping generated binaries..." + hb_eol() )
 
          FOR EACH tmp IN { ;
-            GetEnvC( "HB_INSTALL_BIN" ), ;
-            GetEnvC( "HB_INSTALL_DYN" ), ;
-            GetEnvC( "HB_INSTALL_LIB" ) }
+               GetEnvC( "HB_INSTALL_BIN" ), ;
+               GetEnvC( "HB_INSTALL_DYN" ), ;
+               GetEnvC( "HB_INSTALL_LIB" ) }
             FOR EACH tmp1 IN hb_vfDirectory( tmp + hb_ps() + hb_osFileMask() )
                mk_hb_vfTimeSet( tmp + hb_ps() + tmp1[ F_NAME ] )
             NEXT
          NEXT
       ENDIF
 
-      /* Installing some misc files */
-      tmp := GetEnvC( "HB_INSTALL_DOC" )
-      IF ! tmp == "no"
-         IF GetEnvC( "HB_PLATFORM" ) == "win"
-            tmp := GetEnvC( "HB_INSTALL_PREFIX" )
+      IF hb_DirBuild( hb_DirSepToOS( tmp ) )
+         tmp := GetEnvC( "HB_INSTALL_LIB" )
+         OutStd( "Copying hbc to LIB ..." + hb_eol() )
+         FOR EACH cFile IN { ;
+               "src/rdd/rddsql/rddsql.hbc", ;
+               "src/sddpg/sddpg.hbc", ;
+               "src/hbpgsql/hbpgsql.hbc", ;
+               "3rd/harupdf/harupdf.hbc", ;
+               "src/hbhpdf/hbhpdf.hbc", ;
+               "3rd/minizip/minizip.hbc", ;
+               "src/hbmzip/hbmzip.hbc", ;
+               "3rd/xlsxwriter/xlsxwriter.hbc", ;
+               "src/hbxlsxwriter/hbxlsxwriter.hbc", ;
+               "src/hbtip/hbtip.hbc", ;
+               "src/hbct/hbct.hbc", ;
+               "src/hbssl/hbssl.hbc", ;
+               "src/rdd/rddmisc/rddmisc.hbc";
+               }
+            mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
+         NEXT
+
+         cSrcLibDir :=  "lib" + hb_ps() + GetEnvC( "HB_PLATFORM" ) + hb_ps() + GetEnvC("HB_COMPILER" )
+         IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
+            aLibs := { ;
+               cSrcLibDir + "\libpq.lib", ;
+               cSrcLibDir + "\zlib.lib"   ;
+            }
+         ELSE
+            aLibs := { ;
+            cSrcLibDir + "/libpq.a", ;
+            cSrcLibDir + "/lz.a"   ;
+            }
          ENDIF
-         IF ! Empty( tmp )
+         FOR EACH cFile IN aLibs
+         OutStd( "Copying BIN FILE: " + cFile + " to LIB ..." + hb_eol() )
+         mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. )
+         NEXT
 
-            OutStd( "! Copying root documents..." + hb_eol() )
-
-            IF hb_DirBuild( hb_DirSepToOS( tmp ) )
-               FOR EACH aFile IN hb_vfDirectory( "Change*" )
-                  mk_hb_vfCopyFile( aFile[ F_NAME ], tmp + hb_ps(), .T.,, .T. )
-               NEXT
-
-               mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( ".github/CONTRIBUTING.md", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( "README.md", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( "CODE_OF_CONDUCT.md", tmp + hb_ps(), .T.,, .T. )
-            ELSE
-               OutStd( hb_StrFormat( "! Error: Cannot create directory '%1$s'", tmp ) + hb_eol() )
-            ENDIF
-         ENDIF
+         tmp := GetEnvC( "HB_INSTALL_PREFIX" )
+         OutStd( "Copying LICENSE to ROOT ..." + hb_eol() )
+         mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
+         mk_hb_vfCopyFile( "LICENSE_BIN", tmp + hb_ps(), .T.,, .T. )
+         mk_hb_vfCopyFile( "LICENSE_LIBRARIES", tmp + hb_ps(), .T.,, .T. )
+         mk_hb_vfCopyFile( "README.md", tmp + hb_ps(), .T.,, .T. )
+      ELSE
+         OutStd( hb_StrFormat( "! Error: Cannot create directory '%1$s'", tmp ) + hb_eol() )
       ENDIF
 
-      tmp := GetEnvC( "HB_INSTALL_LIB" )
-      IF ! tmp == "no"
-         //IF GetEnvC( "HB_PLATFORM" ) == "win"
-         //   tmp := GetEnvC( "HB_INSTALL_PREFIX" )
-         //ENDIF
-         IF ! Empty( tmp )
 
-            OutStd( "Copying hbc to LIB ..." + hb_eol() )
-
-            IF hb_DirBuild( hb_DirSepToOS( tmp ) )
-               FOR EACH cFile IN { "src/rdd/rddsql/rddsql.hbc", "src/sddpg/sddpg.hbc", "src/hbpgsql/hbpgsql.hbc", "3rd/harupdf/harupdf.hbc", "src/hbhpdf/hbhpdf.hbc", "3rd/minizip/minizip.hbc", "src/hbmzip/hbmzip.hbc", "3rd/xlsxwriter/xlsxwriter.hbc", "src/hbxlsxwriter/hbxlsxwriter.hbc", "src/hbtip/hbtip.hbc", "src/hbct/hbct.hbc", "src/hbssl/hbssl.hbc", "src/rdd/rddmisc/rddmisc.hbc" }
-                  mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
-               NEXT
-
-               mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( ".github/CONTRIBUTING.md", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( "README.md", tmp + hb_ps(), .T.,, .T. )
-               mk_hb_vfCopyFile( "CODE_OF_CONDUCT.md", tmp + hb_ps(), .T.,, .T. )
-            ELSE
-               OutStd( hb_StrFormat( "! Error: Cannot create directory '%1$s'", tmp ) + hb_eol() )
-            ENDIF
-         ENDIF
-      ENDIF
 
       IF ! Empty( GetEnvC( "HB_INSTALL_BIN" ) ) .AND. ;
-         ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
+            ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
 
          OutStd( "! Copying Harbour script files..." + hb_eol() )
 
          /* public Harbour scripts */
          FOR EACH tmp IN { ;
-            "bin/3rdpatch.hb", ;
-            "bin/commit.hb" }
+               "bin/3rdpatch.hb", ;
+               "bin/commit.hb" }
             mk_hb_vfCopyFile( tmp, GetEnvC( "HB_INSTALL_BIN" ) + hb_ps(),,, .T. )
          NEXT
       ENDIF
@@ -166,7 +167,7 @@ PROCEDURE Main( ... )
          ENDIF
 
          IF GetEnvC( "HB_PLATFORM" ) $ "linux" .AND. ;
-            ! Empty( GetEnvC( "HB_INSTALL_DYN" ) )
+               ! Empty( GetEnvC( "HB_INSTALL_DYN" ) )
 
             OutStd( "! Creating Linux ld config file..." + hb_eol() )
 
@@ -189,8 +190,8 @@ PROCEDURE Main( ... )
 
          IF hb_DirBuild( hb_DirSepToOS( GetEnvC( "HB_INSTALL_MAN" ) + "/man1" ) )
             FOR EACH tmp IN { ;
-               "src/main/harbour.1", ;
-               "src/pp/hbpp.1" }
+                  "src/main/harbour.1", ;
+                  "src/pp/hbpp.1" }
                mk_hb_vfCopyFile( ;
                   hb_DirSepToOS( tmp ), ;
                   hb_DirSepToOS( GetEnvC( "HB_INSTALL_MAN" ) + "/man1/" ),, .T. )
@@ -201,8 +202,8 @@ PROCEDURE Main( ... )
       ENDIF
 
       IF ! GetEnvC( "HB_PLATFORM" ) $ "win|cygwin" .AND. ;
-         ! Empty( GetEnvC( "HB_INSTALL_DYN" ) ) .AND. ;
-         hb_vfExists( hb_DirSepToOS( GetEnvC( "HB_DYNLIB_DIR" ) ) + hb_ps() + GetEnvC( "HB_DYNLIB_PREF" ) + GetEnvC( "HB_DYNLIB_BASE" ) + GetEnvC( "HB_DYNLIB_POST" ) + GetEnvC( "HB_DYNLIB_EXT" ) + GetEnvC( "HB_DYNLIB_PEXT" ) )
+            ! Empty( GetEnvC( "HB_INSTALL_DYN" ) ) .AND. ;
+            hb_vfExists( hb_DirSepToOS( GetEnvC( "HB_DYNLIB_DIR" ) ) + hb_ps() + GetEnvC( "HB_DYNLIB_PREF" ) + GetEnvC( "HB_DYNLIB_BASE" ) + GetEnvC( "HB_DYNLIB_POST" ) + GetEnvC( "HB_DYNLIB_EXT" ) + GetEnvC( "HB_DYNLIB_PEXT" ) )
 
          OutStd( "! Creating dynamic lib symlinks..." + hb_eol() )
 
@@ -219,9 +220,9 @@ PROCEDURE Main( ... )
 
          DO CASE
          CASE hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/lib/harbour" ) .OR. ;
-              hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/lib64/harbour" ) .OR. ;
-              hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/local/lib/harbour" ) .OR. ;
-              hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/local/lib64/harbour" )
+               hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/lib64/harbour" ) .OR. ;
+               hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/local/lib/harbour" ) .OR. ;
+               hb_RightEq( GetEnvC( "HB_INSTALL_DYN" ), "/usr/local/lib64/harbour" )
 
             IF ! cDynVersionFull == cDynVersionless
                mk_hb_vfLinkSym( "harbour" + hb_ps() + cDynVersionFull, hb_DirSepToOS( GetEnvC( "HB_INSTALL_DYN" ) + "/../" ) + cDynVersionless )
@@ -245,20 +246,20 @@ PROCEDURE Main( ... )
 
       /* Creating language files doc/ .hbl - out */
       // IF ! Empty( GetEnvC( "HB_INSTALL_DOC" ) ) .AND. ;
-      //    ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
-      // 
-      //    OutStd( "! Creating core translation (.hbl) files..." + hb_eol() )
-      // 
-      //    FOR EACH tmp IN hb_vfDirectory( "utils" + hb_ps() + hb_osFileMask(), "D" )
-      //       IF "D" $ tmp[ F_ATTR ] .AND. !( tmp[ F_NAME ] == "." .OR. tmp[ F_NAME ] == ".." )
-      //          FOR EACH aFile IN hb_vfDirectory( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/*.po" ) )
-      //             mk_hbl( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/" + aFile[ F_NAME ] ), ;
-      //                hb_DirSepToOS( GetEnvC( "HB_INSTALL_DOC" ) ) + hb_ps() + hb_FNameExtSet( aFile[ F_NAME ], ".hbl" ) )
-      //          NEXT
-      //       ENDIF
-      //    NEXT
+      // ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
+      //
+      // OutStd( "! Creating core translation (.hbl) files..." + hb_eol() )
+      //
+      // FOR EACH tmp IN hb_vfDirectory( "utils" + hb_ps() + hb_osFileMask(), "D" )
+      // IF "D" $ tmp[ F_ATTR ] .AND. !( tmp[ F_NAME ] == "." .OR. tmp[ F_NAME ] == ".." )
+      // FOR EACH aFile IN hb_vfDirectory( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/*.po" ) )
+      // mk_hbl( hb_DirSepToOS( "utils/" + tmp[ F_NAME ] + "/po/" + aFile[ F_NAME ] ), ;
+      // hb_DirSepToOS( GetEnvC( "HB_INSTALL_DOC" ) ) + hb_ps() + hb_FNameExtSet( aFile[ F_NAME ], ".hbl" ) )
+      // NEXT
       // ENDIF
-      
+      // NEXT
+      // ENDIF
+
 
       /* Creating docs for core */
 
@@ -281,8 +282,8 @@ PROCEDURE Main( ... )
       /* Creating release packages */
 
       IF GetEnvC( "HB_BUILD_PKG" ) == "yes" .AND. ;
-         ! Empty( GetEnvC( "HB_TOP" ) ) .AND. ;
-         ! GetEnvC( "_HB_BUILD_PKG_ARCHIVE" ) == "no"
+            ! Empty( GetEnvC( "HB_TOP" ) ) .AND. ;
+            ! GetEnvC( "_HB_BUILD_PKG_ARCHIVE" ) == "no"
 
          IF GetEnvC( "HB_PLATFORM" ) == "win"
 
@@ -325,8 +326,7 @@ PROCEDURE Main( ... )
 
                cOwner := "root"
                cGroup := iif( ;
-                  GetEnvC( "HB_PLATFORM" ) == "darwin" .OR. ;
-                  GetEnvC( "HB_PLATFORM" ) == "bsd", "wheel", "root" )
+                  GetEnvC( "HB_PLATFORM" ) == "darwin", "wheel", "root" )
 
                cOldDir := hb_cwd( GetEnvC( "HB_INSTALL_PKG_ROOT" ) )
 
@@ -342,27 +342,24 @@ PROCEDURE Main( ... )
 
                hb_cwd( cOldDir )
 
-               IF ! GetEnvC( "HB_PLATFORM" ) == "dos"
 
-                  tmp := GetEnvC( "HB_TOP" ) + hb_ps() + cTar_Name + ".inst.sh"
+               tmp := GetEnvC( "HB_TOP" ) + hb_ps() + cTar_Name + ".inst.sh"
 
-                  OutStd( hb_StrFormat( "! Creating Harbour tar installer release package: '%1$s'", tmp ) + hb_eol() )
+               OutStd( hb_StrFormat( "! Creating Harbour tar installer release package: '%1$s'", tmp ) + hb_eol() )
 
                   /* In the generated script always use tar because we cannot be sure
                      if cBin_Tar exists in the installation environment */
-                  mk_hb_MemoWrit( tmp, ;
-                     hb_StrFormat( sfx_tgz_sh(), ;
-                        hb_vfSize( cTar_Path ), ;
-                        cTar_NameExt, ;
-                        iif( GetEnvC( "HB_PLATFORM" ) == "linux", " && ldconfig", "" ) ) + ;
-                     hb_MemoRead( cTar_Path ) )
+               mk_hb_MemoWrit( tmp, ;
+                  hb_StrFormat( sfx_tgz_sh(), ;
+                  hb_vfSize( cTar_Path ), ;
+                  cTar_NameExt, ;
+                  iif( GetEnvC( "HB_PLATFORM" ) == "linux", " && ldconfig", "" ) ) + ;
+                  hb_MemoRead( cTar_Path ) )
 
-                  hb_vfAttrGet( tmp, @nAttr )
-                  hb_vfAttrSet( tmp, hb_bitOr( nAttr, HB_FA_XUSR, HB_FA_XGRP, HB_FA_XOTH ) )
-               ENDIF
-            ELSE
-               OutStd( "! Error: Cannot find 'tar' tool" + hb_eol() )
+               hb_vfAttrGet( tmp, @nAttr )
+               hb_vfAttrSet( tmp, hb_bitOr( nAttr, HB_FA_XUSR, HB_FA_XGRP, HB_FA_XOTH ) )
             ENDIF
+
          ENDIF
       ENDIF
 
@@ -383,12 +380,12 @@ PROCEDURE Main( ... )
       IF ! Empty( GetEnvC( "HB_INSTALL_BIN" ) )
 
          lWineSupported := ;
-            "|" + GetEnvC( "HB_HOST_PLAT" ) + "|" $ "|linux|darwin|bsd|" .AND. ;
+            "|" + GetEnvC( "HB_HOST_PLAT" ) + "|" $ "|linux|darwin" .AND. ;
             GetEnvC( "HB_PLATFORM" ) == "win"
 
          IF ( Empty( GetEnvC( "HB_HOST_BIN" ) ) .AND. ;
-              GetEnvC( "HB_HOST_PLAT" ) == GetEnvC( "HB_PLATFORM" ) ) .OR. ;
-            lWineSupported
+               GetEnvC( "HB_HOST_PLAT" ) == GetEnvC( "HB_PLATFORM" ) ) .OR. ;
+               lWineSupported
 
             run_cmds( "target", GetEnvC( "HB_BUILD_POSTRUN" ), GetEnvC( "HB_INSTALL_BIN" ), ;
                iif( lWineSupported, "wine", "" ) )
@@ -397,7 +394,7 @@ PROCEDURE Main( ... )
    ENDIF
 
    IF Empty( GetEnvC( "HB_HOST_BIN" ) ) .AND. ;
-      GetEnvC( "HB_HOST_PLAT" ) == GetEnvC( "HB_PLATFORM" )
+         GetEnvC( "HB_HOST_PLAT" ) == GetEnvC( "HB_PLATFORM" )
 
       OutStd( hb_StrFormat( "! Built: %1$s using C compiler: %2$s", Version(), hb_Compiler() ) + hb_eol() )
    ENDIF
@@ -421,7 +418,7 @@ STATIC PROCEDURE run_cmds( cDesc, cList, cDir, cPrefix )
    FOR EACH tmp IN hb_ATokens( cList,, .T. )
       IF ! Empty( tmp )
          IF Left( tmp, 1 ) + Right( tmp, 1 ) == '""' .OR. ;
-            Left( tmp, 1 ) + Right( tmp, 1 ) == "''"
+               Left( tmp, 1 ) + Right( tmp, 1 ) == "''"
             tmp := SubStr( tmp, 2, Len( tmp ) - 2 )
          ENDIF
 
@@ -464,9 +461,9 @@ STATIC FUNCTION mk_hb_vfTimeSet( cFileName )
       s_tVCS := hb_CToT( cStdOut, "yyyy-mm-dd", "hh:mm:ss" )
 
       IF ! Empty( s_tVCS )
-         s_tVCS -= ( ( ( iif( SubStr( cStdOut, 21, 1 ) == "-", -1, 1 ) * 60 * ;
-                       ( Val( SubStr( cStdOut, 22, 2 ) ) * 60 + ;
-                         Val( SubStr( cStdOut, 24, 2 ) ) ) ) - hb_UTCOffset() ) / 86400 )
+         s_tVCS -= ( ( ( iif( SubStr( cStdOut, 21, 1 ) == "-", - 1, 1 ) * 60 * ;
+            ( Val( SubStr( cStdOut, 22, 2 ) ) * 60 + ;
+            Val( SubStr( cStdOut, 24, 2 ) ) ) ) - hb_UTCOffset() ) / 86400 )
       ENDIF
 
       OutStd( hb_StrFormat( "! Repository timestamp (local): %1$s" + ;
@@ -489,26 +486,6 @@ STATIC FUNCTION mk_hb_MemoWrit( cFileName, cContent )
 
    RETURN .F.
 
-STATIC FUNCTION sfx_tgz_sh()
-#pragma __cstream | RETURN %s
-#!/bin/sh
-if [ "$1" = '--extract' ]; then
-  tail -c %1$d "$0" > '%2$s'
-  exit
-fi
-if [ "$(id -u)" != 0 ]; then
-  echo 'This package has to be installed from root account.'
-  exit 1
-fi
-echo 'Do you want to install Harbour (y/n)'
-read ASK
-if [ "${ASK}" != 'y' ] && [ "${ASK}" != 'Y' ]; then
-  exit 1
-fi
-( tail -c %1$d "$0" | gzip -cd | ( cd /; tar xvpf - ) )%3$s
-exit $?
-HB_INST_EOF
-#pragma __endtext
 
 STATIC FUNCTION mk_hbl( cIn, cOut )
 
@@ -571,7 +548,7 @@ STATIC FUNCTION EOLConv( cFile )
 
    cFile := StrTran( cFile, Chr( 13 ) + Chr( 10 ), Chr( 10 ) )
 
-   RETURN iif( GetEnvC( "HB_PLATFORM" ) $ "win|wce|os2|dos", ;
+   RETURN iif( GetEnvC( "HB_PLATFORM" ) == "win", ;
       StrTran( cFile, Chr( 10 ), Chr( 13 ) + Chr( 10 ) ), ;
       cFile )
 
@@ -592,8 +569,8 @@ STATIC PROCEDURE mk_hb_vfCopyFile( cSrc, cDst, lEOL, l644, lTS )
    ENDIF
    cDst := hb_FNameMerge( cDir, cName, cExt )
 
-   IF ! ( cFile := hb_MemoRead( cSrc ) ) == "" .AND. ;
-      hb_MemoWrit( cDst, iif( hb_defaultValue( lEOL, .F. ), EOLConv( cFile ), cFile ) )
+   IF !( cFile := hb_MemoRead( cSrc ) ) == "" .AND. ;
+         hb_MemoWrit( cDst, iif( hb_defaultValue( lEOL, .F. ), EOLConv( cFile ), cFile ) )
 
       IF hb_defaultValue( lTS, .F. )
          mk_hb_vfTimeSet( cDst )
@@ -604,11 +581,6 @@ STATIC PROCEDURE mk_hb_vfCopyFile( cSrc, cDst, lEOL, l644, lTS )
       IF hb_defaultValue( l644, .F. )
          hb_vfAttrSet( cDst, hb_bitOr( HB_FA_WUSR, HB_FA_RUSR, HB_FA_RGRP, HB_FA_ROTH ) )
       ENDIF
-#if 0
-      OutStd( hb_StrFormat( "! Copied: %1$s <= %2$s", cDst, cSrc ) + hb_eol() )
-   ELSE
-      OutStd( hb_StrFormat( "! Error: Copying %1$s <= %2$s", cDst, cSrc ) + hb_eol() )
-#endif
    ENDIF
 
    RETURN
@@ -622,7 +594,7 @@ STATIC PROCEDURE mk_hb_vfLinkSym( cDst, cSrc )
    ELSE
       OutStd( hb_StrFormat( "! Error: Creating symlink %1$s <= %2$s (%3$d)", cDst, cSrc, FError() ) + hb_eol() )
       IF FError() == 5 .AND. Empty( hb_FNameDir( cDst ) )
-         cDst := hb_FnameMerge( hb_FNameDir( cSrc ), cDst )
+         cDst := hb_FNameMerge( hb_FNameDir( cSrc ), cDst )
          IF hb_vfLink( cDst, cSrc ) != F_ERROR
             OutStd( hb_StrFormat( "! Hardlink: %1$s <= %2$s", cDst, cSrc ) + hb_eol() )
          ELSE
@@ -663,13 +635,13 @@ STATIC FUNCTION unix_name()
    DO CASE
    CASE GetEnvC( "HB_PLATFORM" ) == "dos" ; RETURN "djgpp"
    CASE GetEnvC( "HB_PLATFORM" ) == "win" ; RETURN GetEnvC( "HB_COMPILER" )
-   CASE ! Empty( tmp := query_rpm( "fedora-release"   , "fc"  ) ) ; RETURN tmp
-   CASE ! Empty( tmp := query_rpm( "epel-release"     , "el"  ) ) ; RETURN tmp
-   CASE ! Empty( tmp := query_rpm( "centos-release"   , "el"  ) ) ; RETURN tmp
-   CASE ! Empty( tmp := query_rpm( "suse-release"     , "sus" ) ) ; RETURN tmp
-   CASE ! Empty( tmp := query_rpm( "openSUSE-release" , "sus" ) ) ; RETURN tmp
-   CASE ! Empty( tmp := query_rpm( "redhat-release"   , "rh"  ) ) ; RETURN tmp
-   CASE ! Empty(        query_rpm( "system-release"   , ""    ) ) ; RETURN "amzn1"
+   CASE ! Empty( tmp := query_rpm( "fedora-release", "fc"  ) ) ; RETURN tmp
+   CASE ! Empty( tmp := query_rpm( "epel-release", "el"  ) ) ; RETURN tmp
+   CASE ! Empty( tmp := query_rpm( "centos-release", "el"  ) ) ; RETURN tmp
+   CASE ! Empty( tmp := query_rpm( "suse-release", "sus" ) ) ; RETURN tmp
+   CASE ! Empty( tmp := query_rpm( "openSUSE-release", "sus" ) ) ; RETURN tmp
+   CASE ! Empty( tmp := query_rpm( "redhat-release", "rh"  ) ) ; RETURN tmp
+   CASE ! Empty(        query_rpm( "system-release", ""    ) ) ; RETURN "amzn1"
    ENDCASE
 
    RETURN StrTran( Lower( query_stdout( "uname -s" ) ), " ", "_" )
@@ -689,7 +661,7 @@ STATIC FUNCTION mk_extern_core()
    LOCAL aExtern
 
    IF GetEnvC( "HB_REBUILD_EXTERN" ) == "yes" .AND. ;
-      ! Empty( GetEnvC( "HB_DYNLIB_BASE" ) )
+         ! Empty( GetEnvC( "HB_DYNLIB_BASE" ) )
 
       /* FIXME: Use list of libs instead of dynamic lib */
       IF ( aExtern := __hb_extern_get_list( hb_DirSepToOS( GetEnvC( "HB_DYNLIB_DIR" ) ) + hb_ps() + GetEnvC( "HB_DYNLIB_PREF" ) + GetEnvC( "HB_DYNLIB_BASE" ) + GetEnvC( "HB_DYNLIB_POST" ) + GetEnvC( "HB_DYNLIB_EXT" ) + GetEnvC( "HB_DYNLIB_PEXT" ) ) ) != NIL
@@ -757,11 +729,11 @@ STATIC FUNCTION LoadHBX( cFileName, hAll )
    LOCAL aDynamic := {}
    LOCAL cFilter
 
-   IF ! ( cFile := hb_MemoRead( cFileName ) ) == ""
+   IF !( cFile := hb_MemoRead( cFileName ) ) == ""
 
       FOR EACH cFilter IN { ;
-         "^DYNAMIC ([a-zA-Z0-9_]*)$", ;
-         "ANNOUNCE ([a-zA-Z0-9_]*)$" }
+            "^DYNAMIC ([a-zA-Z0-9_]*)$", ;
+            "ANNOUNCE ([a-zA-Z0-9_]*)$" }
 
          IF ! Empty( pRegex := hb_regexComp( cFilter, .T., .T. ) )
             FOR EACH tmp IN hb_regexAll( pRegex, StrTran( cFile, Chr( 13 ) ),,,,, .T. )
@@ -814,7 +786,7 @@ STATIC FUNCTION __hb_extern_get_list( cInputName )
    ENDCASE
 
    IF ! Empty( cCommand ) .AND. ;
-      ! Empty( cRegex )
+         ! Empty( cRegex )
 
       IF hb_vfExists( cInputName )
 
@@ -852,9 +824,9 @@ STATIC FUNCTION __hb_extern_get_list( cInputName )
                   but works correctly for all practical cases). */
                FOR tmp := Len( aExtern ) TO 2 STEP -1
                   IF Len( aExtern[ tmp ] ) > 10 .AND. ;
-                     Len( aExtern[ tmp - 1 ] ) == 10 .AND. ;
-                     ! hb_LeftEqI( aExtern[ tmp - 1 ], "hb_" ) .AND. ;
-                     hb_LeftEqI( aExtern[ tmp ], aExtern[ tmp - 1 ] )
+                        Len( aExtern[ tmp - 1 ] ) == 10 .AND. ;
+                        ! hb_LeftEqI( aExtern[ tmp - 1 ], "hb_" ) .AND. ;
+                        hb_LeftEqI( aExtern[ tmp ], aExtern[ tmp - 1 ] )
                      hb_ADel( aExtern, --tmp, .T. )
                   ENDIF
                NEXT
@@ -923,7 +895,7 @@ STATIC FUNCTION __hb_extern_gen( aFuncList, cOutputName )
    cExtern := ""
 
    IF Empty( aInclude ) .AND. ;
-      Empty( aExclude )
+         Empty( aExclude )
 
       cExtern += ;
          cLine + ;
@@ -983,8 +955,8 @@ STATIC FUNCTION __hb_extern_gen( aFuncList, cOutputName )
    ENDIF
    FOR EACH tmp IN aExtern
       IF ! hb_WildMatchI( "HB_GT_*_DEFAULT", tmp, .T. ) .AND. ;
-         ! hb_WildMatchI( _HB_SELF_PREFIX + "*" + _HB_SELF_SUFFIX, tmp, .T. ) .AND. ;
-         AScan( aExclude, {| flt | hb_WildMatchI( flt, tmp, .T. ) } ) == 0
+            ! hb_WildMatchI( _HB_SELF_PREFIX + "*" + _HB_SELF_SUFFIX, tmp, .T. ) .AND. ;
+            AScan( aExclude, {| flt | hb_WildMatchI( flt, tmp, .T. ) } ) == 0
          cExtern += "DYNAMIC " + hb_HGetDef( hDynamic, tmp, hb_asciiLower( tmp ) ) + cEOL
       ENDIF
    NEXT
@@ -998,3 +970,25 @@ STATIC FUNCTION __hb_extern_gen( aFuncList, cOutputName )
       "#endif" + cEOL
 
    RETURN hb_MemoWrit( cOutputName, cExtern )
+
+
+STATIC FUNCTION sfx_tgz_sh()
+#pragma __cstream | RETURN %s
+#!/bin/sh
+if [ "$1" = '--extract' ]; then
+  tail -c %1$d "$0" > '%2$s'
+exit
+fi
+if [ "$(id -u)" != 0 ]; then
+ echo 'This package has to be installed from root account.'
+ exit 1
+fi
+echo 'Do you want to install Harbour (y/n)'
+read ASK
+if [ "${ASK}" != 'y' ] && [ "${ASK}" != 'Y' ]; then
+  exit 1
+fi
+( tail -c %1$d "$0" | gzip -cd | ( cd /; tar xvpf - ) )%3$s
+exit $?
+HB_INST_EOF
+#pragma __endtext

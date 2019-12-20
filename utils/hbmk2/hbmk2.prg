@@ -259,7 +259,6 @@ STATIC FUNCTION hbmk_new( lShellMode )
    hbmk[ _HBMK_lCLEAN ] := .F.
    hbmk[ _HBMK_lTRACE ] := .F.
    hbmk[ _HBMK_lDONTEXEC ] := .F.
-   hbmk[ _HBMK_nHBMODE ] := _HBMODE_NATIVE
    hbmk[ _HBMK_lNULRDD ] := .F.
    hbmk[ _HBMK_lSHAREDDIST ] := NIL
    hbmk[ _HBMK_lMAP ] := .F.
@@ -1002,12 +1001,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
 
       CASE cParamL             == "-autohbm"   ; hbmk[ _HBMK_lAutoHBM ] := .T.
       CASE cParamL             == "-autohbm-"  ; hbmk[ _HBMK_lAutoHBM ] := .F.
-      CASE cParamL             == "-xhb"       ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_XHB
-      CASE cParamL             == "-hb10"      ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_HB10
-      CASE cParamL             == "-hb20"      ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_HB20
-      CASE cParamL             == "-hb30"      ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_HB30
-      CASE cParamL             == "-hb32"      ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_HB32
-      CASE cParamL             == "-hbc"       ; hbmk[ _HBMK_nHBMODE ] := _HBMODE_RAW_C ; lAcceptCFlag := .T.
 
       /* -env options used on command-line, process only once (=do not process again for sub-projects) */
       CASE hb_LeftEq( cParamL, "-env:" ) .AND. hbmk[ _HBMK_nLevel ] == 1
@@ -1210,24 +1203,39 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
 
    /* Initialize Harbour libs */
 
-   cDL_Version_Alter := ""
-   cDL_Version       := ""
 
-   aLIB_BASE_EXTERN  := {}
-   aLIB_BASE_DEBUG   := { "hbdebug" }
-   aLIB_BASE_1       := { "hbvm"  , "hbrtl"  , "hblang", "hbcodepage" }
-   aLIB_BASE_1_MT    := { "hbvmmt", "rtlmt", "lang", "codepage" }
-   aLIB_BASE_2       := { "rtl"  , "vm"   }
-   aLIB_BASE_2_MT    := { "rtlmt", "vmmt" }
-   aLIB_BASE_GT      := { "gtcgi", "gtstd" }
-   aLIB_BASE_NULRDD  := { "nulsys" }
-   aLIB_BASE_RDD     := { "rdd"  , "usrrdd", "dbfntx", "dbfcdx", "dbfnsx", "dbffpt", "rdd"  , "hsx", "hbsix" }
-   aLIB_BASE_RDD_MT  := { "rddmt", "usrrdd", "dbfntx", "dbfcdx", "dbfnsx", "dbffpt", "rddmt", "hsx", "hbsix" }
-   aLIB_BASE_CPLR    := {}
-   aLIB_BASE_3       := { "macro"  , "pp", "common" }
-   aLIB_BASE_3_MT    := { "macromt", "pp", "common" }
-   cLIB_BASE_PCRE    := "pcrepos"
-   cLIB_BASE_ZLIB    := "zlib"
+   cDL_Version_Alter := ;
+            "-" + ;
+            hb_ntos( hb_Version( HB_VERSION_MAJOR ) ) + ;
+            hb_ntos( hb_Version( HB_VERSION_MINOR ) )
+   cDL_Version := ;
+            "." + ;
+            hb_ntos( hb_Version( HB_VERSION_MAJOR ) ) + "." + ;
+            hb_ntos( hb_Version( HB_VERSION_MINOR ) ) + "." + ;
+            hb_ntos( hb_Version( HB_VERSION_RELEASE ) )
+   
+
+      aLIB_BASE_EXTERN  := { "hbextern" }
+      aLIB_BASE_DEBUG   := { "hbdebug" }
+
+      aLIB_BASE_1    := { "hbvm", "hbrtl", "hblang", "hbcpage" }
+      aLIB_BASE_1_MT := { "hbvmmt", "hbrtl", "hblang", "hbcpage" }
+      
+      aLIB_BASE_2       := { "hbrtl", "hbvm" }
+      aLIB_BASE_2_MT    := { "hbrtl", "hbvmmt" }
+      aLIB_BASE_GT      := { "gtcgi", "gtstd" }
+      aLIB_BASE_NULRDD  := { "hbnulrdd" }
+
+      aLIB_BASE_RDD  := { "hbrdd", "hbusrrdd", "rddntx", "rddcdx", "rddnsx", "rddfpt", "hbrdd", "hbhsx", "hbsix" }
+
+      aLIB_BASE_RDD_MT  := aLIB_BASE_RDD
+      aLIB_BASE_CPLR    := { "hbcplr" }
+      aLIB_BASE_3       := { "hbmacro", "hbcplr", "hbpp", "hbcommon" }
+      aLIB_BASE_3_MT    := aLIB_BASE_3
+      cLIB_BASE_PCRE := "hbpcre2"
+
+      cLIB_BASE_ZLIB    := iif( HB_HAS_OPTION( "zlib" ), "hbzlib", "" )
+
 
    /* NOTE: 'dbfnsx' was added to xHarbour on 2009-01-08. We chose to prioritize
                on newer xHarbour versions, so for older versions, a dummy lib should
