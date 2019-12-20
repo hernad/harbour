@@ -30,6 +30,9 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
+git clean . -f -d -X
+git clean . -f -d -x
+
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
 
