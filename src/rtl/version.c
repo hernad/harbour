@@ -171,8 +171,6 @@ HB_FUNC( HB_VERSION )
 
          #if defined( HB_HAS_PCRE2 )
             hb_strncat( pszOptions, " pcre2", sizeof( pszOptions ) - 1 );
-         #elif defined( HB_HAS_PCRE )
-            hb_strncat( pszOptions, " pcre1", sizeof( pszOptions ) - 1 );
          #elif defined( HB_POSIX_REGEX )
             hb_strncat( pszOptions, " posix_regex", sizeof( pszOptions ) - 1 );
          #endif
@@ -182,9 +180,7 @@ HB_FUNC( HB_VERSION )
          #if defined( HB_HAS_GPM )
             hb_strncat( pszOptions, " gpm", sizeof( pszOptions ) - 1 );
          #endif
-         #if defined( HB_HAS_WATT )
-            hb_strncat( pszOptions, " watt", sizeof( pszOptions ) - 1 );
-         #endif
+        
 
          hb_retc( pszOptions + ( pszOptions[ 0 ] == ' ' ? 1 : 0 ) );
 

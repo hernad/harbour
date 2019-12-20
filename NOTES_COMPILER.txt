@@ -1,0 +1,54 @@
+
+Set default library
+=======================
+
+config\bin.mk : HB_LIBS_TPL
+
+example:
+
+ifneq ($(HB_HAS_ZLIB_LOCAL),)
+      HB_LIBS_TPL += zlib
+endif
+
+
+Library PATH
+=======================================
+LIB_DIR := $(TOP)$(ROOT)lib/$(PLAT_COMP)   e.g.   lib/win/msvc, lib/linux/gcc
+
+
+
+Makefile messaging
+======================
+$(info msg text)
+
+$(error error msg)
+
+
+HARBOUR COMPILE
+==============
+HB_FLAGS := -n1 -q0 -w3 -es2 -kmo -i- $(HB_PRGFLAGS)
+
+
+on windows platform, shell
+============================== 
+
+ifneq ($(HB_HAS_ZLIB),)
+   HB_LIBS_TPL += zlib
+   ifeq ($(HB_PLATFORM),win)
+      SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib.lib)
+      DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/zlib.lib)
+      RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+      $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+   endif
+endif
+
+if file not exists copy SRCLIB=>DESTLIB
+=========================================
+
+SCRLIB=src/test.lib
+DESTLIB=dest/test.lib
+
+ifeq ($(wildcard $(DESTLIB)),)
+   RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+   $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+endif

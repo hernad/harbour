@@ -15,17 +15,15 @@ PRG_SOURCES := \
 LIBNAME := hbpgsql
 
 # HB_CFLAGS += -I$(HB_HOST_INC)/postgres
-HB_CFLAGS += -DHB_WITH_PGSQL $(QUOTE)-I$(HB_WITH_PGSQL)$(QUOTE)
+HB_CFLAGS += -DHB_HAS_POSTGRESQL $(QUOTE)-I$(HB_HAS_POSTGRESQL)$(QUOTE)
 
 ifneq ($(HB_HAS_ZLIB),)
-  
-   ifneq ($(HB_HAS_ZLIB),)
-      HB_CFLAGS += -DHB_HAS_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
-   endif
 
+   HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
+   
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else
-   $(error ! Error: zlib component required, but not available)
+   $(error ! Error: zlib [hbpgsql] component required, but not available)
 endif
 

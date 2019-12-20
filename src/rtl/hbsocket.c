@@ -47,12 +47,6 @@
 #include "hbapi.h"
 #include "hbsocket.h"
 
-#if defined( HB_OS_DOS ) && ! defined( HB_HAS_WATT )
-#  if ! defined( HB_SOCKET_OFF )
-#     define HB_SOCKET_OFF
-#  endif
-#endif
-
 #if ! defined( HB_SOCKET_OFF )
 
 /* we do not use autoconf so we can only guess what is supported

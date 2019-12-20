@@ -10,7 +10,7 @@ C_SOURCES := \
 LIBNAME := sddpg
 
 #HB_CFLAGS += -I$(HB_HOST_INC)/postgres
-HB_CFLAGS += -DHB_WITH_PGSQL $(QUOTE)-I$(HB_WITH_PGSQL)$(QUOTE)
+HB_CFLAGS += -DHB_HAS_POSTGRESQL $(QUOTE)-I$(HB_HAS_POSTGRESQL)$(QUOTE)
 
 include $(TOP)$(ROOT)config/lib.mk
 include $(TOP)$(ROOT)config/dir.mk

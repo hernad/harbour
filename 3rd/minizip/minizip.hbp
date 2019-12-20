@@ -29,7 +29,7 @@ unzip.c
 -deppkgname=zlib:mingw-w64-x86_64-zlib{msys2&x86_64}
 -depkeyhead=zlib:zlib.h
 -depcontrol=zlib:local{HB_BUILD_3RDEXT='no'}
--depcontrol=zlib:${HB_WITH_ZLIB}
+-depcontrol=zlib:${HB_HAS_ZLIB}
 -depincpath=zlib:/usr/include
 -depincpath=zlib:/usr/local/include
 -depincpath=zlib:/boot/develop/headers/3rdparty

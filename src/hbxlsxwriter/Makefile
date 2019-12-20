@@ -30,13 +30,10 @@ LIBNAME := hbxlsxwriter
 
 ifneq ($(HB_HAS_ZLIB),)
 
-   ifneq ($(HB_HAS_ZLIB),)
-      HB_CFLAGS += -DHB_HAS_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
-   endif
-
+   HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else
-   $(error ! Error: zlib component required, but not available)
+   $(error ! Error: zlib component required [hbxlsxwriter], but not available)
 endif
 

@@ -1,8 +1,5 @@
 include $(TOP)$(ROOT)config/global.mk
 
-ifneq ($(HB_PLATFORM),)
-ifneq ($(HB_COMPILER),)
-
 # Assemble template lib list to help create a few common variations
 
 BUILD_SHARED :=
@@ -49,19 +46,30 @@ else
       hbmacro \
       hbcplr \
       hbpp \
-      hbcommon
-
-   ifneq ($(HB_HAS_PCRE2_LOCAL),)
-      HB_LIBS_TPL += hbpcre2
-   endif
+      hbcommon \
+   
    ifneq ($(HB_HAS_ZLIB_LOCAL),)
       HB_LIBS_TPL += zlib
    endif
+   ifneq ($(HB_HAS_PCRE2_LOCAL),)
+      HB_LIBS_TPL += hbpcre2
+   endif
+   ifneq ($(HB_HAS_ZLIB),)
+      HB_LIBS_TPL += zlib
+      ifeq ($(HB_PLATFORM),win)
+         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib.lib)
+         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/zlib.lib)
+         ifeq ($(wildcard $(DESTLIB)),)
+            RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+            $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+         endif
+      endif
+   endif
+
+   
+
    ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
       HB_LIBS_TPL += xlsxwriter
-   endif
-   ifneq ($(HB_HAS_PQ_LOCAL),)
-      HB_LIBS_TPL += pq
    endif
    ifneq ($(HB_HAS_PNG_LOCAL),)
       HB_LIBS_TPL += png
@@ -159,7 +167,4 @@ ifneq ($(INSTALL_RULE_BIN),)
 install:: first
 	$(INSTALL_RULE_BIN)
 
-endif
-
-endif
 endif

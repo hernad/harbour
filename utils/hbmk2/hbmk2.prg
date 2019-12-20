@@ -789,7 +789,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL cLibModePrefix
    LOCAL cLibModeSuffix
    LOCAL cLibExt
-   LOCAL cObjPrefix
    LOCAL cObjExt
    LOCAL cLibLibExt := ""
    LOCAL cLibLibPrefix := ""
@@ -838,7 +837,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL cBin_Link
    LOCAL cBin_Res
    LOCAL cBin_Lib
-   LOCAL cBin_Dyn
    LOCAL cBin_SymLst
    LOCAL cLibHBX_Regex
    LOCAL bBlk_ImpLib
@@ -847,7 +845,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
    LOCAL array
    LOCAL cSuffix
    LOCAL cHarbourDyn
-   LOCAL cLibBCC_CRTL
    LOCAL cScriptFile
    LOCAL hFile
    LOCAL cFile
@@ -3540,7 +3537,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          ENDIF
          AAddNotEmpty( hbmk[ _HBMK_aOPTCX ], gcc_opt_lngc_fill( hbmk ) )
          AAddNotEmpty( hbmk[ _HBMK_aOPTCPPX ], gcc_opt_lngcpp_fill( hbmk ) )
-         cBin_Dyn := cBin_CompC
          IF hbmk[ _HBMK_cPLAT ] == "darwin"
             cOpt_Dyn := "-dynamiclib -o {OD} -flat_namespace -undefined dynamic_lookup {FD} {DL} {LO} {LS}"
          ELSE
@@ -3886,35 +3882,9 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
             AAdd( hbmk[ _HBMK_aOPTRES ], "--target=pe-i386" )
             EXIT
          ENDSWITCH
-#if 0
-         IF !( hbmk[ _HBMK_lCPP ] != NIL .AND. hbmk[ _HBMK_lCPP ] )
-            AAdd( hbmk[ _HBMK_aOPTL ], "-Wl,--no-demangle" )
-            AAdd( hbmk[ _HBMK_aOPTD ], "-Wl,--no-demangle" )
-         ENDIF
-#endif
+
          IF hbmk[ _HBMK_lHARDEN ]
             IF hbmk[ _HBMK_cPLAT ] == "win"
-#if 0
-               /* Enable this, once better than a no-op */
-               IF hbmk[ _HBMK_cCOMPVer ] >= "0400"
-                  AAdd( hbmk[ _HBMK_aOPTC ], "-D_FORTIFY_SOURCE=2" )
-               ENDIF
-#endif
-               DO CASE
-               CASE hbmk[ _HBMK_cCOMPVer ] >= "0409"
-#if 0
-                  AAdd( hbmk[ _HBMK_aOPTC ], "-fstack-protector-strong" )
-                  AAdd( l_aLIBSYS, "ssp" )
-#endif
-               CASE hbmk[ _HBMK_cCOMPVer ] >= "0401"
-#if 0
-                  /* too slow */
-                  AAdd( hbmk[ _HBMK_aOPTC ], "-fstack-protector-all" )
-                  /* too weak */
-                  AAdd( hbmk[ _HBMK_aOPTC ], "-fstack-protector" )
-                  AAdd( l_aLIBSYS, "ssp" )
-#endif
-               ENDCASE
                /* It is also supported by official mingw 4.4.x and mingw64 4.4.x,
                   but not supported by mingw TDM 4.4.x, so I only enable it on or
                   above 4.5.0 [vszakats] */
@@ -3982,7 +3952,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          ENDIF
          AAddNotEmpty( hbmk[ _HBMK_aOPTCX ], gcc_opt_lngc_fill( hbmk ) )
          AAddNotEmpty( hbmk[ _HBMK_aOPTCPPX ], gcc_opt_lngcpp_fill( hbmk ) )
-         cBin_Dyn := cBin_CompC
          cOpt_Dyn := "-shared -o {OD} {LO} {FD} {IM} {DL} {LS}"
          cOpt_Dyn += "{SCRIPT_MINGW}"
          cBin_Link := cBin_CompC
@@ -4088,14 +4057,9 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
 
          DO CASE
          CASE hbmk[ _HBMK_cPLAT ] == "linux" ; cOpt_Link := "OP quiet SYS linux {FL} NAME {OE} {LO} {DL} {LL} {LB} {LF}{SCRIPT}"
-         CASE hbmk[ _HBMK_cPLAT ] == "dos"   ; cOpt_Link := iif( hbmk[ _HBMK_lSHARED ], ;
-                                                                 "OP quiet,map,stub=cwstub.exe SYS causeway {FL} {IM} NAME {OE} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}", ;
-                                                                 "OP quiet SYS dos32a {FL} NAME {OE} {LO} {DL} {LL} {LB} {LF}{SCRIPT}" )
          CASE hbmk[ _HBMK_cPLAT ] == "win"   ; cOpt_Link := "OP quiet {FL} {IM} NAME {OE} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}"
-         CASE hbmk[ _HBMK_cPLAT ] == "os2"   ; cOpt_Link := "OP quiet SYS os2v2 {FL} {IM} NAME {OE} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}"
-         ENDCASE
-         cBin_Dyn := cBin_Link
-         cDynObjPrefix := cObjPrefix
+       ENDCASE
+
          DO CASE
          CASE hbmk[ _HBMK_cPLAT ] == "dos"   ; cOpt_Dyn := "OP quiet SYS cwdllr OP map,stub=cwstub.exe {FD} {IM} NAME {OD} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}"
          CASE hbmk[ _HBMK_cPLAT ] == "linux" ; cOpt_Dyn := "OP quiet FORM elf dll OP exportall {FD} NAME {OD} {LO} {DL} {LL} {LB} {LF}{SCRIPT}"
@@ -4106,15 +4070,11 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          CASE hbmk[ _HBMK_cPLAT ] == "win"   ; cOpt_Dyn := "OP quiet SYS nt_dll {FD} {IM} NAME {OD} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}"
          CASE hbmk[ _HBMK_cPLAT ] == "os2"   ; cOpt_Dyn := "OP quiet SYS os2v2_dll {FD} {IM} NAME {OD} {LO} {DL} {LL} {LB} {LF} {LS}{SCRIPT}"
          ENDCASE
-         IF HBMK_ISPLAT( "win|os2" ) .AND. ! Empty( hbmk[ _HBMK_aDEF ] )
+         IF HBMK_ISPLAT( "win" ) .AND. ! Empty( hbmk[ _HBMK_aDEF ] )
             /* TODO: Watcom wlink requires a non-standard internal layout for .def files.
                      We will need a converter and implement on-the-fly conversion
                      to a temp file and pass that via {IM}. */
             cDefPrefix := "@"
-         ENDIF
-         IF hbmk[ _HBMK_cPLAT ] == "dos"
-            /* workaround for not included automatically CLIB in pure C mode MS-DOS builds */
-            AAdd( l_aLIBSYS, "clib3r" )
          ENDIF
          cBin_Lib := "wlib" + hbmk[ _HBMK_cCCEXT ]
          cOpt_Lib := "-q {FA} {OL} {LO}{SCRIPT}"
@@ -4125,12 +4085,14 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
             cLibHBX_Regex := R_( "[\s]_?HB_FUN_([A-Z0-9_]*)_[\s]" )
          ENDIF
          IF HBMK_ISPLAT( "win" )
-            bBlk_ImpLib := {| cSourceDLL, cTargetLib, cFlags | win_implib_command_watcom( hbmk, cBin_Lib + " -q -o={OL} {ID}", cSourceDLL, cTargetLib, cFlags ) }
+            //bBlk_ImpLib := {| cSourceDLL, cTargetLib, cFlags | win_implib_command_watcom( hbmk, cBin_Lib + " -q -o={OL} {ID}", cSourceDLL, cTargetLib, cFlags ) }
+            bBlk_ImpLib := {| cSourceDLL, cTargetLib, cFlags | win_implib_command_msvc( hbmk, cBin_Lib + " -nologo {FI} -def:{ID} -out:{OL}", @cSourceDLL, @cTargetLib, cFlags ) }
          ENDIF
+         
          cLibLibExt := cLibExt
          cImpLibExt := cLibLibExt
          cLibObjPrefix := "-+ "
-         IF hbmk[ _HBMK_lMT ] .AND. HBMK_ISPLAT( "win|os2" )
+         IF hbmk[ _HBMK_lMT ] .AND. HBMK_ISPLAT( "win" )
             AAdd( hbmk[ _HBMK_aOPTC ], "-bm" )
          ENDIF
          IF hbmk[ _HBMK_cPLAT ] == "win"
@@ -4232,25 +4194,19 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          cObjExt := ".obj"
          cLibLibExt := cLibExt
          cImpLibExt := cLibLibExt
-         IF HBMK_ISCOMP( "icc|icc64|iccia64" )
-            cBin_Lib := "xilib.exe"
-            cBin_CompC := "icl.exe"
-            cBin_Link := "xilink.exe"
-            cBin_Dyn := cBin_Link
-         ELSE
-            cBin_Lib := "lib.exe"
-            DO CASE
+
+         cBin_Lib := "lib.exe"
+         DO CASE
             CASE hbmk[ _HBMK_cCOMP ] == "msvcarm" .AND. ( ! hbmk[ _HBMK_cCOMPVer ] == "0" .AND. hbmk[ _HBMK_cCOMPVer ] < "1400" )
                cBin_CompC := "clarm.exe"
             CASE HBMK_ISCOMP( "clang-cl|clang-cl64" )
                cBin_CompC := "clang-cl.exe"
             OTHERWISE
                cBin_CompC := "cl.exe"
-            ENDCASE
-            /* lld.exe crashes, so it's not used for clang-cl yet [2013-09-17] */
-            cBin_Link := "link.exe"
-            cBin_Dyn := cBin_Link
-         ENDIF
+         ENDCASE
+         /* lld.exe crashes, so it's not used for clang-cl yet [2013-09-17] */
+         cBin_Link := "link.exe"
+
          cBin_CompCPP := cBin_CompC
          IF hbmk[ _HBMK_cCOMPVer ] == "0"
             hbmk[ _HBMK_cCOMPVer ] := CompVersionDetect( hbmk, cBin_CompC, .F. )
@@ -5872,7 +5828,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
             DO CASE
             CASE ! lStopAfterCComp .AND. ! Empty( cBin_Link )
                l_lIMPLIBToProcess := .T.
-            CASE lStopAfterCComp .AND. hbmk[ _HBMK_lCreateDyn ] .AND. ! Empty( cBin_Dyn )
+            CASE lStopAfterCComp .AND. hbmk[ _HBMK_lCreateDyn ] .AND. ! Empty( cBin_Link )
                l_lIMPLIBToProcess := .T.
             ENDCASE
          ELSE
@@ -5915,7 +5871,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
 
                cOpt_Link := AllTrim( hb_StrReplace( cOpt_Link, { ;
                   "{TU}" => hb_ntos( Int( ( Max( hbmk[ _HBMK_tVCSTS ], hb_SToT( "19700101000000" ) ) - hb_SToT( "19700101000000" ) ) * 86400 ) ), ;
-                  "{LO}" => ArrayToList( ArrayJoin( l_aOBJ, hbmk[ _HBMK_aOBJUSER ] ),, nOpt_Esc, nOpt_FNF, cObjPrefix ), ;
+                  "{LO}" => ArrayToList( ArrayJoin( l_aOBJ, hbmk[ _HBMK_aOBJUSER ] ),, nOpt_Esc, nOpt_FNF, cDynObjPrefix ), ;
                   "{LS}" => ArrayToList( ArrayJoin( ListDirExt( hbmk[ _HBMK_aRESSRC ], hbmk[ _HBMK_cWorkDir ], cResExt ), hbmk[ _HBMK_aRESCMP ] ),, nOpt_Esc, nOpt_FNF, cResPrefix ), ;
                   "{LA}" => ArrayToList( l_aOBJA,, nOpt_Esc, nOpt_FNF ), ;
                   "{LL}" => hb_defaultValue( cLibModePrefix, "" ) + ArrayToList( l_aLIB,, nOpt_Esc, nOpt_FNF, cLibPrefix ) + hb_defaultValue( cLibModeSuffix, "" ), ;
@@ -6031,7 +5987,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                   ENDIF
                ENDIF
 
-            CASE lStopAfterCComp .AND. hbmk[ _HBMK_lCreateDyn ] .AND. ! Empty( cBin_Dyn )
+            CASE lStopAfterCComp .AND. hbmk[ _HBMK_lCreateDyn ] .AND. ! Empty( cBin_Link )
 
                PlugIn_Execute_All( hbmk, "pre_link" )
 
@@ -6088,7 +6044,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                   ENDIF
                ENDIF
 
-               cCommand := FNameEscape( cBin_Dyn, hbmk[ _HBMK_nCmd_Esc ] ) + " " + cOpt_Dyn
+               cCommand := FNameEscape( cBin_Link, hbmk[ _HBMK_nCmd_Esc ] ) + " " + cOpt_Dyn
 
                IF hbmk[ _HBMK_lDEBUGCMDL ]
                   hbmk_DoesFitCmdLine( hbmk, hb_BLen( cCommand ), "link_dyn" )
@@ -12154,33 +12110,6 @@ STATIC FUNCTION win_implib_command_gcc( hbmk, cCommand, /* @ */ cSourceDLL, /* @
    ENDIF
 
    RETURN win_implib_copy( hbmk, cSourceDLL, @cTargetLib )
-
-STATIC FUNCTION win_implib_command_bcc( hbmk, cCommand, /* @ */ cSourceDLL, cTargetLib, cFlags )
-
-   LOCAL nResult
-
-   IF ( nResult := win_implib_omf( hbmk, @cSourceDLL, cTargetLib ) ) != _HBMK_IMPLIB_NOTFOUND
-      RETURN nResult
-   ENDIF
-
-   IF ( nResult := win_implib_def( hbmk, cCommand, @cSourceDLL, cTargetLib, cFlags ) ) != _HBMK_IMPLIB_NOTFOUND
-      RETURN nResult
-   ENDIF
-
-   RETURN win_implib_command( hbmk, cCommand, cSourceDLL, cTargetLib, cFlags )
-
-STATIC FUNCTION win_implib_command_watcom( hbmk, cCommand, cSourceDLL, cTargetLib, cFlags )
-   RETURN win_implib_command( hbmk, cCommand, cSourceDLL, cTargetLib, cFlags )
-
-STATIC FUNCTION win_implib_command_pocc( hbmk, cCommand, /* @ */ cSourceDLL, /* @ */ cTargetLib, cFlags )
-
-   LOCAL nResult
-
-   IF ( nResult := win_implib_coff( hbmk, @cSourceDLL, @cTargetLib ) ) != _HBMK_IMPLIB_NOTFOUND
-      RETURN nResult
-   ENDIF
-
-   RETURN win_implib_command( hbmk, cCommand, cSourceDLL, cTargetLib, cFlags )
 
 STATIC FUNCTION win_implib_command_msvc( hbmk, cCommand, /* @ */ cSourceDLL, /* @ */ cTargetLib, cFlags )
 

@@ -669,35 +669,12 @@ ifeq ($(HB_COMPILER),)
          endif
       endif
    else ifeq ($(HB_PLATFORM),linux)
-      HB_COMP_PATH := $(call find_in_path,wcc386)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := watcom
-      else
+
          HB_COMP_PATH := $(call find_in_path,gcc)
          ifneq ($(HB_COMP_PATH),)
             HB_COMPILER := gcc
-         else
-            HB_COMP_PATH := $(call find_in_path,suncc)
-            ifneq ($(HB_COMP_PATH),)
-               HB_COMPILER := sunpro
-            else
-               HB_COMP_PATH := $(call find_in_path,icc)
-               ifneq ($(HB_COMP_PATH),)
-                  HB_COMPILER := icc
-               endif
-            endif
          endif
-      endif
-   else ifeq ($(HB_PLATFORM),bsd)
-      HB_COMP_PATH := $(call find_in_path_par,clang,/usr/bin)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := clang
-      else
-         HB_COMP_PATH := $(call find_in_path_par,gcc,/usr/bin)
-         ifneq ($(HB_COMP_PATH),)
-            HB_COMPILER := gcc
-         endif
-      endif
+
    else ifneq ($(filter $(HB_PLATFORM),aix hpux beos qnx cygwin),)
       HB_COMP_PATH := $(call find_in_path,gcc)
       ifneq ($(HB_COMP_PATH),)
@@ -718,64 +695,8 @@ ifeq ($(HB_COMPILER),)
             endif
          endif
       endif
-   else ifeq ($(HB_PLATFORM),sunos)
-      HB_COMP_PATH := $(call find_in_path,suncc)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := sunpro
-      else
-         HB_COMP_PATH := $(call find_in_path,gcc)
-         ifneq ($(HB_COMP_PATH),)
-            HB_COMPILER := gcc
-         endif
-      endif
-   else ifeq ($(HB_PLATFORM),dos)
-      HB_COMP_PATH := $(call find_in_path,gcc)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := djgpp
-      else
-         HB_COMP_PATH := $(call find_in_path,wcc386)
-         ifneq ($(HB_COMP_PATH),)
-            HB_COMPILER := watcom
-         endif
-      endif
-   else ifeq ($(HB_PLATFORM),os2)
-      HB_COMP_PATH := $(call find_in_path,gcc)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := gcc
-      else
-         HB_COMP_PATH := $(call find_in_path,wcc386)
-         ifneq ($(HB_COMP_PATH),)
-            HB_COMPILER := watcom
-         endif
-      endif
-   else ifeq ($(HB_PLATFORM),minix)
-      HB_COMP_PATH := $(call find_in_path,clang)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := clang
-      else
-         HB_COMP_PATH := $(call find_in_path,gcc)
-         ifneq ($(HB_COMP_PATH),)
-            HB_COMPILER := gcc
-         endif
-      endif
-   else ifeq ($(HB_PLATFORM),qnx)
-      HB_COMP_PATH := $(call find_in_path,ntox86-gcc)
-      ifneq ($(HB_COMP_PATH),)
-         HB_COMPILER := gcc
-         HB_CCPREFIX := ntox86-
-      endif
    endif
 
-   # auto-detect watcom platform by looking at the header path config
-   ifeq ($(HB_COMPILER),watcom)
-      ifneq ($(call find_in_path_prw,os2.h,$(INCLUDE)),)
-         HB_PLATFORM := os2
-      else ifneq ($(call find_in_path_prw,dirent.h,$(INCLUDE)),)
-         HB_PLATFORM := linux
-      else ifeq ($(call find_in_path_prw,windows.h,$(INCLUDE)),)
-         HB_PLATFORM := dos
-      endif
-   endif
 endif
 
 strlen = $(strip $(eval __temp := $(subst $(subst x,x, ),x,$1))$(foreach a,0 1 2 3 4 5 6 7 8 9 .,$(eval __temp := $$(subst $a,x,$(__temp))))$(eval __temp := $(subst x,x ,$(__temp)))$(words $(__temp)))
@@ -848,7 +769,7 @@ ifeq ($(__HB_COMPILER_VER),)
          __HB_COMPILER_VER := $(subst 0900,0400,$(__HB_COMPILER_VER))
       endif
 
-   else ifneq ($(filter $(HB_COMPILER),gcc gccarm gccomf mingw mingw64 mingwarm djgpp),)
+   else ifneq ($(filter $(HB_COMPILER),gcc gccarm gccomf mingw mingw64 mingwarm),)
 
       ifeq ($(HB_COMP_PATH_VER_DET),)
          HB_COMP_PATH_VER_DET := $(HB_CCPREFIX)gcc$(HB_CCSUFFIX)
@@ -902,21 +823,6 @@ ifeq ($(__HB_COMPILER_VER),)
       _C_VER_MINOR := $(wordlist 2,2,$(subst ., ,$(_C_VER)))
       __HB_COMPILER_VER := $(_C_VER_MAJOR)$(_C_VER_MINOR)
 
-   else ifneq ($(filter $(HB_COMPILER),pocc pocc64 poccarm),)
-
-      _C_VER := $(shell $(QUOTE)$(HB_COMP_PATH_VER_DET)$(QUOTE) 2>&1)
-      _C_VER_BAK := $(_C_VER)
-
-      # 'Pelles ISO C Compiler, Version 8.00.28'
-      _C_VER := $(wordlist 6,6,$(_C_VER))
-
-      # Convert <0-99>.<0-99>.<n> version number to __HB_COMPILER_VER format
-      _C_VER_MAJOR := $(wordlist 1,1,$(subst ., ,$(_C_VER)))
-      _C_VER_MINOR := $(wordlist 2,2,$(subst ., ,$(_C_VER)))
-      ifeq ($(call strlen,$(_C_VER_MAJOR)), 1)
-         _C_VER_MAJOR := 0$(_C_VER_MAJOR)
-      endif
-      __HB_COMPILER_VER := $(_C_VER_MAJOR)$(_C_VER_MINOR)
 
    endif
 

@@ -25,7 +25,12 @@ HB_RCFLAGS += -D_HB_INCLUDE_ICON
 HB_PRGFLAGS += -DHBMK_USE_APPMAIN
 HB_PRGFLAGS += -DHBMK_WITH_BUILTIN_HEADERS_ALL
 
-HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_WITH_ZLIB)$(QUOTE)
+ifeq ($(HB_PLATFORM),win)
+   # $(info REF_FIX: https://stackoverflow.com/questions/46585662/windows-linking-to-libcurl-a-lib)
+   HB_LDFLAGS += /NODEFAULTLIB:LIBCMT
+endif
+
+HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
 
 include $(TOP)$(ROOT)config/bin.mk
 

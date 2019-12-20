@@ -8,7 +8,7 @@ set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 REM set ROOT=c:\Users\hernad\x86
 REM set PSQL_VER=10.11-1
 
-REM set HB_WITH_PGSQL=%ROOT%\postgresql-%PSQL_VER%\pgsql\include
+REM set HB_HAS_POSTGRESQL=%ROOT%\postgresql-%PSQL_VER%\pgsql\include
 
 set PATH=c:\windows;c:\windows\system32
 set PATH=%PATH%;C:\Program Files\Git\cmd

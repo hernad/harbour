@@ -39,28 +39,9 @@ endif
 
 -include $(TOP)$(ROOT)config.mk
 
-# Detect zlib
 
-# zlib1g-dev{deb}
-# zlib-devel{rpm}
-# zlib{homebrew}
-# zlib{pacman}
-# mingw-w64-i686-zlib{msys2&mingw}
-# mingw-w64-x86_64-zlib{msys2&mingw64}
-
-#_DET_DSP_NAME := zlib
-#_DET_VAR_INC_ := HB_INC_ZLIB
-#_DET_VAR_HAS_ := HB_HAS_ZLIB
-#_DET_FLT_PLAT :=
-#_DET_FLT_COMP :=
-#_DET_INC_DEFP := /usr/local/opt/zlib/include /usr/include /usr/local/include
-#_DET_INC_DEFP += /boot/develop/headers/3rdparty
-#_DET_INC_LOCL := 3rd/zlib
-#_DET_INC_HEAD := /zlib.h
-#include $(TOP)$(ROOT)config/detfun.mk
 
 # Detect pcre2
-
 # libpcre2-dev{deb}
 # pcre2-devel{rpm}
 # pcre2{homebrew|pkgng}
@@ -73,7 +54,7 @@ _DET_VAR_INC_ := HB_INC_PCRE2
 _DET_VAR_HAS_ := HB_HAS_PCRE2
 _DET_FLT_PLAT :=
 _DET_FLT_COMP := 
-_DET_INC_DEFP := /usr/include /usr/local/include /usr/pkg/include /opt/csw/include
+_DET_INC_DEFP := /usr/include /usr/local/include
 _DET_INC_LOCL := 3rd/pcre2
 _DET_INC_HEAD := /pcre2.h
 include $(TOP)$(ROOT)config/detfun.mk
@@ -122,6 +103,34 @@ _DET_INC_LOCL := 3rd/minizip
 _DET_INC_HEAD := /minizip.hbc
 include $(TOP)$(ROOT)config/detfun.mk
 
+
+# Detect zlib
+# zlib1g-dev{deb}
+# zlib-devel{rpm}
+# zlib{homebrew}
+# zlib{pacman}
+# mingw-w64-i686-zlib{msys2&mingw}
+# mingw-w64-x86_64-zlib{msys2&mingw64}
+_DET_DSP_NAME := zlib
+_DET_VAR_INC_ := HB_INC_ZLIB
+_DET_VAR_HAS_ := HB_HAS_ZLIB
+_DET_FLT_PLAT :=
+_DET_FLT_COMP :=
+_DET_INC_DEFP := $(LIB_BIN_ROOT)/zlib/include /usr/local/include /usr/include
+_DET_INC_LOCL := x
+_DET_INC_HEAD := /zlib.h
+_DET_INC_HEAD := 
+include $(TOP)$(ROOT)config/detfun.mk
+
+_DET_DSP_NAME := postgresql
+_DET_VAR_INC_ := HB_INC_POSTGRESQL
+_DET_VAR_HAS_ := HB_HAS_POSTGRESQL
+_DET_FLT_PLAT :=
+_DET_FLT_COMP :=
+_DET_INC_DEFP := $(LIB_BIN_ROOT)/postgresql/include /usr/local/include /usr/include
+_DET_INC_LOCL :=
+_DET_INC_HEAD :=
+include $(TOP)$(ROOT)config/detfun.mk
 
 # Detect X11
 # libx11-dev{deb}

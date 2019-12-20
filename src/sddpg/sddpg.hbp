@@ -17,7 +17,7 @@ rddsql.hbc
 -deppkgname=pgsql:mingw-w64-x86_64-postgresql{msys2&x86_64}
 -depkeyhead=pgsql:libpq-fe.h
 -depcontrol=pgsql:no{HB_BUILD_3RDEXT='no'}
--depcontrol=pgsql:${HB_WITH_PGSQL}
+-depcontrol=pgsql:${HB_HAS_POSTGRESQL}
 -depincpath=pgsql:/usr/include
 -depincpath=pgsql:/usr/local/include
 -depincpath=pgsql:/usr/local/pgsql/include

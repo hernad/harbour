@@ -13,7 +13,7 @@
  */
 
 /* Keeping it tidy */
-#pragma -w3
+#pragma -w2
 #pragma -es2
 
 /* Optimizations */

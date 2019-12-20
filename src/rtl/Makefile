@@ -314,9 +314,9 @@ ifneq ($(HB_HAS_ZLIB),)
       endif
       HB_CFLAGS += -DPCRE2_CODE_UNIT_WIDTH=8
    endif
-   ifneq ($(HB_HAS_ZLIB),)
-      HB_CFLAGS += -DHB_HAS_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
-   endif
+
+   HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
+
    ifneq ($(HB_HAS_GPM),)
       HB_CFLAGS += -DHB_HAS_GPM
    endif
@@ -327,9 +327,8 @@ ifneq ($(HB_HAS_ZLIB),)
       HB_CFLAGS += -DHB_HAS_HARUPDF
    endif
 
-
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else
-   $(error ! Error: zlib component required, but not available)
+   $(error ! Error: zlib component required [3], but not available - HB_HAS_ZLIB?)
 endif
