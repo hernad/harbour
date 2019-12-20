@@ -1,3 +1,5 @@
+@echo off
+
 set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
 set LIBRARY=postgresql
@@ -7,6 +9,10 @@ set BUILD_ARCH=x86
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 REM "ORIG c:\Program Files\7-Zip\7z.exe"
 set CMD7z=..\..\tools\win32\7z.exe
+
+set PERL_C_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\c\bin
+set PERL_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\perl\bin
+set PERL_SITE_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\perl\site\bin
 
 IF NOT DEFINED POSTGRESQL_BUILD set INCLUDE=
 IF NOT DEFINED POSTGRESQL_BUILD set LIBPATH=
@@ -23,6 +29,9 @@ IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;%PERL_SITE_BIN_PATH%
 
 set POSTGRESQL_BUILD=1
 
+perl --version
+IF NOT ERRORLEVEL 0 GOTO ERROR
+
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
 set PSQL_DEST=%LIB_BIN_ROOT%\%LIBRARY%
 
@@ -30,10 +39,8 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 echo ================ INIT postgresql-12.1 ===========================
 cd %ROOT_DIR%\3rd\%LIBRARY%
-git clean . -f -d -X
-git clean . -f -d -x
 
-%CMD7z% x postgresql-12.1.7z
+%CMD7z% -y x postgresql-12.1.7z
 echo ==================================================================
 
 cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
@@ -61,3 +68,9 @@ REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
 dir /s %PSQL_DEST%
+
+:ERROR
+echo ERROR!
+
+:END
+echo END
