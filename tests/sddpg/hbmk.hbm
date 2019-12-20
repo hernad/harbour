@@ -1,4 +1,4 @@
-sddpg.hbc
-hbpgsql.hbc
+-lsddpg
+-lhbpgsql
 
 -w3 -es2

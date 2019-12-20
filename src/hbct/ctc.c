@@ -245,24 +245,3 @@ HB_FUNC( CSETARGERR )  /* HB_EXTENSION */
    }
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-
-HB_FUNC( CTCINIT )
-{
-   hb_retl( HB_TRUE );
-}
-
-HB_FUNC( CTCEXIT )
-{
-}
-
-HB_FUNC( CTINIT )
-{
-   hb_retl( HB_TRUE );
-}
-
-HB_FUNC( CTEXIT )
-{
-}
-
-#endif

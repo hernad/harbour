@@ -459,12 +459,6 @@ HB_ERRCODE hb_gtGetPos( int * piRow, int * piCol )
    return HB_FAILURE;
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_ERRCODE hb_gtGetPosEx( int * piRow, int * piCol )
-{
-   return hb_gtGetPos( piRow, piCol );
-}
-#endif
 
 /* NOTE: Should be exactly the same as hb_gtSetPosContext(), but without the
          additional third parameter. */

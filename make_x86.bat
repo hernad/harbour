@@ -37,4 +37,4 @@ set HB_HAS_POSTGRESQL=%LIB_BIN_ROOT%\postgresql\include
 
 set HB_WITH_OPENSSL=%LIB_BIN_ROOT%\openssl\include
 
-tools\win32\win-make.exe install
+tools\win32\win-make.exe clean install

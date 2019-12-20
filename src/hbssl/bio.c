@@ -190,23 +190,6 @@ HB_FUNC( BIO_NEW )
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC( BIO_SET )
-{
-   BIO * bio = hb_BIO_par( 1 );
-
-   if( bio && hb_BIO_METHOD_is( 2 ) )
-#if OPENSSL_VERSION_NUMBER < 0x10100000L || \
-    defined( LIBRESSL_VERSION_NUMBER )
-      hb_retni( BIO_set( bio, hb_BIO_METHOD_par( 2 ) ) );
-#else
-      hb_retni( 0 );
-#endif
-   else
-      hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-}
-#endif
-
 HB_FUNC( BIO_CLEAR_FLAGS )
 {
    BIO * bio = hb_BIO_par( 1 );
@@ -592,27 +575,6 @@ HB_FUNC( BIO_PUTS )
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC( BIO_FREE )
-{
-   void ** ph = ( void ** ) hb_parptrGC( &s_gcBIOFuncs, 1 );
-
-   if( ph )
-   {
-      if( *ph )
-         hb_retni( BIO_free( ( BIO * ) *ph ) );
-      else
-         hb_retni( 0 );
-
-      *ph = NULL;
-   }
-   else
-      hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-}
-
-HB_FUNC_TRANSLATE( BIO_VFREE, BIO_FREE )
-HB_FUNC_TRANSLATE( BIO_FREE_ALL, BIO_FREE )  /* These wrappers don't allow to create chained BIOs, so this is valid. */
-#endif
 
 /* --- connect --- */
 
@@ -664,20 +626,6 @@ HB_FUNC( BIO_SET_CONN_PORT )
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC( BIO_SET_CONN_INT_PORT )
-{
-   BIO * bio = hb_BIO_par( 1 );
-
-   if( bio && HB_ISNUM( 2 ) )
-   {
-      int port = hb_parni( 2 );
-      hb_retnl( BIO_set_conn_port( bio, &port ) );
-   }
-   else
-      hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-}
-#endif
 
 HB_FUNC( BIO_SET_CONN_IP )
 {
@@ -738,27 +686,6 @@ HB_FUNC( BIO_GET_CONN_IP )
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC( BIO_GET_CONN_INT_PORT )
-{
-#if OPENSSL_VERSION_NUMBER >= 0x10001000L  /* fixed here: https://rt.openssl.org/Ticket/Display.html?id=1989&user=guest&pass=guest */
-   BIO * bio = hb_BIO_par( 1 );
-
-   if( bio )
-#if OPENSSL_VERSION_NUMBER == 0x1000206fL /* 1.0.2f */ || \
-    OPENSSL_VERSION_NUMBER == 0x1000112fL /* 1.0.1r */
-      /* Fix for header regression */
-      hb_retnl( BIO_ctrl( bio, BIO_C_GET_CONNECT, 3, NULL ) );
-#else
-      hb_retnl( BIO_get_conn_int_port( bio ) );
-#endif
-   else
-      hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#else
-   hb_errRT_BASE( EG_UNSUPPORTED, 2001, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#endif
-}
-#endif
 
 HB_FUNC( BIO_SET_NBIO )
 {

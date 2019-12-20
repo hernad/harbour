@@ -5,9 +5,7 @@ YACC_FLAGS := -d $(YACC_FLAGS)
 ifeq ($(HB_BUILD_DEBUG),yes)
    HB_CFLAGS := -DHB_TR_LEVEL_DEBUG $(HB_CFLAGS)
 else
-   ifneq ($(HB_COMPILER),pcc)
-      HB_PRGFLAGS := -l $(HB_PRGFLAGS)
-   endif
+   HB_PRGFLAGS := -l $(HB_PRGFLAGS)
 endif
 
 ifneq ($(HB_USER_DCFLAGS),)

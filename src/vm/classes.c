@@ -5541,9 +5541,6 @@ HB_FUNC( __OBJSETCLASSHANDLE )
    hb_retnl( uiPrevClassHandle );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC_TRANSLATE( HB_SETCLSHANDLE, __OBJSETCLASSHANDLE )
-#endif
 
 /* Harbour equivalent for Clipper internal __mdCreate() */
 HB_USHORT hb_clsCreate( HB_USHORT usSize, const char * szClassName )

@@ -67,14 +67,6 @@
 #define HB_OPENSSL_PLATFORM                                 3
 #define HB_OPENSSL_DIR                                      4
 
-#ifdef HB_LEGACY_LEVEL5
-#define HB_SSLEAY_VERSION                                   HB_OPENSSL_VERSION
-#define HB_SSLEAY_CFLAGS                                    HB_OPENSSL_CFLAGS
-#define HB_SSLEAY_BUILT_ON                                  HB_OPENSSL_BUILT_ON
-#define HB_SSLEAY_PLATFORM                                  HB_OPENSSL_PLATFORM
-#define HB_SSLEAY_DIR                                       HB_OPENSSL_DIR
-#endif
-
 #define HB_SSL_ERROR_NONE                                   0
 #define HB_SSL_ERROR_SSL                                    1
 #define HB_SSL_ERROR_WANT_READ                              2

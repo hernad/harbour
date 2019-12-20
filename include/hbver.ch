@@ -84,11 +84,6 @@
 #define HB_VERSION_OPTIONS              29
 #define HB_VERSION_MAX_                 30
 
-#if defined( HB_LEGACY_LEVEL5 )
-#define HB_VERSION_CHANGELOG_LAST       HB_VERSION_COMMIT_INFO
-#define HB_VERSION_CHANGELOG_ID         HB_VERSION_ID
-#endif
-
 /* hb_Version( HB_VERSION_ENDIANNESS ) return values. */
 #define HB_VERSION_ENDIAN_LITTLE        1
 #define HB_VERSION_ENDIAN_BIG           2

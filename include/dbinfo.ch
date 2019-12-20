@@ -370,13 +370,6 @@
 #define DB_DBFLOCK_HB64         5   /* Harbour hyper locking scheme for 64-bit file API */
 #define DB_DBFLOCK_CLIPPER2     6   /* extended Cl*pper locking scheme NTXLOCK2.OBJ */
 
-/* for backward compatibility */
-#ifdef HB_LEGACY_LEVEL5
-   #define DB_DBFLOCK_CLIP         DB_DBFLOCK_CLIPPER
-   #define DB_DBFLOCK_CL53         DB_DBFLOCK_COMIX
-   #define DB_DBFLOCK_CL53EXT      DB_DBFLOCK_HB32
-#endif
-
 /* DBF HEADER UPDATING */
 #define DB_SETHEADER_CLOSE    0  /* update in CLOSE method - it always happens if necessary */
 #define DB_SETHEADER_COMMIT   1  /* update in FLUSH method */

@@ -849,9 +849,3 @@ HB_FUNC( HB_HDEFAULT )
       hb_errRT_BASE( EG_ARG, 2017, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-HB_FUNC( HB_HSETAUTOADD )     { HB_FUNC_EXEC( HB_HAUTOADD ); hb_itemReturn( hb_param( 1, HB_IT_HASH ) ); }
-HB_FUNC( HB_HSETCASEMATCH )   { HB_FUNC_EXEC( HB_HCASEMATCH ); hb_itemReturn( hb_param( 1, HB_IT_HASH ) ); }
-HB_FUNC( HB_HSETBINARY )      { HB_FUNC_EXEC( HB_HBINARY ); hb_itemReturn( hb_param( 1, HB_IT_HASH ) ); }
-HB_FUNC( HB_HSETORDER )       { HB_FUNC_EXEC( HB_HKEEPORDER ); hb_itemReturn( hb_param( 1, HB_IT_HASH ) ); }
-#endif

@@ -210,10 +210,6 @@ extern HB_EXPORT HB_ERRCODE hb_gtBoxEx( int iTop, int iLeft, int iBottom, int iR
 extern HB_EXPORT int        hb_gtGfxPrimitive( int iType, int iTop, int iLeft, int iBottom, int iRight, int iColor );
 extern HB_EXPORT HB_ERRCODE hb_gtGfxText( int iTop, int iLeft, const char * szText, int iColor, int iSize, int iWidth );
 
-#if defined( HB_LEGACY_LEVEL5 )
-extern HB_EXPORT HB_ERRCODE hb_gtGetPosEx( int * piRow, int * piCol );
-#endif
-
 extern HB_EXPORT HB_BOOL    hb_mouseIsPresent( void );
 extern HB_EXPORT HB_BOOL    hb_mouseGetCursor( void );
 extern HB_EXPORT void       hb_mouseSetCursor( HB_BOOL bVisible );

@@ -203,11 +203,6 @@ HB_FUNC( HB_KEYSETLAST )
       hb_retni( hb_inkeySetLast( hb_parni( 1 ) ) );
 }
 
-#if defined( HB_LEGACY_LEVEL5 )
-
-HB_FUNC_TRANSLATE( HB_SETLASTKEY, HB_KEYSETLAST )
-
-#endif
 
 HB_FUNC( HB_KEYCODE )
 {
