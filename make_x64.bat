@@ -1,18 +1,17 @@
 
 set BUILD_EXTERNAL=
-IF NOT exist 3rd\x86\postgresql\bin\postgres.exe  SET BUILD_EXTERNAL=1
+IF NOT exist 3rd\x64\postgresql\bin\postgres.exe  SET BUILD_EXTERNAL=1
 
 IF DEFINED BUILD_EXTERNAL cd 3rd
-IF DEFINED BUILD_EXTERNAL call msvc_x86.bat
+IF DEFINED BUILD_EXTERNAL call msvc_x64.bat
 IF DEFINED BUILD_EXTERNAL cd ..
 
 IF NOT EXIST 3rd\x86\postgresql\bin\postgres.exe (echo postgresql.exe nije kreiran ? & goto end)
 
-
 set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
-set VCBUILDTOOLS=x86
-set BUILD_ARCH=x86
+set VCBUILDTOOLS=amd64
+set BUILD_ARCH=x64
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 
 IF NOT DEFINED HARBOUR_BUILD set INCLUDE=
@@ -44,7 +43,6 @@ set HB_HAS_ZLIB=%LIB_BIN_ROOT%\zlib\include
 set HB_HAS_POSTGRESQL=%LIB_BIN_ROOT%\postgresql\include
 
 set HB_WITH_OPENSSL=%LIB_BIN_ROOT%\openssl\include
-
 
 REM echo lib\win\msvc
 REM mkdir lib\win\msvc
