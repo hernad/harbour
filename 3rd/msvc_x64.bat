@@ -1,42 +1,44 @@
+call ..\envars.bat
+SET ROOT_3RD=%ROOT_DIR%\3rd
+
 set ZLIB_BUILD=
-cd zlib
+cd %ROOT_3RD%\zlib
 call msvc_x64.bat
-cd ..
+
 IF DEFINED DEBUG_BUILD pause
 
 set UUID_BUILD=
-cd uuid
+cd %ROOT_3RD%\uuid
 call msvc_x64.bat
-cd ..
+
 IF DEFINED DEBUG_BUILD pause
 
 set LIBICONV_BUILD=
-cd libiconv
+cd %ROOT_3RD%\libiconv
 call msvc_x64.bat
 cd ..
 IF DEFINED DEBUG_BUILD pause
 
 set LIBXML2_BUILD=
-cd libxml2
+cd %ROOT_3RD%\libxml2
 call msvc_x64.bat
-cd ..
+
 IF DEFINED DEBUG_BUILD pause
 
 set LIBXSLT_BUILD=
 REM libxslt depends on libxml2
-cd libxslt
+cd %ROOT_3RD%\libxslt
 call msvc_x64.bat
-cd ..
+
 IF DEFINED DEBUG_BUILD pause
 
 set OPENSSL_BUILD=
-cd openssl
+cd %ROOT_3RD%\openssl
 call msvc_x64.bat
-cd ..
+
 IF DEFINED DEBUG_BUILD pause
 
 set POSTGRESQL_BUILD=
-cd postgresql
+cd %ROOT_3RD%\postgresql
 call msvc_x64.bat
-cd ..
 IF DEFINED DEBUG_BUILD pause
