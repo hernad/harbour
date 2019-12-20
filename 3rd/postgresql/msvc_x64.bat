@@ -38,7 +38,8 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 echo ================ INIT postgresql-12.1 ===========================
 cd %ROOT_DIR%\3rd\%LIBRARY%
- 
+git clean -X -d .
+
 %CMD7z% -y x postgresql-12.1.7z
 echo ==================================================================
 
