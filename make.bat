@@ -1,0 +1,1 @@
+tools\win32\win-make.exe %*
