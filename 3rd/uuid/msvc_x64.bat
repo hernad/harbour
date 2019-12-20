@@ -1,4 +1,4 @@
-set WINSDK_VER=10.0.18362.0
+IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
 set LIBRARY=uuid
 set LIB_SOURCE_DIR=uuid-1.6.2-win32-patched
 set ROOT_DIR=\users\%USERNAME%\harbour

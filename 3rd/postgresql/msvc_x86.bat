@@ -1,6 +1,6 @@
 @echo off
 
-set WINSDK_VER=10.0.18362.0
+IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
 set LIBRARY=postgresql
 set LIB_SOURCE_DIR=postgresql-12.1
