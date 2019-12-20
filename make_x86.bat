@@ -1,6 +1,15 @@
-cd 3rd
-call msvc_x86.bat
-cd ..
+
+set BUILD_EXTERNAL=
+IF NOT exist 3rd\x86\postgresql\bin\postgres.exe  SET BUILD_EXTERNAL=1
+
+set BUILD_EXTERNAL=
+IF DEFINED BUILD_EXTERNAL cd 3rd
+IF DEFINED BUILD_EXTERNAL call msvc_x86.bat
+IF DEFINED BUILD_EXTERNAL cd ..
+
+
+IF NOT EXIST 3rd\x86\postgresql\bin\postgres.exe (echo postgresql.exe nije kreiran ? & goto end)
+
 
 set WINSDK_VER=10.0.18362.0
 set GIT_REPOS=harbour
@@ -43,3 +52,6 @@ REM echo lib\win\msvc
 REM mkdir lib\win\msvc
 
 tools\win32\win-make.exe clean install
+
+:end
+echo kraj ...
