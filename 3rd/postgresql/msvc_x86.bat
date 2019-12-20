@@ -29,6 +29,7 @@ set PSQL_DEST=%LIB_BIN_ROOT%\%LIBRARY%
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 echo ================ INIT postgresql-12.1 ===========================
+cd %ROOT_DIR%\3rd\%LIBRARY%
 git clean . -f -d -X
 git clean . -f -d -x
 
