@@ -1,5 +1,5 @@
 IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
-set GIT_REPOS=harbour
+IF NOT DEFINED GIT_REPOS set GIT_REPOS=harbour
 set LIBRARY=libiconv
 REM set LIB_SOURCE_DIR=libiconv-1.16
 set LIB_SOURCE_DIR=libiconv-1.16-win-build

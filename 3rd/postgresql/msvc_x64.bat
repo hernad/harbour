@@ -1,7 +1,7 @@
 @echo off
 
 IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
-set GIT_REPOS=harbour
+IF NOT DEFINED GIT_REPOS set GIT_REPOS=harbour
 set LIBRARY=postgresql
 set LIB_SOURCE_DIR=postgresql-12.1
 set VCBUILDTOOLS=amd64
