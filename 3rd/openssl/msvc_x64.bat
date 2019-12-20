@@ -23,7 +23,7 @@ set HB_INSTALL_PREFIX=%ROOT%\build\x64\harbour
 
 cd %ROOT%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
-call "cpan install Text:Template"
+REM call "cpan Text:Template"
 
 perl Configure --prefix=%LIB_TARGET% --openssldir=%LIB_TARGET% VC-WIN64A
 nmake -f makefile install
