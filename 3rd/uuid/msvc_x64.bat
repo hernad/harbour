@@ -12,9 +12,9 @@ IF NOT DEFINED UUID_BUILD set PATH=c:\windows;c:\windows\system32
 REM amd64 ili x86
 IF NOT DEFINED UUID_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCTOOLS_ARCH%
 
-IF NOT DEFINED UUID_BUILD SET PATH=%PATH%;C:\Strawberry\c\bin
-IF NOT DEFINED UUID_BUILD SET PATH=%PATH%;C:\Strawberry\perl\bin
-IF NOT DEFINED UUID_BUILD SET PATH=%PATH%;C:\Strawberry\perl\site\bin
+IF NOT DEFINED UUID_BUILD SET PATH=%PATH%;%PERL_C_BIN_PATH%
+IF NOT DEFINED UUID_BUILD set PATH=%PATH%;%PERL_BIN_PATH%
+IF NOT DEFINED UUID_BUILD set PATH=%PATH%;%PERL_SITE_BIN_PATH%
 IF NOT DEFINED UUID_BUILD set PATH=%PATH%;C:\Program Files\Git\cmd
 IF NOT DEFINED UUID_BUILD set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
 IF NOT DEFINED UUID_BUILD set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%

@@ -1,3 +1,9 @@
+IF NOT exist tools\win32\Strawberry\perl\bin\perl.exe goto strawberry
+:strawberry_end
+
+set PERL_C_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\c\bin
+set PERL_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\perl\bin
+set PERL_SITE_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\perl\site\bin
 
 set BUILD_EXTERNAL=
 IF NOT exist 3rd\x64\postgresql\bin\postgres.exe  SET BUILD_EXTERNAL=1
@@ -24,10 +30,10 @@ IF NOT DEFINED HARBOUR_BUILD set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\P
 IF NOT DEFINED HARBOUR_BUILD set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
 
 REM this contains mingw64
-REM IF NOT DEFINED HARBOUR_BUILD SET PATH=%PATH%;C:\Strawberry\perl\bin
+REM IF NOT DEFINED HARBOUR_BUILD set PATH=%PATH%;%PERL_BIN_PATH%
 
-IF NOT DEFINED HARBOUR_BUILD SET PATH=%PATH%;C:\Strawberry\perl\bin
-IF NOT DEFINED HARBOUR_BUILD SET PATH=%PATH%;C:\Strawberry\perl\site\bin
+IF NOT DEFINED HARBOUR_BUILD set PATH=%PATH%;%PERL_BIN_PATH%
+IF NOT DEFINED HARBOUR_BUILD set PATH=%PATH%;%PERL_SITE_BIN_PATH%
 
 cd %ROOT_DIR%
 
@@ -49,5 +55,14 @@ REM mkdir lib\win\msvc
 
 tools\win32\win-make.exe clean install
 
+GOTO end
+
+:strawberry
+mkdir tools\win32\Strawberry 
+cd tools\win32\Strawberry 
+..\7z x ..\Strawberry.7z
+cd ..\..\..\
+goto strawberry_end
+
 :end
-echo kraj ...
+echo END ...
