@@ -33,6 +33,9 @@ REM ------------------------------------
 git clean . -f -d -X
 git clean . -f -d -x
 
+REM "c:\Program Files\7-Zip\7z.exe" a postgresql-12.1.7z postgresql-12.1.7z
+"c:\Program Files\7-Zip\7z.exe" x postgresql-12.1.7z
+
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
 copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
 
