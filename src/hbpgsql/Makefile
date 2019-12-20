@@ -5,7 +5,7 @@ include $(TOP)$(ROOT)config/global.mk
 HB_PRGFLAGS += -gc3
 
 C_SOURCES := \
-   postgres.c \
+   hblibpq.c \
    rddcopy.c \
 
 
@@ -14,9 +14,8 @@ PRG_SOURCES := \
 
 LIBNAME := hbpgsql
 
-
-HB_CFLAGS += -I$(HB_HOST_INC)/postgres
-HB_CFLAGS += -DHB_HAS_PQ $(QUOTE)-I$(HB_HAS_PQ)$(QUOTE)
+# HB_CFLAGS += -I$(HB_HOST_INC)/postgres
+HB_CFLAGS += -DHB_WITH_PGSQL $(QUOTE)-I$(HB_WITH_PGSQL)$(QUOTE)
 
 ifneq ($(HB_HAS_ZLIB),)
   

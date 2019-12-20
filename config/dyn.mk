@@ -61,7 +61,7 @@ else ifneq ($(HB_HAS_PCRE_LOCAL),)
    HB_DYN_LIBS += hbpcre
 endif
 ifneq ($(HB_HAS_ZLIB_LOCAL),)
-   HB_DYN_LIBS += hbzlib
+   HB_DYN_LIBS += zlib
 endif
 
 #   hbcplr \

@@ -14,8 +14,8 @@ export DETECT_MK_ := yes
 _DET_OPT_VERB := very
 
 # Reset everything to default
-export HB_HAS_ZLIB            :=
-export HB_HAS_ZLIB_LOCAL      :=
+# export HB_HAS_ZLIB            :=
+# export HB_HAS_ZLIB_LOCAL      :=
 export HB_HAS_PCRE2           :=
 export HB_HAS_PCRE2_LOCAL     :=
 export HB_HAS_GPM             :=
@@ -48,16 +48,16 @@ endif
 # mingw-w64-i686-zlib{msys2&mingw}
 # mingw-w64-x86_64-zlib{msys2&mingw64}
 
-_DET_DSP_NAME := zlib
-_DET_VAR_INC_ := HB_INC_ZLIB
-_DET_VAR_HAS_ := HB_HAS_ZLIB
-_DET_FLT_PLAT :=
-_DET_FLT_COMP :=
-_DET_INC_DEFP := /usr/local/opt/zlib/include /usr/include /usr/local/include
-_DET_INC_DEFP += /boot/develop/headers/3rdparty
-_DET_INC_LOCL := 3rd/zlib
-_DET_INC_HEAD := /zlib.h
-include $(TOP)$(ROOT)config/detfun.mk
+#_DET_DSP_NAME := zlib
+#_DET_VAR_INC_ := HB_INC_ZLIB
+#_DET_VAR_HAS_ := HB_HAS_ZLIB
+#_DET_FLT_PLAT :=
+#_DET_FLT_COMP :=
+#_DET_INC_DEFP := /usr/local/opt/zlib/include /usr/include /usr/local/include
+#_DET_INC_DEFP += /boot/develop/headers/3rdparty
+#_DET_INC_LOCL := 3rd/zlib
+#_DET_INC_HEAD := /zlib.h
+#include $(TOP)$(ROOT)config/detfun.mk
 
 # Detect pcre2
 
@@ -122,15 +122,6 @@ _DET_INC_LOCL := 3rd/minizip
 _DET_INC_HEAD := /minizip.hbc
 include $(TOP)$(ROOT)config/detfun.mk
 
-_DET_DSP_NAME := pq
-_DET_VAR_INC_ := HB_INC_PQ
-_DET_VAR_HAS_ := HB_HAS_PQ
-_DET_FLT_PLAT :=
-_DET_FLT_COMP := 
-_DET_INC_DEFP := /usr/include /usr/local/include
-_DET_INC_LOCL := 3rd/pq
-_DET_INC_HEAD := /libpq.rc
-include $(TOP)$(ROOT)config/detfun.mk
 
 # Detect X11
 # libx11-dev{deb}
@@ -163,7 +154,6 @@ _DET_FLT_COMP :=
 _DET_INC_DEFP := /usr/include /usr/local/include
 _DET_INC_HEAD := /gpm.h
 include $(TOP)$(ROOT)config/detfun.mk
-
 
 
 

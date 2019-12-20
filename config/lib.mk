@@ -32,9 +32,9 @@ HB_DYN_LIBS := \
 ifneq ($(HB_HAS_PCRE2_LOCAL),)
    HB_DYN_LIBS += hbpcre2
 endif
-ifneq ($(HB_HAS_ZLIB_LOCAL),)
-   HB_DYN_LIBS += hbzlib
-endif
+#ifneq ($(HB_HAS_ZLIB_LOCAL),)
+#   HB_DYN_LIBS += zlib
+#endif
 ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
    HB_DYN_LIBS += xlswriter
 endif

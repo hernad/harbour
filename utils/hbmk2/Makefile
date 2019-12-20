@@ -25,6 +25,8 @@ HB_RCFLAGS += -D_HB_INCLUDE_ICON
 HB_PRGFLAGS += -DHBMK_USE_APPMAIN
 HB_PRGFLAGS += -DHBMK_WITH_BUILTIN_HEADERS_ALL
 
+HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_WITH_ZLIB)$(QUOTE)
+
 include $(TOP)$(ROOT)config/bin.mk
 
 ifneq ($(filter $(HB_COMPILER),gcc mingw mingw64 clang clang64),)
