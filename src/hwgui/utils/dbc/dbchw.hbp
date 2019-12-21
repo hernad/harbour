@@ -1,0 +1,17 @@
+#
+# $Id: dbchw.hbp 2335 2014-12-25 07:52:07Z alkresin $
+#
+
+-n -w
+
+-odbchw
+
+dbchw.prg
+commands.prg
+modistru.prg
+move.prg
+view.prg
+procs_c.c
+{win}dbchw.rc
+
+..\..\hwgui.hbc

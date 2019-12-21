@@ -1,0 +1,25 @@
+#
+# $Id: hwgui.hbp 2673 2018-10-19 09:17:38Z alkresin $
+#
+
+-3rd=hbide_version=1.0
+-3rd=hbide_type=Lib
+-3rd=hbide_title=hwgui
+-3rd=hbide_output=hwgui
+
+-inc
+-hblib
+-olib/hwgui
+-n
+-q0
+-w
+-es2
+-iinclude
+
+# Uncomment these two lines to build HwGUI in Unicode mode
+#-prgflag=-DUNICODE
+#-cflag=-DUNICODE
+-cflag=-DHWG_USE_POINTER_ITEM
+"{unix}-cflag=`pkg-config --cflags gtk+-2.0`"
+
+@hwgui.hbm
