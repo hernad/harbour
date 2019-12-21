@@ -12,7 +12,7 @@ C_SOURCES := \
    unzip.c \
    zip.c \
 
-ifneq ($(HB_HAS_MINIZIP_LOCAL),)
+ifneq ($(HB_HAS_ZLIB),)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    include $(TOP)$(ROOT)config/lib.mk
 else

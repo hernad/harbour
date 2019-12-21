@@ -7,7 +7,6 @@ LIBNAME := harupdf
 HB_BUILD_WARN := no
 HB_BUILD_MODE := c
 
-
 C_SOURCES := \
    _hb_hpdf.c \
    hpdf_3dmeasure.c \
@@ -68,7 +67,7 @@ C_SOURCES := \
    hpdf_utils.c \
    hpdf_xref.c \
 
-ifneq ($(HB_HAS_HARUPDF_LOCAL),)
+ifneq ($(HB_HAS_ZLIB),)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
    HB_CFLAGS += $(QUOTE)-I$(HB_HAS_PNG)$(QUOTE)
    include $(TOP)$(ROOT)config/lib.mk
@@ -77,5 +76,3 @@ else
    HB_SKIP_REASON := local copy unused
    include $(TOP)$(ROOT)config/none.mk
 endif
-
-

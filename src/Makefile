@@ -21,7 +21,7 @@ else
          src/rtl \
          src/macro \
          src/lang \
-	 src/debug \
+         src/debug \
          src/codepage \
          src/hbextern \
          src/hbhpdf \
@@ -35,8 +35,8 @@ else
          src/rdd/usrrdd \
          src/rtl/gtstd \
          src/rtl/gtcgi \
-	 src/hbpgsql \
-	 src/sddpg 
+         src/hbpgsql \
+         src/sddpg 
 
       ifeq ($(HB_PLATFORM),win)
          DYNDIRLIST_BASE += src/rtl/gtwin
@@ -101,9 +101,10 @@ else
       hbssl \
       hbtip \
       hbct \
+      hbcurl \
 
       ifeq ($(HB_HOST_PLAT),win)
-	 DIRS += hbwin
+         DIRS += hbwin
       endif
 
       ifneq ($(__HB_BUILD_DYN),no)

@@ -132,6 +132,16 @@ _DET_INC_LOCL :=
 _DET_INC_HEAD :=
 include $(TOP)$(ROOT)config/detfun.mk
 
+_DET_DSP_NAME := curl
+_DET_VAR_INC_ := HB_INC_CURL
+_DET_VAR_HAS_ := HB_HAS_CURL
+_DET_FLT_PLAT :=
+_DET_FLT_COMP :=
+_DET_INC_DEFP := $(LIB_BIN_ROOT)/curl/include /usr/local/include /usr/include
+_DET_INC_LOCL :=
+_DET_INC_HEAD :=
+include $(TOP)$(ROOT)config/detfun.mk
+
 # Detect X11
 # libx11-dev{deb}
 # libX11-devel{rpm}
