@@ -1,0 +1,8 @@
+PREREQUISITES
+==============
+
+Visual C++ Build tools 2015
+  https://go.microsoft.com/fwlink/?LinkId=691126
+
+
+Developer OS: Windows 10 64-bit
