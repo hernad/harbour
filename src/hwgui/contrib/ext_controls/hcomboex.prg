@@ -16,7 +16,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "common.ch"
 
 #DEFINE CB_SHOWDROPDOWN             335

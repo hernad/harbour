@@ -9,7 +9,7 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #DEFINE  ID_EXENAME     10001
 #DEFINE  ID_LIBFOLDER   10002

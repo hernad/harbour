@@ -105,7 +105,7 @@
     ! Bug fixed.
 
 2019-04-26 13:24 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 4
   * whatsnew.txt
     * Updated for v2.22 build 4
@@ -133,7 +133,7 @@
     ! Fixes
 
 2019-02-26 13:16 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 3
   * whatsnew.txt
     * Updated for v2.22 build 3
@@ -210,7 +210,7 @@
   * source/gtk/hbrowse.prg
   * source/winapi/hbrowse.prg
     ! Small fixes to prevent editing if a browsing table is readonly, as suggested by Tarasov.
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
   * doc/hwgdoc_functions.html
 
 2019-01-11 13:12 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -226,7 +226,7 @@
 
 2019-01-10 12:28 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/gtk/window.c
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_isIconic() added
 
 2019-01-10 11:32 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -257,7 +257,7 @@
     ! Small fix.
 
 2018-12-23 13:48 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 2
   * whatsnew.txt
     * Updated for v2.22 build 2
@@ -269,7 +269,7 @@
     * Static link control support added to the Designer.
 
 2018-12-21 20:22 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_DrawGrid() added
   * utils/designer/designer.prg
   * utils/designer/hctrl.prg
@@ -396,7 +396,7 @@
   * doc/hwgdoc_classes.html
 
 2018-12-13 09:15 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to "2.22", build number to 1
   * whatsnew.txt
     * Updated with a short info about a new release.
@@ -439,7 +439,7 @@
   * utils/tutorial/tutor_eng.xml
 
 2018-12-11 13:14 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
   * source/gtk/draw.c
   * source/winapi/draw.c
      * hwg_SaveBitmap( cFileName, hBitmap ) added.
@@ -476,7 +476,7 @@
     * HBitmap():AddWindow() implemented for gtk version
 
 2018-12-10 13:12 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/gtk/hownbtn.prg
   * source/gtk/hpanel.prg
   * source/winapi/hownbtn.prg
@@ -488,7 +488,7 @@
     * doc updated
 
 2018-12-09 22:45 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ADD HEADER PANEL added
   * source/gtk/hownbtn.prg
   * source/gtk/hpanel.prg
@@ -519,7 +519,7 @@
     * doc updated
 
 2018-12-07 21:22 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/gtk/hwindow.prg
   * source/gtk/window.c
   * source/winapi/hdialog.prg
@@ -586,7 +586,7 @@
   * source/winapi/hsplit.prg
   * source/gtk/hsplit.prg
     * :oStyle variable added, oStyle parameter added to New() method
-  * include/guilib.ch
+  * include/hwgui.ch
     * HSTYLE clause added to the @ ... SPLITTER command
   * doc/hwgdoc_classes.html
   * doc/hwgdoc_commands.html
@@ -653,7 +653,7 @@
   * utils/designer/inspect.prg
   * utils/designer/resource/widgets.xml
     * Support of HStyle added
-  * include/guilib.ch
+  * include/hwgui.ch
   * doc/hwgdoc_commands.html
     ! Small fix
 
@@ -673,7 +673,7 @@
     * Added Anchor for a toolbar
 
 2018-11-15 09:25 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 6
   * whatsnew.txt
     * Updated for build 6
@@ -697,7 +697,7 @@
 2018-11-13 14:35 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * samples/bld.bat
     * hbwin.lib added instead of hbw32.lib
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * Few functions added
 
 2018-11-12 13:15 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -764,7 +764,7 @@
     * Tabs handling extended
 
 2018-11-02 12:20 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 5
   * whatsnew.txt
     * Updated for build 5
@@ -806,7 +806,7 @@
     * hwg_GetClientRect() and hwg_GetClientArea() fixed
 
 2018-10-29 14:55 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON CLICK, ON DBLCLICK clauses added to @...BITMAP and @...ICON commands.
   * source/winapi/hsayimg.prg
     ! Bug fixed.
@@ -820,7 +820,7 @@
     ! Problem fixed with printing in Windows 10
 
 2018-10-20 16:00 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * Few functions added
   * source/gtk/hprinter.prg
     * INHERIT HOBJECT added to all classes here
@@ -847,7 +847,7 @@
     ! Fixes
 
 2018-10-19 12:30 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 4
   * whatsnew.txt
     * Updated for build 4
@@ -922,7 +922,7 @@
     ! Few warnings fixed.
 
 2018-09-05 17:30 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 3
   * source/gtk/hownbtn.prg
 
@@ -933,7 +933,7 @@
     ! Small fix
 
 2018-09-05 14:48 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number is changed to 2
     * HSTYLES clause added to OWNERBUTTON command instead of STYLE
   * source/gtk/hownbtn.prg
@@ -976,7 +976,7 @@
     * Updated with a short info about a new release.
 
 2018-08-31 11:10 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to "2.21", build number to 1
   * doc/hwgdoc.html
   * doc/hwgdoc_classes.html
@@ -986,7 +986,7 @@
 2018-08-31 09:40 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/gtk/hcontrol.prg
     * Added virtual Refresh() method to HControl as in Winapi version
-  * include/guilib.ch
+  * include/hwgui.ch
     * Added a clause HSTYLE to PANEL and ADD TOP PANEL commands
   * source/gtk/hpanel.prg
   * source/winapi/hpanel.prg
@@ -1017,7 +1017,7 @@
     ! Few warnings fixed.
 
 2018-08-24 15:15 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hownbtn.prg
     * BACKCOLOR clause added to Ownerbutton for compatibility with some old code.
       It is highly recommended. though, to use :aStyle instead.
@@ -1068,7 +1068,7 @@
     ! fix to hbuttonex redefine method
 		
 2018-01-19 17:36 UTC-0300  Luiz Rafael Culik (luiz at xharbour.com)
-  * include/guilib.ch
+  * include/hwgui.ch
     ! add missing REDEFINE progress command
   * source/winapi/hprogres.prg
     ! add missing redefine method    
@@ -1144,9 +1144,9 @@
       (based on suggestion of Andrey Tarasov).
 
 2016-11-11 10:40 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * BACKCOLOR clause added to @ ... BITMAP command
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_SetMenuBackColor added to a list of REQUEST's
   * source/gtk/control.c
     * Word wrapping added fot multiline edit controls, provided by Andrey Tarasov.
@@ -1176,7 +1176,7 @@
     ! Bug fixed in hwg_edit_set_Overmode()
 
 2016-10-10 12:20 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON INIT and ON SIZE clauses added to few others @ ... GET ... commands.
 
 2016-10-10 11:45 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -1191,7 +1191,7 @@
       which do the same.
 
 2016-10-06 13:52 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON INIT clause added to @ ... GET ... command.
 
 2016-10-05 15:00 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -1311,7 +1311,7 @@
     ! Warning fixed
 
 2016-09-17 14:40 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number has been changed to 3
   * whatsnew.txt has been updated.
 
@@ -1322,7 +1322,7 @@
     * hwg_SelectFileEx() instead of hwg_SelectFile() (for GTK version)
 
 2016-09-17 10:35 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     ! Few functions excluded from the list
   * utils/tutorial/hwgrun.prg
     ! Warnings fixed
@@ -1369,7 +1369,7 @@
     * References changed
 
 2016-09-12 09:15 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Build number has been changed to 2
   * whatsnew.txt has been updated.
   * utils/tutorial/tutor.prg
@@ -1397,7 +1397,7 @@
     * Styles added to Panel and a button.
 
 2016-09-10 13:14 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
   * utils/tutorial/tutor.prg
   * utils/tutorial/hwgrun.prg
     * Some improvements
@@ -1406,7 +1406,7 @@
   * utils/tutorial/tutor_eng.xml   
 
 2016-09-09 12:48 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to "2.20", build number to 1
   * whatsnew.txt has been updated.
 
@@ -1430,9 +1430,9 @@
       stock icons in GTK version as predefined bitmaps in WinAPI.
 
 2016-09-07 16:25 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * include/hwg_extctrl.ch
-    * ADDROWEX moved from guilib.ch to hwg_extctrl.ch
+    * ADDROWEX moved from hwgui.ch to hwg_extctrl.ch
       ON DRAW chenged to ON PAINT for ownerbutton and shadebutton
 
 2016-09-07 09:20 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -1448,7 +1448,7 @@
 2016-09-06 13:47 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/winapi/hbrowse.prg
   * source/gtk/hbrowse.prg
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hpanel.prg
   * source/gtk/hpanel.prg
     * :aPaintCB variable and SetPaintCB( nId, block, cId ) method added to
@@ -1460,7 +1460,7 @@
   * source/winapi/hbrowse.prg
   * source/gtk/hbrowse.prg
     ! Small fix
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hriched.prg
   * source/gtk/hfrmtmpl.prg
   * source/winapi/hfrmtmpl.prg
@@ -1485,7 +1485,7 @@
     ! Small fixes
 
 2016-09-05 09:22 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Few #define sentences added for the new HColumn():SetPaintCB()
   * source/winapi/hbrowse.prg
   * source/gtk/hbrowse.prg
@@ -1545,7 +1545,7 @@
     ! Few fixes
 
 2016-08-31 12:50 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_ParentGetDialog() removed, hwg_getParentForm() added.
   * source/winapi/hbrowse.prg
     * Further cleanup: I finally get rid of mystic :internal variable and added
@@ -1553,7 +1553,7 @@
     * Some changes to avoid flickering
 
 2016-08-30 15:08 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/gtk/hedit.prg
   * source/winapi/hedit.prg
     * ON PAINT clause deleted from @ ... EDITBOX command as unused
@@ -1562,7 +1562,7 @@
   * source/winapi/hbrowse.prg
   + source/winapi/hbrwflt.prg
     * All code, related to filtering, moved from HBrowse to a new subclass HBrwFlt
-  * include/guilib.ch
+  * include/hwgui.ch
     * New command added @ ... BROWSE ... FILTER for HBrwFlt
       So, if you use those WHILE, FIRST, LAST, FOR clauses of BROWSE ... DATABASE
       command, use BROWSE ... FILTER instead.
@@ -1584,7 +1584,7 @@
       Thanks to SergKis for the idea.
 
 2016-08-29 13:54 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * BACKCOLOR added as preferrable alternative for COLOR clause in INIT WINDOW,
       INIT DIALOG commands.
     * added #xtranslate hwg_ParentGetDialog => hwg_getParentForm
@@ -1683,7 +1683,7 @@
   * source/winapi/hpanel.prg
     * New parameter 'oStyle' added to HPanelSts():New(),
       new method added: :PaintText() for separating text painting from :Paint()
-  * include/guilib.ch
+  * include/hwgui.ch
     * New clause added: HSTYLE to ADD STATUS PANEL command
   * source/gtk/control.c
     ! hwg_addTooltip() fixed
@@ -1694,7 +1694,7 @@
   * source/gtk/hpanel.prg
   * source/winapi/hpanel.prg
     * New class added HPanelSts, inherited from HPanel to implement STATUS PANEL
-  * include/guilib.ch
+  * include/hwgui.ch
     * ADD TOP PANEL OF <oWnd> ... changed to ADD TOP PANEL TO <oWnd> ...
     * New command added: ADD STATUS PANEL OF <oWnd> HEIGHT <height> PARTS ...
   * source/gtk/gtkmain.prg
@@ -1715,7 +1715,7 @@
   * source/gtk/hpanel.prg
     * style SS_OWNERDRAW id added automatically, if ON PAINT is defined
     * file formatted
-  * include/guilib.ch
+  * include/hwgui.ch
     * New command ADD TOP PANEL OF <oWnd> HEIGHT <height> ... has been added
       to simplify creation of a PANEL control, attached to the top of a window.
 
@@ -1889,7 +1889,7 @@
 2016-02-01 16:12 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * whatsnew.txt
     * Information about build 6 added
-  * include/guilib.ch
+  * include/hwgui.ch
     * build number is changed to 6
 
 2016-02-01 14:04 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -1961,7 +1961,7 @@
 2016-01-21 12:55 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * whatsnew.txt
     * Information about build 5 added
-  * include/guilib.ch
+  * include/hwgui.ch
     * build number is changed to 5
 
 2016-01-20 15:20 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -2058,7 +2058,7 @@
     ! Small fix
 
 2015-11-20 10:55 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * COLOR clause added to the @ ... BITMAP command to set the transparency color
   * source/winapi/hsayimg.prg
     * Support for a COLOR clause added
@@ -2121,7 +2121,7 @@
     ! Fixes for combobox with EDIT clause
 
 2015-09-08 16:45 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON CHANGE clause added to the RICHEDIT command
     * ONCE clause added to SET TIMER function - use it when you need to
       run the timer procedure one time only
@@ -2278,7 +2278,7 @@
   * source/gtk/hbrowse.prg
   * source/winapi/hbrowse.prg
     * :lEditing variable added, which is set to .T. when a field is edited
-  * include/guilib.ch
+  * include/hwgui.ch
     * added clause ON SIZE to the @ ... GET command
   * source/gtk/control.c
     ! Fixed combobox behaviour - now it allows to edit content manually
@@ -2293,12 +2293,12 @@
   + utils/editor/editor.hwge
 
 2015-07-25 21:00 UTC-0300 Luiz Rafael Culik (luiz at xharbour.com)
-  * include/guilib.h
+  * include/hwgui_windows.h
     ! added declaration for hb_itemEqual for xharbour
   * source/winapi/misc
     ! added hb_itemEqual for xharbour
   * source/common/editor/hcedit_w.c
-    ! removed #include "guilib.h" 
+    ! removed #include "hwgui_windows.h" 
         
 2015-07-15 15:24 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/gtk/hedit.prg
@@ -2378,7 +2378,7 @@
 2015-06-25 16:00 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * whatsnew.txt
     * Information about build 4 added
-  * include/guilib.ch
+  * include/hwgui.ch
     * build number is changed to 4
 
 2015-06-25 14:10 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -2612,7 +2612,7 @@
     ! Bug fixed in hwg_copystringtoclipboard() for UNICODE mode.
 
 2015-05-27 16:55 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Added CHECK clause to OWNERBUTTON command
   * source/gtk/hownbtn.prg
     * Added support of CHECK clause as in winapi version
@@ -2694,7 +2694,7 @@
   * source/winapi/draw.c
     * hwg_drawGradient() added
       The code is provided by Eduard Gilman.
-  * include/hwgextern.ch  
+  * include/hwgui_extern.ch  
     * hwg_drawGradient() added to the list
 
 2015-05-21 10:52 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -2724,9 +2724,9 @@
   * source/gtk/misc.c
   * source/winapi/misc.c
     * hwg_RGB() renamed to hwg_ColorRGB2N()
-  * include/guilib.ch
+  * include/hwgui.ch
     * #xtranslate added to keep hwg_RGB() and hwg_VColor()
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * REQUEST for new functions added
   * contrib/ext_controls/hbrowsex.prg
   * contrib/ext_controls/hctrlex.prg
@@ -2809,7 +2809,7 @@
   * source/winapi/htimer.prg
   * source/winapi/hcwindow.prg
     * :objname variable added to HTimer. Now timers can be called by name ( oDlg:oTimer )
-  * include/guilib.ch
+  * include/hwgui.ch
     * SET TIMER command changed
     * build number is changed to 3
 
@@ -2998,7 +2998,7 @@
     * Some changes for xHarbour. Could anyone, who use xHarbour, test it ?
 
 2015-01-29 13:35 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON LOSTFOCUS clause added to @ .. CHECKBOX command
   * source/winapi/hcheck.prg
     * ON LOSTFOCUS implemented for the checkbox control
@@ -3020,7 +3020,7 @@
       has been commented
 
 2015-01-27 14:56 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * HwGUI build number is changed to 2
   * utils/dbc/dbchw.prg
     * Dbchw version number is changed to 3.1
@@ -3103,7 +3103,7 @@
     * All occurences of :SetValue(), :GetValue() are changed to use the :Value 
 
 2015-01-18 12:58 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hradio.prg
   * source/gtk/hradio.prg
     * @ ... GET RADIOGROUP command added from 2.17 with some changes
@@ -3147,7 +3147,7 @@
     ! ON ACTIVATE is fixed.
 
 2015-01-02 12:48 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hradio.prg
     * TRANSPARENT clause added to RADIOBUTTON command
 
@@ -3182,7 +3182,7 @@
     * DISPLAYCOUNT set to the combobox in OpenFile()
   ! contrib/ext_controls/hbrowsex.prg
     ! Small fix
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hrichedit.prg
     * ON OTHER MESSAGES clause added to richedit for 2.17 compatibility
 
@@ -3283,7 +3283,7 @@
     ! Few fixes.  
 
 2014-12-21 13:00 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to "2.19", build number to 1
   * source/gtk/Makefile.linux
     * Added -g switch for Harbour compiler
@@ -3350,7 +3350,7 @@
 2014-12-16 13:48 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/winapi/hlistbox.prg
     * code copied from 2.17 with some modifications
-  * include/guilib.ch
+  * include/hwgui.ch
     * LISTBOX commands modified, GET LISTBOX added from 2.17
   * source/gtk/drawwidg.prg
     ! HBitmap():AddResource fixed.
@@ -3469,7 +3469,7 @@
     * ANNOUNCE HB_GTSYS, REQUEST HB_GT_GUI_DEFAULT removed
 
 2014-12-02 10:00 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/gtk/hsplit.prg
   * source/winapi/hsplit.prg
     * New clause added to the SPLITTER command:
@@ -3676,7 +3676,7 @@
     * Added "Edit" menu to the editor dialog box
 
 2014-07-02 18:38 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! SET KEY command fixed
   * source/gtk/hprinter.prg
   * source/winapi/hprinter.prg
@@ -3745,7 +3745,7 @@
       screen forms and reports, for example. All data, which goes with your
       application, may be placed now in one file. To manage it, I'll add a bit later
       a special utility.
-  * include/guilib.ch
+  * include/hwgui.ch
     * New command added: SET RESOURCES CONTAINER TO [<cName>], which is
       preprocessed to a new hwg_SetResContainer( cName ) function
   * source/gtk/drawwidg.prg  
@@ -3958,7 +3958,7 @@
 2014-04-21 15:45 UTC+0300 Alexander Kresin <alex@belacy.ru>
   * source/winapi/hdialog.prg
     ! Small fix
-  * include/guilib.ch
+  * include/hwgui.ch
     * A header for an editor added
 
 2014-04-16 13:45 UTC+0300 Alexander Kresin <alex@belacy.ru>
@@ -4113,7 +4113,7 @@
       present in main window declaration.
 
 2014-01-18 21:18 UTC+0300 Alexander Kresin <alex@belacy.ru>
-  * include/guilib.ch
+  * include/hwgui.ch
     * build number is increased to 2
     * INIT WINDOW ... MAIN
          COLOR clause is renamed to SYSCOLOR ( it is followed by the system 
@@ -4174,7 +4174,7 @@
     * two functions added from 2.17: hwg_TxtRect() and hwg_SetAll()
 
 2013-12-06 14:15 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Small fix
 
 2013-12-06 10:00 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -4244,7 +4244,7 @@
 2013-11-23 11:52 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/winapi/window.c
     ! Bug fixed, related to keyboard hooker
-  * include/guilib.ch
+  * include/hwgui.ch
     * SET KEY command has beem extended: new clause GLOBAL has been added.
       It forces placing the key handler to a global list ( HWindow():aKeysGlobal ),
       so this handler works in any place ( any window/dialog ) in application.
@@ -4343,12 +4343,12 @@
   * source/winapi/hfrmtmpl.prg
     * duplex printing handling added. HRepTmpl():PrintAsPage() method added,
       which allows to print different forms sequentially, as a pages of one document.
-  * include/guilib.ch
+  * include/hwgui.ch
 
 2013-07-29 11:35 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/winapi/window.c
     ! warning fixed
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_sethook(), hwg_unsethook() and hwg_settoolhandle() has been removed
 
 2013-07-26 15:28 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -4436,7 +4436,7 @@
 
 2013-07-23 16:50 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/gtk/gtkmain.prg
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
   * utils/tutorial/tutor.prg
     * Some changes for gtk version compatibility
 
@@ -4589,7 +4589,7 @@
     ! Bug fixed, related to pointers usage
 
 2013-07-15 16:15 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * call of hwg_SetCtrlName( oCtrl, cName ) added for each control, if the name
       of control object is defined
   * source/gtk/hcontrol.prg
@@ -4607,7 +4607,7 @@
   * source/winapi/drawtext.c
   * include/gtkcompat.ch
   * include/hwgcompat.ch
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * hwg_oemtoansi(), hwg_ansitooem() and hwg_numtohex() has been removed, because
       they aren't used anywhere in HwGUI and there are similar functions in Harbour.
 
@@ -4670,7 +4670,7 @@
   * source/winapi/control.c
     * snprintf() call is changed to sprintf()
   * source/winapi/hpanel.prg
-  * include/guilib.ch
+  * include/hwgui.ch
     * Added SHAPE command from 2.17 and BACKCOLOR clause to PANEL
   * source/gtk/draw.c
   * source/gtk/hwgtk.h
@@ -4732,7 +4732,7 @@
       Harbour GIT repository.
 
 2013-07-02 10:05 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hcheck.prg
     * Added TRANSPARENT clause to CHECKBOX and GET CHECKBOX commands
 
@@ -4754,7 +4754,7 @@
     * Formatting, cleanup.
 
 2013-07-01 19:30 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hedit.prg
     * Added ON KEYDOWN clause to EDITBOX and GET commands
 
@@ -4778,7 +4778,7 @@
     + New utility has been added - HwGUI Tutorial
 
 2013-07-01 14:55 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hedit.prg
     * Added ON CHANGE clause to EDITBOX and GET commands
     * Added handling of bKeyDown and bOther for HEdit
@@ -4786,7 +4786,7 @@
     * Added automatic destroying of timers for windows and dialogs
 
 2013-07-01 13:05 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hdialog.prg
     * ACTIVATE DIALOG command changed, it is now similar to ACTIVATE WINDOW:
       ACTIVATE DIALOG <oDlg> [ NOMODAL ] [ MAXIMIZED ] [ MINIMIZED ] [ CENTER ] [ ON ACTIVATE <bInit> ]
@@ -4796,7 +4796,7 @@
   * source/winapi/hedit.prg
     ! SOme formatting
   * include/hwg_extctrl.ch
-    * GRIDEX command moved here from guilib.ch
+    * GRIDEX command moved here from hwgui.ch
 
 2013-06-28 13:25 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/winapi/control.c
@@ -4813,9 +4813,9 @@
 
 2013-06-28 10:25 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * samples/hwgrun.prg
-  * include/hwgextern.ch
+  * include/hwgui_extern.ch
     * A number of REQUEST added
-  * include/guilib.ch
+  * include/hwgui.ch
   * source/winapi/hdialog.prg
   * source/winapi/hwindow.prg
     * Few features from 2.17 has been added:
@@ -4843,7 +4843,7 @@
     ! Minor fix for xHarbour compatibility
 
 2013-06-27 15:05 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  + include/hwgextern.ch
+  + include/hwgui_extern.ch
     + Header file with HwGUI classes and functions request
   - samples/hbrun.prg
   + samples/hwgrun.prg
@@ -4852,13 +4852,13 @@
 
 2013-06-27 09:55 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/winapi/hbrowse.prg
-  * include/guilib.ch
+  * include/hwgui.ch
     * ON RIGHTCLICK clause implemented
   * source/common/hcedit_w.c
     ! Few warnings fixed, reported by Itamar M. Lins Jr.
   * source/common/debugger.prg
   * source/winapi/herrsys.prg
-  * include/guilib.h
+  * include/hwgui_windows.h
     ! Some fixes for xHarbour compatibility
 
 2013-06-26 16:38 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -4911,7 +4911,7 @@
     ! small fix
 
 2013-06-26 10:45 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * STRETCH and TRANSPARENT clauses are added to @ .. BITMAP command
       as in 2.17
   * source/winapi/hanimat.prg
@@ -5010,7 +5010,7 @@
     Small fixes, thanks to Maurizio la Cecilia
 
 2013-06-24 12:25 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * DISPLAYCOUNT clause added to combobox definition ( as in 2.17 )
   * source/winapi/hcombo.prg
     * handling of DISPLAYCOUNT has been added
@@ -5047,7 +5047,7 @@
   * source/*
   * include/windows.ch
     * changed with 2.16c version
-  * include/guilib.ch
+  * include/hwgui.ch
     * changed with 2.16c version
     * version number is set to 2.18, build number with 1
   * hbxml.hbp
@@ -5132,7 +5132,7 @@
     ! Small fixes with using the ::nInitFocus
 
 2013-06-13 17:37 UTC+0200 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.ch
+  * hwgui/include/hwgui.ch
     * added workaround for some ancient Harbour and xHarbour compilers
       which may not define __PLATFORM__UNIX
     * define __GTK__ for *nix builds
@@ -5411,7 +5411,7 @@
     ! Minor fix.
 
 2013-05-28 11:53 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * HWG_BUILD added for compatibility with HwGUI 2.16c
 
 2013-05-28 11:40 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -5716,7 +5716,7 @@
     ! Warning fixed.
 
 2013-03-11 14:10 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include\guilib.ch
+  * include\hwgui.ch
     * Prefixes for functions calls changed. I forget to add it while the last commit.
 
 2013-03-07 13:10 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -6092,7 +6092,7 @@
     * Small changes to accept <?xml-stylesheet> and similar tags.
 
 2013-01-16 11:50 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * commands SAYEX, REDEFINE SAYEX, BUTTONX, REDEFINE BUTTONX, GROUPBOXEX
       was changed to SAY, REDEFINE SAY, BUTTON, REDEFINE BUTTON, GROUPBOX.
       If you will use them with clauses, which demands "ex" classes
@@ -6225,7 +6225,7 @@
   * source/hctrlex.prg
     * New class HButtonX created, which inherits from HButton.
       HButton is changed to be more simple and fast
-  * include/guilib.ch
+  * include/hwgui.ch
     * BUTTONX command added for HButtonX class
   ! install.txt
     ! Small fix
@@ -6244,7 +6244,7 @@
     * files formatted
   * source/hhyper.prg
     * It now inherits from HStaticEx
-  * include/guilib.ch
+  * include/hwgui.ch
     * SAYEX command added for HStaticEx class
   * install.txt
     * added info about hbmk2
@@ -6349,7 +6349,7 @@
   * source/hctrlex.prg
     * New clas HGroupEx created, which inherits from HGroup.
       HGroup is changed to be more simple and fast
-  * include/guilib.ch
+  * include/hwgui.ch
     * GROUPBOXEX command added for HGroupEx class
 
 2012-12-26 12:40 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -6545,7 +6545,7 @@
       ! minor fix!
 
 2012-12-06 10:25 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      * #xcommand @ <x>,<y> GET COMBOBOXEX [ <oCombo> VAR ] <vari> ;
       + [ IMAGES <aImages> ]       ;
    * source/misc.c
@@ -6637,7 +6637,7 @@
       ! fixed SetScrollPos if  lDisableVScrollPos  = .T.
 
 2012-11-06 15:55 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      * #xcommand INIT WINDOW <oWnd>
     * #xcommand INIT WINDOW <oWnd> MDICHILD [ VAR <vari> ]   ;
     * #xcommand INIT WINDOW <oWnd> CHILD
@@ -6943,7 +6943,7 @@
       shows on sf code page automatic
 
 2012-09-25 19:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      * #xcommand @ <x>,<y> SPLITTER [ <oSplit> ] ;
       ! fix in TRANSPARENT and SCROLLING
    * source/dialog.c
@@ -6972,7 +6972,7 @@
        ! minor fix in activate MDICHILD from menu
 
 2012-09-19 20:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-    * include/guilib.ch
+    * include/hwgui.ch
      * #xcommand @ <x>,<y> BUTTONEX [ <oTool> ] ;
        + [[ON OTHER MESSAGES <bOther>][ON OTHERMESSAGES <bOther>]] ;
     * source/hcontrol.prg
@@ -7223,7 +7223,7 @@
        force the pass through function CHECKFOCUS to set PROPERTY lwhen
 
 2012-08-27 12:59 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      ! fix in  <oShape> :=  HShape():New = [ <oShape> := ] HShape():New
     * #xcommand @ <x>,<y> TOOLBAR [ <oTool> ] ;
       ! changed[ BITMAPSIZE <bmpwidth> [, <bmpheight> ] ]  ;
@@ -7380,7 +7380,7 @@
       * LOCAL nPosHorz := GetScrollPos( ::handle, SB_HORZ )
 
 2012-07-02 14:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * source/guilib.ch
+   * source/hwgui.ch
      * #xcommand @ <x>,<y> GET
      + [ ON SIZE <bSize> ]        ;
    * #xcommand @ <x>,<y> SAY [ <oSay> CAPTION ] <caption> ; [ OF <oWnd> ] ;             LINK <cLink>               ;
@@ -7522,7 +7522,7 @@
     ! enabled the oninteractivechange parameter in redefine method
   * source/hdatepicker.prg
     ! parametrized the displaying of the hour
-  * include/guilib.ch
+  * include/hwgui.ch
     ! changed hcombo redefine method adding ledit and ltext clauses
 
 2012-01-23 08:40 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
@@ -7641,7 +7641,7 @@
      compares two handlers returning logical values. When only one parameter is passed, the comparison is made as GetFocus()
 
 2011-12-25 18:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      * xcommand MENU [ OF <oWnd> ] [ ID <nId> ] [ TITLE <cTitle> ]
      + [ COLOR <bcolor> ] [ BMPSIZE <nWidthBmp>, <nHeighBmp> ]
    * source/menu.prg
@@ -7821,7 +7821,7 @@
     + parameter  nMaxLength
 
 2011-10-14 08:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      #xcommand @ <x>,<y> COMBOBOX [ <oCombo> ITEMS ] <aItems> ;
     #xcommand REDEFINE COMBOBOX [ <oCombo> ITEMS ] <aItems> ;
     + CLAUSE [ MAXLENGTH <nMaxLength> ] ;
@@ -7841,7 +7841,7 @@
        designe mode and we will get error in that case.
 
 2011-10-12 10:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      #xcommand GET RADIOGROUP [ <ogr> VAR ] <vari>  ;
      + CLAUSE  [ STYLE <nStyle> ]         ;
    * source/hradio.prg
@@ -7905,7 +7905,7 @@
      compiled with FLAGS DHWG_USE_POINTER_ITEM
    * file makefile.bc
      REMOVED compiled with FLAGS DHWG_USE_POINTER_ITEM
-   * include/guilib.ch
+   * include/hwgui.ch
      * #xcommand @ <x>, <y>  SHAPE [<oShape>] [OF <oWnd>] ;
     + clause [ BACKSTYLE <nbackStyle>]  ;
    * source/hcontrol.prg
@@ -7977,7 +7977,7 @@
            return Col and Row to show tooltip
 
 2011-09-29 06:00 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      #xcommand @ <x>,<y> BROWSE [ <oBrw> ]  ;
      + [ TOOLTIP <ctoolt> ]      ;
    * include/window.ch
@@ -8067,7 +8067,7 @@
      + constant WM_PRINTCLIENT
 
 2011-09-22 09:35 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include/guilib.ch
+   * include/hwgui.ch
      * #xcommand BEGIN PAGE <cname> OF <oTab> ;
        + [ TOOLTIP <ctoolt> ]       ;
        assign a tooltip for each page of the TAB
@@ -8251,7 +8251,7 @@
 2011-09-18 23:55 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
    * source/control.c
      + HB_FUNC( TOOLBAR_SETBUTTONINFO )
-   * source/Guilib.ch
+   * source/hwgui.ch
      * #xcommand @ <x>,<y> GET CHECKBOX
        + [ VALID <bLfocus> ]        ;
        + [ ON INIT <bInit> ]        ;
@@ -8295,7 +8295,7 @@
      + METHOD SetCueBanner ( cText, lshowFoco )
        Sets the textual cue, or tip, that is displayed by the edit control to prompt the user for information.
        TRUE if the cue banner should show even when the edit control has focus; otherwise, FALSE.
-       FALSE is the default behavior—the cue banner disappears when the user clicks in the control.
+       FALSE is the default behaviorï¿½the cue banner disappears when the user clicks in the control.
      * METHOD New
        ! defines the number of characters based on the size of control when there is no picture and no maxlenght
      * METHOD onEvent
@@ -8452,7 +8452,7 @@
   * hwgui/gtk/hbrowse.prg
   * hwgui/gtk/misc.c
   * hwgui/gtk/commond.c
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
   * hwgui/source/dialog.c
   * hwgui/source/theme.c
   * hwgui/source/menu_c.c
@@ -9234,7 +9234,7 @@
     ! Fix on click when up button
 
 2010-09-08 09:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
      + clause [<lShowTime: SHOWTIME>]   in xcommand @ <x>,<y> DATEPICKER [ <oPick> ]  ;
   * source\hcontrol.prg
     + add METHOD FontBold( lTrue ) SETGET
@@ -9278,7 +9278,7 @@
 2010-09-03 09:54 UTC-0300 Sandro R. R. Freire <sandrorrfreire at yahoo.com.br>
   * source\hwindow.prg
     Bug in window MDI
-  * include\guilib.ch
+  * include\hwgui.ch
     No close command ]
 
 2010-09-03 10:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
@@ -9288,7 +9288,7 @@
    ! minor fix
 
 2010-08-31 21:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
- * include\guilib.ch
+ * include\hwgui.ch
    + clause [<lShowTime: SHOWTIME>]   in xcommand @ <x>,<y> DATEPICKER [ <oPick> ]  ;
  * include\windows.ch
    + constant #define DTS_TIMEFORMAT      9
@@ -9385,7 +9385,7 @@
     ! minor fix in onSize
 
 2010-07-04 10:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     #xcommand @ <x>,<y> TREE [ <oTree> ]   ;
     + [ <lDragDrop: DRAGDROP>]   ;
     + [ <lCheck: CHECKBOXES> ]   ;
@@ -9486,10 +9486,10 @@
 
 2010-06-06 01:25 UTC+0200 Maurizio la Cecilia <m.lacecilia@gmail.com>
   * /hwguidyn.hbp
-    ! patch made by Viktor Szakàts to correct build .dll after latest
+    ! patch made by Viktor Szakï¿½ts to correct build .dll after latest
       Harbour changes
   * source/richedit.prg
-    ! patch made by Viktor Szakàts to comply with the deletion of the
+    ! patch made by Viktor Szakï¿½ts to comply with the deletion of the
       hb_NumToHex function from the hwGUI source
   * source/hedit.prg
     ! fixed onEvent method returning wrong value when a hot key
@@ -9531,7 +9531,7 @@
      ! fixed MOUSEDOWN in SETFOCUS
 
 2010-05-27 09:10 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + #xcommand SET DISABLEBACKCOLOR <x:ON,OFF,&> [COLOR [<bColor>]] ;
           => ;
           SetDisableBackColor( <(x)> , <bColor> )
@@ -9624,7 +9624,7 @@
     ! minor fix in theme
 
 2010-04-26 09:09 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add [ VAR <vari> ] in #xcommand INIT WINDOW <oWnd> MDICHILD [ VAR <vari> ]   ;
   * source\control.c
     ! fixed SETTOOLTIPBALLOON
@@ -9709,7 +9709,7 @@
       save text in richtext format
 
 2010-04-05 11:05 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + #translate LastKey( )  =>  HWG_LASTKEY( )
     * #xcommand @ <x>,<y> OWNERBUTTON [ <oOwnBtn> ]  ;
       +  [ <lThemed: THEMED> ]     ;
@@ -9764,7 +9764,7 @@
 
 2008-03-28 16-35 UTC-0300 Sandro R. R. Freire <sandrorrfreire at yahoo.com.br>
   * source\htool.prg
-  * include\guilib.ch
+  * include\hwgui.ch
     Bug in use resource, fix by Luis Fernando Basso and Sandro Freire, error in use toolbar
 
 2010-03-16 13:10 UTC-0300 Luiz Rafael Culik <Luiz at xharbour.com.br>
@@ -9838,7 +9838,7 @@
       oSplash:release()
 
 2010-02-15 14:17 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
     ! fixed to include hbapi.h before its functions are redefined
       by macros
 
@@ -9861,7 +9861,7 @@
 
 2010-02-12 18:57 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
   * hwgui/source/freeimg.c
-    ! added missing header files which is necessary of xHarbour and
+    ! added hwgui_missing.header files which is necessary of xHarbour and
       old Harbour versions
 
 2010-02-12 14:13 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
@@ -9925,7 +9925,7 @@
     ! fixed DeleteChar if complex pictures and Type = "N"
 
 2010-02-10 21:35 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + CLAUSULA ON INIT in @ <x>,<y> GET DATEPICKER
   * samples\get\testget3.prg
     ! fixed sample
@@ -10195,7 +10195,7 @@
     + DATA bSelect
 
 2010-01-26 09:08 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
     * added few definitions for old Harbour and xHarbour versions
 
   * hwgui/source/animat.c
@@ -10214,7 +10214,7 @@
       with older Harbour and xHarbour versions
 
 2010-01-25 19:59 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
     ! added hack to compile with older xHarbour versions
 
   * hwgui/source/dialog.c
@@ -10240,7 +10240,7 @@
       for the information.
 
 2010-01-25 00:15 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     #xcommand @ <x>,<y> BROWSE [ <oBrw> ]  ;
      ! [ ON GETFOCUS <bGfocus> ][WHEN <bGfocus> ]   ;
      ! [ ON LOSTFOCUS <bLfocus> ][ VALID <bLfocus> ] ;
@@ -10629,7 +10629,7 @@
     ! removed __RDDGETTEMPALIAS()
 
 2010-01-20 00:38 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
   + hwgui/include/hwingui.h
     ! divided header file into two parts. hwingui.h contains MS-Windows
       related files which are not used by GTK hwgui builds.
@@ -10645,9 +10645,9 @@
   * hwgui/source/richedit.c
   * hwgui/source/theme.c
   * hwgui/source/window.c
-    * use hwingui.h instead of guilib.h
+    * use hwingui.h instead of hwgui_windows.h
 
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
   * hwgui/source/misc.c
     * use HB_PATH_MAX instead of _POSIX_PATH_MAX
 
@@ -10658,13 +10658,13 @@
     % removed dummy #pragma {begin,env}dump
 
 2010-01-19 16:45 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
   * hwgui/source/window.c
     + added functions and macros which emulates for xHarbour and older
       Harbour version new Harbour string API with automatic UNICODE
       conversions
 
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
   * hwgui/source/control.c
   * hwgui/source/dialog.c
   * hwgui/source/drawtext.c
@@ -10786,7 +10786,7 @@
    * source/control.c
      ! add extern "C" attrib to function proto-type GetAncestor
 
-   * include/guilib.h
+   * include/hwgui_windows.h
      - remove definition of HB_NO_DEFAULT_API_MACROS and HB_NO_DEFAULT_STACK_MACROS
 
 2009-12-17 23:52 UTC+0100 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
@@ -10899,11 +10899,11 @@
     ! fixed explicit GetDefaultPrinter() declaration in Digital Mars builds
 
 2009-12-15 14:15 UTC+0700 Andi Jahja <xharbour/AT/telkom/NET/ID>
-  * include/guilib.h
+  * include/hwgui_windows.h
     ! __MSC6__ -> _MSC_VER
     + add some missing typedef for MSVC6 and OpenWatcom
 
-  * include/missing.h
+  * include/hwgui_missing.h
     ! pacify warnings for MSVC
 
   * source/cxshade.c
@@ -11198,7 +11198,7 @@
     ! fixed windowsmanifest
 
 2009-11-15 18:45 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + new Clause in #xcommand @ <x>,<y> BROWSE [ <oBrw> ]  ;
       [ ON RIGHTCLICK <bRClick> ];
     + new Clauses in #xcommand ADD COLUMN <block> TO <oBrw> ;
@@ -11234,7 +11234,7 @@
       ! minor fix im METHOD PAINT, REFRESH, BUTTONDOWN
 
 2009-11-15 16:45 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + NEW clauses in #xcommand BEGIN PAGE <cname> OF <oTab> ;
             [ <enable: DISABLED> ]     ;
             [ COLOR <tcolor>]          ;
@@ -11504,7 +11504,7 @@
     ! minor fix
 
 2009-09-22 11:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add new clause in DIALOG and MDICHILD [ <lnoClosable: NOCLOSABLE> ]  ;
       disable MENU ALT+F4 IN DIALOG / CTRL+F4 IN MDICHILD and BUTTON close in WINDOW
     + add NEW COMMAND for RADIOGROUP
@@ -11636,7 +11636,7 @@
     ! METHOD addName remove reference in names with "->"
 
 2009-08-23 12:21 UTC+0200 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
     + added dummy HB_TCHAR_* macros definition for old [x]Harbour versions
 
 2009-08-20 11:16 UTC+0200 Przemyslaw Czerpak (druzus/at/priv.onet.pl)
@@ -11654,7 +11654,7 @@
     * removed unused variables
     * pacified warnings
 
-  * hwgui/include/guilib.h
+  * hwgui/include/hwgui_windows.h
     ! moved some xHarbour header files macros before #include "hb*.h"
 
   * hwgui/source/commond.c
@@ -11714,7 +11714,7 @@
     ! fix mode check in lostfocus event
 
 2009-08-11 03:15 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add CLAUSE CLIPPER in INIT WINDOW behavior equal to DIALOG
     + add CLAUSE MODAL in ACTIVATE WINDOW to emulate the same form mdichild DIALOG
   * include\windows.ch
@@ -11792,7 +11792,7 @@
     - moved constans to windows.ch
 
 2009-07-29 11:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     @ <x>,<y> TOOLBAR [ <oTool> ] added CLAUSE   [ FONT <oFont> ]           ;
     STYLE now can be TBSTYLE_FLAT text down picture or TBSTYLE_LIST text right picture
   * source\control.c
@@ -11835,7 +11835,7 @@
        * fixed CONSTANT  #define WM_THEMECHANGED     0x031A
 
 2009-07-08 22:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add new clauses
     * @ <x>,<y> BUTTONEX [ <oBut> CAPTION ] <caption> ;
        [ <lnoTheme: NOTHEMES> ]   ;
@@ -11921,7 +11921,7 @@
   * source\wprint.c
     source\hprinter.prg
     source\hwinprn.prg
-    include\guilib.ch
+    include\hwgui.ch
     * Addes support to use specify forn type and number of copies
 
 2009-07-02 19:35 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
@@ -12013,7 +12013,7 @@
   * source/procmisc/blowfish.c
   * source/qhtm/hwg_qhtm.c
   * source/xml/xmlparse.c
-  * include/guilib.h
+  * include/hwgui_windows.h
     * Some changes to make it compatible with the latest Harbour code.
     * Formatting.
 
@@ -12189,7 +12189,7 @@
     ! minor update on libs
 
 2009-05-01 18:00 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add news clauses to LINE command
              [ HEIGHT <nHeight> ]      ;
              [ COLOR <color> ]         ;
@@ -12398,7 +12398,7 @@
     + add suport clause DS_CENTER in MDICHILD
 
 2009-03-20 04:13 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + new CLAUSES IN #xcommand GET RADIOGROUP [ <ogr> VAR ] <vari>  ;
              [ ON INIT <bInit> ]        ;
              [ ON CLICK <bClick> ]      ;
@@ -12460,11 +12460,11 @@
     ! add parameter Self in eval( bactivate , Self )
 
 2009-03-16 17:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-* include\guilib.ch
+* include\hwgui.ch
   + COMBOBOXEX  new clauses [ DISPLAYCOUNT <nDisplay>], [ ITEMHEIGHT <nhItem>    ],[ WIDTHCOLUMN <ncWidth>  ] ;
 
 2009-03-16 16:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add new clause in @ <x>,<y> TAB [ <oTab> ...
        [ ON RIGHTCLICK <bRClick> ];
   * include\windows.ch
@@ -12504,7 +12504,7 @@
     + add new method in CLASS HSTATUS -    METHOD SetIconPanel(nPart, cicon, nWidth, nHeight )
 
 2009-03-09 09:08 UTC-0300 Marcos Antonio Gambeta <marcosgambeta at gmail dot com>
-  * include\guilib.ch
+  * include\hwgui.ch
     Fix to compile with last xHarbour (cvs):
 
     #ifdef __XHARBOUR__
@@ -12606,7 +12606,7 @@
     ! fix zorder object in MDICHILD
 
 2009-02-21 15:40 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include:guilib.ch
+  * include:hwgui.ch
     * fix in REDEFINE COMBOBOX
     + add new clause in MDICHILD - OF PARENT set the parent for use in DESIGNER IN the preview mode
   * source:hbrowse.prg
@@ -12659,7 +12659,7 @@
     + add property nScrollBars, lack in last update
 
 2009-02-16 15:10 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     ! fix in COMBOBOX  clauses [ WIDTHCOLUMN <ncWidth>  ] ==>> COLUMNWIDTH <ncWidth>;
 
 2009-02-16 07:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
@@ -12672,7 +12672,7 @@
     ! fix in new parameters nDisplay, nhItem, ncWidth in METHOD NEW
 
 2009-02-15 17:10 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + COMBOBOX  new clauses [ DISPLAYCOUNT <nDisplay>], [ ITEMHEIGHT <nhItem>    ],[ WIDTHCOLUMN <ncWidth>  ] ;
       DISPLAYCOUNT Specifies the maximum number of items displayed in the list portion of the ComboBox
       ITEMHEIGHT height of ITEM in COMBOBOX
@@ -12727,7 +12727,7 @@
     + implemented focus navigation in WINDOW so similar to DIALOG
 
 2009-02-15 1:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add clause ON MENU in INIT WINDOW MDI for execute code block in MENU MDI
     + add clause CHILD in INIT WINDOW MDICHILD TO maximize in CLIENT AREA
     + add clause CENTER in ACTIVATE WINDOW ...
@@ -12787,13 +12787,13 @@
 2009-01-21 02:50 UTC-0300 Marcos Antonio Gambeta <marcosgambeta at gmail dot com>
   * include\freeimage.h
   * include\gtk.ch
-  * include\guilib.ch
-  * include\guilib.h
+  * include\hwgui.ch
+  * include\hwgui_windows.h
   * include\hwg_qhtm.ch
   * include\hwgui.ch
   * include\hxml.ch
-  * include\missing.h
-  * include\repmain.h
+  * include\hwgui_missing.h
+  * include\hwgui_report.h
   * include\richtext.ch
   * include\uxtheme.h
   * include\windows.ch
@@ -12811,13 +12811,13 @@
         according to the size of the first image added to the list
 
 2009-01-12 16:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     * minor fix in object RECT
   * source\htool.prg
     ! minor fix
 
 2009-01-12 13:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add new clauses in command TOOLBAR
        [ BUTTONWIDTH <btnwidth>    ]  ; [ ON INIT <bInit> ];
          [<lTransp: TRANSPARENT>]    ; [<lVertical: VERTICAL>]     ;
@@ -12836,7 +12836,7 @@
        need to work properly in WINDOW and DIALOG in DESIGNER removed the method INIT
 
 2009-01-11 22:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add new clauses in LISTBOX
       ON KEYDOWN, ON DBLCLICK, ON OTHERMESSAGES
   * include\windows.ch
@@ -12862,7 +12862,7 @@
     * minor fix in METHOD REFRESH CLASS HSayBmp
 
 2008-12-29 12:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     ! fix in clauses BROWSE
   * source\hanimat.prg
     + add METHOD END
@@ -12872,7 +12872,7 @@
     ! minor fix in style
 
 2008-12-26 13:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     ! possibility of two ways for the clause ON OTHER, to facilitate implementation of the code generation and
       in the DESIGNER
       [[ON OTHER MESSAGES <bOther>][ON OTHERMESSAGES <bOther>]]
@@ -12969,7 +12969,7 @@
    Thanks Francesco Perillo for the ideia of the [ <oObject>:name := <(oObject)> ]
 
 2008-11-29 00:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add in #xcommand attrib to name property in all objects basead in HCONTROL
     [ <oObject>:name := <(oObject)> ]
   * source\hedit.prg
@@ -12988,7 +12988,7 @@
     Used new function WAITRUN
 
 2008-11-26 19:05 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add NEW CLAUSES IN PROGRESSBAR [ <lVert: VERTICAL>] ; [ ANIMATION <nAnimat> ]             ;
   * include\windows.ch
     + add news constants to progressbar
@@ -13043,7 +13043,7 @@
     * minor fix in colorfocus, because color border of editbox in changed color
 
 2008-11-17 10:40 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     * add new clause in #xcommand SET COLORFOCUS <x:ON,OFF,&> [COLOR [<tColor>],[<bColor>]] [< lFixed : NOFIXED >];;
   * source\hedit.prg
     + add new parameters in SetColorinFocus( lDef, tcolor,bcolor , lFixed )
@@ -13064,14 +13064,14 @@
     * fix in parameters of HWG_ACTIVATECHILDWINDOW
 
 2008-11-16 01:19 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     * fix in #xcommand SET COLORFOCUS <x:ON,OFF,&> [COLOR [<tColor>],[<bColor>]];
   * source\hedit.prg
     + DATA tcolorold
     * fix in CTRL+V
 
 2008-11-15 21:01 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + Add #xcommand SET COLORFOCUS TO [<tColor>],[<bColor>];
   * source\hedit.prg
     + add two parameters in SetColorinFocus( lDef, tcolor,bcolor )
@@ -13084,7 +13084,7 @@
     * fix the entry of data into numeric fields
 
 2008-11-14 19:15 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add in #xcommand @ <x>,<y> BUTTONEX [ <oBut> CAPTION ] <caption> ;
         [ PICTUREMARGIN <nMargin> ];
   * source\hcontrol.prg
@@ -13127,7 +13127,7 @@
       SW_HIDE 0, SW_SHOWNORMAL 1, SW_SHOWMINIMIZED, SW_SHOWMAXIMIZED    3
 
 2008-11-11 02:31 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + add ON REFRESH in WINDOW and DIALOG
     + add in @ <x>,<y> BITMAP
             [ STRETCH <nStretch>] 0-Stretch, 1-Isometric, 2-Clip
@@ -13164,14 +13164,14 @@
      * fix in DLGCOMMAND to BUTTON IDOK
 
 2008-11-01 19:05 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include\guilib.ch
+   * include\hwgui.ch
      * fix clause in ACTIVATE DIALOG
    * source\hdialog.prg
      * add nInitShow to start STATE WINDOW in activate
      * fixed SHOW in ACTIVATE
 
 2008-11-01 12:30 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-   * include\guilib.ch
+   * include\hwgui.ch
      + add clause  [ SHOW <nShow>] in ACTIVATE DIALOG <oDlg>
        nShow = 0 Normal(Default), 1 or WS_MINIMIZE -Minimized, 2 or WS_MAXIMIZE -Maximized
      + add clauses [ ON INIT, ON SIZE,ON PAINT ] in @ <x>,<y> PROGRESSBAR
@@ -13248,7 +13248,7 @@
 2008-10-27 23:04 UTC+0100 Francesco Perillo < fperillo at gmail dot com >
   * source\misc.prg
     * Added GetSystemMetrics calls
-  * include\guilib.ch
+  * include\hwgui.ch
     * Added ON ACTIVATE bInit to ACTIVATE DIALOG
 
 2008-10-27 00:46 UTC+0100 Francesco Perillo < fperillo at gmail dot com >
@@ -13263,7 +13263,7 @@
       * avoided passing self in block calling method
 
 2008-10-26 00:50 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-    * include\guilib.ch
+    * include\hwgui.ch
       + add clause [ ON OTHER MESSAGES <bOther>] in RICHEDIT , EDITBOX, @ GET ...
     * source\hcontrol.prg
       * fix METHOD Auto_Size( cValue ), remove parameter nAlign
@@ -13372,7 +13372,7 @@
   * makefile.wc
     * removed registry.c from library
     + added winreg.c to library where lacking
-  * include\guilib.ch
+  * include\hwgui.ch
     * restored lOEM parameter in @ .... SAY ICON command destroyed by a
       not merged previous commit (please, pay attention to update from
       cvs repository and be sure to sync changes before commit)
@@ -13394,7 +13394,7 @@
       or same functions
 
 2008-10-15 23:57 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     * fix clause  [ ON OTHER MESSAGES <bOther>] in command  @ <x>,<y>  [ <oSay> CAPTION ] <caption> ;
 
 2008-10-15 23:27 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
@@ -13403,7 +13403,7 @@
           METHOD NEW CLASS HSayBmp,HSayImage
 
 2008-10-15 15:30 UTC+0200 Alex Strickland <sscc @ mweb . co . za>
-  * include\guilib.ch
+  * include\hwgui.ch
     * restored CLASS clause in BROWSE command to allow class name which
       inherits from HBrowse() to be used. Please contact me if there is
       a problem with it. I believe this could be nice to extend to all commands
@@ -13432,7 +13432,7 @@
     * Changed OnDlgInit to OnDlgInit() in code block.
 
 2008-10-15 03:44 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include\guilib.ch
+  * include\hwgui.ch
     + added ON OTHER MESSAGES clause for the SAY
         + added ON CLICK and ON DBLCLICK clause for the SAY, BITMAP, ICON
         + added ON GETFOCUS clause for the BUTTON, BUTTONEX, RADIOBUTTON
@@ -13496,7 +13496,7 @@
 2008-10-10 23:10 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   * changelog
     * updated notes to previous commit adding more detailed info
-  * include\guilib.ch
+  * include\hwgui.ch
     + added WIDTH parameter to panel redefine command
   * samples\animation\tstAnimation.prg
     * purged unneeded code
@@ -13509,7 +13509,7 @@
       the resize according to the parent size
 
 2008-10-09 23:28 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
-  * include/guilib.ch
+  * include/hwgui.ch
     + added the defines for the new anchor property (see below)
   * source/hcontrol.prg
     + added the anchor property storing a bitmapped value allowing to fine
@@ -13582,7 +13582,7 @@
      ! changes for allow correct usage when  HWG_USE_POINTER_ITEM is used on hwgui compilation
   * source/hgridex.prg
      ! changes to correctly show colums colors
-  * include/guilib.ch
+  * include/hwgui.ch
     ! fixed addrowex to ogrid command
   * samples/grid/grid_6.prg
     ! minor change
@@ -13590,7 +13590,7 @@
     ! minor change
 
 2008-10-07 11:03 UTC-0300 Sandro R. R. Freire <sandrorrfreire at yahoo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     New version 2.17
 
 2008-10-07 09:00 UTC-0300 Luiz Rafael Culik <Luiz at xharbour.com.br>
@@ -13660,7 +13660,7 @@
     * purged unused variable
 
 2008-09-25 18:00 UTC-0300 Luiz Rafael Culik <Luiz at xharbour.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! minor fix to addrowex to ogrid command
   * source/hgridex.prg
     ! minor change to addrow
@@ -13886,7 +13886,7 @@
     * purged some unused variable and fixed some compiler warning
 
 2008-09-08 18:50 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
-  * include\guilib.ch
+  * include\hwgui.ch
     + added the COLOR specification in INIT DIALOG command
   * source\hcontrol.prg
     * fixed transparent background repaint for static controls
@@ -13945,7 +13945,7 @@
 2008-09-01 21:00 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   This commit contains all the changes made by Luis Fernando Basso
   pending from August month
-  * include\guilib.ch
+  * include\hwgui.ch
     * added the ON GETFOCUS/WHEN and ON LOSTFOCUS/VALID clause
       and the COLOR and BACKCOLOR clause for the
       @ .... [GET] LISTBOX commands
@@ -14047,7 +14047,7 @@
       is used in preference to headColor in HBrowse class.
 
 2008-08-06 13:40 UTC+0200 Alex Strickland <sscc @ mweb . co . za>
-  * include\guilib.ch
+  * include\hwgui.ch
     * Added OEM clause to  <x>,<y> ICON command.
   * source\drawwidg.prg
     * Added lOEM parameter to AddResource method of HIcon, and default
@@ -14127,7 +14127,7 @@
 2008-07-25 02:30 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   as usual most of this changes was made by Luis Ferdinando Basso
   and/or concerted with him
-  * contrib\menus\guilib.ch
+  * contrib\menus\hwgui.ch
     + added ENTER flag to CHECKBOX commands. This flag allows to
       change of status of the check via the enter key press.
     + added the commands for the new classes hShape and hContainer
@@ -14185,12 +14185,12 @@
     * added missed parameter in create methods
 
 2008-07-17 21:45 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
-  * contrib\menus\guilib.ch
+  * contrib\menus\hwgui.ch
   * utils\designer\inspect.prg
   * utils\designer\resource\f_hwgprg.prg
     * changed all occurences of NO BORDER to NOBORDER as is standard
       for all controls and better for designer
-  * include\guilib.ch
+  * include\hwgui.ch
     + a contribution of Luis Fernando Basso
       added the commands for the new classes hShape and hContainer
     * changed all occurences of NO BORDER to NOBORDER as is standard
@@ -14358,7 +14358,7 @@
           and the pointer will not change (bug tracker #0015)
 
 2008-07-05 18:55 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
-  * include\missing.h
+  * include\hwgui_missing.h
     + added PAINTSTRUCT, *PPAINTSTRUCT, *NPPAINTSTRUCT, *LPPAINTSTRUCT
       typedefs
   * source\draw.c
@@ -14545,7 +14545,7 @@
     + added HWG_SETWINDOWEXSTYLE and HWG_GETWINDOWEXSTYLE wrappers
 
 2008-06-21 03:15 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
-  * include\guilib.ch
+  * include\hwgui.ch
     * fixed the HB_SYMBOL_UNUSED macro
 
 2008-06-21 01:35 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
@@ -14565,13 +14565,13 @@
   * include\windows.ch
     * moved here the constants for hAnimation class
   + samples\bldhrb.bat
-    + batch file from Viktor Szakàts for samples Harbour build
+    + batch file from Viktor Szakï¿½ts for samples Harbour build
   * all the files below are changed to obtain 2 things:
     . compile without warnings in both Harbour and xHarbour with
       /W2 /ES2 flags. I've tested many samples compiled in Harbour
       and now all seems working fine, but you're invited to make
       same thing and to signal or correct some mismatch.
-      Thanks to Viktor Szakàts for his precious suggestions and
+      Thanks to Viktor Szakï¿½ts for his precious suggestions and
       very effective and gentle collaboration in restoring Harbour
       HwGUI compatibility.
     . prepare the code for a deeper revisitation, hoping to release
@@ -14579,7 +14579,7 @@
       included, but this would be a temporary stage of code and this
       will be rearranged as soon as possible.
     Now follows the list of changed files:
-  * include\guilib.ch
+  * include\hwgui.ch
     + added th HB_SYMBOL_UNUSED dummy macro for xHarbour compilation
   * source\guimain.prg
   * source\hbrowse.prg
@@ -14674,7 +14674,7 @@
   * source/drawwidg.prg
     - removed some unused local causing warnings in Harbour compilation
   * source/pager.c
-    + added include file for Harbour compatibility (thanks to Viktor Szakáts)
+    + added include file for Harbour compatibility (thanks to Viktor Szakï¿½ts)
 
 2008-06-16 19:45 UTC+0100 Giuseppe Mastrangelo  <giuseppe-mastrangelo@tiscali.it>
   * source/hbrowse.prg
@@ -14750,7 +14750,7 @@
        gets
 
 2008-05-27 09:10 UTC-0300 Luiz Rafael Culik <Luiz at xharbour.com.br>
-  * include/guilib.h
+  * include/hwgui_windows.h
      ! added  HB_GETPTRHANDLE () macro
   * source/*.c
      ! change handle of hBitmap/hicon/hbrush/hfont/hdc/hkey/hwnd/handle (insted os using hb_parnl() use the HB_PARHANDLE() macro
@@ -14849,7 +14849,7 @@
 2008-05-18 23:40 UTC-0300 Luiz Rafael Culik <Luiz at xharbour.com.br>
    * source/hdatepic.prg
      ! added redefine method
-   * include/guilib.ch
+   * include/hwgui.ch
      ! added redefine datepicker command
 
 2008-05-15 23:15 UTC+0100 Francesco Perillo (fperillo at gmail dot com)
@@ -14928,7 +14928,7 @@
     for buttonex functions that use all paramaters that was commented
 
 2008-04-14 10:10 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     * changed command to "ADDROWEX TO GRID" and added multiline add
       (change suggested by seohic)
   * source/hedit.prg
@@ -15014,7 +15014,7 @@
           messages?)
         + added the use of avi files from resource files (also from external
       files as system dll, exe, etc.)
-  * include/guilib.ch
+  * include/hwgui.ch
     + added to the @ ... ANIMATION command the parameter for passing
           the resource ID of the avi file
   * samples/tstAnimation.prg
@@ -15046,7 +15046,7 @@
 2008-03-21 19:40 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   * source/hbrowse.prg
     ! added property ::alias previously omitted
-          thanks to Sèrgio Kondo who signaled the needed changes
+          thanks to Sï¿½rgio Kondo who signaled the needed changes
 
 2008-03-21 13:20 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   * source/hbrowse.prg
@@ -15110,7 +15110,7 @@
     + added bChange codeblock management for ON CHANGE behaviour
         * now the bOther skips the usual message processing when the return value
           is other than -1, avoiding twice management of the overloaded messages
-  * include/guilib.ch
+  * include/hwgui.ch
     + added ON CHANGE in @ ... EDITBOX, @ ... GET, REDEFINE GET commands
   * source/hipedit.prg
     * remmed active tracelog
@@ -15337,7 +15337,7 @@
 2008-01-02 09:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
   * source/hedit.prg
     Added support for bkeydown on constructors
-  * include/guilib.ch
+  * include/hwgui.ch
     Added ON KEYDOWN to @get and @editbox as also to redefine commands for GET and EDITBOX
 
 2008-01-01 17:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
@@ -15423,7 +15423,7 @@
   * utils\designer\designer.prg
   * utils\designer\hformgen.prg
     Fix bug in designer to create files in format PRG
-    Thanks to João Carlos Rosseto
+    Thanks to Joï¿½o Carlos Rosseto
 
 2007-11-30 16:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
   * source/draw.c
@@ -15553,7 +15553,7 @@
    * source/shellapi.c
    * source/hmonthc.prg
    * source/qhtm/hwg_qhtm.c
-   * include/missing.h
+   * include/hwgui_missing.h
      ! fix compilation for DMC
 
 2007-11-23 11.50 UTC+0700 Andi Jahja <harbour/AT/cbn/net/id>
@@ -15577,7 +15577,7 @@
      ! formatting typedef enums (GCC/WC warnings)
 
 2007-11-23 06.40 UTC+0700 Andi Jahja <harbour/AT/cbn/net/id>
-   + include/missing.h
+   + include/hwgui_missing.h
      ! missing declaration for Digital Mars and Open Watcom
 
    * source/control.c
@@ -15587,7 +15587,7 @@
    * source/hmonthc.c
    * source/c_ipaddr.c
    * source/pager.c
-     ! include "missing.h"
+     ! include "hwgui_missing.h"
 
    * source/hbrowse.prg
    * source/hedit.prg
@@ -15784,7 +15784,7 @@
       ! purged a lot of unused local variables
 
 2007-11-03 18.00 UTC+0700 Andi Jahja <harbour/AT/cbn/net/id>
-    * include/guilib.ch
+    * include/hwgui.ch
     * source/hedit.prg
       + Add one parameter in METHOD REDEFINE to directly re-initialize lMultiLine
       + Do not allow Edit/Delete REDEFINED GETs when READONLY
@@ -15823,7 +15823,7 @@
       + added SdadeButton to designer
 
 2007-11-09 00:15 UTC+0100 Maurizio la Cecilia <maurizio_lacecilia@yahoo.it>
-    * include/guilib.ch
+    * include/hwgui.ch
       ! reverted the bValid and bWhen parameters in the @... get combobox
         command to the non blockified version as the other controls
 
@@ -15839,7 +15839,7 @@
     ! Add Print runtime HWinPrn, HPrinter, PrintDOS for designer.exe
 
 2007-09-23 19.00 UTC+0700 Andi Jahja <harbour/AT/cbn/net/id>
-   * include/guilib.h
+   * include/hwgui_windows.h
      ! fix for MSVC6, compiler flags has to have ___MSC6__ defined.
    * source/grid.c
      ! fix compile error with MSVC6
@@ -15849,7 +15849,7 @@
 2007-09-20 10:10 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
     * include/windows.ch
       ! added new defines
-    * include/guilib.ch
+    * include/hwgui.ch
       ! minor fix
     * source/window.c
       source/misc.c
@@ -15906,7 +15906,7 @@
       ! Fix on deleterow() method
 
 2007-08-20 13:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-    * include/guilib.ch
+    * include/hwgui.ch
       ! new commands for checkcombo
     * include/windows.ch
       ! new defines
@@ -15929,7 +15929,7 @@
 2007-08-17 13:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
     * source\theme.c
       ! minor fix for mingw
-    * include\guilib.ch
+    * include\hwgui.ch
       ! fix for addrowex command
 
 2007-08-16 08:30 UTC+0200 Alexey Myronenko <atzct@obukhov.kiev.ua>
@@ -15965,7 +15965,7 @@
      ! handling of listview sort messages
 
 2007-07-05 11:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-   * include/guilib.ch
+   * include/hwgui.ch
      ! added @ buttonex and redefine buttonex commands
    * include/windows.ch
      ! added new defines
@@ -15990,7 +15990,7 @@
        Thanks to Giuseppe Mastrangelo who signaled this patch.
 
 2007-06-30 11:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-   * include/guilib.ch
+   * include/hwgui.ch
      ! fixed Addband command (reported by paulo flecha)
    * include/windows.ch
      !added new constants
@@ -16002,7 +16002,7 @@
      * commented out the paint message in Up() method because when a system
        dialog overlaps the button, this disappears
    + source/hownbtn.prg
-   + include/guilib.ch
+   + include/hwgui.ch
      + added the property CHECK to handle the press status of the button
        (with this setting the button works like the "Bold"  button in Word
         toolbar, like a checkbox but with a button appearance)
@@ -16070,7 +16070,7 @@
    + Suggestions. Add suggestion
 
 2007-05-24 10:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-   *include/guilib.ch
+   *include/hwgui.ch
      ! added @ Get listbox command
 
 2007-05-23 13:31 UTC+0700  Richard Roesnadi <roesnadi8@yahoo.co.id>
@@ -16180,7 +16180,7 @@
  * small fix makedll.bat check exist directory obj\dll
 
 2007-04-12 16:25 UTC+0100 Maurizio la Cecilia <maurizio_lacecilia@yahoo.it>
-    * include/guilib.ch - changed in redefine method of hedit the property
+    * include/hwgui.ch - changed in redefine method of hedit the property
                           name lMaxLenght to lMaxLength
                         - changed the property name lMaxLength to nMaxLenght
                           (property type is numeric)
@@ -16263,7 +16263,7 @@
       onEnter to onClick
 
 2007-03-28 18:37 UTC+0100 Maurizio la Cecilia <maurizio_lacecilia@yahoo.it>
-    * fixed include/guilib.ch (case mismatch in bHeadClick parameter causing
+    * fixed include/hwgui.ch (case mismatch in bHeadClick parameter causing
       error at compiling time)
 
 2007-03-28  4:22 UTC+0700 Richard Roesnadi
@@ -16276,7 +16276,7 @@
 2007-03-27  9:15 UTC+0700 Richard Roesnadi
 *fixed source/hBrowse Bugs editable
       +HColumn new(... for bHeadClick Syntax
- include/guilib.ch
+ include/hwgui.ch
    +ADD CLAUSE BHEADCLICK AT ADD COLUMN SYNTAX
 * samples/colrbloc.prg  minor fix PVALUE for xharbour
 
@@ -16320,7 +16320,7 @@
    * source/hbrowse.prg
      * changes to allow zebra like browse
      * changes to allow descend and seek last on browse
-   * include/guilib.ch
+   * include/hwgui.ch
      * changes to browse command to allow change
    * samples/colrbloc.prg
      * updated to demostrate new changes
@@ -16335,7 +16335,7 @@
      ! source for rebar control
    ! source/control.c
      ! updated to add code for rebar control
-   ! include/guilib.ch
+   ! include/hwgui.ch
      ! added commands for rebar and pager control
    ! include/windows.ch
      ! added new contants
@@ -16374,7 +16374,7 @@
    + image/ok.ico
    + image/cancel.ico
      + added icon files for samples/shadebtn.prg
-   * include/guilib.ch
+   * include/hwgui.ch
      * Added @ ... SHADEBUTTON command and few constants for it
    + source/cxshade.c
    + source/hshbtn.prg
@@ -16454,7 +16454,7 @@
      ! Few warnings fixed
 
 2006-11-16 11:30 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-   * include/guilib.ch
+   * include/hwgui.ch
      ! Added command to redefine an Gridex from resource
    * source/hgridex.prg
      ! Added code for redefine Gridex control from resource
@@ -16485,7 +16485,7 @@
 2006-11-14 11:30 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
    * include/windows.ch
      + new defines
-   * include/guilib.ch
+   * include/hwgui.ch
      ! added code to redefine statusbar and  tabs page controls from resources
    * source/hcontrol.prg
      ! added code to redefine status bar from resource
@@ -16510,7 +16510,7 @@
      + code to use dialogs inside resource dialogs  tabs
    * include/windows.ch
      + some new defines
-   * include/guilib.ch
+   * include/hwgui.ch
      + command for redefine tab control
    + samples/tab.prg
      samples/tab.rc
@@ -16538,7 +16538,7 @@
 
 2006-10-31 10-15 UTC-0300 Sandro R. R. Freire <sandrorrfreire at yahoo.com.br>
    * source\hbrowse.prg
-   * include\guilib.ch
+   * include\hwgui.ch
      Added New implementation by using filter condition in hbrowse
    + samples\browsefilter\browsefilter.prg
    + samples\browsefilter\mesas.dbf
@@ -16637,7 +16637,7 @@
     + Added info about the release 2.16
   * install.txt
     * Some changes
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to 2.16
 
 2006-09-14 12:57 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -16761,7 +16761,7 @@
   * utils\hwreport\bldexam.bat
   * utils\hwreport\bldhwrep.bat
     * make and bat files are cleaned and fixed
-  * include\guilib.ch
+  * include\hwgui.ch
     ! REDEFINE SAY fixed
   * utils\dbc\dbchw.prg
   * utils\dbc\query.prg
@@ -16827,7 +16827,7 @@
      ! Small fix
 
 2006-08-31 16:50 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * MULTILESECT clause has been added to the @ ... BROWSE command
   * source/hbrowse.prg
     * Multiselect feature has been added - implemented by Sauli Bueno
@@ -16843,7 +16843,7 @@
     ! Some fixes
   * source/hgridex.prg
     ! Small fix
-  * include/guilib.ch
+  * include/hwgui.ch
     * ADD STATUS changed: PARTS is not mandatory clause now
   * source/hcontrol.prg
     * Changes in HStatus class for the PARTS clause could be absent.
@@ -16871,7 +16871,7 @@
     ! added an new function
   * include/windows.ch
     ! added news defines
-  * include/guilib.ch
+  * include/hwgui.ch
     ! added commands for new grid
   + source/grid_6.prg
     source/grid_6.rc
@@ -17016,7 +17016,7 @@
     * 'and','or' has been added to the list of highlighted keywords
 
 2006-07-31 10:00 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! added bitmap clause to @ grid and to add column to grid
   * source/grid.c
     source/hgrid.prg
@@ -17035,7 +17035,7 @@
       returns it, if found, instead of reading the form from <fname>.
 
 2006-07-21 18:20 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! new command
   * source/control.c
     ! Minor update on styles for  CREATETOOLBAR  function
@@ -17052,7 +17052,7 @@
   * source/hbrowse.prg
     * :nPaintCol, : nPaintRow class variables are replaced with local variables
     * HColumn():New() - oBmp parameter has been removed
-  * include/guilib.ch
+  * include/hwgui.ch
     * BITMAP clause has been removed from ADD COLUMN command definition.
 
 2006-07-18 16:50 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -17082,7 +17082,7 @@
     ! samples to demostrate toolbar creation
 
 2006-07-15 11:10 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! update toolbars command to include tooltip clause
   * source/htool.prg
     ! Added code to recieve  notification from toolbars buttons with menu
@@ -17092,7 +17092,7 @@
 2006-07-14 08:20 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
   * include/windows.ch
     ! added some new defined for upcoming changes to toolbar/rebar
-  * include/guilib.ch
+  * include/hwgui.ch
     ! update toolbars command to include tooltip clause
   * source/htool.prg
     ! minor formating and changes for proper toolbar tools tips to be show
@@ -17134,7 +17134,7 @@
     !added htool.prg to compile list
   * include/windows.ch
     ! added defines for toolbars
-  * include/guilib.ch
+  * include/hwgui.ch
     ! added commands for toolbar
  * source/control.c
     ! added code to add toolbuttons
@@ -17188,7 +17188,7 @@
     + Added info about the release 2.15.
 
 2006-06-07 11:35 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is changed to 2.15
   CVS has been tagged to R2_15
 
@@ -17198,7 +17198,7 @@
       console window under Win98
 
 2006-05-11 11:30 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Added [ ON CLOSEQUERY <bCloseQuery> ];  to init window command, this will execute , if defined when the use click on the X button on window title
   * source/hwindow.prg
     ! Added code to support  ON CLOSEQUERY <bCloseQuery>
@@ -17281,7 +17281,7 @@
   * source/video.prg
   * source/hdc.prg
     * updated due to [x]Harbour changes
-  * include/guilib.h
+  * include/hwgui_windows.h
     * HARBOUR_2005 must be set to compile HwGUI with old [x]Harbour versions
   * samples/a.prg
     ! Small fixes
@@ -17364,7 +17364,7 @@
 2006-01-09 00:20 UTC-0300 Luiz Rafael Culik <culikr at brturbo.com.br>
   * source/hwindow.prg
     ! added bactivte variable to activate method mdi/mdi child window
-  * include/guilib.ch
+  * include/hwgui.ch
     ! added on Activate clause to activate window command
   * makefile.bc
     ! updated to generate an mt version of hwgui.lib
@@ -17391,10 +17391,10 @@
 
 2005-11-04 06:30 UTC+0100 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
   * source/procmisc/Makefile
-    * added include path for guilib.h
+    * added include path for hwgui_windows.h
 
 2005-11-03 22:45 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.h
+  * include/hwgui_windows.h
     * Added macroses HB_RETHANDLE(h), HB_PARHANDLE( n ), HB_STOREHANDLE( h, n ),
       HB_PUTHANDLE( i, h ), HB_GETHANDLE( i ), provided by Przemyslaw Czerpak
   * gtk/menu.prg
@@ -17403,11 +17403,11 @@
   * gtk/commond.c
     ! Small fix
   * gtk/*.c
-    * Macroses from guilib.h are used instead of
+    * Macroses from hwgui_windows.h are used instead of
       #ifdef GTK_USE_POINTER ... #else ...
-    * #ifdef __EXPORT__ ... is removed to guilib.h
+    * #ifdef __EXPORT__ ... is removed to hwgui_windows.h
   * source/*.c
-    * #ifdef __EXPORT__ ... is removed to guilib.h
+    * #ifdef __EXPORT__ ... is removed to hwgui_windows.h
     ( thanks for advices to Przemyslaw Czerpak )
 
 2005-11-03 15:50 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -17573,7 +17573,7 @@
      ! updated to use an colorblock
    * samples/colrbloc.prg
      ! new Zebra example, show how to create browse like zebra colors
-   * include/guilib.ch
+   * include/hwgui.ch
      ! changes to browses commands. All changes above provided by Marcelo Sturm
 
 2005-10-25 16:15 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -17606,7 +17606,7 @@
      ! source for an static text with hyper link control
    * source/hdc.prg
      ! an class with some HDC functions wrappers
-   * include/guilib.ch
+   * include/hwgui.ch
      ! Added Command for @ SAY link
    * makefile.*
      ! Updated to reflect new files added
@@ -17718,7 +17718,7 @@
      ! Fix compilation Error
 
 2005-09-23 14:20 UTC+0200 Maurilio Longo <maurilio.longo@libero.it>
-   * include/guilib.ch
+   * include/hwgui.ch
      + added valid clause to @ x,y GET COMBOBOX
    * source/hcombo.prg
      + added valid clause to HComboBox
@@ -17820,7 +17820,7 @@
   * source/hbrowse.prg
     * Removed WS_HSCROLL, because sometimes horizontal bar was not necessary
       by suggestion of Paulo Flecha pfflecha@yahoo.com.br
-    ! Fixed - some small letters ( g, y, p, q, ç, j ) wasn't displayed
+    ! Fixed - some small letters ( g, y, p, q, ï¿½, j ) wasn't displayed
       correctly - lowermost pixels was cut.
     * HColumn:bColorBlock => Codeblock that determines color of data items
       bColorBlock must return an array containing four colors values
@@ -17939,8 +17939,8 @@
 2005-09-14 11:15 UTC+0200 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
   * Makefile
   + include/Makefile
-    * added install of guilib.ch
-  * include/guilib.ch
+    * added install of hwgui.ch
+  * include/hwgui.ch
   * source/hwindow.prg
   * source/window.c
     * added MAXIMIZED and MINIMIZED to ACTIVATE WINDOW
@@ -18152,7 +18152,7 @@
 2005-08-29 12:33 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/window.c
   * source/hwindow.prg
-  * include/guilib.ch
+  * include/hwgui.ch
     * Some changes in Child windows handling, provided by Alex Strickland
   * source/errorsys.prg
     * ES_READONLY added to the error dialog edit box styles, as suggested by Alex Strickland
@@ -18162,7 +18162,7 @@
     * Minor changes
 
 2005-07-19 17:05 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     + Command added MENUITEMCHECK to make using of check menu items more
       convenient and to provide better compatibility with gtk version
     * Changed ADD STATUS command as was suggested by Alex Strickland
@@ -18215,7 +18215,7 @@
     + Added function hwg_GetPrinters(), which returns a list of connected printers.
 
 2005-07-01 15:15 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     + 'INSERT COLUMN' command added - provided by Alexey Myronenko
 
 2005-06-29 17:08 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
@@ -18268,7 +18268,7 @@
     ! some fixes
     + Added re_FindText( hEdit, cFind, nStart, bCase, bWholeWord, bSearchUp )
        function.
-  * include/guilib.ch
+  * include/hwgui.ch
     * Added new clause COLOR to the OwnerButton command to set the transparent
       color.
 
@@ -18345,7 +18345,7 @@
     ! Bug fixed in a VScrollPos()
 
 2005-02-06 12:40 UTC+0100 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
-  * include/guilib.h
+  * include/hwgui_windows.h
   * utils/designer/resource/f_hwgprg.prg
     * fixes sent by Maurilio Longo.
 
@@ -18556,7 +18556,7 @@
 2004-12-13 14-15 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   + source/hrect.prg
     new class
-  * include/guilib.ch
+  * include/hwgui.ch
     new command @ <X>, <Y>, <X2>, <Y2> RECT ....
   * samples/a.prg
     added new sample class hrect
@@ -18567,7 +18567,7 @@
     Contribution by 2004 Ricardo de Moura Marques <ricardo.m.marques@caixa.gov.br>
 
 2004-12-13 17:30 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Version number is set to 2.14
   * make_vc.bat
     * Changed to use the 'HARBOUR_CVS_VERSION'
@@ -18732,7 +18732,7 @@
 2004-11-19 13-10 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   * source/hdialog.prg
     added the variable lExitOnEsc it's possible no close dialog in press Key Esc
-  * include/guilib.ch
+  * include/hwgui.ch
     added in INIT DIALOG command NOEXITESC
   * samples/a.prg
     added samples noexit
@@ -18817,7 +18817,7 @@
 
 2004-11-14 16:53 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * include/windows.ch
-  * include/guilib.ch
+  * include/hwgui.ch
     + New commands has been added:
        INIT PRINTER <oPrinter> [ NAME <cPrinter> ] [ <lPixel: PIXEL> ]
        INIT DEFAULT PRINTER <oPrinter> [ <lPixel: PIXEL> ]
@@ -18875,7 +18875,7 @@
     * added support for subscript, superscript and protected parts to re_setcharformat()
     + re_Inserttext() function added
   * inclide/windows.ch
-  * inclide/guilib.ch
+  * inclide/hwgui.ch
     + added COLOR and BACKCOLOR clauses to the combobox declaration
     + added ON SIZE, ON PAINT, ON DRAG clauses to the trackbar declaration
   * utils/designer/editor.prg
@@ -18949,7 +18949,7 @@
   * source/htab.prg
   * source/htree.prg
   + source/hcwindow.prg
-  * include/guilib.ch
+  * include/hwgui.ch
   * makedll.bc
   * makefile.bc
   * makefile.gcc
@@ -18982,7 +18982,7 @@
    * source/hedit.prg
      Use the style password
      modify the method New
-   * include/guilib.ch
+   * include/hwgui.ch
      Update command @ x, y EDITBOX and @ x, y GET, add PASSWORD
    * samples/testget2.prg
      update using demo PASSWORD
@@ -19001,7 +19001,7 @@
    * makedll.bat
    * makefile.pc
    * makefile.wc
-   * include/guilib.h
+   * include/hwgui_windows.h
      - Removed redundant XHBCVS environment variable
    * source/control.c
    * source/window.c
@@ -19016,7 +19016,7 @@
      ! Some fixes to decrease the object's ulHolders when the object is destroyed.
 
 2004-10-01 09-50 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
-   * include/guilib.ch
+   * include/hwgui.ch
    !New Command by Contribution ATZCT  <atzct@obukhov.kiev.ua>
    #xcommand @ <x>,<y> PROGRESSBAR <oPBar>       ;
             [ OF <oWnd> ]                       ;
@@ -19051,7 +19051,7 @@
 
 2004-09-23 11-30 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
    Replace lMaxLenght with lMaxLength
-   include guilib.ch
+   include hwgui.ch
    Replace in GET control [ MAXLENGHT <lMaxLenght> ] with [ MAXLENGTH <lMaxLength> ]
 
 2004-09-20 08-30 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
@@ -19115,7 +19115,7 @@
 2004-09-08 08-34 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   * source/hedit.prg
     New variabel lMaxLenght to controle the Maxlenght in GET if not use Picture
-  * include/guilib.ch
+  * include/hwgui.ch
     Add in control GET and REDEFINE GET the comand [ MAXLENGHT <lMaxLenght> ]
     to determine the maxlenght in GET if not use Picture, else picture determine
     the maxlenght
@@ -19138,7 +19138,7 @@
 2004-08-25 13-20 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   * include/windows.ch
     Add new variables TCN_SETFOCUS, TCN_GETFOCUS, TCN_KILLFOCUS
-  * include/guilib.ch
+  * include/hwgui.ch
     Replaced TAB comand, include ON CLICK, ON GETFOCUS and ON LOSTFOCUS
   * source/hdialog.prg
     Modify function DlgNotify
@@ -19208,7 +19208,7 @@
     By Frank Lenon Rodrigues
 
 2004-08-02 12:30 UTC+0200 Lorenzo Fiorini <lorenzo_fiorini/at/teamwork.it>
-  * guilib.h
+  * hwgui_windows.h
     * commented #define XHRBCVS I left in the last commit
     * In the last Changelog I wrote RtfClass.ch instead of richtext.ch
 
@@ -19255,7 +19255,7 @@
 
 2004-07-29 10:18 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
   * source/hbrowse.prg
-    ! Bug fixed with lAutoEdit, reported by Juan JosÉ?
+    ! Bug fixed with lAutoEdit, reported by Juan Josï¿½?
   * source/commond.c
     * hb_parcx() call is replaced with hb_parc() to be compatible with Harbour.
   * source/draw.c
@@ -19274,7 +19274,7 @@
     Test method MoveWindow
 
 2004-07-26 16-20 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
-  * include/guilib.ch
+  * include/hwgui.ch
     new variable HWG_VERSION //to control version of hwgui
   * source/guimain.prg
     New function Hwg_Version()
@@ -19587,7 +19587,7 @@
 2004-06-22 00:12 UTC-0300 Marcos Antonio Gambeta <marcos_gambeta@hotmail.com>
   + source/hanimat.prg
     + New class: HAnimation
-  * include/guilib.ch
+  * include/hwgui.ch
     + New command: @ <x>,<y> ANIMATION ...
   * makedll.bc
   * makefile.bc
@@ -19611,7 +19611,7 @@
      * Hidden properties suport added, autoadjusting initial support added.
 
 2004-06-20 22:45 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-   * include/guilib.ch
+   * include/hwgui.ch
    * source/htree.prg
      * Added new clause to TREE command - 'ON CLICK' - default onClick codeblock
        for all tree items, added appropriate variable to HTree class.
@@ -19763,7 +19763,7 @@
      + Settabname() function has been added
 
 2004-06-09 11:00 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-   * include/guilib.ch
+   * include/hwgui.ch
    * source/htrackbr.prg
      * HTrackBar():New() is changed a bit, the command remains the same.
    * source/hsayimg.prg
@@ -19929,7 +19929,7 @@
      *!minox fix
 
 2004-05-27 15-30 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
-   *include/guilib.ch
+   *include/hwgui.ch
      *new command added
       CENTER WINDOW <oWnd>
       MAXIMIZE WINDOW <oWnd>
@@ -19987,7 +19987,7 @@
     + Added code to process messages WM_HSCROLL and WM_VSCROLL (for new TrackBar class)
   + source/htrackbr.prg
     + New class: HTrackBar (Slider)
-  * include/guilib.ch
+  * include/hwgui.ch
     + New command: @ <x>,<y> TRACKBAR ...
   * makedll.bc
   * makefile.bc
@@ -20005,7 +20005,7 @@
   * source/hdialog.prg
     ! fixed PropertySheet() function when dialog is build from resouce(also the property sheet function)
     ! Change on DlgMouseMove function to handle NiceButtons
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Added commands for redefine nicebutton/@ nicebutton
   * include/windows.ch
     ! Added new messages
@@ -20056,7 +20056,7 @@
   * source/hcontrol.prg
     ! Added init method to HStatic(otherwise redefined caption is not show)
     ! Added init Method to HButton
-  ! include/guilib.ch
+  ! include/hwgui.ch
     ! Added CAPTION clause to REDEFINE Button
 
 2004-05-14 16-12 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
@@ -20078,14 +20078,14 @@
       it is possible now to write functions in scripts and call them.
 
 2004-05-12 13:00 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Add when clause to get combobox/get checkbox
   * source/hcheck.prg
     source/hcombo.prg
     ! Added logic to handle when Clause
 
 2004-05-11 10:45 UTC-0300 Rodrigo Moreno <rodrigo_moreno@yahoo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Add parameters EDIT, TEXT
   * doc/hwdoc.htm
     + Add new sintax for new command on combo box
@@ -20130,7 +20130,7 @@
     * hwg_ActivateMdiWindow() respects the third parameter ( lMaximize ) now.
 
 2004-05-05 21:30 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! changes the init dialog command
       now the resource name follow the FROM RESOURCE and not on Title any more
   * source/dialog.c
@@ -20148,7 +20148,7 @@
   * source/menu.prg
     New function HWG_INSERTBITMAPMENU
     Parameters (MainMenu, ID Item Menu, oBmp Handle)
-  * include/guilib.ch
+  * include/hwgui.ch
     new command
     #xcommand MENUITEMBITMAP <oMain>  ID <nId> ;
             BITMAP <bmp>                  ;
@@ -20165,7 +20165,7 @@
 2004-05-05 08-42 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   * source/menu_c.c
     change function HWG_INSERTMENUBITMAP
-  * include/guilib.ch
+  * include/hwgui.ch
     renamed Clause IMAGE to MenuItem from BITMAP
   * samples/testmenubitmap.prg
     replaced command
@@ -20176,7 +20176,7 @@
     ! small fixes
 
 2004-05-04 19:45 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     ! added  bitmap clause to @ tab
   * source/control.c
     source/htab.prg
@@ -20219,7 +20219,7 @@
     new function GetMenuCheckMarkDimensions( )
 
 2004-04-29 11-40 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
-  * source/guilib.ch.prg
+  * source/hwgui.ch.prg
     #xcommand MENUITEM <item> [ ID <nId> ]    ;
             ACTION <act>                  ;
             [ IMAGE <bmp> ]               ; //ADDED by Sandro Freire
@@ -20272,7 +20272,7 @@
     * Main menu for a dialog sample added.
 
 2004-04-22 10:40 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     * Clause ON CHANGE has been added to the @ ... DATEPICKER ... and
       @ ... GET DATEPICKER ... commands
   * source/hdatepic.prg
@@ -20287,7 +20287,7 @@
   * source/hcontrol.prg
   * source/hdialog.prg
   * source/hedit.prg
-  * include/guilib.ch
+  * include/hwgui.ch
     ! Some fixes.
 
 2004-04-20 15-25 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
@@ -20367,8 +20367,8 @@
   - samples/dll_b32.mak
   + samples/bld4dll.bat
     * Building of apps for dll is unified
-  * include/guilib.ch
-  * include/guilib.h
+  * include/hwgui.ch
+  * include/hwgui_windows.h
     * Some changes for dll building
   * samples/a.prg
     * Small change
@@ -20457,7 +20457,7 @@
     * hwg_CreateMdiChildWindow() respects the coordinates now
   * include/windows.ch
     * WS_OVERLAPPEDWINDOW definition has been added
-  * include/guilib.ch
+  * include/hwgui.ch
     * Missed PICTURE clause has been added to REDEFINE GET command.
     All above changes has been suggested by Vlad.
   * source/htab.prg
@@ -20482,7 +20482,7 @@
     Include the method center in demo
 
 2004-04-05 11-35 UTC-0300 Rodrigo Moreno <rodrigo_moreno@yahoo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     + Add new commands
         #xcommand @ <x>,<y> GRID <oGrid>    ;
             [ OF <oWnd> ]               ;
@@ -20627,7 +20627,7 @@
     * DlgHelp, use the helpid of window parent if not found in control
   * hwindow.prg
     * Add HelpId parameter to HWindow:new()
-  * include/guilib.ch
+  * include/hwgui.ch
     + Changed init window and init dialog to handle helpid
   * samples/helpdemo.prg
     * Changed to show how to use help when set the property helpid on Init Dialog
@@ -20637,7 +20637,7 @@
 2004-03-23 10-30 UTC-0300 Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
   + source/hsplash.prg
     New class for Splash
-  * include/guilib.ch
+  * include/hwgui.ch
     New command
             SPLASH [<osplash> TO]  <oBitmap> ;
             [<res: FROM RESOURCE>]         ;
@@ -20662,7 +20662,7 @@
     * Changed HWindow:New() to set the Help File Name
   * guimain.prg
     + Add New Function SetHelpFileName() to handle help filename
-  * include/guilib.ch
+  * include/hwgui.ch
     + Changed init window, add suport for Help Filename
   * include/windows.ch
     + add WM_HELP definition
@@ -20675,7 +20675,7 @@
   * doc/funclist.txt
 
 2004-03-22 13:05 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.ch
+  * include/hwgui.ch
     + New command has been added to define accelerators independently of
       menu items:
 
@@ -20785,7 +20785,7 @@
     * The sample in project.
 
 2004-03-16 15:10 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-  * include/guilib.h
+  * include/hwgui_windows.h
   * source/control.c
   * source/media_c.c
   * source/resource.c
@@ -20802,8 +20802,8 @@
   - include/commctrl.ch
   - source/_winmsg.c
     - removed
-  * include/guilib.h
-  * include/guilib.ch
+  * include/hwgui_windows.h
+  * include/hwgui.ch
   * include/window.ch
   * source/commond.c
   * source/control.c
@@ -20876,9 +20876,9 @@
     The class for use HListBox
   + samples/demohlist.prg
     The sample for use hlistbox class
-  * include/guilib.ch
+  * include/hwgui.ch
     new comands @ <x>, <y> LISTBOX and  REDEFINE LISTBOX
-  * include/guilib.h
+  * include/hwgui_windows.h
   * makefile.bc
       updated to include new dependencies
     All provided by  Vitor Mclung
@@ -20934,7 +20934,7 @@
   + source/hmonthc.prg
     !New class HMonthCalendar
      Method New, Say, Activate, Init, SetValue, GetValue
-  * include/guilib.ch
+  * include/hwgui.ch
     !new commands
     #xcommand @ <x>,<y> MONTHCALENDAR [ <oMonthCalendar> ] ;
             [ OF <oWnd> ]                              ;
@@ -20954,7 +20954,7 @@
     All provided by Marcos Antonio Gambeta <marcos_gambeta@hotmail.com>
 
 2004-02-16 15:00 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
-  * include/guilib.ch
+  * include/hwgui.ch
     !new clauses to browse command
        APPEND
        AUTOEDIT
@@ -20979,7 +20979,7 @@
      Method New, Say, Eject, SetPrc, Preview, PrintFile
     !New functions
      wProw(<>), wPcol(<>), wSetPrc(x,y,<>)
-  * include/guilib.ch
+  * include/hwgui.ch
     !new commands
      SET PRINTER TO <> OF <>
      @ x, y PSAY <> PICTURE <> OF <>
@@ -21047,7 +21047,7 @@
   * source/window.C
     !new function Hwg_ActiveMainWMaxim
     !new function Hwg_ActiveMDIWMaxim
-  * include/guilib.ch
+  * include/hwgui.ch
     New command MAXIMIZE in INIT WINDOW
   * samples/demomaximize.prg
     All provided by  Sandro R. R. Freire <sandrorrfreire@yahoo.com.br>
@@ -21055,8 +21055,8 @@
 2003-12-30 00:00 UTC-0300 Luiz Rafael Culik <culikr@brturbo.com>
   * source/hwindow.prg
     !minor fix
-  * include/guilib.h
-    include/guilib.ch
+  * include/hwgui_windows.h
+    include/hwgui.ch
     minor update
     All provided by  JosÂ Algusto Junior
 
@@ -21079,7 +21079,7 @@
      makefile.gcc
      makefile.vc
      ! added new files dependencies
-   * include/guilib.ch
+   * include/hwgui.ch
      + Set Resource command
    * include/windows.ch
      + defined to video
@@ -21106,7 +21106,7 @@
      * Small fix for double byte strings support, suggested by NightWalker
 
 2003-11-14 10:40 UTC+0300 Alexander Kresin <alex@belacy.belgorod.su>
-   * include/guilib.ch
+   * include/hwgui.ch
    * include/windows.ch
    * samples/testget2.prg
 

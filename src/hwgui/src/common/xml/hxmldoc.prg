@@ -8,9 +8,8 @@
  * www - http://www.kresin.ru
 */
 
-#include "hbclass.ch"
-#include "fileio.ch"
-#include "hxml.ch"
+#include "hwgui.ch"
+
 
 STATIC cNewLine := e"\r\n"
 

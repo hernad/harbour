@@ -9,8 +9,8 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
-#include "repmain.h"
+#include "hwgui.ch"
+#include "hwgui_report.h"
 #include "fileio.ch"
 #include "common.ch"
 

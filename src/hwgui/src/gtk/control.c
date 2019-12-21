@@ -14,7 +14,7 @@
  
 */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapifs.h"
 #include "hbapiitm.h"
 #include "hbvm.h"
@@ -23,11 +23,9 @@
 #include <cairo.h>
 #include "gtk/gtk.h"
 
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 #include "hbdate.h"
-#ifdef __XHARBOUR__
-#include "hbfast.h"
-#endif
+
 
 #define SS_CENTER           1
 #define SS_RIGHT            2

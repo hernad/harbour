@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #ifndef CBN_SELCHANGE
 #define CBN_SELCHANGE       1

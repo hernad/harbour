@@ -9,9 +9,9 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "repbuild.h"
-#include "repmain.h"
+#include "hwgui_report.h"
 
 #define SB_VERT         1
 #define IDCW_STATUS  2001

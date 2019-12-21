@@ -7,7 +7,7 @@
  * To use this class you need to have the FreeImage library
  * http://freeimage.sourceforge.net/
  * Authors: Floris van den Berg (flvdberg@wxs.nl) and
- *          Hervé Drolon (drolon@infonie.fr)
+ *          Hervï¿½ Drolon (drolon@infonie.fr)
  *
  * Copyright 2003 Alexander S.Kresin <alex@kresin.ru>
  * www - http://www.kresin.ru
@@ -15,7 +15,7 @@
 
 #include "hbclass.ch"
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 CLASS HFreeImage INHERIT HObject
 

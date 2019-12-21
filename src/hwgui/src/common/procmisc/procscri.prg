@@ -31,14 +31,10 @@ STATIC y__size := 0, x__size := 0
 #endif
 #define STR_BUFLEN  1024
 
-#ifndef __XHARBOUR__
 REQUEST __PP_STDRULES
 REQUEST OS
 REQUEST HB_COMPILER
 REQUEST HB_VERSION
-#else
-REQUEST VERSION
-#endif
 
 FUNCTION OpenScript( fname, scrkod )
 
@@ -639,7 +635,7 @@ STATIC w__buf
       oldc := SETCOLOR( "N/W" )
       IF prnew
          w__buf := SAVESCREEN( y1, x1, y2, x2 )
-         @ y1, x1, y2, x2 BOX "ÚÄ¿³ÙÄÀ³ "
+         @ y1, x1, y2, x2 BOX "ï¿½Ä¿ï¿½ï¿½ï¿½ï¿½ï¿½ "
       ELSEIF noscroll = Nil
          SCROLL( y1 + 1, x1 + 1, y2 - 1, x2 - 1, 1 )
       ENDIF

@@ -12,7 +12,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define MCS_DAYSTATE             1
 #define MCS_MULTISELECT          2
@@ -115,7 +115,7 @@ METHOD Value( dValue ) CLASS HMonthCalendar
 #ifndef _WIN32_WINNT
    #define _WIN32_WINNT   0x0400
 #endif
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include <windows.h>
 #include <commctrl.h>
 
@@ -124,7 +124,7 @@ METHOD Value( dValue ) CLASS HMonthCalendar
 #include "hbdate.h"
 
 #if defined(__DMC__)
-#include "missing.h"
+#include "hwgui_missing.h"
 #endif
 
 HB_FUNC( HWG_INITMONTHCALENDAR )

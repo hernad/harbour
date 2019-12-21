@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define STM_SETIMAGE        370    // 0x0172
 

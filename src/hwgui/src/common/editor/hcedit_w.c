@@ -66,7 +66,7 @@
 #include "hbvm.h"
 #include "hbstack.h"
 #include "hbapicdp.h"
-#include "guilib.h"
+#include "hwgui_windows.h"
 
 LRESULT CALLBACK WinCtrlProc( HWND, UINT, WPARAM, LPARAM );
 

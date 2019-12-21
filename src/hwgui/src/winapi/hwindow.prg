@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define  FIRST_MDICHILD_ID     501
 #define  MAX_MDICHILD_WINDOWS   18

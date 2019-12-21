@@ -13,12 +13,8 @@
 #include "hbapiitm.h"
 #include "hbvm.h"
 #include "hbapifs.h"
-#if defined(__XHARBOUR__)
-#include "hbfast.h"
-#else
 #include "hbapicls.h"
-#endif
-#include "guilib.h"
+#include "hwgui_windows.h"
 
 void hwg_writelog( const char * sFile, const char * sTraceMsg, ... );
 

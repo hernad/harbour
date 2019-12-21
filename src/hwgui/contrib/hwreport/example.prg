@@ -7,8 +7,8 @@
 
 #include "fileio.ch"
 #include "windows.ch"
-#include "guilib.ch"
-#include "repmain.h"
+#include "hwgui.ch"
+#include "hwgui_report.h"
 
 #define IDCW_PANEL   2001
 

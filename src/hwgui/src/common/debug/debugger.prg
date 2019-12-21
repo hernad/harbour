@@ -56,12 +56,7 @@
  * If you do not wish that, delete this exception notice.
  *
  */
-/*
- * ALTD() debuger function
- *
- * Copyright 2003 Przemyslaw Czerpak <druzus@acn.waw.pl>
- * www - http://www.xharbour.org
- */
+
 
 #pragma DEBUGINFO=OFF
 
@@ -124,39 +119,9 @@
 
 #define VAR_MAX_LEN            72
 
-#ifndef __XHARBOUR__
-   THREAD STATIC t_oDebugger
-#else
-   STATIC t_oDebugger
-#endif
+THREAD STATIC t_oDebugger
 
-#ifdef __XHARBOUR__
-#xtranslate __DBGADDBREAK([<n,...>]) =>  HB_DBG_ADDBREAK(<n>)
-#xtranslate __DBGDELBREAK([<n,...>]) =>  HB_DBG_DELBREAK(<n>)
-#xtranslate __DBGADDWATCH([<n,...>]) =>  HB_DBG_ADDWATCH(<n>)
-#xtranslate __DBGDELWATCH([<n,...>]) =>  HB_DBG_DELWATCH(<n>)
-#xtranslate __DBGISVALIDSTOPLINE([<n,...>]) =>  HB_DBG_ISVALIDSTOPLINE(<n>)
-#xtranslate __DBGSETTOCURSOR([<n,...>]) =>  HB_DBG_SETTOCURSOR(<n>)
-#xtranslate __DBGSETTRACE([<n,...>]) =>  HB_DBG_SETTRACE(<n>)
-#xtranslate __DBGSETNEXTROUTINE([<n,...>]) =>  HB_DBG_SETNEXTROUTINE(<n>)
-#xtranslate __DBGSETCBTRACE([<n,...>]) =>  HB_DBG_SETCBTRACE(<n>)
-#xtranslate __DBGGETEXPRVALUE([<n,...>]) =>  HB_DBG_GETEXPRVALUE(<n>)
-#xtranslate __DBGGETSOURCEFILES([<n,...>]) =>  HB_DBG_GETSOURCEFILES(<n>)
-#xtranslate __DBGSETQUIT([<n,...>]) =>  HB_DBG_SETQUIT(<n>)
-#xtranslate __DBGSETGO([<n,...>]) =>  HB_DBG_SETGO(<n>)
-#xtranslate __DBGSETENTRY([<n,...>]) =>  HB_DBG_SETENTRY(<n>)
 
-#xtranslate __DBGVMVARLSET([<n,...>]) =>  HB_DBG_VMVARLSET(<n>)
-#xtranslate __DBGVMVARLGET([<n,...>]) =>  HB_DBG_VMVARLGET(<n>)
-#xtranslate __DBGVMVARSGET([<n,...>]) =>  HB_DBG_VMVARSGET(<n>)
-#xtranslate __DBGVMVARSSET([<n,...>]) =>  HB_DBG_VMVARSSET(<n>)
-#xtranslate __DBGVMVARGGET([<n,...>]) =>  HB_DBG_VMVARGGET(<n>)
-#xtranslate __DBGVMVARGSET([<n,...>]) =>  HB_DBG_VMVARGSET(<n>)
-#xtranslate __DBGPROCLEVEL([<n,...>]) =>  HB_DBG_PROCLEVEL(<n>)
-#xtranslate __DBGINVOKEDEBUG([<n,...>]) =>  HB_DBG_INVOKEDEBUG(<n>)
-
-#xtranslate hb_ntos([<n,...>]) =>  Ltrim(Str((<n>)))
-#endif
 
 PROCEDURE __dbgAltDEntry()
 
@@ -790,73 +755,6 @@ STATIC FUNCTION SendRec( cAlias )
 
    RETURN arr
 
-#ifdef __XHARBOUR__
-
-STATIC FUNCTION SendObject( cObjName )
-   LOCAL aVars, aMethods, arr, obj, i, j := 1
-
-   obj := t_oDebugger:GetExprValue( cObjName )
-   IF ValType( obj ) == "O"
-      aVars := __objGetValueList( obj )
-      aMethods := __objGetMethodList( obj )
-      arr := Array( ( Len(aVars ) + Len(aMethods ) ) * 3 + 1 )
-      arr[1] := LTrim( Str( Len(aVars ) + Len(aMethods ) ) )
-
-      FOR i := 1 TO Len( aVars )
-         arr[++j] := aVars[ i,1 ]
-         arr[++j] := ValType( aVars[ i,2 ] )
-         arr[++j] := __dbgValToStr( aVars[ i,2 ] )
-         IF Len( arr[j] ) > VAR_MAX_LEN
-            arr[j] := Left( arr[j], VAR_MAX_LEN )
-         ENDIF
-      NEXT
-      FOR i := 1 TO Len( aMethods )
-         arr[++j] := aMethods[ i ]
-         arr[++j] := ""
-         arr[++j] := "Method"
-      NEXT
-
-   ELSE
-      RETURN { "0" }
-   ENDIF
-
-   RETURN arr
-
-#else
-
-STATIC FUNCTION SendObject( cObjName )
-   LOCAL aVars, aMethods, arr, obj, i, j := 1, xVal
-
-   obj := t_oDebugger:GetExprValue( cObjName )
-   IF ValType( obj ) == "O"
-      aVars := __objGetMsgList( obj )
-      aMethods := __objGetMethodList( obj )
-      arr := Array( ( Len(aVars ) + Len(aMethods ) ) * 3 + 1 )
-      arr[1] := LTrim( Str( Len(aVars ) + Len(aMethods ) ) )
-
-      FOR i := 1 TO Len( aVars )
-         arr[++j] := aVars[i]
-         xVal := __dbgObjGetValue( obj, aVars[i] )
-         arr[++j] := ValType( xVal )
-         arr[++j] := __dbgValToStr( xVal )
-
-         IF Len( arr[j] ) > VAR_MAX_LEN
-            arr[j] := Left( arr[j], VAR_MAX_LEN )
-         ENDIF
-      NEXT
-      FOR i := 1 TO Len( aMethods )
-         arr[++j] := aMethods[ i ]
-         arr[++j] := ""
-         arr[++j] := "Method"
-      NEXT
-
-   ELSE
-      RETURN { "0" }
-   ENDIF
-
-   RETURN arr
-
-#endif
 
 STATIC FUNCTION SendArray( cArrName, nFirst, nCount )
    LOCAL arr, arrFrom, xValue, i, j := 3
@@ -922,9 +820,7 @@ FUNCTION __dbgValToStr( uVal )
    CASE cType $ "CM" ; RETURN '"' + uVal + '"'
    CASE cType == "L" ; RETURN iif( uVal, ".T.", ".F." )
    CASE cType == "D" ; RETURN Dtoc( uVal )
-#ifndef __XHARBOUR__
    CASE cType == "T" ; RETURN hb_TToC( uVal )
-#endif
    CASE cType == "N" ; RETURN Str( uVal )
    CASE cType == "O" ; RETURN "Class " + uVal:ClassName() + " object"
    CASE cType == "H" ; RETURN "Hash(" + hb_ntos( Len( uVal ) ) + ")"
@@ -933,7 +829,6 @@ FUNCTION __dbgValToStr( uVal )
 
    RETURN "U"
 
-#ifndef __XHARBOUR__
 
 STATIC FUNCTION __dbgObjGetValue( oObject, cVar, lCanAcc )
 
@@ -957,28 +852,3 @@ STATIC FUNCTION __dbgObjGetValue( oObject, cVar, lCanAcc )
 
    RETURN xResult
 
-#endif
-
-#ifdef __XHARBOUR__
-
-#define ALTD_DISABLE   0
-
-#define ALTD_ENABLE    1
-
-FUNCTION AltD( nAction )
-
-   IF PCount() == 0
-      IF SET( _SET_DEBUG ) .AND. Type( "__DBGALTDENTRY()" ) == "UI"
-         &( "__DBGALTDENTRY()" )
-      ENDIF
-   ELSEIF ValType( nAction ) == "N"
-      IF nAction == ALTD_DISABLE
-         SET( _SET_DEBUG, .F. )
-      ELSEIF nAction == ALTD_ENABLE
-         SET( _SET_DEBUG, .T. )
-      ENDIF
-   ENDIF
-
-   RETURN nil
-
-#endif

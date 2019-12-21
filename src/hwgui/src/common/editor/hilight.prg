@@ -55,12 +55,7 @@
  *
  */
 
-#include "hbclass.ch"
-#include "hxml.ch"
-
-#ifdef __XHARBOUR__
-#xtranslate HB_AT(<x,...>) => AT(<x>)
-#endif
+#include "hwgui.ch"
 
 #define HILIGHT_GROUPS  4
 #define HILIGHT_KEYW    1

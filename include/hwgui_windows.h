@@ -15,7 +15,7 @@
 #endif
 
 #include <windows.h>
-#include "guilib.h"
+#include "hwgui_windows.h"
 
 #if ((defined(_MSC_VER)&&(_MSC_VER<1300)&&!defined(__POCC__)) || defined(__WATCOMC__)|| defined(__DMC__))
    #define IS_INTRESOURCE(_r) ((((ULONG_PTR)(_r)) >> 16) == 0)
@@ -37,6 +37,7 @@
    #include "hbwince.h"
    #define HB_HAS_STR_FUNC
 #else
+
    #undef HB_HAS_STR_FUNC
 
    #if !defined( HB_EMULATE_STR_API ) && defined( UNICODE )
@@ -104,10 +105,7 @@
    #endif
    HB_EXTERN_END
 
-   #if defined( HB_OS_WIN_CE )
-      #undef  GetProcAddress
-      #define GetProcAddress  GetProcAddressA
-   #endif
+
 
 #endif
 

@@ -9,7 +9,7 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #ifdef __XHARBOUR__
 #xtranslate hb_processOpen([<x,...>])   => hb_openProcess(<x>)

@@ -6,7 +6,7 @@
 #include <commctrl.h>
 
 #if ( defined(__DMC__) || defined(__WATCOMC__) )
-#include "missing.h"
+#include "hwgui_missing.h"
 #endif
 
 HB_FUNC( HWG_PAGERSETCHILD )

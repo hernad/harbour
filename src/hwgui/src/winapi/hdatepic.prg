@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define DTN_DATETIMECHANGE    -759
 #define DTN_CLOSEUP           -753

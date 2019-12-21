@@ -11,7 +11,7 @@
  * www - http://www.kresin.ru
 */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "windows.h"
 
 #define STATE_DEFAULT    1

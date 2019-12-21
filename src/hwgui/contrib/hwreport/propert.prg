@@ -7,9 +7,9 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "repbuild.h"
-#include "repmain.h"
+#include "hwgui_report.h"
 
 #define UDS_SETBUDDYINT     2
 #define UDS_ALIGNRIGHT      4

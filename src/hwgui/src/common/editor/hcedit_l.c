@@ -60,11 +60,11 @@
 #include "hbapifs.h"
 #include "hbvm.h"
 #include "hbstack.h"
-#include "guilib.h"
+#include "hwgui_windows.h"
 
 #include <cairo.h>
 #include "gtk/gtk.h"
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 
 typedef struct
 {

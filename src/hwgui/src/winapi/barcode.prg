@@ -9,7 +9,7 @@
 */
 
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "windows.ch"
 
 

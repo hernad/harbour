@@ -1,7 +1,43 @@
 /*
- *$Id: guilib.ch 2785 2019-04-26 10:24:31Z alkresin $
+ *$Id: hwgui.ch 2785 2019-04-26 10:24:31Z alkresin $
  */
-#define HWG_VERSION         "2.22"
+
+/*
+ *$Id: hwgui.ch 1615 2011-02-18 13:53:35Z mlacecilia $
+ */
+
+
+// #include "hbclass.ch"
+#include "fileio.ch"
+#include "error.ch"
+ /*
+  * $Id: hxml.ch 1615 2011-02-18 13:53:35Z mlacecilia $
+  *
+  * Header file for HXMLDoc and HXMLNode classes
+  */
+ 
+#define HBXML_ERROR_NOT_LT        1
+#define HBXML_ERROR_NOT_GT        2
+#define HBXML_ERROR_WRONG_TAG_END 3
+#define HBXML_ERROR_WRONG_END     4
+#define HBXML_ERROR_WRONG_ENTITY  5
+#define HBXML_ERROR_NOT_QUOTE     6
+#define HBXML_ERROR_TERMINATION   7
+  
+#define HBXML_TYPE_TAG            0
+#define HBXML_TYPE_SINGLE         1
+#define HBXML_TYPE_COMMENT        2
+#define HBXML_TYPE_CDATA          3
+#define HBXML_TYPE_PI             4
+  
+ 
+#ifdef __PLATFORM__UNIX
+  #include "hwgui_gtk.ch"
+#else
+  #include "hwgui_windows.ch"
+#endif
+
+#define HWG_VERSION         "3.00"
 #define HWG_BUILD               4
 #define	WND_MAIN		        1
 #define	WND_MDI 		        2
@@ -78,11 +114,6 @@
    #endif
 #endif
 
-#ifdef __XHARBOUR__
-  #ifndef HB_SYMBOL_UNUSED
-     #define HB_SYMBOL_UNUSED( x )    ( (x) := (x) )
-  #endif
-#endif
 
 #xtranslate hwg_Rgb([<n,...>])                    => hwg_ColorRGB2N(<n>)
 #xtranslate hwg_VColor([<n,...>])                 => hwg_ColorC2N(<n>)

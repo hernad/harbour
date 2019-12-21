@@ -8,12 +8,12 @@
  * www - http://www.kresin.ru
  */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapi.h"
 #include "hbapiitm.h"
 #include "hbvm.h"
 #include "gtk/gtk.h"
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 
 #ifdef __XHARBOUR__
 #include "hbfast.h"

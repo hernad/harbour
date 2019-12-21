@@ -8,13 +8,13 @@
  * www - http://www.kresin.ru
  */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapifs.h"
 #include "hbapiitm.h"
 #include "hbvm.h"
 #include "item.api"
 #include "gtk/gtk.h"
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 
 extern GtkWidget * GetActiveWindow( void );
 

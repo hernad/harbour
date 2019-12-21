@@ -1,6 +1,6 @@
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 REQUEST HTIMER
 REQUEST DBCREATE

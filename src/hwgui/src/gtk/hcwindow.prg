@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "error.ch"
 
    ANNOUNCE HB_GTSYS

@@ -11,7 +11,7 @@
 #include "windows.ch"
 #include "hbclass.ch"
 #include "hblang.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define WM_IME_CHAR      646
 

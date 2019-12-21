@@ -11,7 +11,7 @@
 #include "common.ch"
 #include "error.ch"
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 STATIC LogInitialPath := ""
 STATIC lErrOn := .F.

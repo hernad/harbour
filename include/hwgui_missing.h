@@ -1,8 +1,8 @@
 /*
- *$Id: missing.h 2086 2013-06-23 12:57:56Z alkresin $
+ *$Id: hwgui_missing.h 2086 2013-06-23 12:57:56Z alkresin $
  */
-#ifndef ___MISSING_H___
-#define ___MISSING_H___
+#ifndef ___hwgui_missing.h___
+#define ___hwgui_missing.h___
 
 /*
    This file containts missing definitions/declarations in Digital Mars C++
@@ -364,4 +364,4 @@ typedef struct {
 
 #endif /* __DMC__ */
 
-#endif /* ___MISSING_H___ */
+#endif /* ___hwgui_missing.h___ */

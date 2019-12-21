@@ -9,11 +9,11 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "hbclass.ch"
 #include "hxml.ch"
 #include "designer.ch"
-#include "hwgextern.ch"
+#include "hwgui_extern.ch"
 
    // #include "extmodul.ch"
 

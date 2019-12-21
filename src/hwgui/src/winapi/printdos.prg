@@ -9,7 +9,7 @@
  */
 #include "hbclass.ch"
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "fileio.ch"
 
 #define PF_BUFFERS   2048

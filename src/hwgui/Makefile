@@ -65,7 +65,6 @@ C_SOURCES := \
    winapi/dialog.c \
    winapi/draw.c \
    winapi/drawtext.c \
-   winapi/freeimg.c \
    winapi/grid.c \
    winapi/listbox.c \
    winapi/media_c.c \

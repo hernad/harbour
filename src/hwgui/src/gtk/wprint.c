@@ -8,7 +8,7 @@
  * www - http://www.kresin.ru
 */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapi.h"
 #include "hbapifs.h"
 #include "hbapiitm.h"
@@ -50,7 +50,7 @@ HB_FUNC( HWG_SETAPPLOCALE )
    szAppLocale[hb_parclen(1)] = '\0';
 }
 #else
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 #endif
 
 

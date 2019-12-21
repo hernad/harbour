@@ -235,7 +235,7 @@ FUNCTION Browse2Prg
       //
       aTypes := &cTmpalias -> ( dbStruct() )
 
-      // CRIAR AS RELA€OES E O LINK
+      // CRIAR AS RELAï¿½OES E O LINK
       temp := iif( ( temp := oCtrl:GetProp("childorder" ) ) != Nil .AND. !Empty( temp ), Trim( temp ), "" )
       cKey := ""
       IF !Empty( temp )
@@ -884,7 +884,7 @@ FUNCTION Ctrl2Prg
       // Methods ( events ) for the control
       i := 1
       DO WHILE i <= Len( oCtrl:aMethods )
-         // NANDO POS PARA TIRAR COISAS QUE NÇO TEM EM GETS
+         // NANDO POS PARA TIRAR COISAS QUE Nï¿½O TEM EM GETS
          IF Upper( SubStr( oCtrl:aMethods[i,1],3 ) ) = "INIT" .AND. ( oCtrl:cClass == "combobox" )
             i ++
             LOOP
@@ -1060,7 +1060,7 @@ FUNCTION Ctrl2Prg
 
    //Add the lines to include
    //Fwrite( han,'#include "windows.ch"'+ hb_OsNewline()  )
-   //Fwrite( han,'#include "guilib.ch"' + hb_OsNewline()+ hb_OsNewline() )
+   //Fwrite( han,'#include "hwgui.ch"' + hb_OsNewline()+ hb_OsNewline() )
    FWrite( han, '#include "hwgui.ch"' + hb_OsNewline() )
    FWrite( han, '#include "common.ch"' + hb_OsNewline() )
    FWrite( han, '#ifdef __XHARBOUR__' + hb_OsNewline() )

@@ -16,7 +16,7 @@
 #include "hbapiitm.h"
 #include "hbvm.h"
 #include "hbstack.h"
-#include "missing.h"
+#include "hwgui_missing.h"
 
 #include "math.h"
 

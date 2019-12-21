@@ -55,16 +55,9 @@
  *
  */
 
-#include "hbclass.ch"
-#include "hwgui.ch"
-#include "hxml.ch"
 
-#ifdef __XHARBOUR__
-#xtranslate HB_AT(<x,...>) => AT(<x>)
-#xtranslate HB_RAT(<x,...>) => RAT(<x>)
-#xtranslate HB_HASH([<x,...>]) => HASH([<x>])
-#xtranslate HB_HHASKEY(<x,...>) => HHASKEY(<x>)
-#endif
+#include "hwgui.ch"
+
 
 #define WM_MOUSEACTIVATE    33  // 0x0021
 #define MA_ACTIVATE          1
@@ -2464,59 +2457,38 @@ Function hced_Line4Pos( oEdit, yPos )
    RETURN y1
 
 Function hced_Chr( oEdit, nCode )
-#ifndef __XHARBOUR__
-#ifdef __PLATFORM__UNIX
-   IF oEdit:lUtf8; RETURN hwg_KeyToUtf8( nCode ); ENDIF
-#else
-   IF oEdit:lUtf8; RETURN hb_utf8Chr( nCode ); ENDIF
-#endif
-#endif
+
    RETURN Chr( nCode )
 
 Function hced_Stuff( oEdit, cLine, nPos, nChars, cIns )
-#ifndef __XHARBOUR__
+
    IF oEdit:lUtf8; RETURN hb_utf8Stuff( cLine, nPos, nChars, cIns ); ENDIF
-#endif
    RETURN Stuff( cLine, nPos, nChars, cIns )
 
 Function hced_Substr( oEdit, cLine, nPos, nChars )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN Iif( nChars==Nil, hb_utf8Substr( cLine, nPos ), hb_utf8Substr( cLine, nPos, nChars ) ); ENDIF
-#endif
    RETURN Iif( nChars==Nil, Substr( cLine, nPos ), Substr( cLine, nPos, nChars ) )
 
 Function hced_Left( oEdit, cLine, nPos )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN hb_utf8Left( cLine, nPos ); ENDIF
-#endif
    RETURN Left( cLine, nPos  )
 
 Function hced_Right( oEdit, cLine, nPos )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN hb_utf8Right( cLine, nPos ); ENDIF
-#endif
    RETURN Right( cLine, nPos  )
 
 Function hced_Len( oEdit, cLine )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN hb_utf8Len( cLine ); ENDIF
-#endif
    RETURN Len( cLine )
 
 Function hced_At( oEdit, cFind, cLine, nStart, nEnd )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN hb_utf8At( cFind, cLine, nStart, nEnd ); ENDIF
-#endif
    RETURN hb_At( cFind, cLine, nStart, nEnd )
 
 Function hced_RAt( oEdit, cFind, cLine, nStart, nEnd )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN hb_utf8RAt( cFind, cLine, nStart, nEnd ); ENDIF
-#endif
    RETURN hb_RAt( cFind, cLine, nStart, nEnd )
 
 Function hced_NextPos( oEdit, cLine, nPos )
-#ifndef __XHARBOUR__
    IF oEdit:lUtf8; RETURN nPos + Len( hced_Substr( oEdit, cLine, nPos, 1 ) ); ENDIF
-#endif
    RETURN nPos + 1

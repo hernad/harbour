@@ -18,7 +18,7 @@
 #include "hbapiitm.h"
 #include "hbvm.h"
 
-#include "missing.h"
+#include "hwgui_missing.h"
 
 void hwg_writelog( const char * sFile, const char * sTraceMsg, ... )
 {

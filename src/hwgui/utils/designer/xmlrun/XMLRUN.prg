@@ -23,7 +23,7 @@
 */
 
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 #include "hbextern.ch"
 #include "hbclass.ch"
 #include "hxml.ch"

@@ -1,5 +1,5 @@
 /*
- *$Id: hwgextern.ch 2767 2019-01-13 12:22:19Z alkresin $
+ *$Id: hwgui_extern.ch 2767 2019-01-13 12:22:19Z alkresin $
  */
 
 REQUEST HWG_SELECTFONT, HWG_SELECTFILE, HWG_CHOOSECOLOR

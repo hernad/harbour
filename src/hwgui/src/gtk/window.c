@@ -8,7 +8,7 @@
  * www - http://www.kresin.ru
 */
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapifs.h"
 #include "hbapiitm.h"
 #include "hbvm.h"
@@ -21,7 +21,7 @@
 #else
 #include "hbapicls.h"
 #endif
-#include "hwgtk.h"
+#include "hwgui_gtk.h"
 #define WM_MOVE                           3
 #define WM_SIZE                           5
 #define WM_SETFOCUS                       7

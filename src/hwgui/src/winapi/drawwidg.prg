@@ -10,7 +10,7 @@
 
 #include "hbclass.ch"
 #include "windows.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 Static oResCnt
 

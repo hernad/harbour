@@ -44,9 +44,7 @@
 
 #include "hwingui.h"
 
-#if defined(__POCC__) || defined(__XCC__)
-#include <unknwn.h>
-#endif
+
 #include <shlobj.h>
 
 #include "winreg.h"
@@ -55,7 +53,7 @@
 #include "hbapiitm.h"
 
 #if defined(__DMC__)
-#include "missing.h"
+#include "hwgui_missing.h"
 #endif
 
 HB_FUNC_EXTERN( HWG_INITCOMMONCONTROLSEX );

@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define TBS_AUTOTICKS                1
 #define TBS_VERT                     2
@@ -150,7 +150,7 @@ METHOD Value( nValue ) CLASS HTrackBar
    #define _WIN32_WINNT   0x0400
 #endif
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include <windows.h>
 #include <commctrl.h>
 

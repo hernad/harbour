@@ -9,7 +9,7 @@
 */
 
 #include <math.h>
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbmath.h"
 #include "hbapifs.h"
 #include "hbapiitm.h"

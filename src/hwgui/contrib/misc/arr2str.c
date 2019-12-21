@@ -11,7 +11,7 @@
 #include "hbapi.h"
 #include "hbapiitm.h"
 #include "hbvm.h"
-#include "guilib.h"
+#include "hwgui_windows.h"
 
 static const char *ReadArray( const char *ptr, PHB_ITEM pItem )
 {

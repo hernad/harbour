@@ -12,7 +12,7 @@
 #define OEMRESOURCE
 #include <windows.h>
 
-#include "guilib.h"
+#include "hwgui_windows.h"
 #include "hbapi.h"
 #include "hbapiitm.h"
 #include "hbvm.h"

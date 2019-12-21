@@ -10,7 +10,7 @@
 
 #include "windows.ch"
 #include "hbclass.ch"
-#include "guilib.ch"
+#include "hwgui.ch"
 
 #define TVM_DELETEITEM       4353   // (TV_FIRST + 1) 0x1101
 #define TVM_EXPAND           4354   // (TV_FIRST + 2)

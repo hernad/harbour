@@ -1,13 +1,6 @@
 #include "hbapi.h"
 #include "hbapiitm.h"
 
-#ifdef __XHARBOUR__
-HB_FUNC( HB_RELEASECPU )
-{
-   hb_releaseCPU(0);
-}
-#endif
-
 
 #if defined( HB_OS_UNIX )
 #include <glib.h>

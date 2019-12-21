@@ -15,7 +15,7 @@
 #include <commctrl.h>
 #include <winuser.h>
 #if defined(__DMC__)
-#include "missing.h"
+#include "hwgui_missing.h"
 #endif
 
 #include "hbapiitm.h"
