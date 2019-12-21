@@ -15,7 +15,6 @@ set PERL_SITE_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\perl\site\bin
 IF NOT DEFINED POSTGRESQL_BUILD set INCLUDE=
 IF NOT DEFINED POSTGRESQL_BUILD set LIBPATH=
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=c:\windows;c:\windows\system32
-
 IF NOT DEFINED POSTGRESQL_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Program Files\Git\cmd
 IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
@@ -27,8 +26,9 @@ IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;%PERL_SITE_BIN_PATH%
 
 set POSTGRESQL_BUILD=1
 
+REM https://ss64.com/nt/errorlevel.html
 perl --version
-IF NOT ERRORLEVEL 0 GOTO ERROR
+IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
 set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
 set PSQL_DEST=%LIB_BIN_ROOT%\%LIBRARY%
@@ -38,6 +38,7 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 echo ================ INIT postgresql-12.1 ===========================
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
+IF DEFINED SOURCE_DIR rmdir /Q /S %SOURCE_DIR%
 %CMD7z% -y x %SOURCE_DIR%.7z
 echo ==================================================================
 
