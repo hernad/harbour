@@ -6,7 +6,7 @@ set LIBRARY=postgresql
 set LIB_SOURCE_DIR=postgresql-12.1
 set VCBUILDTOOLS=amd64
 set BUILD_ARCH=x64
-set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
+set ROOT_DIR=\Users\%USERNAME%\%GIT_REPOS%
 set CMD7z=..\..\tools\win32\7z.exe
 
 set PERL_C_BIN_PATH=%ROOT_DIR%\tools\win32\Strawberry\c\bin
