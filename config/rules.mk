@@ -5,6 +5,7 @@ YACC_FLAGS := -d $(YACC_FLAGS)
 ifeq ($(HB_BUILD_DEBUG),yes)
    HB_CFLAGS := -DHB_TR_LEVEL_DEBUG $(HB_CFLAGS)
 else
+   # hernad: I like lineinfo, so include line numbers into all harbour programs
    #HB_PRGFLAGS := -l $(HB_PRGFLAGS)
    HB_PRGFLAGS := $(HB_PRGFLAGS)
 endif
