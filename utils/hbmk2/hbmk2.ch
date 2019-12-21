@@ -20,6 +20,22 @@
 #pragma -km+
 #pragma -ko+
 
+/*
+Compatibility flags: -k[options]
+
+Options:  c               clear all flags (strict Clipper mode)
+          h[-]            Harbour mode (default)
+          o[-]            allow operator optimizations
+          i[-]            enable support for HB_INLINE (default)
+          r[-]            runtime settings enabled
+          s[-]            allow indexed assignment on all types
+          x[-]            extended Xbase++ mode (default)
+          u[-]            strings in user encoding
+          d[-]            accept macros with declared symbols
+          m[+]            turn off macrotext substitution
+          j[+]            turn off jump optimization in pcode
+          ?               this info
+*/
 
 #include "directry.ch"
 #include "error.ch"
@@ -563,29 +579,12 @@ EXTERNAL hb_FileExists
 hbmk_local_entry( hb_ArrayToParams( hb_AParams() ) )
 #endif
 
-#if defined( HBMK_USE_CUSTMAIN )
-/* for hbrun builds (or any builds via .hbp) */
-PROCEDURE __hbmk_public_entry( ... )
-
-   hbmk_local_entry( ... )
-
-   RETURN
-
-#elif defined( HBMK_USE_APPMAIN )
 /* for GNU Make build (we cannot override default entry, so we use this alternate built-in one */
 PROCEDURE _APPMAIN( ... )
 
    hbmk_local_entry( ... )
 
    RETURN
-#else
-/* for scripts and precompiled scripts with -n/-n1/-n2 option */
-PROCEDURE __hbmk_fake_entry( ... )
-
-   hbmk_local_entry( ... )
-
-   RETURN
-#endif
 
 
 #define _EXT_FILE_NORMAL "hb_extension"

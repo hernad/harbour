@@ -13412,8 +13412,6 @@ STATIC FUNCTION hbmk_CoreHeaderFiles()
 
    THREAD STATIC t_hHeaders
 
-#if defined( HBMK_WITH_BUILTIN_HEADERS_TOP ) .OR. ;
-    defined( HBMK_WITH_BUILTIN_HEADERS_ALL )
 
    IF t_hHeaders == NIL
       t_hHeaders := { => }
@@ -13425,7 +13423,6 @@ STATIC FUNCTION hbmk_CoreHeaderFiles()
 #if defined( _HBSHELL_EXTRA_HEADER )
       ADD HEADER TO t_hHeaders FILE _HBSHELL_EXTRA_HEADER
 #endif
-#if defined( HBMK_WITH_BUILTIN_HEADERS_ALL )
       ADD HEADER TO t_hHeaders FILE "achoice.ch"
       ADD HEADER TO t_hHeaders FILE "assert.ch"
       ADD HEADER TO t_hHeaders FILE "blob.ch"
@@ -13491,29 +13488,13 @@ STATIC FUNCTION hbmk_CoreHeaderFiles()
       ADD HEADER TO t_hHeaders FILE "hblang.hbx"
       ADD HEADER TO t_hHeaders FILE "hbscalar.hbx"
       ADD HEADER TO t_hHeaders FILE "hbusrrdd.hbx"
-#else
-      ADD HEADER TO t_hHeaders FILE "color.ch"
-      ADD HEADER TO t_hHeaders FILE "common.ch"
-      ADD HEADER TO t_hHeaders FILE "dbstruct.ch"
-      ADD HEADER TO t_hHeaders FILE "directry.ch"
-      ADD HEADER TO t_hHeaders FILE "error.ch"
-      ADD HEADER TO t_hHeaders FILE "fileio.ch"
-      ADD HEADER TO t_hHeaders FILE "hbgtinfo.ch"
-      ADD HEADER TO t_hHeaders FILE "hbhash.ch"
-      ADD HEADER TO t_hHeaders FILE "hbmemory.ch"
-      ADD HEADER TO t_hHeaders FILE "hbserial.ch"
-      ADD HEADER TO t_hHeaders FILE "hbver.ch"
-      ADD HEADER TO t_hHeaders FILE "inkey.ch"
-      ADD HEADER TO t_hHeaders FILE "setcurs.ch"
-      ADD HEADER TO t_hHeaders FILE "simpleio.ch"
-#endif
 
       hb_HCaseMatch( t_hHeaders, .T. )
    ENDIF
 
 
    RETURN t_hHeaders
-#endif
+
 
 /* Implement hbshell (formerly known as hbrun) */
 
@@ -16816,12 +16797,8 @@ STATIC PROCEDURE ShowHelp( hbmk, lMore, lLong )
    AAdd( aLst_File_Shell, { _FNAME_HISTORY_     , hb_StrFormat( I_( "stores command history for interactive Harbour shell. You can disable history by making the first line '%1$s' (without quotes and with newline). Resides in [*]: %2$s" ), _HISTORY_DISABLE_LINE, __hbshell_ConfigDir( hbmk[ _HBMK_lMarkdown ] ) ) } )
    AAdd( aLst_File_Shell, { _EXT_FILE_          , hb_StrFormat( I_( "list of extensions to load in interactive Harbour shell. One extension per line, part of line beyond a '#' character is ignored. Alternate filename on %2$s: %1$s. Resides in [*]: %3$s" ), _EXT_FILE_ALT, _EXT_FILE_ALT_OS, __hbshell_ConfigDir( hbmk[ _HBMK_lMarkdown ] ) ) } )
 
-
-#if defined( HBMK_WITH_BUILTIN_HEADERS_ALL )
    AAdd( aLst_Config, I_( "Provide built-in core Harbour headers: all" ) )
-#elif defined( HBMK_WITH_BUILTIN_HEADERS_TOP )
-   AAdd( aLst_Config, I_( "Provide built-in core Harbour headers: frequently used ones" ) )
-#endif
+
 #ifndef _HBMK_EMBEDDED_
    #if defined( HBMK_WITH_EXTS )
       AAdd( aLst_Config, hb_StrFormat( I_( "Automatically load these packages for scripts: %1$s" ), ArrayToList( hb_ATokens( _HBMK_STRINGIFY( HBMK_WITH_EXTS ), "|" ), ", " ) ) )

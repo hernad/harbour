@@ -15,9 +15,9 @@ else
    LIBS = $(HB_LIBS_MT_RDD)
 endif
 
-HB_PRGFLAGS += -u -i$(TOP)
 HB_RCFLAGS += -D_HB_INCLUDE_ICON
 
+HB_PRGFLAGS += -u -i$(TOP)
 # Not possible to override default entry
 # function cleanly when using plain GNU Make
 # to build, so we're using _APPMAIN(), which

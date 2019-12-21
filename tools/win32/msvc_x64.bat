@@ -1,3 +1,4 @@
+call make_envars.bat
 
 set PATH=c:\windows;c:\windows\system32
 set PATH=%PATH%;C:\Program Files\Git\cmd
@@ -19,5 +20,5 @@ set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_A
 
 cd %ROOT_DIR%
 
-echo current dir: %ROOT_DIR%
+echo current dir: %ROOT_DIR%\
 echo HB_INSTALL_PREFIX=%HB_INSTALL_PREFIX%

@@ -1,6 +1,6 @@
 # Copyright 2009 Viktor Szakats (vszakats.net/harbour)
 
--q0 -w3 -es2 -kmo -l -u
+-q0 -w3 -es2 -kmo -u
 
 {HB_HAS_GPM}-prgflag=-DHB_HAS_GPM
 

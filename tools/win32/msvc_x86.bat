@@ -1,5 +1,5 @@
-set WINSDK_VER=10.0.18362.0
-set GIT_REPOS=harbour
+call make_envars.bat
+
 set VCBUILDTOOLS=x86
 set BUILD_ARCH=x86
 
