@@ -47,14 +47,14 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%
 REM ------------------------------------
 
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\config.pl
-copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\build.pl
+IF [%BUILD_ARCH%] EQU [x64] copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\build.pl
 
 cd src\tools\msvc
 perl build.pl
 
-echo WORKAROUND BUG postgresql-12.1\pgsql.sln.metaproj : error MSB4126: The specified solution configuration Release Win32 is invalid. - run msbuild again
-cd ..\..\..
-msbuild pgsql.sln /verbosity:normal /p:Configuration=Release /p:Platform=%POSTGRESQL_BUILD_PLATFORM%
+REM echo WORKAROUND BUG postgresql-12.1\pgsql.sln.metaproj : error MSB4126: The specified solution configuration Release Win32 is invalid. - run msbuild again
+REM cd ..\..\..
+REM msbuild pgsql.sln /verbosity:normal /p:Configuration=Release /p:Platform=%POSTGRESQL_BUILD_PLATFORM%
 
 cd src\tools\msvc
 perl install.pl %PSQL_DEST%
