@@ -1,5 +1,7 @@
 call envars.bat
 
+tools\win32\git_clean_repos.bat
+
 IF NOT exist tools\win32\Strawberry\perl\bin\perl.exe goto strawberry
 :strawberry_end
 
