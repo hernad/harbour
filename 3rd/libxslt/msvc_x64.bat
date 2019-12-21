@@ -13,7 +13,7 @@ IF NOT DEFINED LIBXSLT_BUILD set LIBPATH=
 IF NOT DEFINED LIBXSLT_BUILD set PATH=c:\windows;c:\windows\system32
 
 REM amd64 ili x86
-IF NOT DEFINED LIBXSLT_BUILD call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
+IF NOT DEFINED LIBXSLT_BUILD call %VCBUILDTOOLS_PATH% %VCBUILDTOOLS%
 IF NOT DEFINED LIBXSLT_BUILD  set PATH=%PATH%;C:\Program Files\Git\cmd
 IF NOT DEFINED LIBXSLT_BUILD  set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
 IF NOT DEFINED LIBXSLT_BUILD  set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%

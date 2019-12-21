@@ -1,4 +1,4 @@
-call envars.bat
+call make_envars.bat
 
 set VCBUILDTOOLS=amd64
 set BUILD_ARCH=x64

@@ -1,4 +1,4 @@
-call ..\envars.bat
+call ..\make_envars.bat
 SET ROOT_3RD=%ROOT_DIR%\3rd
 
 set ZLIB_BUILD=

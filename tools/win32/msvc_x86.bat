@@ -19,7 +19,7 @@ REM set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 
-call "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" %VCBUILDTOOLS%
+call %VCBUILDTOOLS_PATH% %VCBUILDTOOLS%
 
 set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_ARCH%
 
