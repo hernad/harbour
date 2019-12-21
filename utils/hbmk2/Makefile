@@ -9,11 +9,8 @@ RC_SOURCES := harbour.rc
 
 PRG_MAIN := hbmk2.prg
 
-ifeq ($(__HB_MT),no)
-   LIBS = $(HB_LIBS_ST_RDD)
-else
-   LIBS = $(HB_LIBS_MT_RDD)
-endif
+# multihreading
+LIBS = $(HB_LIBS_MT_RDD)
 
 HB_RCFLAGS += -D_HB_INCLUDE_ICON
 

@@ -16,8 +16,6 @@ hbmk2.prg
 -main=__hbmk_public_entry
 -DHBMK_USE_CUSTMAIN
 
--DHBMK_WITH_BUILTIN_HEADERS_ALL
-
 # not using these together with .rc input, because some compilers (mingw)
 # do not support multiple .rc inputs
 #-icon={allwin}../../package/harbour.ico

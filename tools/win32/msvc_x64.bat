@@ -10,8 +10,6 @@ set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
 
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 
-
-REM set HB_INSTALL_PREFIX=c:\users\hernad\harbour-hernad\harbour
 set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 
 REM amd64 ili x86
