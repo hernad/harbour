@@ -26,7 +26,7 @@ IF NOT DEFINED POSTGRESQL_BUILD set PATH=%PATH%;%PERL_SITE_BIN_PATH%
 
 set POSTGRESQL_BUILD=1
 
-REM https://ss64.com/nt/errorlevel.html
+REM https://ss64.com/nt/errorlevel.html	
 perl --version
 IF %ERRORLEVEL% NEQ 0 GOTO ERROR
 
@@ -52,6 +52,11 @@ copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\bu
 cd src\tools\msvc
 
 perl build.pl
+cd %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%
+echo WORKAROUND BUG "postgresql-12.1\pgsql.sln.metaproj : error MSB4126: The specified solution configuration "Release|Win32" is invalid." - run msbuild again
+msbuild pgsql.sln
+
+cd src\tools\msvc
 perl install.pl %PSQL_DEST%
 
 cd %PSQL_DEST%
