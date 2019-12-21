@@ -1,11 +1,13 @@
 call make_envars.bat
 
+set BUILD_ARCH=x64
+set VCBUILDTOOLS=amd64
+set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
+
 set PATH=c:\windows;c:\windows\system32
 set PATH=%PATH%;C:\Program Files\Git\cmd
 set PATH=%PATH%;C:\Users\hernad\AppData\Local\Programs\Microsoft VS Code\bin
-set WINSDK_VER=10.0.18362.0
-set BUILD_ARCH=x64
-set VCBUILDTOOLS=amd64
+
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 
 

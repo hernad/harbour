@@ -3,7 +3,7 @@ call make_envars.bat
 set VCBUILDTOOLS=x86
 set BUILD_ARCH=x86
 
-set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
+set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
 
 REM set ROOT=c:\Users\hernad\x86
 REM set PSQL_VER=10.11-1

@@ -39,8 +39,6 @@ endif
 
 -include $(TOP)$(ROOT)config.mk
 
-
-
 # Detect pcre2
 # libpcre2-dev{deb}
 # pcre2-devel{rpm}
@@ -91,7 +89,6 @@ _DET_INC_DEFP := /usr/include /usr/local/include
 _DET_INC_LOCL := 3rd/xlsxwriter
 _DET_INC_HEAD := /xlsxwriter.hbc
 include $(TOP)$(ROOT)config/detfun.mk
-
 
 _DET_DSP_NAME := minizip
 _DET_VAR_INC_ := HB_INC_MINIZIP

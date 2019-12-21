@@ -330,5 +330,5 @@ ifneq ($(HB_HAS_ZLIB),)
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else
-   $(error ! Error: zlib component required [3], but not available - HB_HAS_ZLIB?)
+   $(error ! Error: [rtl] zlib component required, but not available - HB_HAS_ZLIB?)
 endif
