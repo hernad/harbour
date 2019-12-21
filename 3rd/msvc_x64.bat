@@ -36,3 +36,8 @@ set POSTGRESQL_BUILD=
 cd %ROOT_3RD%\postgresql
 call msvc_x64.bat
 IF DEFINED DEBUG_BUILD pause
+
+set POSTGRESQL_BUILD=
+cd %ROOT_3RD%\curl
+call msvc_x64.bat
+IF DEFINED DEBUG_BUILD pause
