@@ -3,7 +3,7 @@
 IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
 IF NOT DEFINED GIT_REPOS set GIT_REPOS=harbour
 set LIBRARY=postgresql
-set LIB_SOURCE_DIR=postgresql-12.1
+set SOURCE_DIR=postgresql-12.1
 
 set ROOT_DIR=\users\%USERNAME%\%GIT_REPOS%
 set CMD7z=..\..\tools\win32\7z.exe
@@ -38,15 +38,15 @@ set HB_INSTALL_PREFIX=%ROOT_DIR%\build\%BUILD_ARCH%\harbour
 echo ================ INIT postgresql-12.1 ===========================
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
-%CMD7z% -y x %LIB_SOURCE_DIR%.7z
+%CMD7z% -y x %SOURCE_DIR%.7z
 echo ==================================================================
 
-cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
+cd %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%
 
 REM ------------------------------------
 
-copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\config.pl
-copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%\src\tools\msvc\build.pl
+copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\config.pl
+copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\build.pl
 
 cd src\tools\msvc
 
