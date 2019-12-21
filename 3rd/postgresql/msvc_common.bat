@@ -54,7 +54,7 @@ perl build.pl
 
 echo WORKAROUND BUG postgresql-12.1\pgsql.sln.metaproj : error MSB4126: The specified solution configuration Release Win32 is invalid. - run msbuild again
 cd ..\..\..
-msbuild pgsql.sln
+msbuild pgsql.sln /verbosity:normal /p:Configuration=Release /p:Platform=%POSTGRESQL_BUILD_PLATFORM%
 
 cd src\tools\msvc
 perl install.pl %PSQL_DEST%
