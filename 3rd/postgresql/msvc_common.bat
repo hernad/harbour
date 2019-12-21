@@ -47,7 +47,8 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%
 REM ------------------------------------
 
 copy /Y ..\config_default.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\config.pl
-IF [%BUILD_ARCH%] EQU [x64] copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\build.pl
+REM x86 build patch
+IF [%BUILD_ARCH%] EQU [x86] copy /Y ..\msvc_build.pl %ROOT_DIR%\3rd\%LIBRARY%\%SOURCE_DIR%\src\tools\msvc\build.pl
 
 cd src\tools\msvc
 perl build.pl
