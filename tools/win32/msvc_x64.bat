@@ -25,5 +25,5 @@ cd %ROOT_DIR%
 echo ROOT dir: %ROOT_DIR%\
 echo HB_INSTALL_PREFIX=%HB_INSTALL_PREFIX%
 
-echo SET PATH WITH THIS command:
-echo set PATH=HB_INSTALL_PREFIX=%%HB_INSTALL_PREFIX%%\bin;%%PATH%%
+echo SET PATH to harbour binaries with this command:
+echo set PATH=%%HB_INSTALL_PREFIX%%\bin;%%PATH%%

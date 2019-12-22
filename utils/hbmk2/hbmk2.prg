@@ -4006,7 +4006,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          IF hbmk[ _HBMK_cCOMPVer ] == "0"
             hbmk[ _HBMK_cCOMPVer ] := CompVersionDetect( hbmk, cBin_CompC, .F. )
          ENDIF
-         cOpt_Lib := "-NODEFAULTLIB:LIBCMT -nologo {FA} -out:{OL} {LO}{SCRIPT}"
+         cOpt_Lib := "-nologo {FA} -out:{OL} {LO}{SCRIPT}"
          cOpt_Dyn := "-nologo {FD} {IM} -dll -out:{OD} {DL} {LO} {LL} {LB} {LF} {LS}{SCRIPT}"
          cOpt_CompC := "-nologo -c"
          cBin_SymLst := "dumpbin.exe"
@@ -4081,14 +4081,12 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          cOpt_CompC += " {FC} {LC}"
          cOptIncMask := "-I{DI}"
          // msvc here
-         cOpt_Link := "-NODEFAULTLIB:LIBCMT -nologo -out:{OE} {LO} {DL} {FL} {IM} {LL} {LB} {LF} {LS}{SCRIPT}"
+         cOpt_Link := "-nologo -out:{OE} {LO} {DL} {FL} {IM} {LL} {LB} {LF} {LS}{SCRIPT}"
          SWITCH hbmk[ _HBMK_cCOMP ]
          CASE "clang-cl"
          CASE "msvc"     ; AAdd( hbmk[ _HBMK_aOPTI ], "-machine:x86"  ) ; EXIT
          CASE "clang-cl64"
-         CASE "icc64"
          CASE "msvc64"   ; AAdd( hbmk[ _HBMK_aOPTI ], "-machine:x64"  ) ; EXIT
-         CASE "iccia64"
          CASE "msvcia64" ; AAdd( hbmk[ _HBMK_aOPTI ], "-machine:ia64" ) ; EXIT
          CASE "msvcarm"  ; AAdd( hbmk[ _HBMK_aOPTI ], "-machine:xarm" ) ; EXIT
          CASE "msvcmips" ; AAdd( hbmk[ _HBMK_aOPTI ], "-machine:mips" ) ; EXIT
@@ -4228,7 +4226,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                with the same name. */
             l_cIMPLIBNAME := cName + hbmk_IMPSUFFIX( hbmk )
          ENDIF
-         IF hbmk[ _HBMK_lIMPLIB ] .AND. HBMK_ISPLAT( "win|os2|dos" )
+         IF hbmk[ _HBMK_lIMPLIB ] .AND. HBMK_ISPLAT( "win" )
             l_cLIBSELF := l_cIMPLIBNAME
          ENDIF
          l_cIMPLIBNAME := hb_FNameMerge( l_cIMPLIBDIR, cLibLibPrefix + l_cIMPLIBNAME, cImpLibExt )
