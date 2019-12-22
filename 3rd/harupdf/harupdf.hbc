@@ -1,4 +1,5 @@
 libs=${_HB_3RDPREF}${hb_name}${_HB_3RDSUFF}
 libs=png
-libs=zlib
+{unix}libs=z
+{win}libs=zdll
 echo=harupdf library (deps on zlib, png)
