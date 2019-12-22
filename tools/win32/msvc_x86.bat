@@ -1,3 +1,4 @@
+@echo off
 call make_envars.bat
 
 set VCBUILDTOOLS=x86
@@ -25,5 +26,8 @@ set PATH=%PATH%;C:\Program Files (x86)\Windows Kits\10\bin\%WINSDK_VER%\%BUILD_A
 
 cd %ROOT_DIR%
 
-echo current dir: %ROOT_DIR%
+echo ROOT dir: %ROOT_DIR%\
 echo HB_INSTALL_PREFIX=%HB_INSTALL_PREFIX%
+
+echo SET PATH WITH THIS command:
+echo set PATH=HB_INSTALL_PREFIX=%%HB_INSTALL_PREFIX%%\bin;%%PATH%%
