@@ -54,6 +54,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionComp
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
+   LOCAL cPostgreSQLBin
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -114,6 +115,7 @@ PROCEDURE Main( ... )
             mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
          NEXT
 
+         // e.g. lib/win/msvc64
          cSrcLibDir :=  "lib" + hb_ps() + GetEnvC( "HB_PLATFORM" ) + hb_ps() + GetEnvC("HB_COMPILER" )
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
             aLibs := { ;
@@ -127,8 +129,68 @@ PROCEDURE Main( ... )
             }
          ENDIF
          FOR EACH cFile IN aLibs
-         OutStd( "Copying BIN FILE: " + cFile + " to LIB ..." + hb_eol() )
-         mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. )
+           OutStd( "Copying BIN FILE: " + cFile + " to LIB: " + tmp + hb_eol() )
+           mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
+         NEXT
+
+         // harbour/3rd/x64/postgresql/bin
+         cPostgreSQLBin :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cPostgreSQLBin +=  hb_ps() + "postgresql" + hb_ps() + "bin" + hb_ps()
+
+         IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
+            aLibs := { ;
+               cPostgreSQLBin + "libpq.dll", ;
+               cPostgreSQLBin + "libcrypto-1_1" + IIF(GetEnvC( "BUILD_ARCH" ) == "x64", "-x64", "" ) + ".dll", ;
+               cPostgreSQLBin + "libssl-1_1" + IIF(GetEnvC( "BUILD_ARCH" ) == "x64", "-x64", "" ) + ".dll", ;
+               cPostgreSQLBin + "libecpg.dll", ;
+               cPostgreSQLBin + "libecpg_compat.dll", ;
+               cPostgreSQLBin + "libpgtypes.dll", ;
+               cPostgreSQLBin + "libiconv.dll", ;
+               cPostgreSQLBin + "libpq.dll", ;
+               cPostgreSQLBin + "libxml2.dll", ;
+               cPostgreSQLBin + "libxml2.dll", ;
+               cPostgreSQLBin + "libxml2.dll", ;
+               cPostgreSQLBin + "createdb.exe", ;
+               cPostgreSQLBin + "createuser.exe", ;
+               cPostgreSQLBin + "dropdb.exe", ;
+               cPostgreSQLBin + "dropuser.exe", ;
+               cPostgreSQLBin + "initdb.exe", ;
+               cPostgreSQLBin + "oid2name.exe", ;
+               cPostgreSQLBin + "pgbench.exe", ;
+               cPostgreSQLBin + "pg_archivecleanup.exe", ;
+               cPostgreSQLBin + "pg_basebackup.exe", ;
+               cPostgreSQLBin + "pg_checksums.exe", ;
+               cPostgreSQLBin + "pg_config.exe", ;
+               cPostgreSQLBin + "pg_controldata.exe", ;
+               cPostgreSQLBin + "pg_ctl.exe", ;
+               cPostgreSQLBin + "pg_dump.exe", ;
+               cPostgreSQLBin + "pg_dumpall.exe", ;
+               cPostgreSQLBin + "pg_isolation_regress.exe", ;
+               cPostgreSQLBin + "pg_isready.exe", ;
+               cPostgreSQLBin + "pg_receivewal.exe", ;
+               cPostgreSQLBin + "pg_recvlogical.exe", ;
+               cPostgreSQLBin + "pg_regress.exe", ;
+               cPostgreSQLBin + "pg_resetwal.exe", ;
+               cPostgreSQLBin + "pg_restore.exe", ;
+               cPostgreSQLBin + "pg_rewind.exe", ;
+               cPostgreSQLBin + "pg_standby.exe", ;
+               cPostgreSQLBin + "pg_upgrade.exe", ;
+               cPostgreSQLBin + "pg_waldump.exe", ;
+               cPostgreSQLBin + "postgres.exe", ;
+               cPostgreSQLBin + "psql.exe", ;
+               cPostgreSQLBin + "reindexdb.exe", ;
+               cPostgreSQLBin + "vacuumdb.exe", ;
+               cPostgreSQLBin + "vacuumlo.exe", ;
+               cPostgreSQLBin + "zic.exe" ;
+            }
+         ELSE
+            aLibs := { ;
+            }
+         ENDIF
+         tmp := GetEnvC( "HB_INSTALL_BIN" )
+         FOR EACH cFile IN aLibs
+            OutStd( "Copying PostgreSQL binaries to " + tmp + hb_eol() )
+            mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
          NEXT
 
          tmp := GetEnvC( "HB_INSTALL_PREFIX" )
@@ -137,6 +199,7 @@ PROCEDURE Main( ... )
          mk_hb_vfCopyFile( "LICENSE_BIN", tmp + hb_ps(), .T.,, .T. )
          mk_hb_vfCopyFile( "LICENSE_LIBRARIES", tmp + hb_ps(), .T.,, .T. )
          mk_hb_vfCopyFile( "README.md", tmp + hb_ps(), .T.,, .T. )
+
       ELSE
          OutStd( hb_StrFormat( "! Error: Cannot create directory '%1$s'", tmp ) + hb_eol() )
       ENDIF

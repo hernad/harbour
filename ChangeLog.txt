@@ -1,3 +1,6 @@
+2019-22-12 11:00 UTC Ernad Husremovic (hernad@bring.out.ba)
+  * harbour 4.4.0 - PostgreSQL/win 32-64 edition
+
 2019-17-12 22:00 UTC Ernad Husremovic (hernad@bring.out.ba)
   * 3rd/pq - postgresql client library
   * fix hbmk2 windows version (gtgui out)
