@@ -2,11 +2,8 @@ hbxlsxwriter.hbc
 
 -w3 -es2
 
-#-I../ 
-#-I../libxlsxwriter/lib -lxlsxwriter
-#-I/libxlsxwriter/lib -lxlsxwriter
-#-L../
-#
--lz
+{unix}-lz
+{win}-lzlib
+{win}-ldflag=-NODEFAULTLIB:LIBCMT
 
 minizip.hbc
