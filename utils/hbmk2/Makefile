@@ -22,10 +22,10 @@ HB_PRGFLAGS += -u -i$(TOP)
 HB_PRGFLAGS += -DHBMK_USE_APPMAIN
 HB_PRGFLAGS += -DHBMK_WITH_BUILTIN_HEADERS_ALL
 
-ifeq ($(HB_PLATFORM),win)
+#ifeq ($(HB_PLATFORM),win)
    # $(info REF_FIX: https://stackoverflow.com/questions/46585662/windows-linking-to-libcurl-a-lib)
-   HB_LDFLAGS += /NODEFAULTLIB:LIBCMT
-endif
+   #HB_LDFLAGS += /NODEFAULTLIB:LIBCMT
+#endif
 
 HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
 
