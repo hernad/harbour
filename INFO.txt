@@ -91,7 +91,7 @@ If something lacks purpose - it should be removed.
 If something has potenital to be usefull - simply add, no large discussions.
 Large discussions and overthinking damages agileness.
 
-Fork :)
+Please fork :)
 ===============
 If somebody share my needs and goals, please fork!
 Use, test, submit your pull requestes.

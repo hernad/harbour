@@ -12,6 +12,7 @@ ifeq ($(HB_BUILD_PARTS),compiler)
       utils{src} \
 
 else
+
    # When doing a plain clean, we must not clean hbmk2
    # before calling it to clean the contrib area.
    _CONTRIB_FIRST :=
@@ -28,10 +29,13 @@ else
       src \
 
    ifeq ($(_CONTRIB_FIRST),yes)
+
       DIRS += \
          contrib{src} \
          utils{contrib} \
+
    else
+   
       DIRS += \
          utils{src} \
          contrib{utils} \
