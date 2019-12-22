@@ -13,4 +13,4 @@ THaruPDF.prg
 hbhpdf.hbc
 hbct.hbc
 
-{win}-lzlib
+{win}-ldflag=-NODEFAULTLIB:LIBCMT
