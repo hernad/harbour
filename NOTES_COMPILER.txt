@@ -53,3 +53,227 @@ ifeq ($(wildcard $(DESTLIB)),)
    RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
    $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
 endif
+
+
+
+DLLS
+===========
+
+C:\Users\hernad\harbour\3rd\x64\zlib\lib>dumpbin /exports zlib1.dll
+Microsoft (R) COFF/PE Dumper Version 14.00.24210.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file zlib1.dll
+
+File Type: DLL
+
+  Section contains the following exports for zlib1.dll
+
+    00000000 characteristics
+    5DFF52F6 time date stamp Sun Dec 22 12:26:46 2019
+        0.00 version
+           1 ordinal base
+          86 number of functions
+          86 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00001000 adler32 = adler32
+          2    1 00001010 adler32_combine = adler32_combine
+          3    2 00001020 adler32_combine64 = adler32_combine64
+          4    3 00001100 adler32_z = adler32_z
+          5    4 000013E0 compress = compress
+          6    5 00001400 compress2 = compress2
+          7    6 00001500 compressBound = compressBound
+          8    7 00001520 crc32 = crc32
+          9    8 00001530 crc32_combine = crc32_combine
+         10    9 00001540 crc32_combine64 = crc32_combine64
+         11    A 00001A40 crc32_z = crc32_z
+         12    B 00002820 deflate = deflate
+         13    C 00003230 deflateBound = deflateBound
+         14    D 00003390 deflateCopy = deflateCopy
+         15    E 00003650 deflateEnd = deflateEnd
+         16    F 00003740 deflateGetDictionary = deflateGetDictionary
+         17   10 00003800 deflateInit2_ = deflateInit2_
+         18   11 00003AA0 deflateInit_ = deflateInit_
+         19   12 00003AE0 deflateParams = deflateParams
+         20   13 00003CB0 deflatePending = deflatePending
+         21   14 00003D30 deflatePrime = deflatePrime
+         22   15 00003E50 deflateReset = deflateReset
+         23   16 00003E80 deflateResetKeep = deflateResetKeep
+         24   17 00003F90 deflateSetDictionary = deflateSetDictionary
+         25   18 00004210 deflateSetHeader = deflateSetHeader
+         26   19 00004270 deflateTune = deflateTune
+         27   1A 00001A50 get_crc_table = get_crc_table
+         28   1B 00005400 gzbuffer = gzbuffer
+         29   1C 00005440 gzclearerr = gzclearerr
+         30   1D 00004F50 gzclose = gzclose
+         31   1E 00006210 gzclose_r = gzclose_r
+         32   1F 00006D20 gzclose_w = gzclose_w
+         33   20 000062C0 gzdirect = gzdirect
+         34   21 000054A0 gzdopen = gzdopen
+         35   22 00005530 gzeof = gzeof
+         36   23 00005560 gzerror = gzerror
+         37   24 00006DF0 gzflush = gzflush
+         38   25 00006300 gzfread = gzfread
+         39   26 00006E60 gzfwrite = gzfwrite
+         40   27 00006380 gzgetc = gzgetc
+         41   28 000063F0 gzgetc_ = gzgetc_
+         42   29 00006400 gzgets = gzgets
+         43   2A 000055B0 gzoffset = gzoffset
+         44   2B 00005620 gzoffset64 = gzoffset64
+         45   2C 00005680 gzopen = gzopen
+         46   2D 00005680 gzopen64 = gzopen
+         47   2E 00005690 gzopen_w = gzopen_w
+         48   2F 00006EE0 gzprintf = gzprintf
+         49   30 00006F10 gzputc = gzputc
+         50   31 00006FD0 gzputs = gzputs
+         51   32 00006540 gzread = gzread
+         52   33 000056A0 gzrewind = gzrewind
+         53   34 00005700 gzseek = gzseek
+         54   35 00005720 gzseek64 = gzseek64
+         55   36 00007030 gzsetparams = gzsetparams
+         56   37 00005880 gztell = gztell
+         57   38 000058E0 gztell64 = gztell64
+         58   39 000065B0 gzungetc = gzungetc
+         59   3A 000070F0 gzvprintf = gzvprintf
+         60   3B 00007230 gzwrite = gzwrite
+         61   3C 000082E0 inflate = inflate
+         62   3D 00007280 inflateBack = inflateBack
+         63   3E 00008180 inflateBackEnd = inflateBackEnd
+         64   3F 000081D0 inflateBackInit_ = inflateBackInit_
+         65   40 00009AE0 inflateCodesUsed = inflateCodesUsed
+         66   41 00009B30 inflateCopy = inflateCopy
+         67   42 00009D90 inflateEnd = inflateEnd
+         68   43 00009E00 inflateGetDictionary = inflateGetDictionary
+         69   44 00009EB0 inflateGetHeader = inflateGetHeader
+         70   45 00009F00 inflateInit2_ = inflateInit2_
+         71   46 00009FF0 inflateInit_ = inflateInit_
+         72   47 0000A000 inflateMark = inflateMark
+         73   48 0000A080 inflatePrime = inflatePrime
+         74   49 0000A100 inflateReset = inflateReset
+         75   4A 0000A150 inflateReset2 = inflateReset2
+         76   4B 0000A270 inflateResetKeep = inflateResetKeep
+         77   4C 0000A320 inflateSetDictionary = inflateSetDictionary
+         78   4D 0000A3F0 inflateSync = inflateSync
+         79   4E 0000A5C0 inflateSyncPoint = inflateSyncPoint
+         80   4F 0000A610 inflateUndermine = inflateUndermine
+         81   50 0000A660 inflateValidate = inflateValidate
+         82   51 0000CDE0 uncompress = uncompress
+         83   52 0000CE00 uncompress2 = uncompress2
+         84   53 0000CF60 zError = zError
+         85   54 0000CFA0 zlibCompileFlags = zlibCompileFlags
+         86   55 0000CFB0 zlibVersion = zlibVersion
+
+
+after including minizip functions
+----------------------------------------------------------------
+
+Dump of file zlib-1.2.11\zlib1.dll
+
+File Type: DLL
+
+  Section contains the following exports for zlib1.dll
+
+    00000000 characteristics
+    5DFF692A time date stamp Sun Dec 22 14:01:30 2019
+        0.00 version
+           1 ordinal base
+          92 number of functions
+          92 number of names
+
+    ordinal hint RVA      name
+
+          1    0 00001000 adler32 = adler32
+          2    1 00001010 adler32_combine = adler32_combine
+          3    2 00001020 adler32_combine64 = adler32_combine64
+          4    3 00001100 adler32_z = adler32_z
+          5    4 000013E0 compress = compress
+          6    5 00001400 compress2 = compress2
+          7    6 00001500 compressBound = compressBound
+          8    7 00001520 crc32 = crc32
+          9    8 00001530 crc32_combine = crc32_combine
+         10    9 00001540 crc32_combine64 = crc32_combine64
+         11    A 00001A40 crc32_z = crc32_z
+         12    B 00002820 deflate = deflate
+         13    C 00003230 deflateBound = deflateBound
+         14    D 00003390 deflateCopy = deflateCopy
+         15    E 00003650 deflateEnd = deflateEnd
+         16    F 00003740 deflateGetDictionary = deflateGetDictionary
+         17   10 00003800 deflateInit2_ = deflateInit2_
+         18   11 00003AA0 deflateInit_ = deflateInit_
+         19   12 00003AE0 deflateParams = deflateParams
+         20   13 00003CB0 deflatePending = deflatePending
+         21   14 00003D30 deflatePrime = deflatePrime
+         22   15 00003E50 deflateReset = deflateReset
+         23   16 00003E80 deflateResetKeep = deflateResetKeep
+         24   17 00003F90 deflateSetDictionary = deflateSetDictionary
+         25   18 00004210 deflateSetHeader = deflateSetHeader
+         26   19 00004270 deflateTune = deflateTune
+         27   1A 0000FA70 fill_win32_filefunc64W = fill_win32_filefunc64W
+         28   1B 00001A50 get_crc_table = get_crc_table
+         29   1C 00005400 gzbuffer = gzbuffer
+         30   1D 00005440 gzclearerr = gzclearerr
+         31   1E 00004F50 gzclose = gzclose
+         32   1F 00006210 gzclose_r = gzclose_r
+         33   20 00006D20 gzclose_w = gzclose_w
+         34   21 000062C0 gzdirect = gzdirect
+         35   22 000054A0 gzdopen = gzdopen
+         36   23 00005530 gzeof = gzeof
+         37   24 00005560 gzerror = gzerror
+         38   25 00006DF0 gzflush = gzflush
+         39   26 00006300 gzfread = gzfread
+         40   27 00006E60 gzfwrite = gzfwrite
+         41   28 00006380 gzgetc = gzgetc
+         42   29 000063F0 gzgetc_ = gzgetc_
+         43   2A 00006400 gzgets = gzgets
+         44   2B 000055B0 gzoffset = gzoffset
+         45   2C 00005620 gzoffset64 = gzoffset64
+         46   2D 00005680 gzopen = gzopen
+         47   2E 00005680 gzopen64 = gzopen
+         48   2F 00005690 gzopen_w = gzopen_w
+         49   30 00006EE0 gzprintf = gzprintf
+         50   31 00006F10 gzputc = gzputc
+         51   32 00006FD0 gzputs = gzputs
+         52   33 00006540 gzread = gzread
+         53   34 000056A0 gzrewind = gzrewind
+         54   35 00005700 gzseek = gzseek
+         55   36 00005720 gzseek64 = gzseek64
+         56   37 00007030 gzsetparams = gzsetparams
+         57   38 00005880 gztell = gztell
+         58   39 000058E0 gztell64 = gztell64
+         59   3A 000065B0 gzungetc = gzungetc
+         60   3B 000070F0 gzvprintf = gzvprintf
+         61   3C 00007230 gzwrite = gzwrite
+         62   3D 000082E0 inflate = inflate
+         63   3E 00007280 inflateBack = inflateBack
+         64   3F 00008180 inflateBackEnd = inflateBackEnd
+         65   40 000081D0 inflateBackInit_ = inflateBackInit_
+         66   41 00009AE0 inflateCodesUsed = inflateCodesUsed
+         67   42 00009B30 inflateCopy = inflateCopy
+         68   43 00009D90 inflateEnd = inflateEnd
+         69   44 00009E00 inflateGetDictionary = inflateGetDictionary
+         70   45 00009EB0 inflateGetHeader = inflateGetHeader
+         71   46 00009F00 inflateInit2_ = inflateInit2_
+         72   47 00009FF0 inflateInit_ = inflateInit_
+         73   48 0000A000 inflateMark = inflateMark
+         74   49 0000A080 inflatePrime = inflatePrime
+         75   4A 0000A100 inflateReset = inflateReset
+         76   4B 0000A150 inflateReset2 = inflateReset2
+         77   4C 0000A270 inflateResetKeep = inflateResetKeep
+         78   4D 0000A320 inflateSetDictionary = inflateSetDictionary
+         79   4E 0000A3F0 inflateSync = inflateSync
+         80   4F 0000A5C0 inflateSyncPoint = inflateSyncPoint
+         81   50 0000A610 inflateUndermine = inflateUndermine
+         82   51 0000A660 inflateValidate = inflateValidate
+         83   52 0000CDE0 uncompress = uncompress
+         84   53 0000CE00 uncompress2 = uncompress2
+         85   54 0000CF60 zError = zError
+         86   55 0000E6E0 zipClose = zipClose
+         87   56 0000E880 zipCloseFileInZip = zipCloseFileInZip
+         88   57 0000EDD0 zipOpen2_64 = zipOpen2_64
+         89   58 0000F060 zipOpenNewFileInZip4_64 = zipOpenNewFileInZip4_64
+         90   59 0000F6F0 zipWriteInFileInZip = zipWriteInFileInZip
+         91   5A 0000CFA0 zlibCompileFlags = zlibCompileFlags
+         92   5B 0000CFB0 zlibVersion = zlibVersion

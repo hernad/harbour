@@ -103,8 +103,6 @@ PROCEDURE Main( ... )
                "src/hbpgsql/hbpgsql.hbc", ;
                "3rd/harupdf/harupdf.hbc", ;
                "src/hbhpdf/hbhpdf.hbc", ;
-               "3rd/minizip/minizip.hbc", ;
-               "src/hbmzip/hbmzip.hbc", ;
                "3rd/xlsxwriter/xlsxwriter.hbc", ;
                "src/hbxlsxwriter/hbxlsxwriter.hbc", ;
                "src/hbtip/hbtip.hbc", ;
@@ -120,7 +118,7 @@ PROCEDURE Main( ... )
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
             aLibs := { ;
                cSrcLibDir + "\libpq.lib", ;
-               cSrcLibDir + "\zlib.lib"   ;
+               cSrcLibDir + "\zdll.lib"   ;
             }
          ELSE
             aLibs := { ;

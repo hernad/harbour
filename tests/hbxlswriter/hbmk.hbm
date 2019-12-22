@@ -1,9 +1,3 @@
 hbxlsxwriter.hbc
 
 -w3 -es2
-
-{unix}-lz
-{win}-lzlib
-{win}-ldflag=-NODEFAULTLIB:LIBCMT
-
-minizip.hbc

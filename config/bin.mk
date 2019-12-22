@@ -58,9 +58,9 @@ else
    # e.g. 3rd/x86/zlib/{include, bin}
    ifneq ($(HB_HAS_ZLIB),)
       ifeq ($(HB_PLATFORM),win)
-         HB_LIBS_TPL += zlib
-         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib.lib)
-         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/zlib.lib)
+         HB_LIBS_TPL += zdll
+         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zdll.lib)
+         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/zdll.lib)
          ifeq ($(wildcard $(DESTLIB)),)
             RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
             $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )

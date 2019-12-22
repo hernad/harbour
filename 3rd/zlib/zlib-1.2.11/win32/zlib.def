@@ -92,3 +92,9 @@ EXPORTS
     inflateResetKeep
     deflateResetKeep
     gzopen_w
+    zipOpen2_64
+    zipOpenNewFileInZip4_64
+    zipWriteInFileInZip
+    zipCloseFileInZip
+    zipClose
+    fill_win32_filefunc64W

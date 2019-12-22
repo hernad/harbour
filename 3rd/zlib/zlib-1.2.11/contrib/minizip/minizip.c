@@ -163,6 +163,7 @@ int check_exist_file(filename)
     return ret;
 }
 
+#ifndef CREATE_DLL
 void do_banner()
 {
     printf("MiniZip 1.1, demo of zLib + MiniZip64 package, written by Gilles Vollant\n");
@@ -179,6 +180,7 @@ void do_help()
            "  -9  Compress better\n\n" \
            "  -j  exclude path. store only the file name.\n\n");
 }
+#endif
 
 /* calculate the CRC32 of a file,
    because to encrypt a file, we need known the CRC32 of the file before */
@@ -243,6 +245,7 @@ int isLargeFile(const char* filename)
  return largeFile;
 }
 
+#ifndef CREATE_DLL
 int main(argc,argv)
     int argc;
     char *argv[];
@@ -518,3 +521,4 @@ int main(argc,argv)
     free(buf);
     return 0;
 }
+#endif

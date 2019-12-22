@@ -449,7 +449,7 @@ void fill_win32_filefunc64A(zlib_filefunc64_def* pzlib_filefunc_def)
 }
 
 
-void fill_win32_filefunc64W(zlib_filefunc64_def* pzlib_filefunc_def)
+extern void fill_win32_filefunc64W(zlib_filefunc64_def* pzlib_filefunc_def)
 {
     pzlib_filefunc_def->zopen64_file = win32_open64_file_funcW;
     pzlib_filefunc_def->zread_file = win32_read_file_func;

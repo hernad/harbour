@@ -38,8 +38,6 @@ static int decrypt_byte(unsigned long* pkeys, const z_crc_t* pcrc_32_tab)
                      * unpredictable manner on 16-bit systems; not a problem
                      * with any known compiler so far, though */
 
-    (void) pcrc_32_tab;
-
     temp = ((unsigned)(*(pkeys+2)) & 0xffff) | 2;
     return (int)(((temp * (temp ^ 1)) >> 8) & 0xff);
 }
@@ -111,9 +109,7 @@ static int crypthead(const char* passwd,      /* password string */
      */
     if (++calls == 1)
     {
-#if !( defined( HB_OS_WIN_CE ) && defined( _MSC_VER ) )
         srand((unsigned)(time(NULL) ^ ZCR_SEED2));
-#endif
     }
     init_keys(passwd, pkeys, pcrc_32_tab);
     for (n = 0; n < RAND_HEAD_LEN-2; n++)

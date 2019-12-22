@@ -26,8 +26,6 @@ export HB_HAS_XLSWRITER       :=
 export HB_HAS_XLSWRITER_LOCAL :=
 export HB_HAS_HARUPDF         :=
 export HB_HAS_HARUPDF_LOCAL   :=
-export HB_HAS_MINIZIP         :=
-export HB_HAS_MINIZIP_LOCAL   :=
 
 # Exclude Harbour-wide features prohibiting commercial use
 ifeq ($(HB_BUILD_NOGPLLIB),yes)
@@ -89,17 +87,6 @@ _DET_INC_DEFP := /usr/include /usr/local/include
 _DET_INC_LOCL := 3rd/xlsxwriter
 _DET_INC_HEAD := /xlsxwriter.hbc
 include $(TOP)$(ROOT)config/detfun.mk
-
-_DET_DSP_NAME := minizip
-_DET_VAR_INC_ := HB_INC_MINIZIP
-_DET_VAR_HAS_ := HB_HAS_MINIZIP
-_DET_FLT_PLAT :=
-_DET_FLT_COMP :=
-_DET_INC_DEFP := /usr/include /usr/local/include
-_DET_INC_LOCL := 3rd/minizip
-_DET_INC_HEAD := /minizip.hbc
-include $(TOP)$(ROOT)config/detfun.mk
-
 
 # Detect zlib
 # zlib1g-dev{deb}

@@ -1,7 +1,5 @@
 include $(TOP)$(ROOT)config/global.mk
 
-ifneq ($(HB_PLATFORM),)
-ifneq ($(HB_COMPILER),)
 
 HB_DYN_LIBS := \
    hbcommon \
@@ -32,9 +30,9 @@ HB_DYN_LIBS := \
 ifneq ($(HB_HAS_PCRE2_LOCAL),)
    HB_DYN_LIBS += hbpcre2
 endif
-ifneq ($(HB_HAS_ZLIB),)
-   HB_DYN_LIBS += zlib
-endif
+#ifneq ($(HB_HAS_ZLIB),)
+#   HB_DYN_LIBS += zlib
+#endif
 ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
    HB_DYN_LIBS += xlswriter
 endif
@@ -77,8 +75,4 @@ ifneq ($(INSTALL_RULE_LIBS),)
 install:: first
 	$(INSTALL_RULE_LIBS)
 
-endif
-
-
-endif
 endif

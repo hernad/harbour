@@ -185,6 +185,7 @@ int makedir (newdir)
   return 1;
 }
 
+#ifndef CREATE_DLL
 void do_banner()
 {
     printf("MiniUnz 1.01b, demo of zLib + Unz package written by Gilles Vollant\n");
@@ -202,6 +203,7 @@ void do_help()
            "  -o  overwrite files without prompting\n" \
            "  -p  extract crypted file using password\n\n");
 }
+#endif
 
 void Display64BitsSize(ZPOS64_T n, int size_char)
 {
@@ -530,7 +532,7 @@ int do_extract_onefile(uf,filename,opt_extract_without_path,opt_overwrite,passwo
         return 1;
 }
 
-
+#ifndef CREATE_DLL
 int main(argc,argv)
     int argc;
     char *argv[];
@@ -658,3 +660,4 @@ int main(argc,argv)
 
     return ret_value;
 }
+#endif

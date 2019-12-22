@@ -34,9 +34,10 @@ ARFLAGS = -nologo
 RCFLAGS = /dWIN32 /r
 
 OBJS = adler32.obj compress.obj crc32.obj deflate.obj gzclose.obj gzlib.obj gzread.obj \
-       gzwrite.obj infback.obj inflate.obj inftrees.obj inffast.obj trees.obj uncompr.obj zutil.obj
-OBJA =
+       gzwrite.obj infback.obj inflate.obj inftrees.obj inffast.obj trees.obj uncompr.obj zutil.obj \
+       zip.obj unzip.obj ioapi.obj iowin32.obj minizip.obj miniunz.obj
 
+OBJA =
 
 # targets
 all: $(STATICLIB) $(SHAREDLIB) $(IMPLIB) \
@@ -75,6 +76,9 @@ minigzip_d.exe: minigzip.obj $(IMPLIB)
 
 {$(TOP)}.c.obj:
 	$(CC) -c $(WFLAGS) $(CFLAGS) $<
+
+{$(TOP)/contrib/minizip}.c.obj:
+	$(CC) -c $(WFLAGS) $(CFLAGS) -DCREATE_DLL -I$(TOP) $<
 
 {$(TOP)/test}.c.obj:
 	$(CC) -c -I$(TOP) $(WFLAGS) $(CFLAGS) $<
@@ -135,6 +139,18 @@ match686.obj: $(TOP)/contrib\masmx86\match686.asm
 example.obj: $(TOP)/test/example.c $(TOP)/zlib.h $(TOP)/zconf.h
 
 minigzip.obj: $(TOP)/test/minigzip.c $(TOP)/zlib.h $(TOP)/zconf.h
+
+zip.obj: $(TOP)/contrib\minizip\zip.c 
+
+unzip.obj: $(TOP)/contrib\minizip\unzip.c
+
+ioapi.obj: $(TOP)/contrib\minizip\ioapi.c
+
+iowin32.obj: $(TOP)/contrib\minizip\iowin32.c
+
+minizip.obj: $(TOP)/contrib\minizip\minizip.c
+
+miniunz.obj: $(TOP)/contrib\minizip\miniunz.c
 
 zlib1.res: $(TOP)/win32/zlib1.rc
 	$(RC) $(RCFLAGS) /fo$@ $(TOP)/win32/zlib1.rc
