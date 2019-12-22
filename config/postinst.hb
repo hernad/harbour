@@ -54,7 +54,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionComp
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
-   LOCAL cPostgreSQLBin
+   LOCAL cPostgreSQLBin, cZlibDir
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -135,8 +135,12 @@ PROCEDURE Main( ... )
          cPostgreSQLBin :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cPostgreSQLBin +=  hb_ps() + "postgresql" + hb_ps() + "bin" + hb_ps()
 
+         cZlibDir := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cZlibDir +=  hb_ps() + "zlib" + hb_ps() + "lib" + hb_ps()
+         
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
             aLibs := { ;
+               cZlibDir + "zlib1.dll", ;
                cPostgreSQLBin + "libpq.dll", ;
                cPostgreSQLBin + "libcrypto-1_1" + IIF(GetEnvC( "BUILD_ARCH" ) == "x64", "-x64", "" ) + ".dll", ;
                cPostgreSQLBin + "libssl-1_1" + IIF(GetEnvC( "BUILD_ARCH" ) == "x64", "-x64", "" ) + ".dll", ;
@@ -187,7 +191,7 @@ PROCEDURE Main( ... )
          ENDIF
          tmp := GetEnvC( "HB_INSTALL_BIN" )
          FOR EACH cFile IN aLibs
-            OutStd( "Copying PostgreSQL binaries to " + tmp + hb_eol() )
+            OutStd( "Copying zlib/PostgreSQL binaries to " + tmp + hb_eol() )
             mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
          NEXT
 

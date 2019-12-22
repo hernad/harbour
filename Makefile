@@ -45,9 +45,17 @@ endif
 
 include $(ROOT)config/dir.mk
 
-ifneq ($(HB_NO_HBSCRIPT),yes)
+# every harbour execute needs zlib1.dll
+ifeq ($(HB_PLATFORM),win)
+   SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib1.dll)
+   DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/zlib1.dll)
+   ifeq ($(wildcard $(DESTLIB)),)
+      RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+      $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+   endif
+endif
+
 
 first clean install::
 	$(if $(wildcard $(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT)),+$(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT) $(TOP)$(ROOT)config/postinst.hb $@,@$(ECHO) $(ECHOQUOTE)! Warning: hbmk2 not found, config/postinst.hb skipped.$(ECHOQUOTE))
-
-endif
+	$(info ==END==)
