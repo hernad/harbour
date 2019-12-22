@@ -12,7 +12,6 @@ ifeq ($(HB_BUILD_PARTS),compiler)
       utils{src} \
 
 else
-
    # When doing a plain clean, we must not clean hbmk2
    # before calling it to clean the contrib area.
    _CONTRIB_FIRST :=
@@ -29,13 +28,10 @@ else
       src \
 
    ifeq ($(_CONTRIB_FIRST),yes)
-
       DIRS += \
          contrib{src} \
          utils{contrib} \
-
    else
-
       DIRS += \
          utils{src} \
          contrib{utils} \
@@ -45,17 +41,27 @@ endif
 
 include $(ROOT)config/dir.mk
 
+
 # every harbour execute needs zlib1.dll
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib1.dll)
+DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/zlib1.dll)
+
 ifeq ($(HB_PLATFORM),win)
-   SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib1.dll)
-   DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/zlib1.dll)
-   ifeq ($(wildcard $(DESTLIB)),)
-      RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
-      $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
-   endif
+hbmk2Zlib1dll::
+	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
+	$(CP) $(SRCLIB) $(DESTLIB)
+else
+hbmk2Zlib1dll::
+	$(info unix SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
 endif
 
+jedan::
+	$(info jedan)
 
-first clean install::
+dva:: jedan
+	$(info dva)
+
+
+first clean install:: hbmk2Zlib1dll
 	$(if $(wildcard $(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT)),+$(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT) $(TOP)$(ROOT)config/postinst.hb $@,@$(ECHO) $(ECHOQUOTE)! Warning: hbmk2 not found, config/postinst.hb skipped.$(ECHOQUOTE))
-	$(info ==END==)
+	$(info == $(HB_HOST_BIN_DIR) END==)
