@@ -55,13 +55,6 @@ hbmk2Zlib1dll::
 	$(info unix SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
 endif
 
-jedan::
-	$(info jedan)
-
-dva:: jedan
-	$(info dva)
-
-
 first clean install:: hbmk2Zlib1dll
 	$(if $(wildcard $(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT)),+$(HB_HOST_BIN_DIR)/hbmk2$(HB_HOST_BIN_EXT) $(TOP)$(ROOT)config/postinst.hb $@,@$(ECHO) $(ECHOQUOTE)! Warning: hbmk2 not found, config/postinst.hb skipped.$(ECHOQUOTE))
 	$(info == $(HB_HOST_BIN_DIR) END==)
