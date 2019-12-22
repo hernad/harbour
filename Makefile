@@ -45,14 +45,17 @@ include $(ROOT)config/dir.mk
 # every harbour execute needs zlib1.dll
 SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib1.dll)
 DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/zlib1.dll)
+DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
 
 ifeq ($(HB_PLATFORM),win)
 hbmk2Zlib1dll::
 	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR)exists,$(MD) $(DESTDIR))
 	$(CP) $(SRCLIB) $(DESTLIB)
 else
 hbmk2Zlib1dll::
 	$(info unix SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir exists,$(MD) $(DESTDIR))
 endif
 
 first clean install:: hbmk2Zlib1dll

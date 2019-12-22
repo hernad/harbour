@@ -1,0 +1,98 @@
+Hello community,
+
+I have published version 4.5.0  https://github.com/hernad/harbour/tree/4.5.0
+The "big thing" is addition of postgresql 12.1 libraries and binaries.
+That makes harbour compiler PostgreSQL capable out-of-box. Very convenient for my use case :).
+This version is prepared only for Windows x64/x86 binaries. Linux x64 is the next target.
+As I am much more skilled with linux development, I consider this step as a great achievemnt.
+
+Other important informations:
+=============================
+
+- postgresql and all of dependent libraries (openssl 1.1.0l, zlib, libiconv, 
+  uuidgen, libxml2, libxslt) built from source
+- A lot of hbmk2 source cleanup
+- test harupdf - OK
+- test sddpg - OK
+- test hbxlsxwriter - OK
+
+History 
+=============================
+
+4.5.0
+-----
+- total cleanup of libzip/minizip usage
+- everything is built from standard zlib repository with some trival patches 
+- 3rd\zlib\zlib-1.2.11
+- the mentioned patches are including minizip in zlib1.dll (windows version)
+- the bottom line: 
+   - standard zlib source (which includes minizip) is used for other components
+   - windows harbour programs which depends on zlib (like hbmk2.exe) links with zdll.lib,
+      so needs zlib1.dll (*)
+
+(*) I am not sure this is good choice. We'll see. I don't exclude possibility of reverting to 
+    compilation with static zlib.lib.
+
+4.4.0
+-----
+- curl last version (not integrated with hbssl)
+- hwgui from svn trunk, some cleanup (includes), not buildable/usable at the moment
+
+4.3.0
+------
+- postgresql, hbpgsql, sddpg
+
+4.2.0
+-----
+- rddsql
+- rddmisc (arrayrdd)
+
+4.0.0:
+-------
+- harupdf, hbhpdf
+- xlsxwriter, hbxlsxwriter
+
+Where is contrib?
+=================
+
+NO contrib. Application, library or utility is repository or NOT.
+It greatly simplifies structure and management of repository.
+
+
+No clipper/xharbour/watcom/borland/rtlink/blinker/minix/aix/... support?
+========================================================================
+
+hbmk2.prg is example of "spaghetti code" (unreadable).
+hbmk2 is so important to stay in that shape. 
+I have done substantional to simplify it and make it more readable.
+Removing exotic compilers/platforms was first, to me necessary step.
+I have removed also many legacy options like support for xharbour
+and old versions of harbour.
+
+
+Why inclusion of hwgui ?
+=============================================
+
+I don't use none of GUI libraries in my projects.
+Anyway, hwgui seems the best one GUI avilable.
+Opensource is mandatory for inclusion in this repository.
+As much as I have seen, hwgui has good basic premises:
+ - win32 api for windows
+ - gtk for linux
+ - "harbour-ish" syntax
+ - licenses aligned with harbour compiler/libraries (GPL2/LGPL2)
+
+Anyway, if my objections fail, as anything else it can be easily removed.
+
+The core concepts of this project are agile (fast track of changes) 
+and pragmatic approach - only usable (in practic or educational sense) 
+things included. 
+If something lacks purpose - it should be removed. 
+If something has potenital to be usefull - simply add, no large discussions.
+Large discussions and overthinking damages agileness.
+
+Fork :)
+===============
+If somebody share my needs and goals, please fork!
+Use, test, submit your pull requestes.
+Forking is base of creativity and software freedom.
