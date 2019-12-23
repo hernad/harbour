@@ -20,11 +20,11 @@ After some investigation, I have found that all these large open-source projects
 3. [PostgreSQL](https://www.enterprisedb.com/download-postgresql-binaries)
 4. [nodejs](https://docs.microsoft.com/en-us/windows/nodejs/setup-on-windows)
 
-Because, one of the main goals of this project is to make good [bridges to other technology stacks](https://github.com/hernad/harbour/blob/master/README.md#3-solution-make-good-bridges), I have decided to put my efforts toward `msvc`.
+One of the main goals of this project is to make [GOOD BRIDGES to other technology stacks](https://github.com/hernad/harbour/blob/master/README.md#3-solution-make-good-bridges), so I have decided to put my efforts in this project toward `msvc`.
 
-## harbour Makefiles and hbmk2 support
+## harbour Makefiles & hbmk2  - minwg support
 
-I have **NO PLAN**  plan to exclude mingw windows targets. I am just focusing to the msvc because exaplained reason.
+To be precise, I have **NO PLAN**  plan to exclude mingw windows targets. I am just focusing to the msvc because exaplained reason.
 
 ## Using Microsoft Visual C++ and software freedom 
 
@@ -36,11 +36,13 @@ The software freedom is mentioned [here](https://github.com/hernad/harbour/blob/
 
 > If somebody share my needs and goals, please fork! Use, test, submit your pull requestes. Forking is base of creativity and software freedom.
 
-I have explained my reasons to `focus` on MSVC, but I should point out much more important thing:
+I have explained my reasons to `focus` on MSVC, but for me there are more important things to discuall on the topic:
 
-Windows is closed platform. You sould pay to use that. Using their closed source compiler doesn't matters. It is the same thing as using proprietary clang based compiler on Apple/MacOS. The C compilers are commodity today. Nobody make business based on them. They can be considered them as a part of Operating system. Even Microsoft did that move :). Consequently the main thing connected to `software freedom` should be this question:
+Windows is closed platform. You sould pay to use that. Using their closed source compiler doesn't matters. If it saves engineering resources to get Windows binaries, it is the best choice.
+The same thing as using proprietary clang based compiler on Apple/MacOS. The C compiler is commodity today. Nobody more is trying to make business based on it. So, we can consider them as a part of Operating system. Even Microsoft did that move with providing `msvc` free of charge :). Consequently, the main thing connected to `software freedom` should be this question:
 
 	Why are you targeting Windows platform?
 
 The answer to that question is: Because my users wants that :).
-My strong care about software freedom is the fact that I `myself` creating exclusivelly open-source software.
+
+I express the strong care about software freedom with the fact that I `myself` creating exclusivelly open-source software. All of my libraries, tools and end-user applications are open-source software.
