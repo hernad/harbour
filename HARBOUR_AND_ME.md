@@ -39,11 +39,11 @@ After my personal vendor-lock with disaster, all of my evaluations were influenc
 	Developer's essentential tools have to be open-source software!
 
 
-## year 2002: Some Delphi with PostgreSQL
+## Year 2001: Delphi with PostgreSQL
 
 Learning about Linux directed me to many other unknown projects. I have learned about SQL, especially MySQL and PostgreSQL. At that time, PostgreSQL was targeted only to unix/linux systems. I have made one internal project with Delphi/PostgreSQL, and it was good. But ... my Vendor lock-in alarm have been activated! Delphi was closed source. Delphi's vendor [Borland](https://en.wikipedia.org/wiki/Borland) was struggling with [Microsoft](https://en.wikipedia.org/wiki/Microsoft), and that was a bad sign. So I decided: no reliance on Delphi. That was a good decision.
 
-## year 2002: Microsoft wins ... (my short .NET era)
+## Year 2002: Microsoft wins ... (my short .NET era)
 
 In year 2004, I have decided to take "bitter pill" and start future development with Microsoft tools. The main reason behind that decision was: 
 
@@ -55,12 +55,12 @@ It was also an `easy way` because here in Bosnia all of users and IT proffesiona
 
 That was time of promoting Microsoft .NET and new C# language. I have liked the new language. 
 
-## year 2004: Business, we have the problem - again :(
+## Year 2004: Business, we have the problem - again :(
 
 The company have got a new project to work on: nice `green-field` project. The perfect place to apply our new Microsoft toolset. But his time problems have raised simply because my personal failures. I was not good as an businessman and project leader. The project was cancelled and I experienced classic [burnout](https://en.wikipedia.org/wiki/Occupational_burnout).
 
 
-## year 2007: Business consolidation
+## Year 2007: Business consolidation
 
 After `burnout` experience, my working habits and approach to business dramatically changed. I have started with "calmly" approach. The basic premises of that approach were:
 1. Start saying "NO" to clients, not "WE WILL TRY" when there are no visible solutions which you can provide 
