@@ -1,9 +1,9 @@
-My development history 
-======================
+Harbour and me 
+================
 
-I am producing and delivering software for my users. I am doing that regulary for 25 (since 1994) years. 
+I am producing and delivering software to my users for living. I am doing that constantly for 25 years.
 
-I really know what engineering effort is needed to deliver and maintain `functional` software, software which is `used`. When you deliver software, you have obligations to your clients/users. If you respect those obligations, you are gaining credibility. Otherwise you are going to be disqualified.
+I really know what engineering effort is needed to deliver and maintain `functional` software, software which is `used`. When you deliver software, you have obligations to your clients/users. If you respect those obligations, you are gaining credibility. Otherwise you are going to be out of business.
 
 ## Clipper "Era"
 
@@ -113,7 +113,6 @@ From technical standpoint, this approach was a clear success:
 	- PostgreSQL stored procedures are maintainable, debug-able, language easy learnable for developer with harbour background
 4. NOT investing time into new UI (User Interface) was crucial time saver either development or deployment phase
 
-
 ## My standpoint about Harbour
 
 I don't consider myself as an `Harbour fun`. In every area of software development, in my opinion, there are better tools available. Let me list my favorites:
@@ -150,15 +149,14 @@ I don't consider myself as an `Harbour fun`. In every area of software developme
 	- ruby
 	- python
 
-As for my personal experience, the most close to harbour's  is golang. Golang terse, and effective. It produces native applications with small overhead.
-Contrary, developer's resources and community are unmatched. And most important: **Projects and applications build with golang*** are endless comparing to harbour.
+My personal developers's experience is that `golang` is the most close to `harbour`. Golang is terse and effective language. It produces native applications with small overhead. But that is the end with similarities. Developer's resources and community are unmatched. And most important, **projects and applications build with golang** are endless.
 
 ## Why I'm investing in this project?
 
-I am not talking about harbour as the best solution for new project (without previos background like I have) starting new project, so I am not harbour language fun. I am investing into harbour because because of those:
-1. I am experienced developer and `I know this language best`.
-2. It provides me to deliver solutions to my clients (`getting things done`) 
-3. If I choose good combination with other tools/technologies, it is proven that those solutions can be `good`.
+I am not talking about harbour as the best solution for new project. The conclusion is that I am NOT harbour language fun. I am investing into harbour because because of those:
+1. I am experienced and **know** this language **best**.
+2. I deliver solutions to my clients with it (`getting things done`) 
+3. I have proved to myself that combined with other tools/technologies, I can build **GOOD** solutions.
 
 Our users don't care about tools we use. They care about the *costs* of the project and the *features* they have!
 
@@ -166,25 +164,43 @@ It is obvious that `harbour` is essential development tool for me, so I am willi
 
 ## My thoughts about harbour community
 
-I would like that there are more voices in harbour community about building `bridges` with other technologies rather than making harbour great again :)
-
-For example, providing better GUI solutions would be good thing. Creating some kinde of web framework also. But the problem is - there are much better solutins right now elswere! So that limited time and resources should be put into providing effective interfaces to those frameworks and libraries. 
-
-I am probably most confronted with the community's majority in the area of database management. The community is taking large discussinos about client/server DBF base solutions. It is so wrong. As I have heard from other users, LetoDB and NETIO are already working in the production. So, if you need to solve problem with accessing large DBF files via network, choose one of those solutions. But, you have to understand: it is the patch, workaround! It is not solution for the future. Future must be providing storage in some standard SQL engine.
-
-I have to point out: 
+Firstly, I have to point out: 
 
 	These statements dependent on personal fields of interest.
 	My fields of interest are business applications, not hobbyist usage.
 
 
+I would like that there are more voices in harbour community about building `bridges` with other technologies rather than making harbour great again :)
+
+For example, providing better GUI solutions would be good thing. Creating some kinde of web framework also. But the problem is - there are much better solutins right now elswere! So that limited time and resources should be put into providing effective interfaces to those frameworks and libraries. 
+
+I am probably most confronted to the community's on the issue of database management in harbour. The community is discussing about client/server DBF base solutions. For mi, it is wrong direction. As I have heard from other users, LetoDB and NETIO are already working in the production. So, if you need to solve problem with accessing large DBF files via network, choose one of those solutions. But I consider those solutions as temporary workarounds! These are not solutions for the future. Future solutions have to be based on some standard SQL engine.
+Obviously, I have made my choice - PostgreSQL :)
+
+## Open-source vs closed source, harbour developer's tools vendors
+
+The problems which I have faced with abandoned closed-source product (CA-Clipper) strongly influenced my carrieer and my views. I am big supporter of open-source software.
+Linux is my favorite operating sistem either for development or daily usage.
+All of relevant software built by my company is also open-source software. 
+As much as I know during investigating github.com, our accounting solution [F18](https://github.com/hernad/F18) is the largest harbour based active project.
+We don't sell the software itself. We seel `know-how` and `services` around it. 
+We consider that model best for us, but for other businesses it may or may be NOT the case.
+
+Of course is totally legitimate to create business around closed-source developer's library for GUI or reporting. But I am generally against using that kind of tools. Especially today, when we have so many high-quality open-source solutions for other programming languages.
+I understand that harbour community and related projects (like Xharbour, Xbase++ etc) are small and fragmented. As such, vendors of those developer's tools are functioning in very narrow space.
+Anyway, I think they should really analize their existing business models. Somehow rethink themselves, explore how `"new kids on the block"` do their businesses ... If they don't, I am affraid they are going to hurt themselves as much as the whole community.
+
+I am discussing about this topic because we share the same goal: We all want to provide solid, sustainable, healty foundation for harbour programming language and eco-system around it.
+
 ## Conclusion
 
-Using and building open-source software has many good practical and ethical implications.
+As long as:
+1. I can build and upgrade harbour itself
+2. Build and maintain solutions around it
+3. Keep our customers satisfied with those solutions
 
-For me Vendor lock-in is sufficient reason :).
+Harbour is alive.
 
+Long live the Harbour :)
 
-
-
-Pragmatic
+Ernad

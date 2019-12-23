@@ -51,6 +51,9 @@ History
 -------
 - harupdf, hbhpdf
 - xlsxwriter, hbxlsxwriter
+- based on https://github.com/hernad/harbour-core/tree/my-master 
+  which itself is fork of victor's fork :)
+
 
 Where is contrib?
 =================
