@@ -1,7 +1,7 @@
 Harbour and me 
 ================
 
-I am producing and delivering software to my users for living. I am doing that constantly for 25 years.
+I am producing and delivering software to my users for living. I am doing that constantly over 25 years.
 
 I really know what engineering effort is needed to deliver and maintain `functional` software, software which is `used`. When you deliver software, you have obligations to your clients/users. If you respect those obligations, you are gaining credibility. Otherwise you are going to be out of business.
 
@@ -9,32 +9,32 @@ I really know what engineering effort is needed to deliver and maintain `functio
 
 ### Bosnian War
 
-During the [Bosnia War](https://en.wikipedia.org/wiki/Bosnian_War), I was worked as programmer in [Bosnian Army](https://en.wikipedia.org/wiki/Army_of_the_Republic_of_Bosnia_and_Herzegovina), [3rd Corps (Zenica)](https://en.wikipedia.org/wiki/3rd_Corps_of_the_Army_of_the_Republic_of_Bosnia_and_Herzegovina). We had got a task to implement project of personal evidence with the program produced by the team from [2nd Corps (Tuzla)](https://en.wikipedia.org/wiki/2nd_Corps_of_the_Army_of_the_Republic_of_Bosnia_and_Herzegovina). Before the ond the project, the connections with the  Tuzla's development team have had broken. At the time, there were not internet, no usable [LAN networks](https://en.wikipedia.org/wiki/NetWare). Only computers with few MB of RAM with [`DOS`](https://en.wikipedia.org/wiki/Disk_operating_system) installed, war, lack of food and cigarettes, and destruction.
+During the [Bosnia War](https://en.wikipedia.org/wiki/Bosnian_War), I was worked as programmer in [Bosnian Army](https://en.wikipedia.org/wiki/Army_of_the_Republic_of_Bosnia_and_Herzegovina), [3rd Corps (Zenica)](https://en.wikipedia.org/wiki/3rd_Corps_of_the_Army_of_the_Republic_of_Bosnia_and_Herzegovina). We have got a task to implement project of personal evidence with the program produced by the team from [2nd Corps (Tuzla)](https://en.wikipedia.org/wiki/2nd_Corps_of_the_Army_of_the_Republic_of_Bosnia_and_Herzegovina). Before the end the project, the connections with the  Tuzla's development team have  broken. At the time, there were not internet, no usable [LAN networks](https://en.wikipedia.org/wiki/NetWare). Only computers with few MB of RAM with [`DOS`](https://en.wikipedia.org/wiki/Disk_operating_system) installed, war, lack of food and cigarettes, and large-scale destruction.
 
 ### My first Clipper project
 
-Let's go back to the personal evidence project. Small part of application were provided with source code, the rest only with binary object files (closed-source). Because of those `closed-source` parts, As we already anticipated many necessary changes covered by closed parts, It was obvious that we cannot deploy the application to our units. It was clear "hit to the wall". We have invested a lot of energy to know the application, and application was good. Nevertheless, the evitable direction of project was cancellation!
+Let's go back to the personal evidence project. Small part of application were provided with source code, the rest only with binary object files (closed-source). As we already anticipated many necessary changes covered by closed parts, we have understood that we cannot deploy the application to our units. It was clear "Hit to the wall"! We have invested a lot of energy to know the application, and application was good. Nevertheless, the project was on the path to be cancelled!
 
-At the time, I was 22 years old. I was young, energetic, overly confident. I was brave with my decisions mostly because I was `unaware` of consequences. So I proposed to my chef to rewrite closed part of the application. Even the proposal was not smart, it was accepted. The reason was simple: `We had no better choice`.
+At the time, I was 23 years old. I was young, energetic, overly confident. I was brave with my decisions mostly because I was `unaware` of consequences. So I proposed to my chef to rewrite closed part of the application. Even the proposal was not smart, it was accepted. The reason was simple: `We had no better choice`.
 
-The application was built with [`Clipper compiler`](https://en.wikipedia.org/wiki/Clipper_(programming_language)), tool totally unknown to me utill that time. Comparing to my beloved [`Turbo Pascal`](https://en.wikipedia.org/wiki/Turbo_Pascal) Clipper was somekind `ugly`, but really efficient. It was already set out-of-the box for database processing (more precisely "data tables" processing). Data tables manipulation (create, update, search) were integrated into language. That was really great feature.
+The application was built with [`Clipper compiler`](https://en.wikipedia.org/wiki/Clipper_(programming_language)), tool totally unknown to me utill that time. Comparing to my beloved [`Turbo Pascal`](https://en.wikipedia.org/wiki/Turbo_Pascal) Clipper was somekind `ugly`, but really effecient. It was already set out-of-the box for database processing (more precisely "data tables" processing). Data tables manipulation (create, update, search) were integrated into language. That was really great feature.
 
-As you suppose, the crazy adventure of software rewrite had "happy end" after few months. I was really proud. As a side effect, I have learned Clipper a lot. The most important, my work was very soon have proven at the `battlefield` - used by real users.
+The crazy adventure of software rewrite have had "happy end" after few months. I was really proud. As a side effect, I have learned Clipper a lot. The most important, my work was very soon have proven at the `battlefield` - used by real users.
 
-###  After the War in Bosnia, I have catched [PTSD](https://en.wikipedia.org/wiki/Posttraumatic_stress_disorder) caused by [Vendor-lock in](https://en.wikipedia.org/wiki/Vendor_lock-in) (closed-source) sindrom :)
+###  year: 1998; After the War in Bosnia, I have catched [PTSD](https://en.wikipedia.org/wiki/Posttraumatic_stress_disorder) caused by [Vendor-lock in](https://en.wikipedia.org/wiki/Vendor_lock-in) sindrom :)
 
-The moment after ["Dayton Agreement"](https://en.wikipedia.org/wiki/Dayton_Agreement) I have applied for releasing from the Army, and started my software development company. I have developed accounting software which was quite successful at the begin. But then troubles have started...
+The moment after ["Dayton Agreement"](https://en.wikipedia.org/wiki/Dayton_Agreement) I have applied for releasing from the Army, and started my software development company. I have developed accounting software which was quite successful at the begin. But soon we have been in troubles ...
 
-The GUI applications era started. Microsoft finally made [Windows](https://en.wikipedia.org/wiki/Windows_3.1x) quite usable. Our clients have started to use `Word` and `Excel` :). The list of requestes which we couldn't address was continously raising mostly because the **limits of our developer's toolset**. We have explored other tools, especially [Delphi](https://en.wikipedia.org/wiki/Delphi_(software)). But, we hadn't achieved some substantional results. We produced some tools ([ptxt](https://github.com/bringout-fmk/ptxt), [delphirb](https://github.com/bringout-fmk/delphirb) ) to patch critical deficiencies of our Clipper DOS-based applications, but nothing substantional. We put large efforts, but we hadn't `resources` to write our applications from sratch!
+The GUI applications era started. Microsoft finally made [Windows OS](https://en.wikipedia.org/wiki/Windows_3.1x) quite usable. Our clients have started to use `Word` and `Excel` :). The list of requestes which we couldn't address was continously raising mostly because the **limits of our developer's toolset**. We have explored other tools, especially [Delphi](https://en.wikipedia.org/wiki/Delphi_(software)). But, we hadn't achieved some substantional results. We produced some tools ([ptxt](https://github.com/bringout-fmk/ptxt), [delphirb](https://github.com/bringout-fmk/delphirb) ) to patch critical deficiencies of our Clipper DOS-based applications, but nothing substantional. We put large efforts, but we hadn't `resources` to rewrite our applications from sratch!
 
-Our business strongly declined. One of the crucial factors was the fact that our essential tool closed-source. The Clipper's acquisition made 1992 (from Nantucket Corporation to Computer Associates - C) was great deal for the seller 190 million USD), but begin of the end for the Clipper itself.
-When I now read the name `CA` I feal deap frustration and anger. But, that is the business. The businesses start and fail. Every client put itself on the risk when chose the product.
+Our business strongly declined. One of the crucial factors was the fact that our essential tool closed-source. The Clipper's acquisition made 1992 (from Nantucket Corporation to Computer Associates - CA) was great deal for the seller 190 million USD), but begin of the end for the Clipper itself.
+When I now read the name **"CA"** I feal deap frustration and anger. But, that is the business. The businesses start and fail. Every client put itself on the risk when chose the vendor and product.
 
 ## year 2000: Linux and open-source software
 
 Here in Bosnia, after the war, we had 5-10 years delay in every aspect comparing to the rest of the world. So, our internet era started around year 2000. That was the time when I have started learn linux. Linux 
 was the thing! Operating system free of vendor-lock in. Even more important: **developer tools free of vendor-lock in**! 
-After my personal vendor-lock in CA-Clipper disaster, all of my evaluations were influenced by that fact. That have formed my strong opinion:
+After my personal vendor-lock with disaster, all of my evaluations were influenced by that fact. That have formed my strong opinion:
 
 	Developer's essentential tools have to be open-source software!
 
@@ -53,11 +53,11 @@ In year 2004, I have decided to take "bitter pill" and start future development 
 
 It was also an `easy way` because here in Bosnia all of users and IT proffesionals were exclusively accustomed to Microsoft. Spreaded software piracy was a great ally to keep Microsoft dominacy, because you cannot sell no-Microsoft solutions when your customer thinks that `Microsoft Office` is part of the operationg system and costs 0 USD.
 
-That was time of promoting Microsoft .NET and new C# language. I have liked the language. 
+That was time of promoting Microsoft .NET and new C# language. I have liked the new language. 
 
 ## year 2004: Business, we have the problem - again :(
 
-I have get a good `green-field` project to work on with Microsoft toolset. But his time problems have raised simply becose my personal failures. I was not good as an businessman and project leader. S again, I have droped and experienced classic [burnout](https://en.wikipedia.org/wiki/Occupational_burnout).
+The company have got a new project to work on: nice `green-field` project. The perfect place to apply our new Microsoft toolset. But his time problems have raised simply because my personal failures. I was not good as an businessman and project leader. The project was cancelled and I experienced classic [burnout](https://en.wikipedia.org/wiki/Occupational_burnout).
 
 
 ## year 2007: Business consolidation
@@ -149,11 +149,11 @@ I don't consider myself as an `Harbour fun`. In every area of software developme
 	- ruby
 	- python
 
-My personal developers's experience is that `golang` is the most close to `harbour`. Golang is terse and effective language. It produces native applications with small overhead. But that is the end with similarities. Developer's resources and community are unmatched. And most important, **projects and applications build with golang** are endless.
+My personal developers's experience is that `golang` is the most close to `harbour`. Golang is terse and effective language. It produces native applications with small overhead. But that is the end regarding similarities. Developer's resources and community are unmatched. And most important, **projects and applications build with golang** are endless.
 
 ## Why I'm investing in this project?
 
-I am not talking about harbour as the best solution for new project. The conclusion is that I am NOT harbour language fun. I am investing into harbour because because of those:
+I am not talking about harbour as the best solution for new project. The conclusion is that I am NOT harbour language "fun". I am investing into harbour because because of those:
 1. I am experienced and **know** this language **best**.
 2. I deliver solutions to my clients with it (`getting things done`) 
 3. I have proved to myself that combined with other tools/technologies, I can build **GOOD** solutions.
