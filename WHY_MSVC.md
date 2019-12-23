@@ -24,7 +24,7 @@ One of the main goals of this project is to make [GOOD BRIDGES to other technolo
 
 ## harbour Makefiles & hbmk2  - minwg support
 
-To be precise, I have **NO PLAN**  plan to exclude mingw windows targets. I am just focusing to the msvc because exaplained reason.
+To be precise, I have **NO PLAN**  plan to exclude mingw windows targets. I am just focusing to the msvc.
 
 ## Using Microsoft Visual C++ and software freedom 
 
