@@ -4,7 +4,7 @@ source ../../make_envars.sh
 
 LIB_NAME=openssl
 LIB_SRC=OpenSSL_1_1_0l
-PREFIX=$ROOT_3RD
+PREFIX=$ROOT_3RD/$LIB_NAME
 
 cd $LIB_SRC
 
