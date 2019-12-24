@@ -54,7 +54,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionComp
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
-   LOCAL cPostgreSQLBin, cZlibDir
+   LOCAL cPostgreSQLBin, cPostgreSQLLib, cZlibDir
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -123,7 +123,7 @@ PROCEDURE Main( ... )
          ELSE
             aLibs := { ;
             cSrcLibDir + "/libpq.a", ;
-            cSrcLibDir + "/lz.a"   ;
+            cSrcLibDir + "/libz.a"   ;
             }
          ENDIF
          FOR EACH cFile IN aLibs
@@ -134,6 +134,9 @@ PROCEDURE Main( ... )
          // harbour/3rd/x64/postgresql/bin
          cPostgreSQLBin :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cPostgreSQLBin +=  hb_ps() + "postgresql" + hb_ps() + "bin" + hb_ps()
+
+         cPostgreSQLLib :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cPostgreSQLLib +=  hb_ps() + "postgresql" + hb_ps() + "lib" + hb_ps()
 
          cZlibDir := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cZlibDir +=  hb_ps() + "zlib" + hb_ps() + "lib" + hb_ps()
@@ -185,16 +188,27 @@ PROCEDURE Main( ... )
                cPostgreSQLBin + "vacuumlo.exe", ;
                cPostgreSQLBin + "zic.exe" ;
             }
+            
+            tmp := GetEnvC( "HB_INSTALL_BIN" )
+            FOR EACH cFile IN aLibs
+               OutStd( "Copying " + cFile + " binaries to " + tmp + hb_eol() )
+                mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
+            NEXT
+
          ELSE
             aLibs := { ;
+               cZlibDir + "libz.a", ;
+               cZlibDir + "libz.so", ;
+               cPostgreSQLLib + "libpq.a", ;
+               cPostgreSQLLib + "libpq.so" ;
             }
+            tmp := GetEnvC( "HB_INSTALL_LIB" )
+            FOR EACH cFile IN aLibs
+               OutStd( "Copying " + cFile + " to " + tmp + hb_eol() )
+                mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. )
+            NEXT
          ENDIF
-         tmp := GetEnvC( "HB_INSTALL_BIN" )
-         FOR EACH cFile IN aLibs
-            OutStd( "Copying zlib/PostgreSQL binaries to " + tmp + hb_eol() )
-            mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
-         NEXT
-
+      
          tmp := GetEnvC( "HB_INSTALL_PREFIX" )
          OutStd( "Copying LICENSE to ROOT ..." + hb_eol() )
          mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )

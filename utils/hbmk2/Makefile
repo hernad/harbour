@@ -38,3 +38,4 @@ ifneq ($(filter $(HB_COMPILER),gcc mingw mingw64 clang clang64),)
    HB_USER_CFLAGS := $(filter-out -flto,$(HB_USER_CFLAGS))
    HB_LDFLAGS += -fno-lto
 endif
+

@@ -57,11 +57,15 @@ SRCDIR=
 ZINC=
 ZINCOUT=-I.
 
-OBJZ = adler32.o crc32.o deflate.o infback.o inffast.o inflate.o inftrees.o trees.o zutil.o
+OBJZ = adler32.o crc32.o deflate.o infback.o inffast.o inflate.o inftrees.o trees.o zutil.o \
+       contrib/minizip/zip.o contrib/minizip/unzip.o contrib/minizip/ioapi.c contrib/minizip/minizip.o contrib/minizip/miniunz.o
+
 OBJG = compress.o uncompr.o gzclose.o gzlib.o gzread.o gzwrite.o
 OBJC = $(OBJZ) $(OBJG)
 
-PIC_OBJZ = adler32.lo crc32.lo deflate.lo infback.lo inffast.lo inflate.lo inftrees.lo trees.lo zutil.lo
+PIC_OBJZ = adler32.lo crc32.lo deflate.lo infback.lo inffast.lo inflate.lo inftrees.lo trees.lo zutil.lo \
+       contrib/minizip/zip.o contrib/minizip/unzip.o contrib/minizip/ioapi.c contrib/minizip/minizip.o contrib/minizip/miniunz.o
+
 PIC_OBJG = compress.lo uncompr.lo gzclose.lo gzlib.lo gzread.lo gzwrite.lo
 PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
 
@@ -200,6 +204,16 @@ gzread.o: $(SRCDIR)gzread.c
 
 gzwrite.o: $(SRCDIR)gzwrite.c
 	$(CC) $(CFLAGS) $(ZINC) -c -o $@ $(SRCDIR)gzwrite.c
+
+
+contrib/minizip/%.o: $(SRCDIR)/contrib/minizip/%.c
+	$(CC) $(CFLAGS) $(ZINC) -c -o $@ $<
+
+# https://www.gnu.org/software/make/manual/make.html#Automatic-Variables
+contrib/minizip/%.lo: $(SRCDIR)/contrib/minizip/%.c
+	-@mkdir contrib/minizip/objs 2>/dev/null || test -d contrib/minizip/objs
+	$(CC) $(SFLAGS) $(ZINC) -DPIC -c -o contrib/minizip/objs/‘$(@F)’.o  $<
+	-@mv contrib/minizip/objs/'$(@F)'.o $@
 
 
 adler32.lo: $(SRCDIR)adler32.c

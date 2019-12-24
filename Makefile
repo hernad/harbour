@@ -46,17 +46,24 @@ endif
 include $(ROOT)config/dir.mk
 
 
+ifeq ($(HB_PLATFORM),win)
+
 # every harbour execute needs zlib1.dll
 SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib1.dll)
 DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/zlib1.dll)
 DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
 
-ifeq ($(HB_PLATFORM),win)
 hbmk2Zlib1dll::
 	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
 	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR)exists,$(MD) $(DESTDIR))
 	$(CP) $(SRCLIB) $(DESTLIB)
 else
+
+# every harbour execute needs libz.so
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/libz.so)
+DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/libz.so)
+DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
+
 hbmk2Zlib1dll::
 	$(info unix SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
 	$(if $(wildcard $(DESTDIR)),$(ECHO) dir exists,$(MD) $(DESTDIR))
