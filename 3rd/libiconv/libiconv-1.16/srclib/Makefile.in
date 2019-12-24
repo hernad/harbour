@@ -1081,7 +1081,7 @@ MOSTLYCLEANFILES = core *.stackdump core *.stackdump alloca.h \
 	unitypes.h unitypes.h-t uniwidth.h uniwidth.h-t
 MOSTLYCLEANDIRS = sys
 # No GNU Make output.
-noinst_LIBRARIES = libicrt.lib
+noinst_LIBRARIES = libicrt.a
 
 # Parametrization of the 'relocatable' module.
 AM_CPPFLAGS = -DDEPENDS_ON_LIBICONV=1 -DDEPENDS_ON_LIBINTL=1
@@ -1164,10 +1164,10 @@ uniwidth/$(am__dirstamp):
 	@: > uniwidth/$(am__dirstamp)
 uniwidth/width.$(OBJEXT): uniwidth/$(am__dirstamp)
 
-libicrt.lib: $(libicrt_a_OBJECTS) $(libicrt_a_DEPENDENCIES) $(EXTRA_libicrt_a_DEPENDENCIES) 
-	$(AM_V_at)-rm -f libicrt.lib
-	$(AM_V_AR)$(libicrt_a_AR) libicrt.lib $(libicrt_a_OBJECTS) $(libicrt_a_LIBADD)
-	$(AM_V_at)$(RANLIB) libicrt.lib
+libicrt.a: $(libicrt_a_OBJECTS) $(libicrt_a_DEPENDENCIES) $(EXTRA_libicrt_a_DEPENDENCIES) 
+	$(AM_V_at)-rm -f libicrt.a
+	$(AM_V_AR)$(libicrt_a_AR) libicrt.a $(libicrt_a_OBJECTS) $(libicrt_a_LIBADD)
+	$(AM_V_at)$(RANLIB) libicrt.a
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
