@@ -28,6 +28,9 @@ HB_PRGFLAGS += -DHBMK_WITH_BUILTIN_HEADERS_ALL
 #endif
 
 HB_CFLAGS += -DHB_WITH_ZLIB $(QUOTE)-I$(HB_HAS_ZLIB)$(QUOTE)
+ifneq ($(HB_HAS_ZLIB),)
+   HB_CFLAGS += -DHB_HAS_CURL $(QUOTE)-I$(HB_HAS_CURL)$(QUOTE)
+endif
 
 include $(TOP)$(ROOT)config/bin.mk
 
