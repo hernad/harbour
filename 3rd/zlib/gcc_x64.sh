@@ -12,7 +12,15 @@ PREFIX=$ROOT_3RD/$LIB_NAME
 cd $LIB_SRC
 
 echo "========== $PREFIX ====================="
-./configure --prefix=$PREFIX
-make clean install
+./configure \
+	--prefix=$PREFIX
+
+rm contrib/minizip/*.o
+rm contrib/minizip/*.lo
+
+make \
+	CFLAGS="-DCREATE_DLL" \
+	clean install
+
 cd ..
 
