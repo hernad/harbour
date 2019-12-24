@@ -2,8 +2,8 @@
 
 source ../../make_envars.sh
 
-LIB_NAME=postgresql
-LIB_SRC=postgresql-12.1
+LIB_NAME=curl
+LIB_SRC=curl-7.67.0
 PREFIX=$ROOT_3RD/$LIB_NAME
 
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
@@ -33,11 +33,7 @@ sh ./configure \
   CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include" \
   LDFLAGS="-L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
   --prefix=$PREFIX \
-  --with-openssl \
-  --with-uuid=ossp \
-  --with-libxml \
-  --with-libxslt \
-  --without-readline
+  --with-openssl
 
 make install
 cd ..
