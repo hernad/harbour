@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo dnf -y install libtool
+sudo dnf -y install libtool perl
 

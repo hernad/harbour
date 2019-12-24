@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TOOLS_DIR=$ROOT_DIR/tools/rhel/x64
+
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH
+
+$TOOLS_DIR/7z $@
+
