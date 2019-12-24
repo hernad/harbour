@@ -58,13 +58,13 @@ ZINC=
 ZINCOUT=-I.
 
 OBJZ = adler32.o crc32.o deflate.o infback.o inffast.o inflate.o inftrees.o trees.o zutil.o \
-       contrib/minizip/zip.o contrib/minizip/unzip.o contrib/minizip/ioapi.c contrib/minizip/minizip.o contrib/minizip/miniunz.o
+       contrib/minizip/zip.o contrib/minizip/unzip.o contrib/minizip/ioapi.o contrib/minizip/minizip.o contrib/minizip/miniunz.o
 
 OBJG = compress.o uncompr.o gzclose.o gzlib.o gzread.o gzwrite.o
 OBJC = $(OBJZ) $(OBJG)
 
 PIC_OBJZ = adler32.lo crc32.lo deflate.lo infback.lo inffast.lo inflate.lo inftrees.lo trees.lo zutil.lo \
-       contrib/minizip/zip.o contrib/minizip/unzip.o contrib/minizip/ioapi.c contrib/minizip/minizip.o contrib/minizip/miniunz.o
+       contrib/minizip/zip.lo contrib/minizip/unzip.lo contrib/minizip/ioapi.lo contrib/minizip/minizip.lo contrib/minizip/miniunz.lo
 
 PIC_OBJG = compress.lo uncompr.lo gzclose.lo gzlib.lo gzread.lo gzwrite.lo
 PIC_OBJC = $(PIC_OBJZ) $(PIC_OBJG)
