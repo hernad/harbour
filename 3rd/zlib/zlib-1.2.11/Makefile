@@ -45,7 +45,7 @@ TAR=tar
 SHELL=/bin/sh
 EXE=
 
-prefix =/home/hernad/harbour/3rd/x64/zlib
+prefix =/home/hernad/harbour/3rd/x64
 exec_prefix =${prefix}
 libdir =${exec_prefix}/lib
 sharedlibdir =${libdir}
