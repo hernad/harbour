@@ -8,10 +8,10 @@
  */
 
 #define HB_VER_ORIGIN_URL        "git@github.com:hernad/harbour/"
-#define HB_VER_COMMIT_ID         "6788cd9261f66f179999498b340f6f9d8edb42f9"
-#define HB_VER_COMMIT_ID_SHORT   "6788cd92"
+#define HB_VER_COMMIT_ID         "89ca7785e06037a0323a4f0f2c6fd3c2c6611175"
+#define HB_VER_COMMIT_ID_SHORT   "89ca7785"
 #define HB_VER_COMMIT_YEAR       "2019"
-#define HB_VER_COMMIT_REV        1912221811
-#define HB_VER_COMMIT_INFO       "2019-12-22 19:11:25 +0100"
-#define HB_PLATFORM              "win"
-#define HB_COMPILER              "msvc64"
+#define HB_VER_COMMIT_REV        1912241653
+#define HB_VER_COMMIT_INFO       "2019-12-24 17:53:03 +0100"
+#define HB_PLATFORM              "linux"
+#define HB_COMPILER              "gcc"

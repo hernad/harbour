@@ -4,6 +4,6 @@ DIRS := \
 	pcre2 \
 	png \
 	harupdf \
-    xlsxwriter \
+	xlsxwriter \
 
 include $(TOP)$(ROOT)config/dir.mk
