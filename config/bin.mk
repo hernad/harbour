@@ -183,7 +183,7 @@ ifneq ($(RC),)
    ALL_OBJS += $(ALL_RC_OBJS)
 endif
 
-first:: dirbase descend curlLib
+first:: dirbase descend curlLib libpqLib
 
 descend:: dirbase
 	+@$(MK) $(MKFLAGS) -C $(OBJ_DIR) -f $(GRANDP)Makefile TOP=$(GRANDP) $(BIN_NAME)
@@ -223,6 +223,31 @@ DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libcurl.a)
 DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 
 curlLib::
+	$(info unix SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
+
+endif
+
+
+ifeq ($(HB_PLATFORM),win)
+
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.lib)
+DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
+DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
+
+libpqLib::
+	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
+
+else
+
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.a)
+DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.a)
+DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
+
+libpqLib::
 	$(info unix SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
 	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
 	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
