@@ -1,0 +1,37 @@
+-hblib
+-inc
+
+-o${hb_name}
+
+-w3 -es2
+
+rddsql.hbc
+
+-depurlbase=sqlite3:https://sqlite.org/
+-deppkgname=sqlite3:libsqlite3-dev{deb}
+-deppkgname=sqlite3:sqlite-devel{rpm}
+-deppkgname=sqlite3:sqlite{homebrew}
+-deppkgname=sqlite3:sqlite3{pkgng}
+-deppkgname=sqlite3:sqlite{pacman}
+-deppkgname=sqlite3:mingw-w64-i686-sqlite3{msys2&x86}
+-deppkgname=sqlite3:mingw-w64-x86_64-sqlite3{msys2&x86_64}
+-depkeyhead=sqlite3:sqlite3.h
+-depcontrol=sqlite3:local{HB_BUILD_3RDEXT='no'}
+-depcontrol=sqlite3:${HB_WITH_SQLITE3}
+-depincpath=sqlite3:/usr/local/opt/sqlite/include
+-depincpath=sqlite3:/usr/include
+-depincpath=sqlite3:/usr/local/include
+-depincpath=sqlite3:/boot/common/include
+-depincpathlocal=sqlite3:../3rd/sqlite3
+-depfinish=sqlite3
+
+-hbx=${hb_name}
+
+core.c
+
+# Copy contrib/3rd/sqlite3/sqlite3.hbc to install destination
+# It's needed even if the local/vendored sqlite3 copy wasn't used.
+-instfile=contrib_sqlite3:../3rd/sqlite3/sqlite3.hbc
+{_HB_INST_CORE&_HB_INSTALL_CONTRIB}-instpath=contrib_sqlite3:${_HB_INSTALL_CONTRIB}/3rd/sqlite3/
+
+../3rd/sqlite3/sqlite3.hbc{HBMK_HAS_SQLITE3_LOCAL}
