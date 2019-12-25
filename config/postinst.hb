@@ -55,6 +55,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
    LOCAL cPostgreSQLBin, cPostgreSQLLib, cZlibDir
+   LOCAL cLibDest, cBinDest
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -194,26 +195,94 @@ PROCEDURE Main( ... )
                cPostgreSQLBin + "zic.exe" ;
             }
             
-            tmp := GetEnvC( "HB_INSTALL_BIN" )
+            cBinDest := GetEnvC( "HB_INSTALL_BIN" )
             FOR EACH cFile IN aLibs
-               OutStd( "Copying " + cFile + " binaries to " + tmp + hb_eol() )
+               OutStd( "Copying " + cFile + " binaries to " + cBinDest + hb_eol() )
                 mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
             NEXT
 
          ELSE
             aLibs := { ;
+               cPostgreSQLBin + "clusterdb"  ,;
+               cPostgreSQLBin + "createdb"   ,;
+               cPostgreSQLBin + "createuser", ;
+               cPostgreSQLBin + "dropdb",   ;
+               cPostgreSQLBin + "dropuser", ;
+               cPostgreSQLBin + "ecpg", ;
+               cPostgreSQLBin + "initdb", ;
+               cPostgreSQLBin + "pg_archivecleanup", ;
+               cPostgreSQLBin + "pg_basebackup", ;
+               cPostgreSQLBin + "pgbench" ,;
+               cPostgreSQLBin + "pg_checksums", ;
+               cPostgreSQLBin + "pg_config", ;
+               cPostgreSQLBin + "pg_controldata", ;
+               cPostgreSQLBin + "pg_ctl", ;
+               cPostgreSQLBin + "pg_dump", ;
+               cPostgreSQLBin + "pg_dumpall", ;
+               cPostgreSQLBin + "pg_isready", ;
+               cPostgreSQLBin + "pg_receivewal", ;
+               cPostgreSQLBin + "pg_recvlogical", ;
+               cPostgreSQLBin + "pg_resetwal", ;
+               cPostgreSQLBin + "pg_restore", ;
+               cPostgreSQLBin + "pg_rewind", ;
+               cPostgreSQLBin + "pg_test_fsync", ;
+               cPostgreSQLBin + "pg_test_timing", ;
+               cPostgreSQLBin + "pg_upgrade", ;
+               cPostgreSQLBin + "pg_waldump", ;
+               cPostgreSQLBin + "postgres", ;
+               cPostgreSQLBin + "psql", ;
+               cPostgreSQLBin + "reindexdb", ;
+               cPostgreSQLBin + "vacuumdb", ;
                cZlibDir + "libz.a", ;
                cZlibDir + "libz.so", ;
                cPostgreSQLLib + "libpq.a", ;
-               cPostgreSQLLib + "libpq.so" ;
+               cPostgreSQLLib + "libpq.so", ;
+               cPostgreSQLLib + "ascii_and_mic.so", ;
+               cPostgreSQLLib + "dict_snowball.so", ;
+               cPostgreSQLLib + "euc2004_sjis2004.so", ;
+               cPostgreSQLLib + "latin2_and_win1250.so", ;
+               cPostgreSQLLib + "latin_and_mic.so", ;
+               cPostgreSQLLib + "libecpg_compat.so", ;
+               cPostgreSQLLib + "libecpg.so", ;
+               cPostgreSQLLib + "libpgtypes.so", ;
+               cPostgreSQLLib + "libpqwalreceiver.so", ;
+               cPostgreSQLLib + "pgoutput.so", ;
+               cPostgreSQLLib + "plpgsql.so", ;
+               cPostgreSQLLib + "utf8_and_ascii.so", ;
+               cPostgreSQLLib + "utf8_and_big5.so", ;
+               cPostgreSQLLib + "utf8_and_cyrillic.so", ;
+               cPostgreSQLLib + "utf8_and_euc2004.so", ;
+               cPostgreSQLLib + "utf8_and_euc_cn.so", ;
+               cPostgreSQLLib + "utf8_and_gb18030.so", ;
+               cPostgreSQLLib + "utf8_and_gbk.so", ;
+               cPostgreSQLLib + "utf8_and_iso8859_1.so", ;
+               cPostgreSQLLib + "utf8_and_iso8859.so", ;
+               cPostgreSQLLib + "utf8_and_johab.so", ;
+               cPostgreSQLLib + "utf8_and_sjis2004.so", ;
+               cPostgreSQLLib + "utf8_and_sjis.so", ;
+               cPostgreSQLLib + "utf8_and_uhc.so", ;
+               cPostgreSQLLib + "utf8_and_win.so" ;
             }
-            tmp := GetEnvC( "HB_INSTALL_LIB" )
+            cBinDest := GetEnvC( "HB_INSTALL_BIN" )
+            cLibDest := GetEnvC( "HB_INSTALL_LIB" )
             FOR EACH cFile IN aLibs
+               // .so, .a => lib, executes => bin
+               IF  ".so" $ cFile
+                  tmp := cLibDest
+               ELSEIF ".a" $ cFile 
+                  tmp := cLibDest
+               ELSE
+                  tmp := cBinDest
+               ENDIF
                OutStd( "Copying " + cFile + " to " + tmp + hb_eol() )
                 mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. )
             NEXT
+
+            OutStd("Changing permissions +x " + cBinDest + "/*")
+            Run("chmod +x " + cBinDest + "/* " )
          ENDIF
       
+         
          tmp := GetEnvC( "HB_INSTALL_PREFIX" )
          OutStd( "Copying LICENSE to ROOT ..." + hb_eol() )
          mk_hb_vfCopyFile( "LICENSE.txt", tmp + hb_ps(), .T.,, .T. )
