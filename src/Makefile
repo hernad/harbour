@@ -102,6 +102,8 @@ else
       hbtip \
       hbct \
       hbcurl \
+      hbsqlite3 \
+      sddsqlt3 \
 
       ifeq ($(HB_HOST_PLAT),win)
          DIRS += hbwin
