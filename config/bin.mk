@@ -183,7 +183,7 @@ ifneq ($(RC),)
    ALL_OBJS += $(ALL_RC_OBJS)
 endif
 
-first:: dirbase descend curlLib libpqLib
+first:: dirbase descend curlLib libpqLib libSqlite3
 
 descend:: dirbase
 	+@$(MK) $(MKFLAGS) -C $(OBJ_DIR) -f $(GRANDP)Makefile TOP=$(GRANDP) $(BIN_NAME)
@@ -211,23 +211,18 @@ SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_CURL)../lib/curl.lib)
 DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/curl.lib)
 DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
 
-curlLib::
-	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
-
 else
 
 SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_CURL)../lib/libcurl.a)
 DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libcurl.a)
 DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 
+endif
+
 curlLib::
-	$(info unix SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
+	$(info SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
 	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
 	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
-
-endif
 
 
 ifeq ($(HB_PLATFORM),win)
@@ -236,20 +231,36 @@ SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.lib)
 DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
 DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
 
-libpqLib::
-	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
-
 else
 
 SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.a)
 DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.a)
 DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 
+endif
+
 libpqLib::
-	$(info unix SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
+	$(info SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
 	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
 	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
 
+
+ifeq ($(HB_PLATFORM),win)
+
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)../lib/sqlite3.lib)
+DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
+DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
+
+else
+
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)../lib/libsqlite3.a)
+DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libsqlite3.a)
+DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
+
+
 endif
+
+libSqlite3::
+	$(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
