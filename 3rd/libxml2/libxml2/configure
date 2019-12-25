@@ -643,7 +643,6 @@ PYTHON_VERSION
 HAVE_ISINF
 HAVE_ISNAN
 XML_INCLUDEDIR
-ICU_LIBS
 ICONV_LIBS
 XML_LIBTOOLLIBS
 XML_PRIVATE_LIBS
@@ -667,6 +666,8 @@ TEST_SCHEMAS
 WITH_SCHEMAS
 WITH_ISO8859X
 WITH_ICU
+ICU_LIBS
+ICU_CFLAGS
 WITH_ICONV
 WITH_OUTPUT
 TEST_XPATH
@@ -767,6 +768,9 @@ EGREP
 GREP
 SED
 LIBTOOL
+PKG_CONFIG_LIBDIR
+PKG_CONFIG_PATH
+PKG_CONFIG
 XSLTPROC
 XMLLINT
 WGET
@@ -943,7 +947,16 @@ LDFLAGS
 LIBS
 CPPFLAGS
 CPP
-LT_SYS_LIBRARY_PATH'
+PKG_CONFIG
+PKG_CONFIG_PATH
+PKG_CONFIG_LIBDIR
+LT_SYS_LIBRARY_PATH
+Z_CFLAGS
+Z_LIBS
+LZMA_CFLAGS
+LZMA_LIBS
+ICU_CFLAGS
+ICU_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1653,8 +1666,19 @@ Some influential environment variables:
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
   CPP         C preprocessor
+  PKG_CONFIG  path to pkg-config utility
+  PKG_CONFIG_PATH
+              directories to add to pkg-config's search path
+  PKG_CONFIG_LIBDIR
+              path overriding pkg-config's built-in search path
   LT_SYS_LIBRARY_PATH
               User-defined run-time library search path.
+  Z_CFLAGS    C compiler flags for Z, overriding pkg-config
+  Z_LIBS      linker flags for Z, overriding pkg-config
+  LZMA_CFLAGS C compiler flags for LZMA, overriding pkg-config
+  LZMA_LIBS   linker flags for LZMA, overriding pkg-config
+  ICU_CFLAGS  C compiler flags for ICU, overriding pkg-config
+  ICU_LIBS    linker flags for ICU, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -4719,7 +4743,126 @@ $as_echo "no" >&6; }
 fi
 
 
-PKG_PROG_PKG_CONFIG
+
+
+
+
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_PKG_CONFIG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+PKG_CONFIG=$ac_cv_path_PKG_CONFIG
+if test -n "$PKG_CONFIG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PKG_CONFIG" >&5
+$as_echo "$PKG_CONFIG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_ac_pt_PKG_CONFIG+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+if test -n "$ac_pt_PKG_CONFIG"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_pt_PKG_CONFIG" >&5
+$as_echo "$ac_pt_PKG_CONFIG" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+  if test "x$ac_pt_PKG_CONFIG" = x; then
+    PKG_CONFIG=""
+  else
+    case $cross_compiling:$ac_tool_warned in
+yes:)
+{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
+$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
+ac_tool_warned=yes ;;
+esac
+    PKG_CONFIG=$ac_pt_PKG_CONFIG
+  fi
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
+$as_echo_n "checking pkg-config is at least version $_pkg_min_version... " >&6; }
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	else
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+		PKG_CONFIG=""
+	fi
+fi
 
 case `pwd` in
   *\ * | *\	*)
@@ -13070,9 +13213,77 @@ else
     # Don't run pkg-config if with_zlib contains a path.
     if test "x$Z_DIR" = "x"; then
         # Try pkg-config first so that static linking works.
-        PKG_CHECK_MODULES(Z,zlib,
-            WITH_ZLIB=1,
-            :)
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Z" >&5
+$as_echo_n "checking for Z... " >&6; }
+
+if test -n "$Z_CFLAGS"; then
+    pkg_cv_Z_CFLAGS="$Z_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"zlib\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "zlib") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_Z_CFLAGS=`$PKG_CONFIG --cflags "zlib" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$Z_LIBS"; then
+    pkg_cv_Z_LIBS="$Z_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"zlib\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "zlib") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_Z_LIBS=`$PKG_CONFIG --libs "zlib" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        Z_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "zlib" 2>&1`
+        else
+	        Z_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "zlib" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$Z_PKG_ERRORS" >&5
+
+	:
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	:
+else
+	Z_CFLAGS=$pkg_cv_Z_CFLAGS
+	Z_LIBS=$pkg_cv_Z_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	WITH_ZLIB=1
+fi
     fi
 
     if test "$WITH_ZLIB" = "0"; then
@@ -13157,9 +13368,77 @@ else
     # Don't run pkg-config if with_lzma contains a path.
     if test "x$LZMA_DIR" = "x"; then
         # Try pkg-config first so that static linking works.
-        PKG_CHECK_MODULES(LZMA,liblzma,
-            WITH_LZMA=1,
-            :)
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LZMA" >&5
+$as_echo_n "checking for LZMA... " >&6; }
+
+if test -n "$LZMA_CFLAGS"; then
+    pkg_cv_LZMA_CFLAGS="$LZMA_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"liblzma\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "liblzma") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LZMA_CFLAGS=`$PKG_CONFIG --cflags "liblzma" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LZMA_LIBS"; then
+    pkg_cv_LZMA_LIBS="$LZMA_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"liblzma\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "liblzma") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LZMA_LIBS=`$PKG_CONFIG --libs "liblzma" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LZMA_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "liblzma" 2>&1`
+        else
+	        LZMA_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "liblzma" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LZMA_PKG_ERRORS" >&5
+
+	:
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	:
+else
+	LZMA_CFLAGS=$pkg_cv_LZMA_CFLAGS
+	LZMA_LIBS=$pkg_cv_LZMA_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	WITH_LZMA=1
+fi
     fi
 
     # If pkg-config failed, fall back to AC_CHECK_LIB. This
@@ -14085,7 +14364,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether va_list is an array type" >&5
 $as_echo_n "checking whether va_list is an array type... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14088 "configure"
+#line 14367 "configure"
 #include "confdefs.h"
 
 #include <stdarg.h>
@@ -14095,7 +14374,7 @@ int main(void) {
 va_list ap1, ap2; a(&ap1); ap2 = (va_list) ap1
 ; return 0; }
 EOF
-if { (eval echo configure:14098: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
+if { (eval echo configure:14377: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
   rm -rf conftest*
 
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
@@ -14285,7 +14564,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for type of socket length (socklen_t)" >&5
 $as_echo_n "checking for type of socket length (socklen_t)... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 14288 "configure"
+#line 14567 "configure"
 #include "confdefs.h"
 
 #include <stddef.h>
@@ -14296,7 +14575,7 @@ int main(void) {
 (void)getsockopt (1, 1, 1, NULL, (socklen_t *)NULL)
 ; return 0; }
 EOF
-if { (eval echo configure:14299: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
+if { (eval echo configure:14578: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
   rm -rf conftest*
 
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: socklen_t *" >&5
@@ -14308,7 +14587,7 @@ else
   rm -rf conftest*
 
   cat > conftest.$ac_ext <<EOF
-#line 14311 "configure"
+#line 14590 "configure"
 #include "confdefs.h"
 
 #include <stddef.h>
@@ -14319,7 +14598,7 @@ int main(void) {
 (void)getsockopt (1, 1, 1, NULL, (size_t *)NULL)
 ; return 0; }
 EOF
-if { (eval echo configure:14322: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
+if { (eval echo configure:14601: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
   rm -rf conftest*
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: result: size_t *" >&5
@@ -14331,7 +14610,7 @@ else
   rm -rf conftest*
 
     cat > conftest.$ac_ext <<EOF
-#line 14334 "configure"
+#line 14613 "configure"
 #include "confdefs.h"
 
 #include <stddef.h>
@@ -14342,7 +14621,7 @@ int main(void) {
 (void)getsockopt (1, 1, 1, NULL, (int *)NULL)
 ; return 0; }
 EOF
-if { (eval echo configure:14345: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
+if { (eval echo configure:14624: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; _out=`eval $ac_compile 2>&1` && test "x$_out" = x; }; then
   rm -rf conftest*
 
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: int *" >&5
@@ -15875,9 +16154,77 @@ if test "$with_icu" != "yes" ; then
 else
     # Try pkg-config first so that static linking works.
     # If this succeeeds, we ignore the WITH_ICU directory.
-    PKG_CHECK_MODULES(ICU,icu-i18n,
-        have_libicu=yes,
-        have_libicu=no)
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for ICU" >&5
+$as_echo_n "checking for ICU... " >&6; }
+
+if test -n "$ICU_CFLAGS"; then
+    pkg_cv_ICU_CFLAGS="$ICU_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"icu-i18n\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "icu-i18n") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_ICU_CFLAGS=`$PKG_CONFIG --cflags "icu-i18n" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$ICU_LIBS"; then
+    pkg_cv_ICU_LIBS="$ICU_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"icu-i18n\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "icu-i18n") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_ICU_LIBS=`$PKG_CONFIG --libs "icu-i18n" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        ICU_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "icu-i18n" 2>&1`
+        else
+	        ICU_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "icu-i18n" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$ICU_PKG_ERRORS" >&5
+
+	have_libicu=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	have_libicu=no
+else
+	ICU_CFLAGS=$pkg_cv_ICU_CFLAGS
+	ICU_LIBS=$pkg_cv_ICU_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	have_libicu=yes
+fi
 
     # If pkg-config failed, fall back to AC_CHECK_LIB. This
     # will not pick up the necessary LIBS flags for liblzma's

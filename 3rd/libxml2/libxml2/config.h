@@ -222,7 +222,7 @@
 #define HAVE_VSPRINTF 1
 
 /* Define to 1 if you have the <zlib.h> header file. */
-#define HAVE_ZLIB_H 1
+/* #undef HAVE_ZLIB_H */
 
 /* Whether __va_copy() is available */
 /* #undef HAVE___VA_COPY */

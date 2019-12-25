@@ -16,12 +16,14 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
 #   --with-iconv=$ROOT_3RD/libiconv/include \
 #   --with-zlib=$ROOT_3RD/zlib/include
    
+autoreconf -i
 
 sh  ./configure \
    --without-python \
    --prefix=$PREFIX \
    --with-iconv=$ROOT_3RD/libiconv/include \
    --with-zlib=$ROOT_3RD/zlib/include
+
 
  
 make install
