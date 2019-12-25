@@ -101,6 +101,7 @@ PROCEDURE Main( ... )
                "src/rdd/rddsql/rddsql.hbc", ;
                "src/sddpg/sddpg.hbc", ;
                "src/hbpgsql/hbpgsql.hbc", ;
+               "src/hbmzip/hbmzip.hbc", ;
                "3rd/harupdf/harupdf.hbc", ;
                "src/hbhpdf/hbhpdf.hbc", ;
                "3rd/xlsxwriter/xlsxwriter.hbc", ;
