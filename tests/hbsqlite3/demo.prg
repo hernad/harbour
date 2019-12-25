@@ -44,7 +44,8 @@
  *
  */
 
-#include "hbsqlit3.ch"
+
+#include "hbsqlite3.ch"
 
 #define TRACE
 #define TABLE_SQL "CREATE TABLE t1( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age INTEGER )"
@@ -52,6 +53,7 @@
 PROCEDURE Main()
 
    ? sqlite3_libversion()
+   ? "sleep 3000 .."
    sqlite3_sleep( 3000 )
 
    IF sqlite3_libversion_number() < 3005001
@@ -112,6 +114,7 @@ STATIC PROCEDURE t2()
       ? "The number of database rows that were changed:", hb_ntos( sqlite3_changes( db ) )
       ? "Total changes:", hb_ntos( sqlite3_total_changes( db ) )
 
+      ? "sleep 3000 .."
       sqlite3_sleep( 3000 )
 
       stmt := sqlite3_prepare( db, "INSERT INTO t1( name, age ) VALUES( :name, :age )" )
@@ -184,6 +187,8 @@ STATIC PROCEDURE t2()
       sqlite3_clear_bindings( stmt )
       sqlite3_finalize( stmt )
 
+
+      ? "sleep 3000 .."
       sqlite3_sleep( 3000 )
 
       stmt := sqlite3_prepare( db, "SELECT * FROM t1 WHERE age >= ?5" )
@@ -229,6 +234,7 @@ STATIC PROCEDURE t2()
       sqlite3_clear_bindings( stmt )
       sqlite3_finalize( stmt )
 
+      ? "sleep 3000 .."
       sqlite3_sleep( 3000 )
 
       ?
@@ -249,6 +255,7 @@ STATIC PROCEDURE t2()
 
       sqlite3_finalize( stmt )
 
+      ? "sleep 3000 .."
       sqlite3_sleep( 3000 )
 
       ?
@@ -261,6 +268,7 @@ STATIC PROCEDURE t2()
          ?
       NEXT
 
+      ? "sleep 3000 .."
       sqlite3_sleep( 3000 )
    ENDIF
 

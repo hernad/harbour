@@ -152,5 +152,6 @@ PRG_HEADERS := \
    hbxlsxwriter.ch \
    hbssl.ch \
    hbssl.hbx \
+   hbsqlite3.ch \
 
 include $(TOP)$(ROOT)config/header.mk

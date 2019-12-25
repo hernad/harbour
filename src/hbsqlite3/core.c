@@ -54,11 +54,6 @@
 #include "hbapistr.h"
 #include "hbstack.h"
 
-/* FIXME: verify the exact SQLITE3 version */
-#if SQLITE_VERSION_NUMBER <= 3004001
-#define sqlite3_int64                       HB_LONGLONG
-#define sqlite3_uint64                      HB_ULONGLONG
-#endif
 
 #define HB_SQLITE3_DB                       6000001
 
@@ -1761,9 +1756,8 @@ HB_FUNC( SQLITE3_ENABLE_SHARED_CACHE )
    hb_retni( sqlite3_enable_shared_cache( hb_parl( 1 ) ) );
 }
 
-/* TODO: implement sqlite3_trace_v2(), that replaces both of these deprecated functions */
 
-#if defined( HB_LEGACY_LEVEL4 )
+
 /**
    Tracing And Profiling Functions
 
@@ -1819,7 +1813,6 @@ HB_FUNC( SQLITE3_TRACE )
    else
       hb_errRT_BASE_SubstR( EG_ARG, 0, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
-#endif
 
 /**
    BLOB Import/export
