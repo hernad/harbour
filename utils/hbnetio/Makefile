@@ -5,14 +5,14 @@ include $(TOP)$(ROOT)config/global.mk
 PRG_SOURCES := \
    netio_console.prg \
    netio_management.prg \
-   netio_serve.prg \
+   netio.prg \
+
+PRG_MAIN := netio.prg
 
 ifeq ($(HB_PLATFORM),win)
    PRG_SOURCES += netio_service.prg
-   PRG_MAIN := netio_service.prg
 else
    PRG_SOURCES += netio_daemon.prg
-   PRG_MAIN := netio_daemon.prg
 endif
 
 # ne kontam
