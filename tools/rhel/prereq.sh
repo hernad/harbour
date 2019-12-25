@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo dnf -y install libtool perl
+sudo yum -y install libtool perl bison flex
 
