@@ -5030,9 +5030,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
                 [vszakats] */
       IF HB_HAS_OPTION( "gpm" ) .AND. hbmk[ _HBMK_cPLAT ] == "linux"
          FOR EACH tmp IN l_aLIBHB
-            IF tmp == "gtcrs" .OR. ;
-                  tmp == "gtsln" .OR. ;
-                  tmp == "gttrm"
+            IF tmp == "gttrm"
                AAdd( hbmk[ _HBMK_aLIBUSERSYS ], "gpm" )
                EXIT
             ENDIF

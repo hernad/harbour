@@ -2,8 +2,12 @@
 
 killall netio
 
-netio -d -pass=test --rootdir=`pwd`/dbfs
+ROOT_DIR=netio_root
+netio $1 -pass=topsecret -rootdir=`pwd`/$ROOT_DIR -rpc=rpc_processor.hb
 
-ps ax | grep netio
 
-reset
+#reset
+
+ps ax | grep netio | grep -v grep
+
+netstat -tlpn | grep 2941

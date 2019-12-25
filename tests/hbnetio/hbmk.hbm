@@ -1,4 +1,9 @@
-hbnetio.hbc
+
+-lhbnetio
+
+{unix}-lz
+{win}-lzdll
+
 -mt
 
 -w3 -es2

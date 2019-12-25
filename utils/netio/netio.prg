@@ -47,9 +47,10 @@
 #define _RPC_FILTER "HBNETIOSRV_RPCMAIN"
 
 /* enable this if you don't need all core functions in RPC support */
-//#if ! defined( HB_NO_EXTERN )
-//REQUEST __HB_EXTERN__
-//#endif
+#if ! defined( HB_NO_EXTERN )
+  REQUEST __HB_EXTERN__
+#endif
+
 
 #define _NETIOSRV_cName             1
 #define _NETIOSRV_nPort             2
