@@ -155,5 +155,6 @@ PRG_HEADERS := \
    hbssl.hbx \
    hbsqlite3.ch \
    hbtest.ch \
+   hbnetio.ch \
 
 include $(TOP)$(ROOT)config/header.mk

@@ -20,7 +20,7 @@
  *
  */
 
-PROCEDURE DaemonMain( ... )
+PROCEDURE Main( ... )
 
    LOCAL nID, tmp
 

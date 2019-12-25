@@ -105,6 +105,7 @@ else
       hbsqlite3 \
       sddsqlt3 \
       hbtest \
+      hbnetio \
 
       ifeq ($(HB_HOST_PLAT),win)
          DIRS += hbwin

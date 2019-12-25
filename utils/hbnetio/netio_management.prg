@@ -42,6 +42,7 @@ FUNCTION __hbshell_plugin()
       "exit" => {| context | hbnetiocon_exit( context ) }, ;
       "cmd"  => {| context, cCommand | hbnetiocon_command( context, cCommand ) } }
 
+
 STATIC PROCEDURE hbnetiocon_dispevent( netiocli, cText )
 
    LOCAL cPrompt
@@ -55,6 +56,7 @@ STATIC PROCEDURE hbnetiocon_dispevent( netiocli, cText )
    Eval( netiocli[ _NETIOCLI_hConIO ][ "displine" ], cPrompt + cText )
 
    RETURN
+
 
 STATIC FUNCTION hbnetiocon_init( hConIO, aParam )
 
