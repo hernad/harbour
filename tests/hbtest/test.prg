@@ -1,6 +1,6 @@
 /* Copyright 2013 Viktor Szakats (vszakats.net/harbour) */
 
-#require "hbtest"
+#include "hbtest.ch"
 
 PROCEDURE Main()
 
