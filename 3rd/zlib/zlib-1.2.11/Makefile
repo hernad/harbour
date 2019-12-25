@@ -79,12 +79,12 @@ PIC_OBJS = $(PIC_OBJC) $(PIC_OBJA)
 
 %.lo: %.c
 	-@mkdir contrib/minizip/objs 2>/dev/null || test -d contrib/minizip/objs
-	$(CC) $(SFLAGS) $(ZINC) -DPIC -c -DCREATE_DLL -o '$(*F)'.lo $<
+	$(CC) $(SFLAGS) $(ZINC) -I. -DPIC -c -DCREATE_DLL -o '$(*F)'.lo $<
 	-@mv '$(*F)'.lo $@
 
 
 %.o : %.c
-	$(CC) $(CFLAGS) $(ZINC) -c -DCREATE_DLL -o $@ $<
+	$(CC) $(CFLAGS) $(ZINC) -I. -c -DCREATE_DLL -o $@ $<
 
 
 all: static shared all64
