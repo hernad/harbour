@@ -11,12 +11,6 @@ cd $LIB_SRC
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 
-#echo LD_LIBRARY_PATH=$LD_LIBRARY_PATH / LDFLAGS=$LDFLAGS
-
-
-#sh ./autogen.sh
-
-#autoreconf -i
 
 PATH=$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin:$PATH
 
@@ -25,6 +19,7 @@ CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
 CPPFLAGS="$CFLAGS"
 
+autoconf -i
 
 ./configure \
       CPPFLAGS="$CFLAGS" \
