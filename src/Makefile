@@ -107,6 +107,8 @@ else
 
       ifeq ($(HB_HOST_PLAT),win)
          DIRS += hbwin
+      else
+	 DIRS += hbunix
       endif
 
       ifneq ($(__HB_BUILD_DYN),no)

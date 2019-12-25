@@ -72,6 +72,7 @@ C_HEADERS := \
    hbznet.h \
    hb_io.h \
    hbhpdf.h \
+   hbposix.h \
 
 PRG_HEADERS := \
    harbour.hbx \
