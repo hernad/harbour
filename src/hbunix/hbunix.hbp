@@ -1,0 +1,23 @@
+-hblib
+-inc
+
+-o${hb_name}
+
+-w3 -es2
+
+-stop{!unix}
+
+#-c=gnu90
+
+-hbx=${hb_name}
+
+chdir.c
+chown.c
+chroot.c
+daemon.c
+posix.c
+posixerr.c
+sleep.c
+uidgid.c
+
+linux.prg
