@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 # Generated automatically by config.status (libxslt) 1.1.34
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
@@ -59,13 +59,13 @@ build_old_libs=yes
 pic_mode=default
 
 # Whether or not to optimize for fast installation.
-fast_install=needless
+fast_install=yes
 
 # Shared archive member basename,for filename based shared library versioning on AIX.
 shared_archive_member_spec=
 
 # Shell to use when invoking shell scripts.
-SHELL="/bin/bash"
+SHELL="/bin/sh"
 
 # An echo program that protects backslashes.
 ECHO="printf %s\\n"
@@ -84,19 +84,19 @@ build=x86_64-pc-linux-gnu
 build_os=linux-gnu
 
 # A sed program that does not truncate output.
-SED="/bin/sed"
+SED="/usr/bin/sed"
 
 # Sed that helps us avoid accidentally triggering echo(1) options like -n.
 Xsed="$SED -e 1s/^X//"
 
 # A grep program that handles long lines.
-GREP="/bin/grep"
+GREP="/usr/bin/grep"
 
 # An ERE matcher.
-EGREP="/bin/grep -E"
+EGREP="/usr/bin/grep -E"
 
 # A literal string matcher.
-FGREP="/bin/grep -F"
+FGREP="/usr/bin/grep -F"
 
 # A BSD- or MS-compatible name lister.
 NM="/usr/bin/nm -B"
@@ -167,7 +167,7 @@ lock_old_archive_extraction=no
 LTCC="gcc"
 
 # LTCC compiler flags.
-LTCFLAGS="-g -O2 -Wall -Wextra -Wformat=2 -Wmissing-format-attribute"
+LTCFLAGS="-I/home/hernad/harbour/3rd/x64/libxml2/include/libxml2 -I/home/hernad/harbour/3rd/x64/libxslt/include -I/home/hernad/harbour/3rd/x64/uuid/include -I/home/hernad/harbour/3rd/x64/openssl/include -I/home/hernad/harbour/3rd/x64/zlib/include -Wall -Wextra -Wformat=2 -Wmissing-format-attribute"
 
 # Take the output of nm and produce a listing of raw symbols and C names.
 global_symbol_pipe="sed -n -e 's/^.*[	 ]\\([ABCDGIRSTW][ABCDGIRSTW]*\\)[	 ][	 ]*\\([_A-Za-z][_A-Za-z0-9]*\\)\$/\\1 \\2 \\2/p' | sed '/ __gnu_lto/d'"
@@ -194,7 +194,7 @@ nm_file_list_spec="@"
 lt_sysroot=
 
 # Command to truncate a binary pipe.
-lt_truncate_bin="/bin/dd bs=4096 count=1"
+lt_truncate_bin="/usr/bin/dd bs=4096 count=1"
 
 # The name of the directory that contains temporary libtool files.
 objdir=.libs
@@ -252,7 +252,7 @@ runpath_var=LD_RUN_PATH
 shlibpath_var=LD_LIBRARY_PATH
 
 # Is shlibpath searched before the hard-coded library search path?
-shlibpath_overrides_runpath=yes
+shlibpath_overrides_runpath=no
 
 # Format of library name prefix.
 libname_spec="lib\$name"
@@ -284,10 +284,10 @@ finish_eval=""
 hardcode_into_libs=yes
 
 # Compile-time system search path for libraries.
-sys_lib_search_path_spec="/usr/lib/gcc/x86_64-linux-gnu/7 /usr/lib/x86_64-linux-gnu /usr/lib /lib/x86_64-linux-gnu /lib "
+sys_lib_search_path_spec="/usr/lib/gcc/x86_64-redhat-linux/4.8.5 /usr/lib64 /lib64 /usr/lib /lib "
 
 # Detected run-time system search path for libraries.
-sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib/x86_64-linux-gnu/libfakeroot /usr/local/lib /usr/local/lib/x86_64-linux-gnu /lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu "
+sys_lib_dlsearch_path_spec="/lib /usr/lib /usr/lib64//bind9-export/ /usr/lib64/dyninst /usr/lib64/iscsi /usr/lib64/mysql "
 
 # Explicit LT_SYS_LIBRARY_PATH set during ./configure time.
 configure_time_lt_sys_library_path=""
@@ -332,7 +332,7 @@ pic_flag=" -fPIC -DPIC"
 wl="-Wl,"
 
 # Compiler flag to prevent dynamic linking.
-link_static_flag="-static"
+link_static_flag=""
 
 # Does compiler simultaneously support -c and -o options?
 compiler_c_o="yes"
