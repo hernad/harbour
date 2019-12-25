@@ -6,7 +6,7 @@ ifneq ($(HB_BUILD_PARTS),compiler)
    DIRS := \
       hbmk2 \
       hbformat \
-      hbnetio \
+      netio \
 
 endif
 endif
