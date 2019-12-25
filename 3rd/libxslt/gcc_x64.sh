@@ -19,7 +19,7 @@ CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
 CPPFLAGS="$CFLAGS"
 
-autoconf -i
+#autoconf -i
 
 ./configure \
       CPPFLAGS="$CFLAGS" \
