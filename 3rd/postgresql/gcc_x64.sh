@@ -27,9 +27,11 @@ PATH="$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin;$PATH"
 
 [ -f config.log ] && rm config.log
 CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include"
-CFLAGS+="-I$ROOT_3RD/zlib/include"
+CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
-CPPFLAGS+="$CFLAGS"
+CPPFLAGS="$CFLAGS"
+
+echo "CFLAGS=$CFLAGS"
 
 	
 autoconf -f
@@ -42,6 +44,7 @@ sh ./configure \
   --with-uuid=ossp \
   --with-libxml \
   --with-libxslt \
+  --with-zlib \
   --without-readline
 
 make install
