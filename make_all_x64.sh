@@ -2,6 +2,8 @@
 
 source make_envars.sh
 
+tools/rhel/git_clean_repos.sh
+
 cd 3rd
 ./gcc_x64.sh
 cd ..
