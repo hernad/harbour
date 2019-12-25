@@ -22,8 +22,13 @@ PATH=$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin:$PATH
 
 ## --enable-debug -> config.log
 
-#LD_LIBRARY_PATH="$ROOT_3RD/lib:$LD_LIBRARY_PATH"
-#LDFLAGS="-L$ROOT_3RD/lib"
+LD_LIBRARY_PATH="$ROOT_3RD/zlib/lib"
+LD_LIBRARY_PATH+=":$ROOT_3RD/libxml2/lib"
+LD_LIBRARY_PATH+=":$ROOT_3RD/libxslt/lib"
+LD_LIBRARY_PATH+=":$ROOT_3RD/openssl/lib"
+
+export LD_LIBRARY_PATH
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 [ -f config.log ] && rm config.log
 CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include"
