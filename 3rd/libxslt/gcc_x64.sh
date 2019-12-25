@@ -16,7 +16,10 @@ echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 #sh ./autogen.sh
 
-autoreconf -i
+#autoreconf -i
+
+PATH="$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin;$PATH"
+
 ./configure \
     --without-python \
     --prefix=$PREFIX \
