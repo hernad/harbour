@@ -45,7 +45,7 @@
  *
  */
 
-#include "hbsqlit3.ch"
+#include "hbsqlite3.ch"
 
 FUNCTION hb_sqlite3_errstr_short( nError )
 
