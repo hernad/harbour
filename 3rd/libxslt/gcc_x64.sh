@@ -14,7 +14,9 @@ echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 #echo LD_LIBRARY_PATH=$LD_LIBRARY_PATH / LDFLAGS=$LDFLAGS
 
 
-#sh ./autogen.sh
+sh ./autogen.sh
+
+autoreconf -i
 ./configure \
     --without-python \
     --prefix=$PREFIX \
