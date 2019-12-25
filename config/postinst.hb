@@ -110,7 +110,8 @@ PROCEDURE Main( ... )
                "src/hbct/hbct.hbc", ;
                "src/hbssl/hbssl.hbc", ;
                "src/rdd/rddmisc/rddmisc.hbc", ;
-               "src/hbsqlite3/hbsqlite3.hbc", ;
+               "src/hbunix/hbunix.hbc", ;
+               "src/hbsqlite3/hbsqlite3.hbc" ;
                }
             mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .T.,, .T. )
          NEXT
