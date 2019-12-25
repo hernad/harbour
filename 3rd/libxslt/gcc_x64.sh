@@ -18,9 +18,18 @@ echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 #autoreconf -i
 
-PATH="$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin;$PATH"
+PATH=$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin:$PATH
+
+CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include"
+CFLAGS+=" -I$ROOT_3RD/zlib/include"
+
+CPPFLAGS="$CFLAGS"
+
 
 ./configure \
+      CPPFLAGS="$CFLAGS" \
+      CFLAGS="$CFLAGS" \
+      LDFLAGS="-L $ROOT_3RD/zlib/lib -L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
     --without-python \
     --prefix=$PREFIX \
     --with-libxml-prefix=$ROOT_3RD/libxml2/bin \
