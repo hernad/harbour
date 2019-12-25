@@ -18,7 +18,7 @@ cd $LIB_SRC
 #[ -f $ROOT_3RD/include/ossp/uuid.h ] && mv $ROOT_3RD/include/uuid.h $ROOT_3RD/include/ossp/uuid.h
 #ln -s $ROOT_3RD/bin/uuid $ROOT_3RD/bin/uuid_export
 
-PATH="$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin;$PATH"
+PATH=$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin:$PATH
 
 ## --enable-debug -> config.log
 
