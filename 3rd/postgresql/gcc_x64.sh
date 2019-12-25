@@ -33,12 +33,11 @@ CPPFLAGS="$CFLAGS"
 
 echo "CFLAGS=$CFLAGS"
 
-	
 autoconf -f
 sh ./configure \
   CPPFLAGS="$CFLAGS" \
   CFLAGS="$CFLAGS" \
-  LDFLAGS="-L $OOT_3rd/zlib/lib -L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
+  LDFLAGS="-L $ROOT_3RD/zlib/lib -L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
   --prefix=$PREFIX \
   --with-openssl \
   --with-uuid=ossp \
