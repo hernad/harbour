@@ -21,6 +21,8 @@ CPPFLAGS="$CFLAGS"
 
 #autoconf -i
 
+alocal
+automake --add-missing
 ./configure \
       CPPFLAGS="$CFLAGS" \
       CFLAGS="$CFLAGS" \
