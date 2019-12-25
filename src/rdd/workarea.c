@@ -294,9 +294,7 @@ static HB_ERRCODE hb_waCreateFields( AREAP pArea, PHB_ITEM pStruct )
       dbFieldInfo.uiDec = 0;
       szType = hb_arrayGetCPtr( pFieldDesc, DBS_TYPE );
       iData = HB_TOUPPER( *szType );
-#ifdef DBS_FLAG
-      dbFieldInfo.uiFlags = hb_arrayGetNI( pFieldDesc, DBS_FLAG );
-#else
+
       dbFieldInfo.uiFlags = 0;
       while( *++szType )
       {
@@ -329,7 +327,7 @@ static HB_ERRCODE hb_waCreateFields( AREAP pArea, PHB_ITEM pStruct )
             break;
          }
       }
-#endif
+
       switch( iData )
       {
          case 'C':
@@ -663,7 +661,6 @@ static HB_ERRCODE hb_waFieldInfo( AREAP pArea, HB_USHORT uiIndex, HB_USHORT uiTy
          uiFlags &= pField->uiFlags;
          if( uiFlags != 0 )
          {
-#ifndef DBS_FLAG
             szType[ iLen++ ] = ':';
             if( uiFlags & HB_FF_NULLABLE )
                szType[ iLen++ ] = 'N';
@@ -677,7 +674,7 @@ static HB_ERRCODE hb_waFieldInfo( AREAP pArea, HB_USHORT uiIndex, HB_USHORT uiTy
                szType[ iLen++ ] = 'E';
             if( uiFlags & HB_FF_UNICODE )
                szType[ iLen++ ] = 'U';
-#endif
+
          }
          hb_itemPutCL( pItem, szType, iLen );
          break;
@@ -690,11 +687,6 @@ static HB_ERRCODE hb_waFieldInfo( AREAP pArea, HB_USHORT uiIndex, HB_USHORT uiTy
          hb_itemPutNL( pItem, pField->uiDec );
          break;
 
-#ifdef DBS_FLAG
-      case DBS_FLAG:
-         hb_itemPutNL( pItem, pField->uiFlags );
-         break;
-#endif
 
       default:
          return HB_FAILURE;

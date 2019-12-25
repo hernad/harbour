@@ -64,11 +64,7 @@ HB_FUNC( AFIELDS )
    PHB_ITEM pLen = hb_param( 3, HB_IT_ARRAY );
    PHB_ITEM pDec = hb_param( 4, HB_IT_ARRAY );
 
-#ifdef DBS_FLAG
-   PHB_ITEM pFlags = hb_param( 5, HB_IT_ARRAY );
-#else
    PHB_ITEM pFlags = NULL;
-#endif
 
    if( ! pArea || ( ! pName && ! pType && ! pLen && ! pDec && ! pFlags ) )
    {
@@ -104,14 +100,6 @@ HB_FUNC( AFIELDS )
          uiFields = uiArrayLen;
    }
 
-#ifdef DBS_FLAG
-   if( pFlags )
-   {
-      HB_USHORT uiArrayLen = ( HB_USHORT ) hb_arrayLen( pFlags );
-      if( uiArrayLen < uiFields )
-         uiFields = uiArrayLen;
-   }
-#endif
 
    if( pName )
    {
@@ -145,16 +133,7 @@ HB_FUNC( AFIELDS )
             return;
       }
    }
-#ifdef DBS_FLAG
-   if( pFlags )
-   {
-      for( uiCount = 1; uiCount <= uiFields; ++uiCount )
-      {
-         if( SELF_FIELDINFO( pArea, uiCount, DBS_FLAG, hb_arrayGetItemPtr( pFlags, uiCount ) ) != HB_SUCCESS )
-            return;
-      }
-   }
-#endif
+
 
    hb_retni( uiFields );
 }

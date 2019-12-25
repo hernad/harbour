@@ -790,13 +790,10 @@ HB_ERRCODE hb_rddCreateTableTemp( const char * szDriver,
 static void hb_fldStructure( AREAP pArea, HB_USHORT uiField, HB_USHORT uiSize,
                              PHB_ITEM pField )
 {
-#ifdef DBS_FLAG
-   static const HB_USHORT s_uiActions[] =
-            { DBS_NAME, DBS_TYPE, DBS_LEN, DBS_DEC, DBS_FLAG };
-#else
+
    static const HB_USHORT s_uiActions[] =
             { DBS_NAME, DBS_TYPE, DBS_LEN, DBS_DEC };
-#endif
+
    HB_USHORT uiCount;
 
    if( uiSize == 0 || uiSize > HB_SIZEOFARRAY( s_uiActions ) )
@@ -1070,19 +1067,7 @@ HB_ERRCODE hb_dbTransStruct( AREAP lpaSource, AREAP lpaDest,
             fAll = HB_FALSE;
             break;
          }
-#ifdef DBS_FLAG
-         if( SELF_FIELDINFO( lpaSource, uiCount, DBS_FLAG, pSrcItm ) != HB_SUCCESS ||
-             SELF_FIELDINFO( lpaDest,   uiCount, DBS_FLAG, pDstItm ) != HB_SUCCESS )
-         {
-            uiSize = 0;
-            break;
-         }
-         if( hb_itemGetNL( pSrcItm ) != hb_itemGetNL( pDstItm ) )
-         {
-            fAll = HB_FALSE;
-            break;
-         }
-#endif
+
       }
       hb_itemRelease( pSrcItm );
       hb_itemRelease( pDstItm );
