@@ -51,6 +51,8 @@
   REQUEST __HB_EXTERN__
 #endif
 
+REQUEST HB_GT_STD_DEFAULT
+
 
 #define _NETIOSRV_cName             1
 #define _NETIOSRV_nPort             2
