@@ -104,11 +104,12 @@ else
       hbcurl \
       hbsqlite3 \
       sddsqlt3 \
+      hbtest \
 
       ifeq ($(HB_HOST_PLAT),win)
          DIRS += hbwin
       else
-	 DIRS += hbunix
+         DIRS += hbunix
       endif
 
       ifneq ($(__HB_BUILD_DYN),no)
