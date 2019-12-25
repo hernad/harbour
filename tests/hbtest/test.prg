@@ -44,7 +44,7 @@ PROCEDURE Main()
    HBTEST hb_BChar( 254 )   IS hb_BChar( 255 )
    HBTEST 0d20111213        IS 0d20111214
    HBTEST 2 + 2             IS 5
-   HBTEST .T.               IS .F.
+   HBTEST 1 == 1            IS .F.
 
    ? "Test types:", ""
    FOR EACH tmp IN hbtest_AllTypes()
