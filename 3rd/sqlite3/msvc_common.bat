@@ -44,16 +44,13 @@ cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
 REM ------------------------------------
 
-
 nmake /f Makefile.msc
-
 
 mkdir %LIB_DEST%
 mkdir %LIB_DEST%\bin
 mkdir %LIB_DEST%\lib
 mkdir %LIB_DEST%\include
 
-REM xcopy /E /I /Y *.* %LIB_DEST%
 copy /y sqlite3.h %LIB_DEST%\include
 copy /y sqlite3.dll %LIB_DEST%\lib
 copy /y sqlite3.lib %LIB_DEST%\lib
