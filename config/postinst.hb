@@ -198,7 +198,7 @@ PROCEDURE Main( ... )
             cBinDest := GetEnvC( "HB_INSTALL_BIN" )
             FOR EACH cFile IN aLibs
                OutStd( "Copying " + cFile + " binaries to " + cBinDest + hb_eol() )
-                mk_hb_vfCopyFile( cFile, tmp + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
+                mk_hb_vfCopyFile( cFile, cBinDest + hb_ps(), .F.,, .T. ) // mandatory .F. for binaries
             NEXT
 
          ELSE
