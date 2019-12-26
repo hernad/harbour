@@ -46,8 +46,6 @@
 
 #include "hbdefs.h"
 
-#ifdef HB_CLP_UNDOC
 
 HB_FUNC_TRANSLATE( DEFPATH, __DEFPATH )
 
-#endif

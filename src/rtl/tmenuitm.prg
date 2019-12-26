@@ -182,7 +182,6 @@ METHOD New( cCaption, boData, nShortcut, cMessage, nID ) CLASS MenuItem
 FUNCTION MenuItem( cCaption, boData, nShortcut, cMessage, nID )
    RETURN HBMenuItem():New( cCaption, boData, nShortcut, cMessage, nID )
 
-#ifdef HB_CLP_UNDOC
 
 FUNCTION __MIColumn( o, nColumn )
 
@@ -209,5 +208,3 @@ FUNCTION __MIRow( o, nRow )
    ENDIF
 
    RETURN -1
-
-#endif

@@ -21,9 +21,7 @@
 /* NOTE: Clipper handles these buttons { "Ok", "", "Cancel" } in a buggy way.
          This is fixed. [vszakats] */
 
-#ifdef HB_CLP_UNDOC
 STATIC s_lNoAlert
-#endif
 
 FUNCTION Alert( cMessage, aOptions, xColorNorm )
 
@@ -31,8 +29,6 @@ FUNCTION Alert( cMessage, aOptions, xColorNorm )
    LOCAL aOptionsOK
    LOCAL cOption
    LOCAL nPos
-
-#ifdef HB_CLP_UNDOC
 
    IF s_lNoAlert == NIL
       s_lNoAlert := hb_argCheck( "NOALERT" )
@@ -42,7 +38,6 @@ FUNCTION Alert( cMessage, aOptions, xColorNorm )
       RETURN NIL
    ENDIF
 
-#endif
 
    IF ! HB_ISSTRING( cMessage )
       RETURN NIL
@@ -88,8 +83,6 @@ FUNCTION hb_Alert( xMessage, aOptions, xColorNorm, nDelay )
    LOCAL cString
    LOCAL nPos
 
-#ifdef HB_CLP_UNDOC
-
    IF s_lNoAlert == NIL
       s_lNoAlert := hb_argCheck( "NOALERT" )
    ENDIF
@@ -98,7 +91,6 @@ FUNCTION hb_Alert( xMessage, aOptions, xColorNorm, nDelay )
       RETURN NIL
    ENDIF
 
-#endif
 
    IF PCount() == 0
       RETURN NIL
@@ -147,7 +139,6 @@ FUNCTION hb_Alert( xMessage, aOptions, xColorNorm, nDelay )
 
    RETURN hb_gtAlert( cMessage, aOptionsOK, xColorNorm, xColorHigh, nDelay )
 
-#ifdef HB_CLP_UNDOC
 
 PROCEDURE __NoNoAlert()
 
@@ -155,4 +146,3 @@ PROCEDURE __NoNoAlert()
 
    RETURN
 
-#endif

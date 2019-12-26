@@ -125,9 +125,7 @@ CREATE CLASS Get
    METHOD picture( cPicture ) SETGET
    ACCESS pos METHOD getPos()
    ASSIGN pos METHOD setPos( nPos )
-#ifdef HB_CLP_UNDOC
    METHOD reform()
-#endif
    METHOD reset()
    ACCESS row METHOD getRow()
    ASSIGN row METHOD setRow( nRow )
@@ -1434,8 +1432,6 @@ METHOD badDate() CLASS Get
 
    RETURN .F.
 
-#ifdef HB_CLP_UNDOC
-
 METHOD reform() CLASS Get
 
    IF ::hasFocus
@@ -1444,8 +1440,6 @@ METHOD reform() CLASS Get
    ENDIF
 
    RETURN Self
-
-#endif
 
 
 METHOD hitTest( nMRow, nMCol ) CLASS Get

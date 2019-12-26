@@ -46,10 +46,5 @@
 
 #include "hbdefs.h"
 
-/* NOTE: Undocumented, internal Clipper function */
-
-#ifdef HB_CLP_UNDOC
-
 HB_FUNC_TRANSLATE( __FLEDIT, __DBSTRUCTFILTER )
 
-#endif

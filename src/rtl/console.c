@@ -125,7 +125,6 @@ void hb_conInit( void )
 
 #endif
 
-#ifdef HB_CLP_UNDOC
    {
       /* Undocumented CA-Cl*pper switch //STDERR:x */
       int iStderr = hb_cmdargNum( "STDERR" );
@@ -524,11 +523,7 @@ HB_FUNC( DEVPOS ) /* Sets the screen and/or printer position */
    if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
       hb_conDevPos( hb_parni( 1 ), hb_parni( 2 ) );
 
-#if defined( HB_CLP_UNDOC )
-   /* NOTE: Both 5.2e and 5.3 does that, while the documentation
-            says it will return NIL. [vszakats] */
    hb_itemReturn( hb_param( 1, HB_IT_ANY ) );
-#endif
 }
 
 HB_FUNC( SETPRC ) /* Sets the current printer row and column positions */

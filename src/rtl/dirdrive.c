@@ -80,7 +80,6 @@ HB_FUNC_TRANSLATE( DIRREMOVE, HB_DIRDELETE )
 
 /* NOTE: Clipper 5.3 undocumented */
 
-#ifdef HB_CLP_UNDOC
 
 HB_FUNC( ISDISK )
 {
@@ -124,4 +123,3 @@ HB_FUNC( DISKNAME )
 #endif
 }
 
-#endif

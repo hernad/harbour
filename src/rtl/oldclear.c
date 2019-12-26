@@ -47,8 +47,6 @@
 #include "hbapi.h"
 #include "hbapigt.h"
 
-#ifdef HB_CLP_UNDOC
-
 HB_FUNC( __ATCLEAR )
 {
    if( hb_pcount() == 4 )
@@ -67,4 +65,3 @@ HB_FUNC( __CLEAR )
    hb_gtSetPos( 0, 0 );
 }
 
-#endif

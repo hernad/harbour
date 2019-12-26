@@ -277,9 +277,7 @@ void hb_dateStrGet( const char * szDate, int * piYear, int * piMonth, int * piDa
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_dateStrGet(%.8s, %p, %p, %p)", szDate, ( void * ) piYear, ( void * ) piMonth, ( void * ) piDay ) );
 
-#if defined( HB_CLP_STRICT ) || 1
-   if( szDate )
-#else
+
    if( szDate &&
        szDate[ 0 ] >= '0' && szDate[ 0 ] <= '9' &&
        szDate[ 1 ] >= '0' && szDate[ 1 ] <= '9' &&
@@ -289,7 +287,6 @@ void hb_dateStrGet( const char * szDate, int * piYear, int * piMonth, int * piDa
        szDate[ 5 ] >= '0' && szDate[ 5 ] <= '9' &&
        szDate[ 6 ] >= '0' && szDate[ 6 ] <= '9' &&
        szDate[ 7 ] >= '0' && szDate[ 7 ] <= '9' )
-#endif
    {
       /* Date string has correct length, so attempt to convert */
       *piYear  = ( ( ( int ) ( szDate[ 0 ] - '0' )   * 10 +

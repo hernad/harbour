@@ -80,10 +80,7 @@ HB_FUNC( PROCLINE )
       hb_retni( 0 );
 }
 
-#ifdef HB_CLP_UNDOC
 
-/* NOTE: Clipper undocumented function, which always returns an empty
-         string. [vszakats] */
 
 HB_FUNC( PROCFILE )
 {
@@ -126,7 +123,6 @@ HB_FUNC( PROCFILE )
 
 }
 
-#endif
 
 /* NOTE: szName size must be an at least:
          HB_SYMBOL_NAME_LEN + HB_SYMBOL_NAME_LEN + 5 [vszakats] */

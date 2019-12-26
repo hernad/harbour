@@ -228,7 +228,7 @@ FUNCTION dbEdit( nTop, nLeft, nBottom, nRight, ;
       lDoIdleCall := .T.
 
       IF nKeyStd != 0
-#ifdef HB_CLP_UNDOC
+
          IF lAppend
             SWITCH nKeyStd
             CASE K_DOWN
@@ -243,7 +243,6 @@ FUNCTION dbEdit( nTop, nLeft, nBottom, nRight, ;
                LOOP
             ENDSWITCH
          ENDIF
-#endif
          SWITCH nKeyStd
          CASE K_LBUTTONDOWN
          CASE K_LDBLCLK
@@ -307,7 +306,6 @@ STATIC FUNCTION CallUser( oBrowse, xUserFunc, nKeyStd, lAppend, lFlag )
       dbSkip( -1 )
    ENDIF
 
-#ifdef HB_CLP_UNDOC
    IF nAction == DE_APPEND
 
       IF ( lAppend := !( lAppend .AND. Eof() ) )
@@ -319,7 +317,6 @@ STATIC FUNCTION CallUser( oBrowse, xUserFunc, nKeyStd, lAppend, lFlag )
       lFlag := .F.
       RETURN .T.
    ENDIF
-#endif
 
    IF nAction == DE_REFRESH .OR. nPrevRecNo != RecNo()
 

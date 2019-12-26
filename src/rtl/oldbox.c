@@ -48,8 +48,6 @@
 #include "hbapigt.h"
 #include "hbapiitm.h"
 
-#ifdef HB_CLP_UNDOC
-
 HB_FUNC( __BOX )
 {
    PHB_ITEM pTop    = hb_param( 1, HB_IT_NUMERIC );
@@ -93,5 +91,3 @@ HB_FUNC( __BOXS )
                  hb_itemGetNI( pBottom ),
                  hb_itemGetNI( pRight ) );
 }
-
-#endif

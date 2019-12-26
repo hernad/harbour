@@ -46,9 +46,6 @@
 
 #include "hbapi.h"
 
-/* NOTE: Undocumented Clipper internal function. */
-
-#ifdef HB_CLP_UNDOC
 
 HB_FUNC_EXTERN( __MVPUBLIC );
 
@@ -63,9 +60,6 @@ HB_FUNC( __QQPUB )
    }
 }
 
-#endif
-
-/* CA-Cl*pper 5.2e compatibility functions. */
 
 HB_FUNC_TRANSLATE( __MCLEAR   , __MVCLEAR )
 HB_FUNC_TRANSLATE( __MRELEASE , __MVRELEASE )

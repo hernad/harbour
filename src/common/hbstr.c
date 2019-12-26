@@ -500,7 +500,7 @@ double hb_numRound( double dNum, int iDec )
 
    doComplete5 /= doBase;
 
-#if defined( HB_DBLFL_PREC_FACTOR ) && ! defined( HB_CLP_STRICT )
+#if defined( HB_DBLFL_PREC_FACTOR )
    /* similar operation is done by Cl5.3
       it's a hack to force rounding FL values UP */
    doComplete5 *= HB_DBLFL_PREC_FACTOR;

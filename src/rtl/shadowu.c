@@ -46,8 +46,6 @@
 
 #include "hbdefs.h"
 
-#ifdef HB_CLP_UNDOC
 
 HB_FUNC_TRANSLATE( DBGSHADOW, HB_SHADOW )
 
-#endif

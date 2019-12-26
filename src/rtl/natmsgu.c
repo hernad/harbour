@@ -47,7 +47,6 @@
 
 #include "hbdefs.h"
 
-#ifdef HB_CLP_UNDOC
 
 HB_FUNC_TRANSLATE( ISAFFIRM, __NATISAFFIRM )
 HB_FUNC_TRANSLATE( ISNEGATIVE, __NATISNEGATIVE )
@@ -57,4 +56,3 @@ HB_FUNC_TRANSLATE( _NATSORTVER, __NATSORTVER )
 /* NOTE: Intentionally using one leading underscore, like in Clipper. [vszakats] */
 HB_FUNC_TRANSLATE( _NATMSGVER, __NATMSGVER )
 
-#endif

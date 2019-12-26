@@ -45,9 +45,7 @@
  *
  */
 
-#ifdef HB_CLP_UNDOC
 
 FUNCTION _eInstVar( ... )
    RETURN __eInstVar53( ... )
 
-#endif

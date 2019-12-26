@@ -46,12 +46,8 @@
 
 #pragma -gc0
 
-#ifdef HB_CLP_UNDOC
-
 FUNCTION __Input( xPrompt )
 
    LOCAL cString := __Accept( xPrompt )
 
    RETURN iif( Empty( cString ), NIL, &cString )
-
-#endif
