@@ -19,9 +19,10 @@ CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
 CPPFLAGS="$CFLAGS"
 
+autoconf -f
 automake --add-missing
 autoreconf -i
-autoconf -f
+aclocal --force
 
 ./configure \
       CPPFLAGS="$CFLAGS" \

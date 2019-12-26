@@ -4288,13 +4288,13 @@ _ACEOF
 
 # Some tools Automake needs.
 
-ACLOCAL=${ACLOCAL-"${am_missing_run}aclocal-${am__api_version}"}
+ACLOCAL=${ACLOCAL-"${am_missing_run}aclocal"}
 
 
 AUTOCONF=${AUTOCONF-"${am_missing_run}autoconf"}
 
 
-AUTOMAKE=${AUTOMAKE-"${am_missing_run}automake-${am__api_version}"}
+AUTOMAKE=${AUTOMAKE-"${am_missing_run}automake"}
 
 
 AUTOHEADER=${AUTOHEADER-"${am_missing_run}autoheader"}
@@ -9376,10 +9376,6 @@ _lt_linker_boilerplate=`cat conftest.err`
 $RM -r conftest*
 
 
-## CAVEAT EMPTOR:
-## There is no encapsulation within the following macros, do not change
-## the running order or otherwise move them around unless you know exactly
-## what you are doing...
 if test -n "$compiler"; then
 
 lt_prog_compiler_no_builtin_flag=
@@ -14134,80 +14130,8 @@ $as_echo "yes" >&6; }
 
 fi
     else
-        _save_PKG_CONFIG=$PKG_CONFIG
-PKG_CONFIG="$PKG_CONFIG --static"
-
-pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBXML" >&5
-$as_echo_n "checking for LIBXML... " >&6; }
-
-if test -n "$LIBXML_CFLAGS"; then
-    pkg_cv_LIBXML_CFLAGS="$LIBXML_CFLAGS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxml-2.0 >= \$LIBXML_REQUIRED_VERSION\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libxml-2.0 >= $LIBXML_REQUIRED_VERSION") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_LIBXML_CFLAGS=`$PKG_CONFIG --cflags "libxml-2.0 >= $LIBXML_REQUIRED_VERSION" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-if test -n "$LIBXML_LIBS"; then
-    pkg_cv_LIBXML_LIBS="$LIBXML_LIBS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxml-2.0 >= \$LIBXML_REQUIRED_VERSION\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libxml-2.0 >= $LIBXML_REQUIRED_VERSION") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_LIBXML_LIBS=`$PKG_CONFIG --libs "libxml-2.0 >= $LIBXML_REQUIRED_VERSION" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        LIBXML_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libxml-2.0 >= $LIBXML_REQUIRED_VERSION" 2>&1`
-        else
-	        LIBXML_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libxml-2.0 >= $LIBXML_REQUIRED_VERSION" 2>&1`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$LIBXML_PKG_ERRORS" >&5
-
-
-elif test $pkg_failed = untried; then
-     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-
-else
-	LIBXML_CFLAGS=$pkg_cv_LIBXML_CFLAGS
-	LIBXML_LIBS=$pkg_cv_LIBXML_LIBS
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-
-fi
-PKG_CONFIG=$_save_PKG_CONFIG
+        PKG_CHECK_MODULES_STATIC(LIBXML, libxml-2.0 >= $LIBXML_REQUIRED_VERSION,
+         ,  )
     fi
 fi
 
