@@ -20,17 +20,14 @@ rm -f aclocal.m4
 aclocal && libtoolize --force && autoreconf
 automake --add-missing
 
-
 sh  ./configure \
    --without-python \
    --prefix=$PREFIX \
    --with-iconv=$ROOT_3RD/libiconv/include \
    --with-zlib=$ROOT_3RD/zlib/include
 
-
- 
 make clean install
 
-git checkout . -f
+git checkout -f .
 cd ..
 

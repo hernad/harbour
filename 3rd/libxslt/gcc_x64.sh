@@ -19,7 +19,6 @@ CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
 CPPFLAGS="$CFLAGS"
 
-
 #sh ./autogen.sh
 autoconf -f
 automake --add-missing
@@ -41,9 +40,10 @@ autoreconf -i
 
 make LD_LIBRARY_PATH=$ROOT_3RD/libxml2/lib:$LD_LIBRARY_PATH LDFLAGS=-lxml2 install
 
+# PATCH: returning libxslt source to the state from git (because of Makefile.in etc)
+git checkout -f .
+
 cd ..
 
-# PATCH: returning libxslt source to the state from git (because of Makefile.in etc)
-git checkout -f libxslt
 
 
