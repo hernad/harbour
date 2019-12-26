@@ -55,18 +55,18 @@ DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
 
 hbmk2Zlib1dll::
 	$(info win SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR)exists,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
 	$(CP) $(SRCLIB) $(DESTLIB)
 else
 
 # every harbour execute needs libz.so
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/libz.so)
+SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)../lib/libz.so)
 DESTLIB := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR)/libz.so)
 DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
 
 hbmk2Zlib1dll::
 	$(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir exists,$(MDP) $(DESTDIR))
+	$(if $(wildcard $(DESTDIR)),,$(MDP) $(DESTDIR))
 endif
 
 first clean install:: hbmk2Zlib1dll

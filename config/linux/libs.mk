@@ -35,8 +35,8 @@ ifneq ($(HB_LINKING_RTL),)
       SYSLIBPATHS += $(HB_HAS_POSTGRESQL)../lib
    endif
    ifneq ($(HB_HAS_OPENSSL),)
-      SYSLIBS += ssl
-      SYSLIBPATHS += $(HB_HAS_SSL)../lib
+      SYSLIBS += ssl crypto
+      SYSLIBPATHS += $(HB_HAS_OPENSSL)../lib
    endif
 
    SYSLIBS += dl

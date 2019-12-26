@@ -187,9 +187,8 @@ DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 endif
 
 curlLib::
-	$(info SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
 
 
 ifeq ($(HB_PLATFORM),win)
@@ -207,9 +206,8 @@ DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 endif
 
 libpqLib::
-	$(info SHELL='$(SHELL)' cmd='$(CP)' srclib='$(SRCLIB)' destlib='$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
 
 
 ifeq ($(HB_PLATFORM),win)
@@ -228,6 +226,6 @@ DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
 endif
 
 libSqlite3::
-	$(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir $(DESTDIR) exists,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),$(ECHO) file $(DESTLIB) exists,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
+
