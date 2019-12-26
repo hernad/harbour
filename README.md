@@ -2,7 +2,7 @@
 
 ## Linux
 
-Download release into ~/Downloads
+Download [latest release](https://github.com/hernad/harbour/releases) into ~/Downloads
 
     export ROOT_DIR=/home/hernad/ah
     mkdir -p $ROOT_DIR
