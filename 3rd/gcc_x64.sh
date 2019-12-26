@@ -33,8 +33,8 @@ cd postgresql
 source gcc_x64.sh
 cd ..
 
-#unset CURL_BUILD
-#cd curl
-#source gcc_x64.sh
-#cd ..
+unset CURL_BUILD
+cd curl
+source gcc_x64.sh
+cd ..
 
