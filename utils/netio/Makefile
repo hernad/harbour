@@ -19,7 +19,7 @@ endif
 LIBS = $(HB_LIBS_MT_RDD)
 
 ifeq ($(HB_PLATFORM),win)
-   HB_USER_LIBS := hbwin -hbnetio
+   HB_USER_LIBS := hbwin hbnetio
 else
    HB_USER_LIBS := hbunix hbnetio
 endif
