@@ -23,7 +23,7 @@ SET OPENSSL_BUILD=1
 echo == cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ========
 cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
-git checkout . -f -x -d
+git clean . -f -x -d
 
 perl Configure --prefix=%LIB_TARGET% --openssldir=%LIB_TARGET% %OPENSSL_ARCH%
 nmake -f makefile install
