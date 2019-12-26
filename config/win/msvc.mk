@@ -121,7 +121,7 @@ LD := link.exe
 # endif
 LD_OUT := -out:
 
-LIBPATHS := $(foreach dir,$(LIB_DIR),-libpath:$(dir))
+LIBPATHS := $(foreach dir,$(LIB_DIR) $(LIB_EXT_DIR),-libpath:$(dir))
 LDLIBS := $(foreach lib,$(HB_USER_LIBS) $(LIBS) $(SYSLIBS),$(lib)$(LIB_EXT))
 
 LDFLAGS += -nologo -subsystem:console $(LIBPATHS)

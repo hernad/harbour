@@ -21,15 +21,17 @@ HB_SIGN_TIMEURL := http://timestamp.digicert.com
 
 SYSLIBS += kernel32 user32 ws2_32 iphlpapi advapi32 gdi32 winmm
 
+LIB_EXT_DIR :=
+
 ifneq ($(HB_HAS_ZLIB),)
     LIBS += zdll
-    LIB_DIR += $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)..\lib)
+    LIB_EXT_DIR += $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)..\lib)
 endif
 ifneq ($(HB_HAS_POSTGRESQL),)
     LIBS += libpq
-    LIB_DIR += $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)..\lib)
+    LIB_EXT_DIR += $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)..\lib)
 endif
 ifneq ($(HB_HAS_OPENSSL),)
     LIBS += libssl libcrypto
-    LIB_DIR += $(subst /,$(DIRSEP),..\lib)
+    LIB_EXT_DIR += $(subst /,$(DIRSEP),..\lib)
 endif
