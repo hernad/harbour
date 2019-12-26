@@ -47,7 +47,6 @@ REM ------------------------------------
 
 nmake /f Makefile.msc
 
-cd ..
 
 mkdir %LIB_DEST%
 mkdir %LIB_DEST%\bin
@@ -61,7 +60,9 @@ copy /y sqlite3.lib %LIB_DEST%\lib
 copy /y sqlite3.exe %LIB_DEST%\bin
 
 
-git checkout -f
+git checkout . -f
+cd ..
+
 REM ---------------------------------
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
