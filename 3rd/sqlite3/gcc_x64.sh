@@ -32,5 +32,9 @@ sh ./configure \
   --prefix=$PREFIX
 
 make install
+
+# PATCH: don't change source repos
+git checkout -f .
+
 cd ..
 
