@@ -124,7 +124,7 @@ _DET_VAR_HAS_ := HB_HAS_CURL
 _DET_FLT_PLAT :=
 _DET_FLT_COMP :=
 _DET_INC_DEFP := $(LIB_BIN_ROOT)/curl/include
-_DET_INC_LOCL := /curl/curl.h
+_DET_INC_LOCL := 
 _DET_INC_HEAD := 
 include $(TOP)$(ROOT)config/detfun.mk
 
@@ -134,7 +134,7 @@ _DET_VAR_HAS_ := HB_HAS_SQLITE3
 _DET_FLT_PLAT :=
 _DET_FLT_COMP :=
 _DET_INC_DEFP := $(LIB_BIN_ROOT)/sqlite3/include
-_DET_INC_LOCL := /sqlite3.h
+_DET_INC_LOCL :=
 _DET_INC_HEAD := 
 include $(TOP)$(ROOT)config/detfun.mk
 
