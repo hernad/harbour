@@ -214,7 +214,7 @@ HB_FUNC( CSETARGERR )  /* HB_EXTENSION */
 {
    hb_retni( ct_getargerrormode() );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iNewMode = hb_parni( 1 );
 

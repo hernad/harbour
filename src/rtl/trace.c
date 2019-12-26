@@ -116,7 +116,7 @@ HB_FUNC( HB_TRACELOGLEVEL )
 {
    int iOldLevel = s_traceLogLevel;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iLevel = hb_parni( 1 );
       if( iLevel >= HB_TR_ALWAYS && iLevel < HB_TR_LAST )
@@ -139,7 +139,7 @@ HB_FUNC( HB_TRACELOG )
 
 HB_FUNC( HB_TRACELOGAT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iLevel = hb_parni( 1 );
 

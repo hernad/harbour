@@ -69,7 +69,7 @@ HB_FUNC( WIN_LOADRESOURCE )
       void * hName;
       void * hType;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
       {
          szName = MAKEINTRESOURCE( hbwapi_par_INT( 1 ) );
          hName = NULL;
@@ -77,7 +77,7 @@ HB_FUNC( WIN_LOADRESOURCE )
       else
          szName = HB_PARSTRDEF( 1, &hName, NULL );
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          szType = MAKEINTRESOURCE( hbwapi_par_INT( 2 ) );
          hType = NULL;

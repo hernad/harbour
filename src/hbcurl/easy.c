@@ -908,7 +908,7 @@ static curl_mime * hb_curl_opt_mime( CURL * curl, PHB_ITEM pItem )
 
 HB_FUNC( CURL_EASY_SETOPT )
 {
-   if( PHB_CURL_is( 1 ) && HB_ISNUM( 2 ) )
+   if( PHB_CURL_is( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       PHB_CURL hb_curl = PHB_CURL_par( 1 );
       CURLcode res     = ( CURLcode ) HB_CURLE_ERROR;
@@ -2187,7 +2187,7 @@ HB_FUNC( CURL_EASY_SETOPT )
                   hb_curl->ul_name = hb_strdup( hb_parc( 3 ) );
                else if( hb_fileParamGet( 3 ) )
                   hb_curl->ul_file = hb_fileParamGet( 3 );
-               else if( HB_ISNUM( 3 ) )
+               else if( HB_IS_PARAM_NUM( 3 ) )
                {
                   hb_curl->ul_file   = hb_fileFromHandle( hb_numToHandle( hb_parnint( 3 ) ) );
                   hb_curl->ul_onfree = HB_CURL_ONFREE_DETACH;
@@ -2217,7 +2217,7 @@ HB_FUNC( CURL_EASY_SETOPT )
                   hb_curl->dl_name = hb_strdup( hb_parc( 3 ) );
                else if( hb_fileParamGet( 3 ) )
                   hb_curl->dl_file = hb_fileParamGet( 3 );
-               else if( HB_ISNUM( 3 ) )
+               else if( HB_IS_PARAM_NUM( 3 ) )
                {
                   hb_curl->dl_file   = hb_fileFromHandle( hb_numToHandle( hb_parnint( 3 ) ) );
                   hb_curl->dl_onfree = HB_CURL_ONFREE_DETACH;
@@ -2317,7 +2317,7 @@ HB_FUNC( CURL_EASY_DL_BUFF_GET )
 /* NOTE: curl_easy_getinfo( curl, x, @nError ) --> xValue */
 HB_FUNC( CURL_EASY_GETINFO )
 {
-   if( PHB_CURL_is( 1 ) && HB_ISNUM( 2 ) )
+   if( PHB_CURL_is( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       PHB_CURL hb_curl = PHB_CURL_par( 1 );
       CURLcode res     = ( CURLcode ) HB_CURLE_ERROR;
@@ -2757,7 +2757,7 @@ HB_FUNC( CURL_EASY_UNESCAPE )
 
 HB_FUNC( CURL_EASY_STRERROR )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
 #if LIBCURL_VERSION_NUM >= 0x070C00
       hb_retc( curl_easy_strerror( ( CURLcode ) hb_parnl( 1 ) ) );
 #else

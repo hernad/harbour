@@ -253,7 +253,7 @@ HB_FUNC( ADDMONTH )
    int iYear, iMonth, iDay, iNum, iDays;
    HB_BOOL fTimeStamp = HB_FALSE;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       iNum = hb_parni( 1 );
       hb_dateToday( &iYear, &iMonth, &iDay );
@@ -343,7 +343,7 @@ HB_FUNC( LASTDAYOM )
    HB_BOOL bLeap = HB_FALSE;
    int iYear, iMonth, iDay;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       iMonth = hb_parni( 1 );
    else
    {

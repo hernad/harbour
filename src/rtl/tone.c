@@ -49,6 +49,6 @@
 
 HB_FUNC( TONE )
 {
-   if( HB_ISNUM( 1 ) )
-      hb_gtTone( hb_parnd( 1 ), ( HB_ISNUM( 2 ) ? hb_parnd( 2 ) : 1.0 ) );
+   if( HB_IS_PARAM_NUM( 1 ) )
+      hb_gtTone( hb_parnd( 1 ), ( HB_IS_PARAM_NUM( 2 ) ? hb_parnd( 2 ) : 1.0 ) );
 }

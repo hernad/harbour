@@ -70,7 +70,7 @@ HB_FUNC( SETCOLOR )
 
 HB_FUNC( COLORSELECT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       hb_gtColorSelect( hb_parni( 1 ) );
 }
 
@@ -96,7 +96,7 @@ HB_FUNC( HB_COLORTON )
 
 HB_FUNC( HB_NTOCOLOR )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       char szColorString[ 10 ];
       int colors[ 1 ];

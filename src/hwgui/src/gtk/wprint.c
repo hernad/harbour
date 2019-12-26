@@ -157,7 +157,7 @@ HB_FUNC( HWG_SETPRINTERMODE )
 
    gtk_page_setup_set_orientation( print->page_setup, 
          (hb_parni(2)==1)? GTK_PAGE_ORIENTATION_PORTRAIT : GTK_PAGE_ORIENTATION_LANDSCAPE );
-   if( HB_ISNUM(3) ) {
+   if( HB_IS_PARAM_NUM(3) ) {
       int iDuplex = hb_parni(3);
       print->duplex = (iDuplex < 2)? 0 : ( (iDuplex == 2)? GTK_PRINT_DUPLEX_VERTICAL : GTK_PRINT_DUPLEX_HORIZONTAL );
    }

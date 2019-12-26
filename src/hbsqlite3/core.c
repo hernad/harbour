@@ -1911,7 +1911,7 @@ HB_FUNC( SQLITE3_PROGRESS_HANDLER )
          pHbSqlite3->cbProgressHandler = NULL;
       }
 
-      if( HB_ISNUM( 2 ) && HB_ISEVALITEM( 3 ) )
+      if( HB_IS_PARAM_NUM( 2 ) && HB_ISEVALITEM( 3 ) )
       {
          pHbSqlite3->cbProgressHandler = hb_itemNew( hb_param( 3, HB_IT_EVALITEM ) );
          hb_gcUnlock( pHbSqlite3->cbProgressHandler );
@@ -2163,7 +2163,7 @@ HB_FUNC( SQLITE3_THREADSAFE )
 HB_FUNC( SQLITE3_STATUS )
 {
 #if SQLITE_VERSION_NUMBER >= 3006000
-   if( hb_pcount() > 3 && ( HB_ISNUM( 2 ) && HB_ISBYREF( 2 ) ) && ( HB_ISNUM( 3 ) && HB_ISBYREF( 3 ) ) )
+   if( hb_pcount() > 3 && ( HB_IS_PARAM_NUM( 2 ) && HB_ISBYREF( 2 ) ) && ( HB_IS_PARAM_NUM( 3 ) && HB_ISBYREF( 3 ) ) )
    {
       int iCurrent, iHighwater;
 
@@ -2183,7 +2183,7 @@ HB_FUNC( SQLITE3_STATUS )
 HB_FUNC( SQLITE3_STATUS64 )
 {
 #if SQLITE_VERSION_NUMBER >= 3080900 && ! defined( HB_LONG_LONG_OFF )
-   if( hb_pcount() > 3 && ( HB_ISNUM( 2 ) && HB_ISBYREF( 2 ) ) && ( HB_ISNUM( 3 ) && HB_ISBYREF( 3 ) ) )
+   if( hb_pcount() > 3 && ( HB_IS_PARAM_NUM( 2 ) && HB_ISBYREF( 2 ) ) && ( HB_IS_PARAM_NUM( 3 ) && HB_ISBYREF( 3 ) ) )
    {
       sqlite3_int64 iCurrent, iHighwater;
 
@@ -2212,7 +2212,7 @@ HB_FUNC( SQLITE3_DB_STATUS )
    HB_SQLITE3 * pHbSqlite3 = ( HB_SQLITE3 * ) hb_sqlite3_param( 1, HB_SQLITE3_DB, HB_TRUE );
 
    if( pHbSqlite3 && pHbSqlite3->db && ( hb_pcount() > 4 ) &&
-       ( HB_ISNUM( 3 ) && HB_ISBYREF( 3 ) ) && ( HB_ISNUM( 4 ) && HB_ISBYREF( 4 ) ) )
+       ( HB_IS_PARAM_NUM( 3 ) && HB_ISBYREF( 3 ) ) && ( HB_IS_PARAM_NUM( 4 ) && HB_ISBYREF( 4 ) ) )
    {
       int iCurrent, iHighwater;
 
@@ -2241,7 +2241,7 @@ HB_FUNC( SQLITE3_LIMIT )
 #if SQLITE_VERSION_NUMBER >= 3005008
    HB_SQLITE3 * pHbSqlite3 = ( HB_SQLITE3 * ) hb_sqlite3_param( 1, HB_SQLITE3_DB, HB_TRUE );
 
-   if( pHbSqlite3 && pHbSqlite3->db && ( hb_pcount() > 2 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( pHbSqlite3 && pHbSqlite3->db && ( hb_pcount() > 2 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
       hb_retni( sqlite3_limit( pHbSqlite3->db, hb_parni( 2 ), hb_parni( 3 ) ) );
    else
       hb_retni( -1 );

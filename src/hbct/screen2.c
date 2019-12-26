@@ -60,9 +60,9 @@ HB_FUNC( SAYDOWN )
       long lDelay = hb_parnldef( 2, 4 );
 
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iRow = hb_parni( 3 );
-      if( HB_ISNUM( 4 ) )
+      if( HB_IS_PARAM_NUM( 4 ) )
          iCol = hb_parni( 4 );
       iMaxRow = hb_gtMaxRow();
       iMaxCol = hb_gtMaxCol();
@@ -119,11 +119,11 @@ HB_FUNC( SAYSPREAD )
       iMaxRow = hb_gtMaxRow();
       iMaxCol = hb_gtMaxCol();
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iRow = hb_parni( 3 );
       else
          hb_gtGetPos( &iRow, &iCol );
-      iCol = HB_ISNUM( 4 ) ? hb_parni( 4 ) : ( iMaxCol >> 1 );
+      iCol = HB_IS_PARAM_NUM( 4 ) ? hb_parni( 4 ) : ( iMaxCol >> 1 );
 
       if( iRow >= 0 && iCol >= 0 && iRow <= iMaxRow && iCol <= iMaxCol )
       {
@@ -180,9 +180,9 @@ HB_FUNC( SAYMOVEIN )
       iMaxRow = hb_gtMaxRow();
       iMaxCol = hb_gtMaxCol();
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iRow = hb_parni( 3 );
-      if( HB_ISNUM( 4 ) )
+      if( HB_IS_PARAM_NUM( 4 ) )
          iCol = hb_parni( 4 );
 
       if( iRow >= 0 && iCol >= 0 && iRow <= iMaxRow && iCol <= iMaxCol )
@@ -249,7 +249,7 @@ HB_FUNC( CLEARSLOW )  /* TODO: Unicode support */
    int iRight  = hb_parnidef( 5, iMaxCol );
    HB_UCHAR ucChar;
 
-   if( HB_ISNUM( 6 ) )
+   if( HB_IS_PARAM_NUM( 6 ) )
       ucChar = ( HB_UCHAR ) hb_parni( 6 );
    else if( HB_ISCHAR( 6 ) )
       ucChar = ( HB_UCHAR ) hb_parc( 6 )[ 0 ];
@@ -328,11 +328,11 @@ HB_FUNC( SCREENSTR )  /* TODO: Unicode support */
    HB_SIZE nCount = HB_SIZE_MAX;
 
    hb_gtGetPos( &iRow, &iCol );
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       iRow = hb_parni( 1 );
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       iCol = hb_parni( 2 );
-   if( HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 3 ) )
       nCount = hb_parns( 3 );
    iMaxRow = hb_gtMaxRow();
    iMaxCol = hb_gtMaxCol();
@@ -381,9 +381,9 @@ HB_FUNC( STRSCREEN )  /* TODO: Unicode support */
       int iRow, iCol, iMaxRow, iMaxCol;
 
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          iRow = hb_parni( 2 );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iCol = hb_parni( 3 );
       iMaxRow = hb_gtMaxRow();
       iMaxCol = hb_gtMaxCol();
@@ -419,7 +419,7 @@ HB_FUNC( __HBCT_DSPTIME )  /* Helper function for ShowTime() */
 
    iRow = hb_parni( 1 );
    iCol = hb_parni( 2 );
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
       iColor = hb_parni( 4 );
    else if( HB_ISCHAR( 4 ) )
    {

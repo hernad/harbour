@@ -193,7 +193,7 @@ HB_FUNC( SX_ROLLBACK )
    int iArea = 0;
    AREAP pArea;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       iArea = hb_parni( 1 );
       fRollChild = iArea == 0;
@@ -297,8 +297,8 @@ HB_FUNC( SX_SETPASS )
    }
    else if( iPCount >= 2 && iPCount <= 4 )
    {
-      if( HB_ISCHAR( 1 ) && HB_ISNUM( 2 ) && ( iPCount < 3 || HB_ISCHAR( 3 ) ) &&
-          ( iPCount < 4 || HB_ISNUM( 4 ) ) )
+      if( HB_ISCHAR( 1 ) && HB_IS_PARAM_NUM( 2 ) && ( iPCount < 3 || HB_ISCHAR( 3 ) ) &&
+          ( iPCount < 4 || HB_IS_PARAM_NUM( 4 ) ) )
       {
          /* Set pending password for table which will be open
           * 3rd and 4th parameters are optional Harbour extensions
@@ -321,7 +321,7 @@ HB_FUNC( SX_SETPASS )
             hb_itemRelease( pItem );
          }
       }
-      else if( iPCount == 2 && HB_ISNUM( 1 ) && HB_ISCHAR( 2 ) )
+      else if( iPCount == 2 && HB_IS_PARAM_NUM( 1 ) && HB_ISCHAR( 2 ) )
       {
          AREAP pArea = ( AREAP ) hb_rddGetCurrentWorkAreaPointer();
          if( pArea )

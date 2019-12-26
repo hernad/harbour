@@ -64,7 +64,7 @@ HB_FUNC( HB_CURL_DATE )
    else
       hb_timeStampGetLocal( &iYear, &iMonth, &iDay, &iHour, &iMinute, &iSecond, &iMSec );
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       lOffset = hb_parnl( 2 );
    else
       lOffset = hb_timeStampUTCOffset( iYear, iMonth, iDay, iHour, iMinute, iSecond );

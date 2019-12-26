@@ -121,7 +121,7 @@ HB_FUNC( HWG_SHELLMODIFYICON )
    tnid.cbSize = sizeof( NOTIFYICONDATA );
    tnid.hWnd = ( HWND ) HB_PARHANDLE( 1 );
    tnid.uID = ID_NOTIFYICON;
-   if( HB_ISNUM( 2 ) || HB_ISPOINTER( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) || HB_ISPOINTER( 2 ) )
    {
       tnid.uFlags |= NIF_ICON;
       tnid.hIcon = ( HICON ) HB_PARHANDLE( 2 );
@@ -157,7 +157,7 @@ HB_FUNC( HWG_SHELLEXECUTE )
                HB_PARSTRDEF( 2, &hOperation, NULL ),
                HB_PARSTR( 1, &hFile, NULL ),
                HB_PARSTR( 3, &hParameters, NULL ),
-               lpDirectory, HB_ISNUM( 5 ) ? hb_parni( 5 ) : SW_SHOWNORMAL ) );
+               lpDirectory, HB_IS_PARAM_NUM( 5 ) ? hb_parni( 5 ) : SW_SHOWNORMAL ) );
 
    hb_strfree( hOperation );
    hb_strfree( hFile );

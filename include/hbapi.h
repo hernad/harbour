@@ -224,7 +224,7 @@ HB_EXTERN_BEGIN
 
 #define HB_ISNIL( n )         ( hb_extIsNil( n ) )                         /* NOTE: Intentionally using a different method */
 #define HB_ISCHAR( n )        ( hb_param( n, HB_IT_STRING ) != NULL )
-#define HB_ISNUM( n )         ( hb_param( n, HB_IT_NUMERIC ) != NULL )
+#define HB_IS_PARAM_NUM( n )         ( hb_param( n, HB_IT_NUMERIC ) != NULL )
 #define HB_ISLOG( n )         ( hb_param( n, HB_IT_LOGICAL ) != NULL )
 #define HB_ISDATE( n )        ( hb_param( n, HB_IT_DATE ) != NULL )
 #define HB_ISTIMESTAMP( n )   ( hb_param( n, HB_IT_TIMESTAMP ) != NULL )
@@ -243,7 +243,7 @@ HB_EXTERN_BEGIN
 #if defined( HB_LEGACY_LEVEL4 ) && defined( HB_LEGACY_TYPES_ON )
    #define ISNIL( n )            HB_ISNIL( n )
    #define ISCHAR( n )           HB_ISCHAR( n )
-   #define ISNUM( n )            HB_ISNUM( n )
+   #define ISNUM( n )            HB_IS_PARAM_NUM( n )
    #define ISLOG( n )            HB_ISLOG( n )
    #define ISDATE( n )           HB_ISDATE( n )
    #define ISTIMESTAMP( n )      HB_ISTIMESTAMP( n )

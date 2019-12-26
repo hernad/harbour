@@ -121,7 +121,7 @@ static void do_atnum( int iSwitch )
       }
 
       /* nth match or last match ? */
-      if( HB_ISNUM( 3 ) && ( nCounter = hb_parns( 3 ) ) != 0 )
+      if( HB_IS_PARAM_NUM( 3 ) && ( nCounter = hb_parns( 3 ) ) != 0 )
       {
          /* find the <nCounter>th match */
          const char * pcSubStr;

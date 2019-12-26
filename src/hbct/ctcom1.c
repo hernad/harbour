@@ -58,7 +58,7 @@ static int hb_ctComCharParam( int iParam )
       if( hb_parclen( iParam ) > 0 )
          return ( unsigned char ) pszParam[ 0 ];
    }
-   else if( HB_ISNUM( iParam ) )
+   else if( HB_IS_PARAM_NUM( iParam ) )
       return ( unsigned char ) hb_parni( iParam );
 
    return -1;
@@ -173,7 +173,7 @@ HB_FUNC( COM_MCR )
 {
    int iMCR, iClr, iSet;
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       iClr = 0xff;
       iSet = hb_parni( 2 ) & 0xff;
@@ -410,7 +410,7 @@ HB_FUNC( COM_READ )
 
    /* TODO: add support for <lNoDelete> */
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       lLen = hb_parnl( 2 );
    else
    {
@@ -452,7 +452,7 @@ HB_FUNC( COM_SEND )
 
    if( data )
       lLen = ( long ) hb_parclen( 2 );
-   else if( HB_ISNUM( 2 ) )
+   else if( HB_IS_PARAM_NUM( 2 ) )
    {
       buffer = ( unsigned char ) hb_parni( 2 );
       data = &buffer;

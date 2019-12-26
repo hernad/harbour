@@ -236,7 +236,7 @@ HB_FUNC( HWG_SETPRINTERMODE )
       DocumentProperties( NULL, hPrinter, ( LPTSTR ) lpPrinterName,
             pdm, pdm, DM_OUT_BUFFER | DM_IN_BUFFER );
 
-      // á®§¤ ¤¨¬ ª®­â¥ªáâ ãáâà®©áâ¢  ¯à¨­â¥à 
+      // á®§ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¥ªï¿½ï¿½ ï¿½ï¿½ï¿½à®©ï¿½â¢  ï¿½à¨­ï¿½ï¿½
       HB_RETHANDLE( CreateDC( NULL, lpPrinterName, NULL, pdm ) );
       HB_STOREHANDLE( hPrinter, 2 );
       GlobalFree( pdm );
@@ -510,7 +510,7 @@ HB_FUNC( HWG_SETDOCUMENTPROPERTIES )
                BOOL bAskUser = HB_ISBYREF( 3 ) || HB_ISBYREF( 4 ) || HB_ISBYREF( 5 ) || HB_ISBYREF( 6 ) || HB_ISBYREF( 7 ) || HB_ISBYREF( 8 ) || HB_ISBYREF( 9 ) || HB_ISBYREF( 10 );   //x 20070421
                DWORD dInit = 0; //x 20070421
                DWORD fMode;
-               BOOL bCustomFormSize = ( HB_ISNUM( 9 ) && hb_parnl( 9 ) > 0 ) && ( HB_ISNUM( 10 ) && hb_parnl( 10 ) > 0 );       // Must set both Length & Width
+               BOOL bCustomFormSize = ( HB_IS_PARAM_NUM( 9 ) && hb_parnl( 9 ) > 0 ) && ( HB_IS_PARAM_NUM( 10 ) && hb_parnl( 10 ) > 0 );       // Must set both Length & Width
 
                if( bCustomFormSize )
                {
@@ -542,7 +542,7 @@ HB_FUNC( HWG_SETDOCUMENTPROPERTIES )
                         hb_strfree( hFormName );
                      }
                   }
-                  else if( HB_ISNUM( 3 ) && hb_parnl( 3 ) )     // 22/02/2007 don't change if 0
+                  else if( HB_IS_PARAM_NUM( 3 ) && hb_parnl( 3 ) )     // 22/02/2007 don't change if 0
                   {
                      pDevMode->dmPaperSize = ( short ) hb_parnl( 3 );
                      dInit |= DM_PAPERSIZE;
@@ -556,25 +556,25 @@ HB_FUNC( HWG_SETDOCUMENTPROPERTIES )
                   dInit |= DM_ORIENTATION;
                }
 
-               if( HB_ISNUM( 5 ) && hb_parnl( 5 ) > 0 )
+               if( HB_IS_PARAM_NUM( 5 ) && hb_parnl( 5 ) > 0 )
                {
                   pDevMode->dmCopies = ( short ) hb_parnl( 5 );
                   dInit |= DM_COPIES;
                }
 
-               if( HB_ISNUM( 6 ) && hb_parnl( 6 ) )     // 22/02/2007 don't change if 0
+               if( HB_IS_PARAM_NUM( 6 ) && hb_parnl( 6 ) )     // 22/02/2007 don't change if 0
                {
                   pDevMode->dmDefaultSource = ( short ) hb_parnl( 6 );
                   dInit |= DM_DEFAULTSOURCE;
                }
 
-               if( HB_ISNUM( 7 ) && hb_parnl( 7 ) )     // 22/02/2007 don't change if 0
+               if( HB_IS_PARAM_NUM( 7 ) && hb_parnl( 7 ) )     // 22/02/2007 don't change if 0
                {
                   pDevMode->dmDuplex = ( short ) hb_parnl( 7 );
                   dInit |= DM_DUPLEX;
                }
 
-               if( HB_ISNUM( 8 ) && hb_parnl( 8 ) )     // 22/02/2007 don't change if 0
+               if( HB_IS_PARAM_NUM( 8 ) && hb_parnl( 8 ) )     // 22/02/2007 don't change if 0
                {
                   pDevMode->dmPrintQuality = ( short ) hb_parnl( 8 );
                   dInit |= DM_PRINTQUALITY;

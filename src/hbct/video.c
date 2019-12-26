@@ -104,7 +104,7 @@ HB_FUNC( VGAPALETTE )
    color_string = hb_parc( 1 );
    if( color_string )
       attr = hb_gtColorToN( color_string );
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
       attr = hb_parni( 1 );
    else
       attr = -1;
@@ -199,9 +199,9 @@ HB_FUNC( SETFONT )
 
    if( ! area )
       area = 1;
-   if( HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 3 ) )
       offset = hb_parni( 3 );
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
       count = hb_parni( 4 );
    if( HB_ISLOG( 3 ) && hb_parl( 3 ) && count != 0 )
       height = len / count;

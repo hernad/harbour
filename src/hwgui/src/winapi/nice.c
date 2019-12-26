@@ -207,7 +207,7 @@ HB_FUNC( HWG_CREATENICEBTN )
 {
    HWND hWndPanel;
    ULONG ulStyle =
-         HB_ISNUM( 3 ) ? hb_parnl( 3 ) : WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
+         HB_IS_PARAM_NUM( 3 ) ? hb_parnl( 3 ) : WS_CLIPCHILDREN | WS_CLIPSIBLINGS;
    void *hTitle;
 
    hWndPanel = CreateWindowEx( hb_parni( 8 ), TEXT( "NICEBUTT" ),       /* predefined class  */

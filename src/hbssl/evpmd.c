@@ -101,7 +101,7 @@ static EVP_MD_CTX * hb_EVP_MD_CTX_par( int iParam )
 
 HB_BOOL hb_EVP_MD_is( int iParam )
 {
-   return HB_ISCHAR( iParam ) || HB_ISNUM( iParam );
+   return HB_ISCHAR( iParam ) || HB_IS_PARAM_NUM( iParam );
 }
 
 const EVP_MD * hb_EVP_MD_par( int iParam )
@@ -204,7 +204,7 @@ HB_FUNC( EVP_GET_DIGESTBYNAME )
 
 HB_FUNC( EVP_GET_DIGESTBYNID )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       hb_retni( hb_EVP_MD_ptr_to_id( EVP_get_digestbynid( hb_parni( 1 ) ) ) );
    else
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );

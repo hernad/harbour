@@ -1782,7 +1782,7 @@ HB_FUNC( DBSETRELATION )
          return;
       }
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
       {
          uiChildArea = ( HB_AREANO ) hb_parni( 1 );
       }
@@ -1939,7 +1939,7 @@ HB_FUNC( __DBARRANGE )
 /* __dbTrans( nDstArea, aFieldsStru, bFor, bWhile, nNext, nRecord, lRest ) --> <lSuccess> */
 HB_FUNC( __DBTRANS )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_AREANO uiSrcArea, uiDstArea;
       AREAP pSrcArea, pDstArea;
@@ -2303,7 +2303,7 @@ HB_FUNC( __DBSKIPPER )
       {
          HB_LONG lRecs = 1;
 
-         if( HB_ISNUM( 1 ) )
+         if( HB_IS_PARAM_NUM( 1 ) )
             lRecs = hb_parnl( 1 );
 
          if( lRecs == 0 )

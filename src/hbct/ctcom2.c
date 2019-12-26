@@ -58,14 +58,14 @@ HB_FUNC( COM_DOSCON )
 
    if( nLen > 0 )
    {
-      if( HB_ISNUM( 2 ) || HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 2 ) || HB_IS_PARAM_NUM( 3 ) )
       {
          int iRow, iCol;
 
          hb_gtGetPos( &iRow, &iCol );
-         if( HB_ISNUM( 2 ) )
+         if( HB_IS_PARAM_NUM( 2 ) )
             iRow = hb_parni( 1 );
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
             iCol = hb_parni( 2 );
          hb_gtSetPos( iRow, iCol );
       }

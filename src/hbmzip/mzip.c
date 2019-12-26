@@ -190,7 +190,7 @@ static PHB_FILE hb_fileHandleParam( int iParam, HB_BOOL * pfFree )
    PHB_FILE pFile = NULL;
 
    * pfFree = HB_FALSE;
-   if( HB_ISNUM( iParam ) )
+   if( HB_IS_PARAM_NUM( iParam ) )
    {
       HB_FHANDLE hFile = hb_numToHandle( hb_parnint( iParam ) );
       if( hFile != FS_ERROR )
@@ -380,7 +380,7 @@ HB_FUNC( HB_ZIPFILEWRITE )
       {
          HB_SIZE nLen = hb_parclen( 2 );
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             HB_SIZE nWrite = hb_parns( 3 );
             if( nWrite < nLen )
@@ -651,7 +651,7 @@ HB_FUNC( HB_UNZIPFILEREAD )
 
       if( hUnzip )
       {
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             HB_SIZE nRead = hb_parns( 3 );
             if( nRead < nSize )

@@ -1911,7 +1911,7 @@ PHB_SYMB hb_objGetMethod( PHB_ITEM pObject, PHB_SYMB pMessage,
             if( pMsg == s___msgEnumIndex.pDynSym )
             {
                hb_itemPutNS( hb_stackReturnItem(), pEnum->item.asEnum.offset );
-               if( hb_pcount() > 0 && HB_ISNUM( 1 ) )
+               if( hb_pcount() > 0 && HB_IS_PARAM_NUM( 1 ) )
                   pEnum->item.asEnum.offset = hb_itemGetNS( hb_param( 1, HB_IT_ANY ) );
                return &s___msgEnumIndex;
             }
@@ -4333,7 +4333,7 @@ HB_FUNC( __CLSSYNCWAIT )
       }
    }
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       double dTimeOut = hb_parnd( 2 );
       if( dTimeOut > 0 )

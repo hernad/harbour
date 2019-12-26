@@ -279,7 +279,7 @@ static void s_getPathName( _HB_GETPATHNAME getPathName )
          TCHAR buffer[ HB_PATH_MAX ];
          DWORD cchBuffer = ( DWORD ) HB_SIZEOFARRAY( buffer );
          LPTSTR lpszShortPath = buffer;
-         HB_BOOL fSize = HB_ISNUM( 3 );
+         HB_BOOL fSize = HB_IS_PARAM_NUM( 3 );
 
          if( fSize )    /* the size of buffer is limited by user */
          {

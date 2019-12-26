@@ -54,7 +54,7 @@
 /* helper function for the pad functions */
 static void do_pad( int iSwitch )
 {
-   if( HB_ISCHAR( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_ISCHAR( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       const char * pcString = hb_parc( 1 );
       HB_SIZE sStrLen = hb_parclen( 1 );
@@ -82,7 +82,7 @@ static void do_pad( int iSwitch )
 
       if( hb_parclen( 3 ) > 0 )
          cFill = *( hb_parc( 3 ) );
-      else if( HB_ISNUM( 3 ) )
+      else if( HB_IS_PARAM_NUM( 3 ) )
          cFill = ( char ) ( hb_parnl( 3 ) % 256 );
       else
          cFill = 0x20;

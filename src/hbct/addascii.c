@@ -61,7 +61,7 @@ HB_FUNC( ADDASCII )
       HB_LONG lValue;
       int iCarryOver;
 
-      if( sPos > sLen || ! HB_ISNUM( 2 ) || sLen == 0 )
+      if( sPos > sLen || ! HB_IS_PARAM_NUM( 2 ) || sLen == 0 )
       {
          int iArgErrorMode = ct_getargerrormode();
 

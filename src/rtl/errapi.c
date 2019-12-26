@@ -468,7 +468,7 @@ HB_FUNC( DOSERROR )
 
    hb_retni( pErrData->uiErrorDOS );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       pErrData->uiErrorDOS = hb_parni( 1 );
 }
 

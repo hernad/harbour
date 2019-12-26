@@ -12471,7 +12471,7 @@ HB_FUNC( ERRORLEVEL )
 
    hb_retni( s_nErrorLevel );
 
-   /* NOTE: This should be HB_ISNUM( 1 ), but it's sort of a Clipper bug that it
+   /* NOTE: This should be HB_IS_PARAM_NUM( 1 ), but it's sort of a Clipper bug that it
             accepts other types also and considers them zero. [vszakats] */
 
    if( hb_pcount() >= 1 )

@@ -55,7 +55,7 @@
 
 HB_FUNC( CELSIUS )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       double dInput = hb_parnd( 1 );
       double dResult;
@@ -82,7 +82,7 @@ HB_FUNC( CELSIUS )
 
 HB_FUNC( FAHRENHEIT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       double dInput = hb_parnd( 1 );
       double dResult;

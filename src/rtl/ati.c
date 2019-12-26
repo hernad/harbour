@@ -106,7 +106,7 @@ HB_FUNC( HB_ATI )
 
          pszText     += nFrom;
          nTextLength -= nFrom;
-         if( HB_ISNUM( 4 ) )
+         if( HB_IS_PARAM_NUM( 4 ) )
          {
             nTo = hb_parns( 4 );
             if( nTo <= nStart )

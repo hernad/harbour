@@ -18,20 +18,19 @@ CFLAGS+="-I$ROOT_3RD/zlib/include"
 CPPFLAGS="$CFLAGS"
 
 #autoconf -f
-#automake --add-missing
 #autoreconf -i
 
+#sh ./autogen.sh
 rm -f aclocal.m4 
 aclocal && libtoolize --force && autoreconf
-
-#sh ./autogen.sh
+automake --add-missing
 
 sh ./configure \
   CFLAGS="$CFLAGS" \
   CPPFLAGS="$CPPFLAGS" \
   --prefix=$PREFIX
 
-make install
+make clean install
 
 # PATCH: don't change source repos
 git checkout -f .

@@ -465,7 +465,7 @@ HB_FUNC( MLCTOPOS )
    HB_SIZE nCol    = hb_parns( 4 );
    HB_SIZE nOffset = 0;
 
-   if( nLine > 0 && HB_ISNUM( 4 ) )
+   if( nLine > 0 && HB_IS_PARAM_NUM( 4 ) )
    {
       HB_MLC_INFO MLC;
       if( hb_mlInit( &MLC, 2 ) )

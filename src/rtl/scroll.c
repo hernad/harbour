@@ -74,7 +74,7 @@ HB_FUNC( SCROLL )
    else if( iLeft > iMaxCol )
       iLeft = iMaxCol;
 
-   if( HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 3 ) )
    {
       iBottom = hb_parni( 3 );
       if( iBottom < 0 )
@@ -85,7 +85,7 @@ HB_FUNC( SCROLL )
    else
       iBottom = iMaxRow;
 
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
    {
       iRight = hb_parni( 4 );
       if( iRight < 0 )
@@ -130,7 +130,7 @@ HB_FUNC( HB_SCROLL )
    else if( iLeft > iMaxCol )
       iLeft = iMaxCol;
 
-   if( HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 3 ) )
    {
       iBottom = hb_parni( 3 );
       if( iBottom < 0 )
@@ -141,7 +141,7 @@ HB_FUNC( HB_SCROLL )
    else
       iBottom = iMaxRow;
 
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
    {
       iRight = hb_parni( 4 );
       if( iRight < 0 )
@@ -152,14 +152,14 @@ HB_FUNC( HB_SCROLL )
    else
       iRight = iMaxCol;
 
-   if( HB_ISNUM( 7 ) )
+   if( HB_IS_PARAM_NUM( 7 ) )
       iColor = hb_parni( 7 );
    else if( HB_ISCHAR( 7 ) )
       iColor = hb_gtColorToN( hb_parc( 7 ) );
    else
       iColor = -1;
 
-   if( HB_ISNUM( 8 ) )
+   if( HB_IS_PARAM_NUM( 8 ) )
    {
       iChar = hb_parni( 8 );
       if( iChar > 0 && iChar <= 255 )

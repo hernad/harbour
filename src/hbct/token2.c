@@ -298,7 +298,7 @@ HB_FUNC( TOKENINIT )
       }
 
       /* skip width */
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          nSkip = hb_parns( 3 );
       else
          nSkip = HB_SIZE_MAX;
@@ -430,7 +430,7 @@ HB_FUNC( TOKENNEXT )
       }
 
       /* nth token or next token ?  */
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          psTokenPosition = sTokEnvGetPosIndex( sTokenEnvironment, hb_parns( 2 ) - 1 );
          /* no increment here */
@@ -565,7 +565,7 @@ HB_FUNC( TOKENAT )
       return;
    }
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       sCurrentIndex = hb_parns( 2 ) - 1;
    else
       sCurrentIndex = sTokEnvGetPtr( sTokenEnvironment );

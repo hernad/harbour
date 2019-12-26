@@ -553,7 +553,7 @@ HB_FUNC( NETIO_SERVERTIMEOUT )
    if( conn )
    {
       hb_retni( conn->timeout );
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          conn->timeout = hb_parni( 2 );
    }
 }

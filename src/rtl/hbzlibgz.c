@@ -135,7 +135,7 @@ HB_FUNC( HB_GZDOPEN )
 #ifndef HB_NO_GZLIB
    const char * cMode = hb_parc( 2 );
 
-   if( HB_ISNUM( 1 ) && cMode )
+   if( HB_IS_PARAM_NUM( 1 ) && cMode )
    {
       gzFile gz;
 
@@ -188,7 +188,7 @@ HB_FUNC( HB_GZCLOSE )
 HB_FUNC( HB_GZSETPARAMS )
 {
 #ifndef HB_NO_GZLIB
-   if( HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       gzFile gz = hb_gzParam( 1 );
       if( gz )
@@ -216,7 +216,7 @@ HB_FUNC( HB_GZREAD )
       {
          int iResult;
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             HB_SIZE nLim = hb_parns( 3 );
             if( nLim < nLen )
@@ -252,7 +252,7 @@ HB_FUNC( HB_GZWRITE )
 
          hb_vmUnlock();
          iResult = gzwrite( gz, szData,
-                            HB_ISNUM( 3 ) ? ( unsigned ) hb_parns( 3 ) :
+                            HB_IS_PARAM_NUM( 3 ) ? ( unsigned ) hb_parns( 3 ) :
                                             ( unsigned ) hb_parclen( 2 ) );
          hb_vmLock();
 
@@ -332,7 +332,7 @@ HB_FUNC( HB_GZPUTS )
 HB_FUNC( HB_GZPUTC )
 {
 #ifndef HB_NO_GZLIB
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       gzFile gz = hb_gzParam( 1 );
       if( gz )
@@ -378,7 +378,7 @@ HB_FUNC( HB_GZGETC )
 HB_FUNC( HB_GZUNGETC )
 {
 #ifndef HB_NO_GZLIB
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
 #if ZLIB_VERNUM >= 0x1202
       gzFile gz = hb_gzParam( 2 );
@@ -426,7 +426,7 @@ HB_FUNC( HB_GZFLUSH )
 HB_FUNC( HB_GZSEEK )
 {
 #ifndef HB_NO_GZLIB
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       gzFile gz = hb_gzParam( 1 );
       if( gz )
