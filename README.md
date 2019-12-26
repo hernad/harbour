@@ -7,7 +7,10 @@ Download release into ~/Downloads
     export ROOT_DIR=/home/hernad/ah
     mkdir -p $ROOT_DIR
     cd $ROOT_DIR
+    # centos7, fedora30
     tar xvf ~/Downloads/harbour-linux-x64-4.7.1.tar.gz
+    # ubuntu
+    tar xvf ~/Downloads/harbour-ubuntu-x64-4.7.1.tar.gz
 
     export HB_INSTALL_PREFIX=$ROOT_DIR/harbour
     export PATH=$HB_INSTALL_PREFIX/bin:$PATH
