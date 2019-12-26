@@ -17,6 +17,7 @@ LD_LIBRARY_PATH+=":$ROOT_3RD/libxml2/lib"
 LD_LIBRARY_PATH+=":$ROOT_3RD/libxslt/lib"
 LD_LIBRARY_PATH+=":$ROOT_3RD/openssl/lib"
 LD_LIBRARY_PATH+=":$ROOT_3RD/postgresql/lib"
+LD_LIBRARY_PATH+=":$ROOT_3RD/sqlite3/lib"
 
 export LD_LIBRARY_PATH
 

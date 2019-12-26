@@ -16,7 +16,10 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
 #   --with-iconv=$ROOT_3RD/libiconv/include \
 #   --with-zlib=$ROOT_3RD/zlib/include
    
-autoreconf -i
+rm -f aclocal.m4 
+aclocal && libtoolize --force && autoreconf
+automake --add-missing
+
 
 sh  ./configure \
    --without-python \
@@ -26,7 +29,8 @@ sh  ./configure \
 
 
  
-make install
+make clean install
 
+git checkout . -f
 cd ..
 

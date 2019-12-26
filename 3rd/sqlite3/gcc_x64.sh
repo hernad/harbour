@@ -30,7 +30,7 @@ sh ./configure \
   CPPFLAGS="$CPPFLAGS" \
   --prefix=$PREFIX
 
-make install
+make clean install
 
 # PATCH: don't change source repos
 git checkout -f .
