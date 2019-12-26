@@ -66,8 +66,7 @@ DESTDIR := $(subst /,$(DIRSEP),$(HB_HOST_BIN_DIR))
 
 hbmk2Zlib1dll::
 	$(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)')
-	$(if $(wildcard $(DESTDIR)/../),$(ECHO) dir exists,$(MD) $(DESTDIR)/../)
-	$(if $(wildcard $(DESTDIR)),$(ECHO) dir exists,$(MD) $(DESTDIR))
+	$(if $(wildcard $(DESTDIR)),$(ECHO) dir exists,$(MDP) $(DESTDIR))
 endif
 
 first clean install:: hbmk2Zlib1dll

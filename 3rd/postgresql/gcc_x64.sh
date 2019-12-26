@@ -31,7 +31,10 @@ export LD_LIBRARY_PATH
 echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
 [ -f config.log ] && rm config.log
-CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include"
+CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2"
+CFLAGS+=" -I$ROOT_3RD/libxslt/include"
+CFLAGS+=" -I$ROOT_3RD/uuid/include"
+CFLAGS+=" -I$ROOT_3RD/openssl/include"
 CFLAGS+=" -I$ROOT_3RD/zlib/include"
 
 CPPFLAGS="$CFLAGS"

@@ -38,3 +38,8 @@ cd curl
 source gcc_x64.sh
 cd ..
 
+unset SQLITE3_BUILD
+cd sqlite3
+source gcc_x64.sh
+cd ..
+
