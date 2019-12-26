@@ -41,5 +41,8 @@ autoreconf -i
 
 make LD_LIBRARY_PATH=$ROOT_3RD/libxml2/lib:$LD_LIBRARY_PATH LDFLAGS=-lxml2 install
 
+# PATCH: returning libxslt source to the state from git (because of Makefile.in etc)
+git checkout -f libxslt
+
 cd ..
 
