@@ -1507,6 +1507,12 @@ ifeq ($(HB_INIT_DONE),)
             $(info ! === WARNING: Locally modified source code ===)
          endif
          $(info ! Source code: $(shell git rev-parse --short --quiet HEAD) $(shell git symbolic-ref --short --quiet HEAD) $(shell git ls-remote --get-url))
+         #git show --no-patch --format="%H%n%h%n%ci%n%an%n%ae" HEAD
+         #5babd630287819c4de29d92abe2a0ec6377cd586
+         #5babd630
+         #2019-12-26 01:45:54 -0500
+         #Ernad Husremovic
+         #hernad@bring.out.ba
          _cmd := git show --no-patch --format="%H%n%h%n%ci%n%an%n%ae" HEAD
          ifneq ($(HB_SHELL),sh)
             _cmd := $(subst %,%%,$(_cmd))
