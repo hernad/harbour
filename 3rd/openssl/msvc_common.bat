@@ -1,3 +1,4 @@
+git checkout -f . -x -d
 IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
 set LIBRARY=openssl
 set LIB_SOURCE_DIR=OpenSSL_1_1_0l
@@ -27,6 +28,7 @@ REM call "cpan Text:Template"
 perl Configure --prefix=%LIB_TARGET% --openssldir=%LIB_TARGET% %OPENSSL_ARCH%
 nmake -f makefile install
 
+git checkout -f .
 cd %ROOT_DIR%\3rd\%LIBRARY%
 
 echo == %LIB_TARGET% ==
