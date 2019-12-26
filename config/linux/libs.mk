@@ -26,11 +26,11 @@ ifneq ($(HB_LINKING_RTL),)
          SYSLIBS += pcre
       endif
    endif
-   ifeq ($(HB_HAS_ZLIB),)
+   ifneq ($(HB_HAS_ZLIB),)
       SYSLIBS += z
       SYSLIBPATHS += $(HB_HAS_ZLIB)/../lib
    endif
-   ifeq ($(HB_HAS_POSTGRESQL),)
+   ifneq ($(HB_HAS_POSTGRESQL),)
       SYSLIBS += pq
       SYSLIBPATHS += $(HB_HAS_POSTGRESQL)/../lib
    endif
