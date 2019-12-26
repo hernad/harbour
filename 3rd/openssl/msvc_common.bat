@@ -1,4 +1,3 @@
-
 IF NOT DEFINED WINSDK_VER set WINSDK_VER=10.0.18362.0
 set LIBRARY=openssl
 set LIB_SOURCE_DIR=OpenSSL_1_1_0l
@@ -23,10 +22,10 @@ SET OPENSSL_BUILD=1
 echo == cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR% ========
 cd %ROOT_DIR%\3rd\%LIBRARY%\%LIB_SOURCE_DIR%
 
-git clean . -f -x -d
+git clean -x -d -f .
 
 perl Configure --prefix=%LIB_TARGET% --openssldir=%LIB_TARGET% %OPENSSL_ARCH%
-nmake -f makefile install
+nmake -f makefile clean install
 
 git checkout -f .
 cd %ROOT_DIR%\3rd\%LIBRARY%
