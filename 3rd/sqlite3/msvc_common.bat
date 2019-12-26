@@ -57,6 +57,7 @@ mkdir %LIB_DEST%\include
 REM xcopy /E /I /Y *.* %LIB_DEST%
 copy /y sqlite3.h %LIB_DEST%\include
 copy /y sqlite3.dll %LIB_DEST%\lib
+copy /y sqlite3.lib %LIB_DEST%\lib
 copy /y sqlite3.exe %LIB_DEST%\bin
 
 
