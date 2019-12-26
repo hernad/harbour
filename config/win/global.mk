@@ -23,13 +23,13 @@ SYSLIBS += kernel32 user32 ws2_32 iphlpapi advapi32 gdi32 winmm
 
 ifneq ($(HB_HAS_ZLIB),)
     SYSLIBS += zdll
-    SYSLIBPATHS += $(HB_HAS_ZLIB)../lib
+    LIB_DIR += $(HB_HAS_ZLIB)../lib
 endif
 ifneq ($(HB_HAS_POSTGRESQL),)
     SYSLIBS += libpq
-    SYSLIBPATHS += $(HB_HAS_POSTGRESQL)../lib
+    LIB_DIR += $(HB_HAS_POSTGRESQL)../lib
 endif
 ifneq ($(HB_HAS_OPENSSL),)
     SYSLIBS += libssl libcrypto
-    SYSLIBPATHS += $(HB_HAS_OPENSSL)../lib
+    LIB_DIR += $(HB_HAS_OPENSSL)../lib
 endif
