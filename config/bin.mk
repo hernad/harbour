@@ -70,39 +70,6 @@ else
       endif
    endif
 
-   # e.g. 3rd/x86/postgresql/{include, bin}
-   ifneq ($(HB_HAS_POSTGRESQL),)
-      ifeq ($(HB_PLATFORM),win)
-         HB_LIBS_TPL += libpq
-         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)/../lib/libpq.lib)
-         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/libpq.lib)
-         ifeq ($(wildcard $(DESTLIB)),)
-            RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
-            $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
-         endif
-      else
-         HB_LIBS_TPL += pq
-      endif
-   endif
-
-   # earlier detected in detect.mk
-   ifneq ($(HB_HAS_CURL),)
-      ifeq ($(HB_PLATFORM),win)
-         HB_LIBS_TPL += libcurl_a
-      else
-         HB_LIBS_TPL += curl
-      endif
-      ifeq ($(HB_PLATFORM),win)
-         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_CURL)/../lib/libcurl_a.lib)
-         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/libcurl_a.lib)
-         ifeq ($(wildcard $(DESTLIB)),)
-            RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
-            $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
-         endif
-      endif
-   endif
-
-
    ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
       HB_LIBS_TPL += xlsxwriter
    endif
