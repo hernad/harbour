@@ -695,7 +695,7 @@ HB_FUNC( WIN_COMSETQUEUESIZE )
    int iPort = hb_parni( 1 );
    HANDLE hCommPort;
 
-   if( iPort >= 0 && iPort < ( int ) HB_SIZEOFARRAY( s_PortData ) && ( hCommPort = s_PortData[ iPort ].hPort ) != INVALID_HANDLE_VALUE && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( iPort >= 0 && iPort < ( int ) HB_SIZEOFARRAY( s_PortData ) && ( hCommPort = s_PortData[ iPort ].hPort ) != INVALID_HANDLE_VALUE && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       s_PortData[ iPort ].iFunction = HB_WIN_COM_FUN_SETUPCOMM;
       s_PortData[ iPort ].dwError = 0;

@@ -72,7 +72,7 @@ HB_FUNC( PI )
 
 HB_FUNC( SIN )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -108,7 +108,7 @@ HB_FUNC( SIN )
 
 HB_FUNC( COS )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -144,7 +144,7 @@ HB_FUNC( COS )
 
 HB_FUNC( TAN )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -180,7 +180,7 @@ HB_FUNC( TAN )
 
 HB_FUNC( COT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -212,7 +212,7 @@ HB_FUNC( COT )
 
 HB_FUNC( ASIN )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -248,7 +248,7 @@ HB_FUNC( ASIN )
 
 HB_FUNC( ACOS )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -284,7 +284,7 @@ HB_FUNC( ACOS )
 
 HB_FUNC( ATAN )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -328,7 +328,7 @@ HB_FUNC( ATAN )
 
 HB_FUNC( ATN2 )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dY = hb_parnd( 1 );
@@ -379,7 +379,7 @@ HB_FUNC( ATN2 )
 
 HB_FUNC( SINH )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -422,7 +422,7 @@ HB_FUNC( SINH )
 
 HB_FUNC( COSH )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -460,7 +460,7 @@ HB_FUNC( COSH )
 
 HB_FUNC( TANH )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -503,7 +503,7 @@ HB_FUNC( TANH )
 
 HB_FUNC( RTOD )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       double dInput = hb_parnd( 1 );
       double dResult = ( 180.0 / CT_PI ) * dInput;
@@ -529,7 +529,7 @@ HB_FUNC( RTOD )
 
 HB_FUNC( DTOR )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       double dInput = hb_parnd( 1 );
       double dResult = ( CT_PI / 180.0 ) * dInput;

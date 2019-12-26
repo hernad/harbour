@@ -425,10 +425,10 @@ HB_FUNC( HWG_SPREADBITMAP )
    GtkWidget * widget = hDC->widget;
    GdkPixbuf * pixbuf;
    int nWidth, nHeight, x1, x2, y1, y2, nw, nh;
-   int nLeft = (HB_ISNUM(3))? hb_parni(3) : 0;
-   int nTop = (HB_ISNUM(4))? hb_parni(4) : 0;
-   int nRight = (HB_ISNUM(5))? hb_parni(5) : 0;
-   int nBottom = (HB_ISNUM(6))? hb_parni(6) : 0;
+   int nLeft = (HB_IS_PARAM_NUM(3))? hb_parni(3) : 0;
+   int nTop = (HB_IS_PARAM_NUM(4))? hb_parni(4) : 0;
+   int nRight = (HB_IS_PARAM_NUM(5))? hb_parni(5) : 0;
+   int nBottom = (HB_IS_PARAM_NUM(6))? hb_parni(6) : 0;
 
    if( nLeft == 0 && nRight == 0 )
    {
@@ -832,7 +832,7 @@ HB_FUNC( HWG_DRAWGRADIENT )
 {
    PHWGUI_HDC hDC = (PHWGUI_HDC) HB_PARHANDLE(1);
    gdouble x1 = hb_parnd( 2 ), y1 = hb_parnd( 3 ), x2 = hb_parnd( 4 ), y2 = hb_parnd( 5 );
-   gint type = ( HB_ISNUM(6) ) ? hb_parni( 6 ) : 1;
+   gint type = ( HB_IS_PARAM_NUM(6) ) ? hb_parni( 6 ) : 1;
    PHB_ITEM pArrColor = hb_param( 7, HB_IT_ARRAY );
    long int color;
    PHB_ITEM pArrStop = hb_param( 8, HB_IT_ARRAY );

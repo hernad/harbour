@@ -4013,9 +4013,9 @@ PHB_GT hb_gt_ItemBase( PHB_ITEM pItemGT )
 HB_FUNC( HB_GTRELOAD )
 {
    hb_retl( hb_gtReload( hb_parc( 1 ),
-            HB_ISNUM( 2 ) ? hb_numToHandle( hb_parnint( 1 ) ) : HB_STDIN_HANDLE,
-            HB_ISNUM( 3 ) ? hb_numToHandle( hb_parnint( 2 ) ) : HB_STDOUT_HANDLE,
-            HB_ISNUM( 4 ) ? hb_numToHandle( hb_parnint( 3 ) ) : HB_STDERR_HANDLE ) );
+            HB_IS_PARAM_NUM( 2 ) ? hb_numToHandle( hb_parnint( 1 ) ) : HB_STDIN_HANDLE,
+            HB_IS_PARAM_NUM( 3 ) ? hb_numToHandle( hb_parnint( 2 ) ) : HB_STDOUT_HANDLE,
+            HB_IS_PARAM_NUM( 4 ) ? hb_numToHandle( hb_parnint( 3 ) ) : HB_STDERR_HANDLE ) );
 }
 
 HB_FUNC( HB_GTCREATE )
@@ -4023,9 +4023,9 @@ HB_FUNC( HB_GTCREATE )
    void * hGT;
 
    hGT = hb_gtCreate( hb_parc( 1 ),
-            HB_ISNUM( 2 ) ? hb_numToHandle( hb_parnint( 1 ) ) : HB_STDIN_HANDLE,
-            HB_ISNUM( 3 ) ? hb_numToHandle( hb_parnint( 2 ) ) : HB_STDOUT_HANDLE,
-            HB_ISNUM( 4 ) ? hb_numToHandle( hb_parnint( 3 ) ) : HB_STDERR_HANDLE );
+            HB_IS_PARAM_NUM( 2 ) ? hb_numToHandle( hb_parnint( 1 ) ) : HB_STDIN_HANDLE,
+            HB_IS_PARAM_NUM( 3 ) ? hb_numToHandle( hb_parnint( 2 ) ) : HB_STDOUT_HANDLE,
+            HB_IS_PARAM_NUM( 4 ) ? hb_numToHandle( hb_parnint( 3 ) ) : HB_STDERR_HANDLE );
 
    if( hGT )
    {

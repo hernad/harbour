@@ -53,7 +53,7 @@ HB_FUNC( NUMCOUNT )
 {
    HB_LONG * plCounter = ( HB_LONG * ) hb_stackGetTSD( &s_lCounter );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       if( hb_parl( 2 ) )
          *plCounter = hb_parnl( 1 );

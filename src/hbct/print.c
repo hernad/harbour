@@ -94,7 +94,7 @@ HB_FUNC( PRINTSEND )
 
    regs.HB_XREGS.dx = hb_parni( 2 ) - 1;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       regs.h.al = hb_parni( 1 );
       HB_DOS_INT86( 0x17, &regs, &regs );
@@ -127,7 +127,7 @@ HB_FUNC( PRINTSEND )
    const char * szStr = NULL;
    HB_SIZE nLen = 0, nRet = 0;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       szChr[ 0 ] = ( char ) hb_parni( 1 );
       szStr = szChr;
@@ -139,7 +139,7 @@ HB_FUNC( PRINTSEND )
       nLen = hb_parclen( 1 );
    }
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       szPort[ 3 ] = ( char ) hb_parni( 2 ) + '0';
 
    if( nLen )

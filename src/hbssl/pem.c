@@ -110,7 +110,7 @@ static void hb_PEM_read_bio( PEM_READ_BIO * func, HB_PEM_TYPES type )
       if( pBuffer )
          bio = BIO_new_mem_buf( ( char * ) pBuffer, ( int ) nSize );
    }
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
       bio = BIO_new_fd( hb_parni( 1 ), BIO_NOCLOSE );
 
    if( bio )

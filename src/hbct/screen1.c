@@ -58,9 +58,9 @@ HB_FUNC( SCREENATTR )
    HB_USHORT usChar;
 
    hb_gtGetPos( &iRow, &iCol );
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       iRow = hb_parni( 1 );
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       iCol = hb_parni( 2 );
 
    if( hb_gtGetChar( iRow, iCol, &iColor, &bAttr, &usChar ) != HB_SUCCESS )
@@ -89,9 +89,9 @@ HB_FUNC( SCREENMIX )
          szAttr = hb_parc( 2 );
 
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iRow = hb_parni( 3 );
-      if( HB_ISNUM( 4 ) )
+      if( HB_IS_PARAM_NUM( 4 ) )
          iCol = hb_parni( 4 );
 
       if( iRow >= 0 && iCol >= 0 &&
@@ -139,9 +139,9 @@ HB_FUNC( SAYSCREEN )
       int iRow, iCol;
 
       hb_gtGetPos( &iRow, &iCol );
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          iRow = hb_parni( 2 );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          iCol = hb_parni( 3 );
 
       if( iRow >= 0 && iCol >= 0 &&
@@ -185,11 +185,11 @@ static HB_BOOL hb_ctGetWinCord( int * piTop, int * piLeft,
 
    hb_gtGetPos( piTop, piLeft );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       *piTop = hb_parni( 1 );
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       *piLeft   = hb_parni( 2 );
-   if( HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 3 ) )
    {
       *piBottom = hb_parni( 3 );
       if( *piBottom > iMaxRow )
@@ -197,7 +197,7 @@ static HB_BOOL hb_ctGetWinCord( int * piTop, int * piLeft,
    }
    else
       *piBottom = iMaxRow;
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
    {
       *piRight = hb_parni( 4 );
       if( *piRight > iMaxCol )
@@ -214,7 +214,7 @@ static int hb_ctGetClearChar( int iParam )
 {
    int iChar;
 
-   if( HB_ISNUM( iParam ) )
+   if( HB_IS_PARAM_NUM( iParam ) )
       iChar = hb_parni( iParam );
    else if( HB_ISCHAR( iParam ) )
       iChar = ( HB_UCHAR ) hb_parc( iParam )[ 0 ];
@@ -228,7 +228,7 @@ static int hb_ctGetClearColor( int iParam )
 {
    int iColor;
 
-   if( HB_ISNUM( iParam ) )
+   if( HB_IS_PARAM_NUM( iParam ) )
       iColor = hb_parni( iParam );
    else if( HB_ISCHAR( iParam ) )
    {
@@ -300,14 +300,14 @@ HB_FUNC( UNTEXTWIN )
 
       usRepl = ( HB_USHORT ) hb_ctGetClearChar( 5 );
 
-      if( HB_ISNUM( 6 ) )
+      if( HB_IS_PARAM_NUM( 6 ) )
          usInit = ( HB_USHORT ) hb_parni( 6 );
       else if( hb_parclen( 6 ) > 0 )
          usInit = ( HB_UCHAR ) hb_parc( 6 )[ 0 ];
       else
          usInit = 176;
 
-      if( HB_ISNUM( 7 ) )
+      if( HB_IS_PARAM_NUM( 7 ) )
          usEnd = ( HB_USHORT ) hb_parni( 7 );
       else if( hb_parclen( 7 ) > 0 )
          usEnd = ( HB_UCHAR ) hb_parc( 7 )[ 0 ];
@@ -349,7 +349,7 @@ HB_FUNC( CHARWIN )
 
       usNewChar = ( HB_USHORT ) hb_ctGetClearChar( 5 );
 
-      if( HB_ISNUM( 6 ) )
+      if( HB_IS_PARAM_NUM( 6 ) )
          usOldChar = ( HB_USHORT ) hb_parni( 6 );
       else if( hb_parclen( 6 ) > 0 )
          usOldChar = ( HB_UCHAR ) hb_parc( 6 )[ 0 ];
@@ -390,7 +390,7 @@ HB_FUNC( COLORWIN )
 
       iNewColor = hb_ctGetClearColor( 5 );
 
-      if( HB_ISNUM( 6 ) || HB_ISCHAR( 6 ) )
+      if( HB_IS_PARAM_NUM( 6 ) || HB_ISCHAR( 6 ) )
          iOldColor = hb_ctGetClearColor( 6 );
       else
          fAll = HB_TRUE;
@@ -458,7 +458,7 @@ HB_FUNC( COLORREPL )
 
    iNewColor = hb_ctGetClearColor( 1 );
 
-   if( HB_ISNUM( 2 ) || HB_ISCHAR( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) || HB_ISCHAR( 2 ) )
       iOldColor = hb_ctGetClearColor( 2 );
    else
       fAll = HB_TRUE;

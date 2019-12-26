@@ -53,7 +53,7 @@ static int hb_ctColorParam( int iParam, int iDefault )
 {
    int iColor;
 
-   if( HB_ISNUM( iParam ) )
+   if( HB_IS_PARAM_NUM( iParam ) )
       iColor = hb_parni( iParam );
    else if( hb_parclen( iParam ) > 0 )
    {
@@ -91,7 +91,7 @@ HB_FUNC( SETCLEARB )
 {
    HB_USHORT usNew;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iChar = hb_parni( 1 );
       PHB_CODEPAGE cdp = hb_vmCDP();
@@ -136,7 +136,7 @@ HB_FUNC( WSETMOVE )
 
 HB_FUNC( WSTEP )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) )
       hb_retni( hb_ctwSetMoveStep( hb_parni( 1 ), hb_parni( 2 ) ) );
    else
       hb_retni( -1 );
@@ -153,8 +153,8 @@ HB_FUNC( WMODE )
 HB_FUNC( WBOARD )
 {
    hb_retni( hb_ctwSetWindowBoard( hb_parni( 1 ), hb_parni( 2 ),
-                                   HB_ISNUM( 3 ) ? hb_parni( 3 ) : hb_gtMaxRow(),
-                                   HB_ISNUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() ) );
+                                   HB_IS_PARAM_NUM( 3 ) ? hb_parni( 3 ) : hb_gtMaxRow(),
+                                   HB_IS_PARAM_NUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() ) );
 }
 
 HB_FUNC( WOPEN )
@@ -172,7 +172,7 @@ HB_FUNC( WOPEN )
 HB_FUNC( WCLOSE )
 {
    /* 1st parameter (window handle) is Harbour extension */
-   hb_retni( hb_ctwCloseWindow( HB_ISNUM( 1 ) ? hb_parni( 1 ) : /* HB_EXTENSION */
+   hb_retni( hb_ctwCloseWindow( HB_IS_PARAM_NUM( 1 ) ? hb_parni( 1 ) : /* HB_EXTENSION */
                                              hb_ctwCurrentWindow() ) );
 }
 
@@ -183,7 +183,7 @@ HB_FUNC( WACLOSE )
 
 HB_FUNC( WSELECT )  /* 2nd parameter (fBringToTop) is Harbour extension */
 {
-   hb_retni( HB_ISNUM( 1 ) ? hb_ctwSelectWindow( hb_parni( 1 ),
+   hb_retni( HB_IS_PARAM_NUM( 1 ) ? hb_ctwSelectWindow( hb_parni( 1 ),
                                                  hb_parldef( 2, HB_TRUE ) ) : /* HB_EXTENSION */
                           hb_ctwCurrentWindow() );
 }
@@ -347,7 +347,7 @@ HB_FUNC( WMOVE )
 
 HB_FUNC( CTWLASTKEY )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iNewKey = hb_parni( 1 );
       hb_retni( hb_ctwLastKey( &iNewKey ) );
@@ -451,13 +451,13 @@ HB_FUNC_TRANSLATE( _WSTACK, WLIST )
 
 HB_FUNC( WHIDE ) /* HB_EXTENSION */
 {
-   hb_ctwVisible( HB_ISNUM( 1 ) ? hb_parni( 1 ) : hb_ctwCurrentWindow(),
+   hb_ctwVisible( HB_IS_PARAM_NUM( 1 ) ? hb_parni( 1 ) : hb_ctwCurrentWindow(),
                   HB_CTW_HIDDEN );
 }
 
 HB_FUNC( WSHOW ) /* HB_EXTENSION */
 {
-   hb_ctwVisible( HB_ISNUM( 1 ) ? hb_parni( 1 ) : hb_ctwCurrentWindow(),
+   hb_ctwVisible( HB_IS_PARAM_NUM( 1 ) ? hb_parni( 1 ) : hb_ctwCurrentWindow(),
                   HB_CTW_VISIBLE );
 }
 

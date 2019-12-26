@@ -249,7 +249,7 @@ static void s_GetFileName( HB_BOOL fSave )
 
    ofn.lpstrInitialDir  = HB_PARSTR( 3, &hInitDir, NULL );
    ofn.lpstrTitle       = HB_PARSTR( 2, &hTitle, NULL );
-   ofn.Flags            = HB_ISNUM( 1 ) ? hbwapi_par_DWORD( 1 ) :
+   ofn.Flags            = HB_IS_PARAM_NUM( 1 ) ? hbwapi_par_DWORD( 1 ) :
                           ( OFN_EXPLORER | OFN_ALLOWMULTISELECT |
                             OFN_HIDEREADONLY | OFN_NOCHANGEDIR );
    ofn.lpstrDefExt      = HB_PARSTR( 4, &hDefExt, NULL );

@@ -241,7 +241,7 @@ HB_FUNC( HWG_RE_SETDEFAULT )
    memset( &cf, 0, sizeof( CHARFORMAT2 ) );
    cf.cbSize = sizeof( CHARFORMAT2 );
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       cf.crTextColor = ( COLORREF ) hb_parnl( 2 );
       cf.dwMask |= CFM_COLOR;
@@ -254,7 +254,7 @@ HB_FUNC( HWG_RE_SETDEFAULT )
       cf.dwMask |= CFM_FACE;
    }
 
-   if( HB_ISNUM( 4 ) )
+   if( HB_IS_PARAM_NUM( 4 ) )
    {
       cf.yHeight = hb_parnl( 4 );
       cf.dwMask |= CFM_SIZE;
@@ -273,7 +273,7 @@ HB_FUNC( HWG_RE_SETDEFAULT )
       cf.dwEffects |= ( hb_parl( 7 ) ) ? CFE_UNDERLINE : 0;
    }
 
-   if( HB_ISNUM( 8 ) )
+   if( HB_IS_PARAM_NUM( 8 ) )
    {
       cf.bCharSet = ( BYTE ) hb_parnl( 8 );
       cf.dwMask |= CFM_CHARSET;

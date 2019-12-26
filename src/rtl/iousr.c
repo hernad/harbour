@@ -756,7 +756,7 @@ HB_FUNC( IOUSR_SETERROR )
 {
    HB_ERRCODE errCodePrev = hb_fsError();
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_ERRCODE errCodeNew = ( HB_ERRCODE ) hb_parni( 1 );
       if( errCodeNew != 0 )

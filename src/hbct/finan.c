@@ -57,7 +57,7 @@
 
 HB_FUNC( FV )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       double dPayment = hb_parnd( 1 );
       double dRate = hb_parnd( 2 );
@@ -104,7 +104,7 @@ HB_FUNC( FV )
 
 HB_FUNC( PV )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       double dPayment = hb_parnd( 1 );
       double dRate = hb_parnd( 2 );
@@ -151,7 +151,7 @@ HB_FUNC( PV )
 
 HB_FUNC( PAYMENT )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       double dCapital = hb_parnd( 1 );
       double dRate = hb_parnd( 2 );
@@ -198,7 +198,7 @@ HB_FUNC( PAYMENT )
 
 HB_FUNC( PERIODS )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       double dCapital = hb_parnd( 1 );
       double dPayment = hb_parnd( 2 );
@@ -260,7 +260,7 @@ HB_FUNC( PERIODS )
 
 HB_FUNC( RATE )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       double dCapital = hb_parnd( 1 );
       double dPayment = hb_parnd( 2 );

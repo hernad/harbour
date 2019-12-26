@@ -2929,7 +2929,7 @@ HB_FUNC( USRRDD_ID )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -2943,7 +2943,7 @@ HB_FUNC( USRRDD_AREADATA )
 {
    AREAP pArea;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
    else
       pArea = ( AREAP ) hb_parptr( 1 );
@@ -2962,7 +2962,7 @@ HB_FUNC( USRRDD_AREARESULT )
 {
    AREAP pArea;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
    else
       pArea = ( AREAP ) hb_parptr( 1 );
@@ -2984,7 +2984,7 @@ HB_FUNC( USRRDD_SETBOF )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -3000,7 +3000,7 @@ HB_FUNC( USRRDD_SETEOF )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -3016,7 +3016,7 @@ HB_FUNC( USRRDD_SETFOUND )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -3032,7 +3032,7 @@ HB_FUNC( USRRDD_SETTOP )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -3048,7 +3048,7 @@ HB_FUNC( USRRDD_SETBOTTOM )
    {
       AREAP pArea;
 
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );
@@ -3089,7 +3089,7 @@ static AREAP hb_usrGetAreaParam( int iParams )
 
    if( iParams <= hb_pcount() )
    {
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          pArea = hb_usrGetAreaPointer( hb_parni( 1 ) );
       else
          pArea = ( AREAP ) hb_parptr( 1 );

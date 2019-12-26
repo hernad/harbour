@@ -325,7 +325,7 @@ HB_FUNC( HB_INETCREATE )
 
    HB_SOCKET_INIT( socket, pSocket );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       socket->iTimeout = hb_parni( 1 );
 
    hb_itemReturnRelease( pSocket );
@@ -490,7 +490,7 @@ HB_FUNC( HB_INETTIMEOUT )
    {
       hb_retni( socket->iTimeout );
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          socket->iTimeout = hb_parni( 2 );
    }
    else
@@ -515,7 +515,7 @@ HB_FUNC( HB_INETTIMELIMIT )
    {
       hb_retni( socket->iTimeLimit );
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          socket->iTimeLimit = hb_parni( 2 );
    }
    else
@@ -719,7 +719,7 @@ static void s_inetRecvInternal( int iMode )
          buffer = NULL;
       }
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          iMaxLen = hb_parni( 3 );
          if( iMaxLen < 0 )
@@ -971,7 +971,7 @@ HB_FUNC( HB_INETDATAREADY )
 {
    PHB_SOCKET_STRUCT socket = HB_PARSOCKET( 1 );
 
-   if( socket == NULL || ( hb_pcount() >= 2 && ! HB_ISNUM( 2 ) ) )
+   if( socket == NULL || ( hb_pcount() >= 2 && ! HB_IS_PARAM_NUM( 2 ) ) )
       hb_inetErrRT();
    else if( ! hb_inetIsOpen( socket ) )
       hb_retni( -1 );
@@ -1024,7 +1024,7 @@ static void s_inetSendInternal( HB_BOOL lAll )
    {
       buffer = hb_itemGetCPtr( pBuffer );
       iSend = ( int ) hb_itemGetCLen( pBuffer );
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          iLen = hb_parni( 3 );
          if( iLen < iSend )
@@ -1161,7 +1161,7 @@ HB_FUNC( HB_INETSERVER )
    PHB_SOCKET_STRUCT socket = HB_PARSOCKET( 2 );
    PHB_ITEM pSocket = NULL;
 
-   if( ! HB_ISNUM( 1 ) || ( socket == NULL && ! HB_ISNIL( 2 ) ) )
+   if( ! HB_IS_PARAM_NUM( 1 ) || ( socket == NULL && ! HB_ISNIL( 2 ) ) )
    {
       hb_inetErrRT();
       return;
@@ -1407,7 +1407,7 @@ HB_FUNC( HB_INETDGRAMSEND )
       {
          szBuffer = hb_itemGetCPtr( pBuffer );
          iLen = ( int ) hb_itemGetCLen( pBuffer );
-         if( HB_ISNUM( 5 ) )
+         if( HB_IS_PARAM_NUM( 5 ) )
          {
             int iMaxLen = hb_parni( 5 );
             if( iMaxLen < iLen )
@@ -1450,7 +1450,7 @@ HB_FUNC( HB_INETDGRAMRECV )
       socket->iCount = 0;
       if( hb_itemGetWriteCL( pBuffer, &buffer, &nLen ) )
          iLen = ( int ) nLen;
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          iMax = hb_parni( 3 );
          if( iMax < iLen )

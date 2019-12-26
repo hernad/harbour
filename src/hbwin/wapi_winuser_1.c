@@ -68,7 +68,7 @@ HB_FUNC( WAPI_SETWINDOWPOS )
 
    if( hbwapi_is_HANDLE( 2 ) )
       hWndInsertAfter = hbwapi_par_raw_HWND( 2 );
-   else if( HB_ISNUM( 2 ) )
+   else if( HB_IS_PARAM_NUM( 2 ) )
    {
       /* Do not delete this, it will be active if
          numeric pointers are not accepted above */
@@ -219,7 +219,7 @@ HB_FUNC( WAPI_CREATEWINDOWEX )
       hbwapi_par_INT( 7 ),                              /* nWidth */
       hbwapi_par_INT( 8 ),                              /* nHeight */
       hbwapi_par_raw_HWND( 9 ),                         /* hWndParent, default to HWND_DESKTOP */
-      HB_ISNUM( 10 ) ? ( HMENU ) ( HB_PTRUINT ) hb_parnint( 10 ) : hbwapi_par_raw_HMENU( 10 ),  /* hMenu */
+      HB_IS_PARAM_NUM( 10 ) ? ( HMENU ) ( HB_PTRUINT ) hb_parnint( 10 ) : hbwapi_par_raw_HMENU( 10 ),  /* hMenu */
       hbwapi_par_raw_HINSTANCE( 11 ),                   /* hInstance */
       ( LPVOID ) hb_parptr( 12 ) );                     /* lpParam */
 
@@ -513,7 +513,7 @@ HB_FUNC( WAPI_SETACTIVEWINDOW )
 #if 0
 HB_FUNC( WAPI_LOADBITMAP )
 {
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
       hb_retptr( LoadBitmap( hbwapi_par_raw_HINSTANCE( 1 ), MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) ) );
    else
    {
@@ -530,7 +530,7 @@ HB_FUNC( WAPI_LOADIMAGE )
 {
    void * hString = NULL;
    HANDLE hImage = LoadImage( hbwapi_par_raw_HINSTANCE( 1 ),
-                              HB_ISNUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) :
+                              HB_IS_PARAM_NUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) :
                                               HB_PARSTR( 2, &hString, NULL ),
                               ( UINT ) hb_parnidef( 3, IMAGE_BITMAP ),
                               hbwapi_par_INT( 4 ),       /* desired width */
@@ -550,7 +550,7 @@ HB_FUNC( WAPI_LOADMENU )
 {
    void * hMenuName = NULL;
    HMENU hMenu = LoadMenu( hbwapi_par_raw_HINSTANCE( 1 ),
-                           HB_ISNUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) :
+                           HB_IS_PARAM_NUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) :
                                            HB_PARSTRDEF( 2, &hMenuName, NULL ) );
 
    hbwapi_SetLastError( GetLastError() );
@@ -706,7 +706,7 @@ HB_FUNC( WAPI_INSERTMENU )
    {
       if( lpNewItem )
          uFlags |= MF_STRING;
-      else if( HB_ISNUM( 5 ) )
+      else if( HB_IS_PARAM_NUM( 5 ) )
       {
          lpNewItem = ( LPCTSTR ) ( HB_PTRUINT ) hb_parnint( 5 );
          if( lpNewItem )
@@ -756,7 +756,7 @@ HB_FUNC( WAPI_APPENDMENU )
    {
       if( lpNewItem )
          uFlags |= MF_STRING;
-      else if( HB_ISNUM( 4 ) )
+      else if( HB_IS_PARAM_NUM( 4 ) )
       {
          lpNewItem = ( LPCTSTR ) ( HB_PTRUINT ) hb_parnint( 4 );
          if( lpNewItem )
@@ -881,7 +881,7 @@ HB_FUNC( WAPI_SETMENUDEFAULTITEM )
 #else
    BOOL fResult = SetMenuDefaultItem( hbwapi_par_raw_HMENU( 1 ),
                                       hbwapi_par_UINT( 2 ),
-                                      HB_ISNUM( 3 ) ? hbwapi_par_INT( 3 ) : hbwapi_par_BOOL( 3 ) );
+                                      HB_IS_PARAM_NUM( 3 ) ? hbwapi_par_INT( 3 ) : hbwapi_par_BOOL( 3 ) );
    hbwapi_SetLastError( GetLastError() );
    hbwapi_ret_L( fResult );
 #endif
@@ -894,7 +894,7 @@ HB_FUNC( WAPI_GETMENUDEFAULTITEM )
    hbwapi_ret_NI( -1 );
 #else
    UINT uiResult = GetMenuDefaultItem( hbwapi_par_raw_HMENU( 1 ),
-                                       HB_ISNUM( 2 ) ? hbwapi_par_INT( 2 ) : hbwapi_par_BOOL( 2 ),
+                                       HB_IS_PARAM_NUM( 2 ) ? hbwapi_par_INT( 2 ) : hbwapi_par_BOOL( 2 ),
                                        hbwapi_par_UINT( 3 ) );
 
    hbwapi_SetLastError( GetLastError() );
@@ -1352,7 +1352,7 @@ HB_FUNC( WAPI_LOADBITMAP )
 {
    void * hName = NULL;
    hbwapi_ret_raw_HANDLE( LoadBitmap( hbwapi_par_raw_HINSTANCE( 1 ),
-                                      HB_ISNUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) : HB_PARSTR( 2, &hName, NULL ) ) );
+                                      HB_IS_PARAM_NUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) : HB_PARSTR( 2, &hName, NULL ) ) );
    hb_strfree( hName );
 }
 
@@ -1360,7 +1360,7 @@ HB_FUNC( WAPI_LOADICON )
 {
    void * hName = NULL;
    HICON h = LoadIcon( hbwapi_par_raw_HINSTANCE( 1 ),
-                       HB_ISNUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) : HB_PARSTR( 2, &hName, NULL ) );
+                       HB_IS_PARAM_NUM( 2 ) ? MAKEINTRESOURCE( hbwapi_par_INT( 2 ) ) : HB_PARSTR( 2, &hName, NULL ) );
    hbwapi_SetLastError( GetLastError() );
    hbwapi_ret_raw_HANDLE( h );
    hb_strfree( hName );

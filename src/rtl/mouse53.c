@@ -100,7 +100,7 @@ HB_FUNC( MCOL )
 
 HB_FUNC( MSETPOS )
 {
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) )
       hb_mouseSetPos( hb_parni( 1 ), hb_parni( 2 ) );
 }
 
@@ -118,7 +118,7 @@ HB_FUNC( MDBLCLK )
 {
    hb_retni( hb_mouseGetDoubleClickSpeed() );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       hb_mouseSetDoubleClickSpeed( hb_parni( 1 ) );
 }
 
@@ -147,8 +147,8 @@ HB_FUNC( MSETBOUNDS )
 {
    hb_mouseSetBounds( hb_parni( 1 ), /* Defaults to zero on bad type */
                       hb_parni( 2 ), /* Defaults to zero on bad type */
-                      HB_ISNUM( 3 ) ? hb_parni( 3 ) : hb_gtMaxRow(),
-                      HB_ISNUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() );
+                      HB_IS_PARAM_NUM( 3 ) ? hb_parni( 3 ) : hb_gtMaxRow(),
+                      HB_IS_PARAM_NUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() );
 }
 
 HB_FUNC( HB_MGETBOUNDS )

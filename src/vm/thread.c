@@ -1546,7 +1546,7 @@ HB_FUNC( HB_THREADWAIT )
    {
       HB_BOOL fAll;
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          double dTimeOut = hb_parnd( 2 );
          ulMilliSec = dTimeOut > 0 ? ( HB_ULONG ) ( dTimeOut * 1000 ) : 0;
@@ -2600,7 +2600,7 @@ HB_FUNC( HB_MUTEXLOCK )
    if( pItem )
    {
       HB_STACK_TLS_PRELOAD
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          HB_ULONG ulMilliSec = 0;
          double dTimeOut = hb_parnd( 2 );
@@ -2649,7 +2649,7 @@ HB_FUNC( HB_MUTEXSUBSCRIBE )
       HB_STACK_TLS_PRELOAD
       PHB_ITEM pResult;
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          HB_ULONG ulMilliSec = 0;
          double dTimeOut = hb_parnd( 2 );
@@ -2680,7 +2680,7 @@ HB_FUNC( HB_MUTEXSUBSCRIBENOW )
       HB_STACK_TLS_PRELOAD
       PHB_ITEM pResult;
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          HB_ULONG ulMilliSec = 0;
          double dTimeOut = hb_parnd( 2 );

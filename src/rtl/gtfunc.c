@@ -91,7 +91,7 @@ HB_FUNC( HB_SETTERMCP )
 
 HB_FUNC( HB_GTINFO )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_GT_INFO gtInfo;
 

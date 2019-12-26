@@ -87,7 +87,7 @@ HB_FUNC( HB_NUMTOHEX )
    HB_BOOL    fDefaultLen;
    char       ret[ 33 ];
 
-   if( HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 2 ) )
    {
       iLen = hb_parni( 2 );
       iLen = ( iLen < 1 ) ? 1 : ( ( iLen > 32 ) ? 32 : iLen );
@@ -99,7 +99,7 @@ HB_FUNC( HB_NUMTOHEX )
       fDefaultLen = 1;
    }
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       nNum = hb_parnint( 1 );
    else if( HB_ISPOINTER( 1 ) )
       nNum = hb_vmInternalsEnabled() ?

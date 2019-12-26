@@ -233,7 +233,7 @@ HB_FUNC( HB_DTOT )
       const char * szTime = hb_parc( 2 );
       if( szTime )
          hb_timeStampStrGetDT( szTime, &lDate2, &lTime );
-      else if( HB_ISNUM( 2 ) )
+      else if( HB_IS_PARAM_NUM( 2 ) )
       {
          lTime = ( long ) ( hb_parnd( 2 ) * 1000 );
          if( lTime < 0 )

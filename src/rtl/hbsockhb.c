@@ -878,9 +878,9 @@ HB_FUNC( HB_SOCKETERRORSTRING )
 
    if( pSock || iError == 0 )
    {
-      if( HB_ISNUM( 1 ) )
+      if( HB_IS_PARAM_NUM( 1 ) )
          iError = hb_parni( 1 );
-      else if( HB_ISNUM( 2 ) )
+      else if( HB_IS_PARAM_NUM( 2 ) )
          iError = hb_parni( 2 );
       else
          iError = hb_socketGetError();
@@ -1059,7 +1059,7 @@ HB_FUNC( HB_SOCKETSEND )
       const char * data = hb_parc( 2 );
       HB_MAXINT timeout = hb_parnintdef( 5, -1 );
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          long lParam = hb_parnl( 3 );
 
@@ -1090,7 +1090,7 @@ HB_FUNC( HB_SOCKETSENDTO )
    {
       long lLen = ( long ) hb_parclen( 2 );
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          long lParam = hb_parnl( 3 );
 
@@ -1115,7 +1115,7 @@ HB_FUNC( HB_SOCKETRECV )
 
       if( pItem && HB_ISBYREF( 2 ) && hb_itemGetWriteCL( pItem, &pBuffer, &nLen ) )
       {
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             long lRead = hb_parnl( 3 );
             if( lRead >= 0 && lRead < ( long ) nLen )
@@ -1148,7 +1148,7 @@ HB_FUNC( HB_SOCKETRECVFROM )
          unsigned int len;
          long lRet;
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             long lRead = hb_parnl( 3 );
             if( lRead >= 0 && lRead < ( long ) nLen )
@@ -1447,7 +1447,7 @@ HB_FUNC( HB_SOCKETREAD )
 
       if( pItem && HB_ISBYREF( 2 ) && hb_itemGetWriteCL( pItem, &pBuffer, &nLen ) )
       {
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             long lRead = hb_parnl( 3 );
             if( lRead >= 0 && lRead < ( long ) nLen )
@@ -1470,7 +1470,7 @@ HB_FUNC( HB_SOCKETWRITE )
       HB_MAXINT timeout = hb_parnintdef( 4, -1 );
       long lLen = ( long ) hb_parclen( 2 );
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          long lWrite = hb_parnl( 3 );
 
@@ -1496,7 +1496,7 @@ HB_FUNC( HB_SOCKETAUTOFLUSH )
    if( pSock )
    {
       hb_retni( hb_sockexGetAutoFlush( pSock ) );
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          hb_sockexSetAutoFlush( pSock, hb_parni( 2 ) );
    }
 }

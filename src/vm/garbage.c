@@ -789,7 +789,7 @@ HB_FUNC( HB_GCSETAUTO )
    HB_STACK_TLS_PRELOAD
 
    HB_PTRUINT nBlocks, nPrevBlocks;
-   HB_BOOL fSet = HB_ISNUM( 1 );
+   HB_BOOL fSet = HB_IS_PARAM_NUM( 1 );
 
    nBlocks = fSet ? hb_parnint( 1 ) * 1000 : 0;
 

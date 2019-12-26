@@ -124,7 +124,7 @@ HB_FUNC( WAPI_ENDDIALOG )
 HB_FUNC( WAPI_CHECKDLGBUTTON )
 {
    BOOL bResult = CheckDlgButton( hbwapi_par_raw_HWND( 1 ), hb_parni( 2 ),
-                                  HB_ISNUM( 3 ) ? hbwapi_par_UINT( 3 ) : ( UINT ) hb_parl( 3 ) );
+                                  HB_IS_PARAM_NUM( 3 ) ? hbwapi_par_UINT( 3 ) : ( UINT ) hb_parl( 3 ) );
    hbwapi_SetLastError( GetLastError() );
    hbwapi_ret_L( bResult );
 }

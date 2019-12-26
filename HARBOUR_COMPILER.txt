@@ -54,25 +54,82 @@ HB_FUNC( ROUND )
 {
    PHB_ITEM pNumber = hb_param( 1, HB_IT_NUMERIC );
 
-   if( pNumber && HB_ISNUM( 2 ) )
+   if( pNumber && HB_IS_PARAM_NUM( 2 ) )
    {
       int iDec = hb_parni( 2 );
 
-#ifdef HB_CLP_STRICT
-      /* In CA-Cl*pper Round() always returns double item, what in some
-       * applications may be important due to different formatting rules
-       * when SET FIXED is ON [druzus]
-       */
-      hb_retndlen( hb_numRound( hb_itemGetND( pNumber ), iDec ), 0, HB_MAX( iDec, 0 ) );
-#else
       if( iDec == 0 && HB_IS_NUMINT( pNumber ) )
          hb_retnint( hb_itemGetNInt( pNumber ) );
       else
          hb_retnlen( hb_numRound( hb_itemGetND( pNumber ), iDec ), 0, HB_MAX( iDec, 0 ) );
-#endif
    }
    else
       hb_errRT_BASE_SubstR( EG_ARG, 1094, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+}
+
+
+
+HB_FUNC( __ERRRT_SBASE )
+{
+   hb_errRT_BASE_SubstR( ( HB_ERRCODE ) hb_parni( 1 ),
+                         ( HB_ERRCODE ) hb_parni( 2 ),
+                         hb_parc( 3 ),
+                         hb_parc( 4 ),
+                         ( hb_pcount() > 5 && hb_parnl( 5 ) > 0 ? 1 : 0 ),
+                         hb_param( 6, HB_IT_ANY ) );
+}
+
+
+void hb_errRT_BASE_SubstR( HB_ERRCODE errGenCode, HB_ERRCODE errSubCode, const char * szDescription, const char * szOperation, HB_ULONG ulArgCount, ... )
+{
+   PHB_ITEM pError;
+
+   PHB_ITEM pArray;
+   va_list va;
+   HB_ULONG ulArgPos;
+
+   pError = hb_errRT_New_Subst( ES_ERROR, HB_ERR_SS_BASE, errGenCode, errSubCode, szDescription, szOperation, 0, EF_NONE );
+
+   /* Build the array from the passed arguments. */
+   switch( ulArgCount )
+   {
+      case 0:
+         pArray = NULL;
+         break;
+
+      case HB_ERR_ARGS_BASEPARAMS:
+         pArray = hb_pcount() ? hb_arrayBaseParams() : NULL;
+         break;
+
+      case HB_ERR_ARGS_SELFPARAMS:
+         pArray = hb_arraySelfParams();
+         break;
+
+      default:
+         pArray = hb_itemArrayNew( ulArgCount );
+
+         va_start( va, ulArgCount );
+         for( ulArgPos = 1; ulArgPos <= ulArgCount; ulArgPos++ )
+         {
+            PHB_ITEM pArg = va_arg( va, PHB_ITEM );
+            if( pArg )
+               hb_itemArrayPut( pArray, ulArgPos, pArg );
+         }
+         va_end( va );
+   }
+
+   if( pArray )
+   {
+      /* Assign the new array to the object data item. */
+      hb_errPutArgsArray( pError, pArray );
+
+      /* Release the Array. */
+      hb_itemRelease( pArray );
+   }
+
+   /* Ok, launch... */
+   hb_itemReturnRelease( hb_errLaunchSubst( pError ) );
+   hb_errRelease( pError );
 }
 
 
@@ -83,3 +140,6 @@ OUT - clipper compatibility
 HB_COMPAT_C53 - always on
 HB_CLP_STRICT - always off
 HB_CLP_UNDOC - always on
+
+
+HB_ISNUM => HB_IS_PARAM_NUM

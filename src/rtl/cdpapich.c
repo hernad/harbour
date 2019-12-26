@@ -76,7 +76,7 @@ static HB_SIZE utf8pos( const char * szUTF8, HB_SIZE nLen, HB_SIZE nUTF8Pos )
 
 HB_FUNC( HB_UTF8CHR )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       char utf8Char[ HB_MAX_CHAR_LEN ];
       int iLen;
@@ -166,7 +166,7 @@ HB_FUNC( HB_UTF8SUBSTR )
    const char * szString = hb_parc( 1 );
    int iPCount = hb_pcount();
 
-   if( szString && ( iPCount < 2 || ( HB_ISNUM( 2 ) && ( iPCount < 3 || HB_ISNUM( 3 ) ) ) ) )
+   if( szString && ( iPCount < 2 || ( HB_IS_PARAM_NUM( 2 ) && ( iPCount < 3 || HB_IS_PARAM_NUM( 3 ) ) ) ) )
    {
       char * szDest = NULL;
       HB_SIZE nLen = hb_parclen( 1 ), nDest = 0;
@@ -198,7 +198,7 @@ HB_FUNC( HB_UTF8LEFT )
 {
    const char * szString = hb_parc( 1 );
 
-   if( szString && HB_ISNUM( 2 ) )
+   if( szString && HB_IS_PARAM_NUM( 2 ) )
    {
       HB_ISIZ nLenReq = hb_parns( 2 );
       HB_SIZE nDest = 0;
@@ -221,7 +221,7 @@ HB_FUNC( HB_UTF8RIGHT )
 {
    const char * szString = hb_parc( 1 );
 
-   if( szString && HB_ISNUM( 2 ) )
+   if( szString && HB_IS_PARAM_NUM( 2 ) )
    {
       HB_ISIZ nLenReq = hb_parns( 2 );
       HB_SIZE nLen = hb_parclen( 1 ), nDest = 0;
@@ -249,7 +249,7 @@ HB_FUNC( HB_UTF8PEEK )
 {
    const char * szString = hb_parc( 1 );
 
-   if( szString && HB_ISNUM( 2 ) )
+   if( szString && HB_IS_PARAM_NUM( 2 ) )
    {
       HB_SIZE nPos = hb_parns( 2 );
       HB_SIZE nLen = hb_parclen( 1 );
@@ -267,7 +267,7 @@ HB_FUNC( HB_UTF8POKE )
 {
    PHB_ITEM pText = hb_param( 1, HB_IT_STRING );
 
-   if( pText && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( pText && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       const char * szString = hb_itemGetCPtr( pText );
       HB_SIZE nLen = hb_itemGetCLen( pText ), nPos;
@@ -318,7 +318,7 @@ HB_FUNC( HB_UTF8STUFF )
    const char * szText = hb_parc( 1 );
    const char * szIns = hb_parc( 4 );
 
-   if( szText && szIns && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( szText && szIns && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       HB_SIZE nLen = hb_parclen( 1 );
       HB_SIZE nPos = hb_parns( 2 );

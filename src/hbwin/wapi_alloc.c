@@ -301,7 +301,7 @@ HB_FUNC( __WAPI_DBGUNSAFEHANDLES )
 {
    hb_retni( s_iDbgUnsafeMode );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       s_iDbgUnsafeMode = hb_parni( 1 );
 }
 
@@ -343,7 +343,7 @@ HB_FUNC( __WAPI_DBGUNSAFEHANDLES ) { ; }
 void * __hbwapi_par_handle( int n )
 {
 #if defined( __HBWIN_WITH_UNSAFE_HANDLES )
-   if( HB_ISNUM( n ) )
+   if( HB_IS_PARAM_NUM( n ) )
       return s_handle_trace( n ) ? ( void * ) ( HB_PTRUINT ) hb_parnint( n ) : NULL;
    else
 #endif
@@ -353,7 +353,7 @@ void * __hbwapi_par_handle( int n )
 void * __hbwapi_parv_handle( int n, int i )
 {
 #if defined( __HBWIN_WITH_UNSAFE_HANDLES )
-   if( HB_ISNUM( n ) )
+   if( HB_IS_PARAM_NUM( n ) )
       return s_handle_trace( n ) ? ( void * ) ( HB_PTRUINT ) hb_parvnint( n, i ) : NULL;
    else
 #endif

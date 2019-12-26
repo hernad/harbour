@@ -112,7 +112,7 @@ HB_FUNC( FREAD )
    HB_ERRCODE uiError = 0;
    HB_SIZE nRead = 0;
 
-   if( HB_ISNUM( 1 ) && pBuffer && HB_ISBYREF( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && pBuffer && HB_ISBYREF( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       char * buffer;
       HB_SIZE nSize;
@@ -142,11 +142,11 @@ HB_FUNC( FWRITE )
 {
    HB_ERRCODE uiError = 0;
 
-   if( HB_ISNUM( 1 ) && HB_ISCHAR( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_ISCHAR( 2 ) )
    {
       HB_SIZE nLen = hb_parclen( 2 );
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          HB_SIZE nWrite = hb_parns( 3 );
          if( nWrite < nLen )
@@ -170,7 +170,7 @@ HB_FUNC( FCLOSE )
 {
    HB_ERRCODE uiError = 0;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       hb_fsClose( hb_numToHandle( hb_parnint( 1 ) ) );
       uiError = hb_fsError();
@@ -216,7 +216,7 @@ HB_FUNC( FSEEK )
 {
    HB_ERRCODE uiError = 0;
 
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       hb_retnint( hb_fsSeekLarge( hb_numToHandle( hb_parnint( 1 ) ),
                                   hb_parnint( 2 ),
@@ -233,7 +233,7 @@ HB_FUNC( FREADSTR )
 {
    HB_ERRCODE uiError = 0;
 
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) )
    {
       HB_SIZE nToRead = hb_parns( 2 );
 
@@ -263,7 +263,7 @@ HB_FUNC( HB_FREADLEN )
    HB_ERRCODE uiError = 0;
    HB_SIZE nToRead = hb_parns( 2 );
 
-   if( nToRead > 0 && HB_ISNUM( 1 ) )
+   if( nToRead > 0 && HB_IS_PARAM_NUM( 1 ) )
    {
       HB_FHANDLE fhnd = hb_numToHandle( hb_parnint( 1 ) );
       char * buffer = ( char * ) hb_xgrab( nToRead + 1 );
@@ -379,7 +379,7 @@ HB_FUNC( HB_FCOMMIT )
 {
    HB_ERRCODE uiError = 6;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       hb_fsCommit( hb_numToHandle( hb_parnint( 1 ) ) );
       uiError = hb_fsError();
@@ -393,7 +393,7 @@ HB_FUNC( HB_FLOCK )
    HB_ERRCODE uiError = 0;
    HB_BOOL fResult = HB_FALSE;
 
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       fResult = hb_fsLockLarge( hb_numToHandle( hb_parnint( 1 ) ),
                                 ( HB_FOFFSET ) hb_parnint( 2 ),
@@ -410,7 +410,7 @@ HB_FUNC( HB_FUNLOCK )
    HB_ERRCODE uiError = 0;
    HB_BOOL fResult = HB_FALSE;
 
-   if( HB_ISNUM( 1 ) && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_IS_PARAM_NUM( 1 ) && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       fResult = hb_fsLockLarge( hb_numToHandle( hb_parnint( 1 ) ),
                                 ( HB_FOFFSET ) hb_parnint( 2 ),
@@ -502,7 +502,7 @@ HB_FUNC( HB_FSETDEVMODE )
 {
    int iRet = -1;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       iRet = hb_fsSetDevMode( hb_numToHandle( hb_parnint( 1 ) ), hb_parni( 2 ) );
       hb_fsSetFError( hb_fsError() );
@@ -533,7 +533,7 @@ HB_FUNC( HB_PREAD )
    {
       HB_ERRCODE uiError = 0;
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          HB_ISIZ nToRead = hb_parns( 3 );
 
@@ -568,7 +568,7 @@ HB_FUNC( HB_PWRITE )
    {
       HB_SIZE nLen = hb_parclen( 2 );
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
       {
          HB_SIZE nWrite = hb_parns( 3 );
          if( nWrite < nLen )

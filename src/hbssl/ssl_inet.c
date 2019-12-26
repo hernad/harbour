@@ -109,7 +109,7 @@ static void hb_inetStartSSL( HB_BOOL fServer )
 
          if( ssl )
          {
-            HB_MAXINT timeout = HB_ISNUM( 3 ) ? hb_parnint( 3 ) :
+            HB_MAXINT timeout = HB_IS_PARAM_NUM( 3 ) ? hb_parnint( 3 ) :
                                 hb_znetInetTimeout( pItem, HB_FALSE );
             PHB_SSLSTREAM pStream = hb_ssl_socketNew( sd, ssl, fServer, timeout,
                                                       hb_param( 2, HB_IT_POINTER ),

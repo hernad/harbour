@@ -93,7 +93,7 @@ HB_FUNC( INKEY )
 {
    int iPCount = hb_pcount();
 
-   hb_retni( hb_inkey( iPCount == 1 || ( iPCount > 1 && HB_ISNUM( 1 ) ),
+   hb_retni( hb_inkey( iPCount == 1 || ( iPCount > 1 && HB_IS_PARAM_NUM( 1 ) ),
                        hb_parnd( 1 ), hb_parnidef( 2, hb_setGetEventMask() ) ) );
 }
 
@@ -113,7 +113,7 @@ HB_FUNC( HB_KEYCLEAR )
 
 HB_FUNC( HB_KEYPUT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       hb_inkeyPut( hb_parni( 1 ) );
    }
@@ -146,7 +146,7 @@ HB_FUNC( HB_KEYPUT )
 
 HB_FUNC( HB_KEYINS )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       hb_inkeyIns( hb_parni( 1 ) );
    }
@@ -179,7 +179,7 @@ HB_FUNC( HB_KEYINS )
 
 HB_FUNC( HB_KEYNEXT )
 {
-   hb_retni( hb_inkeyNext( HB_ISNUM( 1 ) ? hb_parni( 1 ) : hb_setGetEventMask() ) );
+   hb_retni( hb_inkeyNext( HB_IS_PARAM_NUM( 1 ) ? hb_parni( 1 ) : hb_setGetEventMask() ) );
 }
 
 HB_FUNC( NEXTKEY )
@@ -189,7 +189,7 @@ HB_FUNC( NEXTKEY )
 
 HB_FUNC( HB_KEYLAST )
 {
-   hb_retni( hb_inkeyLast( HB_ISNUM( 1 ) ? hb_parni( 1 ) : hb_setGetEventMask() ) );
+   hb_retni( hb_inkeyLast( HB_IS_PARAM_NUM( 1 ) ? hb_parni( 1 ) : hb_setGetEventMask() ) );
 }
 
 HB_FUNC( LASTKEY )
@@ -199,7 +199,7 @@ HB_FUNC( LASTKEY )
 
 HB_FUNC( HB_KEYSETLAST )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       hb_retni( hb_inkeySetLast( hb_parni( 1 ) ) );
 }
 

@@ -53,7 +53,7 @@ HB_FUNC( POSCHAR )
 
    if( hb_parclen( 1 ) > 0 )
    {
-      if( hb_parclen( 2 ) > 0 || HB_ISNUM( 2 ) )
+      if( hb_parclen( 2 ) > 0 || HB_IS_PARAM_NUM( 2 ) )
       {
          const char * pcString = hb_parc( 1 );
          HB_SIZE sStrLen = hb_parclen( 1 );
@@ -66,7 +66,7 @@ HB_FUNC( POSCHAR )
          else
             cReplace = ( char ) ( hb_parns( 2 ) % 256 );
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             sPosition = hb_parns( 3 );
             if( sPosition == 0 )
@@ -136,7 +136,7 @@ HB_FUNC( POSDEL )
       HB_SIZE sDelLen = hb_parnsdef( 3, 1 );
       char * pcRet;
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
       {
          sStartPos = hb_parns( 2 );
          if( sStartPos == 0 || sStartPos > sStrLen - sDelLen + 1 )
@@ -196,7 +196,7 @@ HB_FUNC( POSINS )
 
          const char * pcInsert = hb_parc( 2 );
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             sStartPos = hb_parns( 3 );
             if( sStartPos == 0 )
@@ -273,7 +273,7 @@ HB_FUNC( POSREPL )
 
          const char * pcReplace = hb_parc( 2 );
 
-         if( HB_ISNUM( 3 ) )
+         if( HB_IS_PARAM_NUM( 3 ) )
          {
             sStartPos = hb_parns( 3 );
             if( sStartPos == 0 )

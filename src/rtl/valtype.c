@@ -55,7 +55,7 @@ HB_FUNC( VALTYPE )
 
 HB_FUNC( HB_ISNUMERIC )
 {
-   hb_retl( HB_ISNUM( 1 ) );
+   hb_retl( HB_IS_PARAM_NUM( 1 ) );
 }
 
 HB_FUNC( HB_ISLOGICAL )

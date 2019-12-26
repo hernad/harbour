@@ -57,7 +57,7 @@
 
 HB_FUNC( FLOOR )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -93,7 +93,7 @@ HB_FUNC( FLOOR )
 
 HB_FUNC( CEILING )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -129,7 +129,7 @@ HB_FUNC( CEILING )
 
 HB_FUNC( SIGN )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       double dInput = hb_parnd( 1 );
       int iResult;
@@ -162,7 +162,7 @@ HB_FUNC( SIGN )
 
 HB_FUNC( LOG10 )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       HB_MATH_EXCEPTION hb_exc;
       double dResult, dArg = hb_parnd( 1 );
@@ -211,7 +211,7 @@ HB_FUNC( LOG10 )
 
 HB_FUNC( FACT )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       int iInput = hb_parni( 1 );
 

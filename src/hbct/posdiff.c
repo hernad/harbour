@@ -120,7 +120,7 @@ HB_FUNC( POSEQUAL )
       HB_SIZE sIgnore = hb_parnsdef( 4, 0 );
       HB_SIZE sCompare, sCompareCnt, sRet = 0;
 
-      if( HB_ISNUM( 3 ) )
+      if( HB_IS_PARAM_NUM( 3 ) )
          sCompare = hb_parns( 3 );
       else
          sCompare = ( sStrLen1 < sStrLen2 ? sStrLen1 : sStrLen2 ) - sIgnore;

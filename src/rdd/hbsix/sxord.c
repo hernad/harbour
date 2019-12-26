@@ -90,7 +90,7 @@ static HB_BOOL hb_sxOrdParam( LPDBORDERINFO pInfo )
       pInfo->itmOrder = hb_param( 1, HB_IT_STRING );
       pInfo->atomBagName = hb_param( 2, HB_IT_STRING );
    }
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
    {
       pInfo->itmOrder = hb_param( 1, HB_IT_NUMERIC );
       if( ! HB_ISNIL( 2 ) ) /* hb_pcount() > 2 */

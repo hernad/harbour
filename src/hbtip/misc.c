@@ -67,7 +67,7 @@ HB_FUNC( TIP_TIMESTAMP )
       hb_dateDecode( hb_pardl( 1 ), &iYear, &iMonth, &iDay );
 
       /* For compatibility, Seconds() value */
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          hb_timeDecode( ( long ) ( hb_parnd( 2 ) * 1000 ),
                         &iHour, &iMinute, &iSecond, &iMSec );
       else

@@ -66,7 +66,7 @@ static void do_replace( int iSwitch )
    int iNoRet = ct_getref() && HB_ISBYREF( 1 );
 
    /* param check */
-   if( HB_ISCHAR( 1 ) && ( hb_parclen( 2 ) > 0 || HB_ISNUM( 2 ) ) )
+   if( HB_ISCHAR( 1 ) && ( hb_parclen( 2 ) > 0 || HB_IS_PARAM_NUM( 2 ) ) )
    {
       const char * pcString = hb_parc( 1 );
       HB_SIZE sStrLen = hb_parclen( 1 );
@@ -82,14 +82,14 @@ static void do_replace( int iSwitch )
          return;
       }
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          cReplace = ( char ) ( hb_parnl( 2 ) % 256 );
       else
          cReplace = *( ( const char * ) hb_parc( 2 ) );
 
       if( hb_parclen( 3 ) > 0 )
          cSearch = *( ( const char * ) hb_parc( 3 ) );
-      else if( HB_ISNUM( 3 ) )
+      else if( HB_IS_PARAM_NUM( 3 ) )
          cSearch = ( char ) ( hb_parnl( 3 ) % 256 );
       else
          cSearch = 0x20;

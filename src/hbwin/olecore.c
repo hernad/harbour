@@ -2129,7 +2129,7 @@ HB_FUNC( WIN_OLEERROR )
 
 HB_FUNC( WIN_OLEERRORTEXT )
 {
-   HRESULT lOleError = HB_ISNUM( 1 ) ? hb_parnl( 1 ) : hb_oleGetError();
+   HRESULT lOleError = HB_IS_PARAM_NUM( 1 ) ? hb_parnl( 1 ) : hb_oleGetError();
 
    switch( lOleError )
    {

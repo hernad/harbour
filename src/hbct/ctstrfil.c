@@ -90,7 +90,7 @@ HB_FUNC( SETFCREATE )
 {
    hb_retnl( ct_getfcreate() );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       ct_setfcreate( hb_parnl( 1 ) );
 }
 
@@ -181,7 +181,7 @@ HB_FUNC( FILESTR )
          char * pcResult, * pCtrlZ;
          HB_BOOL bCtrlZ = hb_parl( 4 );
 
-         if( HB_ISNUM( 2 ) )
+         if( HB_IS_PARAM_NUM( 2 ) )
          {
             nLength = hb_parns( 2 );
             if( nLength > ( HB_ISIZ ) ( nFileSize - nPos ) )
@@ -247,7 +247,7 @@ HB_FUNC( FILESCREEN )
          HB_SIZE nSize;
          HB_SIZE nLength;
 
-         if( HB_ISNUM( 2 ) )
+         if( HB_IS_PARAM_NUM( 2 ) )
             hb_fileSeek( hFile, ( HB_FOFFSET ) hb_parnint( 2 ), FS_SET );
 
          hb_gtRectSize( 0, 0, hb_gtMaxRow(), hb_gtMaxCol(), &nSize );

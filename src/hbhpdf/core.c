@@ -164,7 +164,7 @@ HB_FUNC( HPDF_READFROMSTREAM )
    }
    else
    {
-      HPDF_UINT32 size = HB_ISNUM( 2 ) ? ( HPDF_UINT32 ) hb_parns( 2 ) : HPDF_GetStreamSize( hb_HPDF_Doc_par( 1 ) );
+      HPDF_UINT32 size = HB_IS_PARAM_NUM( 2 ) ? ( HPDF_UINT32 ) hb_parns( 2 ) : HPDF_GetStreamSize( hb_HPDF_Doc_par( 1 ) );
       HPDF_BYTE * buffer;
 
       buffer = ( HPDF_BYTE * ) hb_xgrab( size + 1 );

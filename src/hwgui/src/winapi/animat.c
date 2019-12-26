@@ -63,7 +63,7 @@ HB_FUNC( HWG_ANIMATE_OPENEX )
    void * hResource;
    LPCTSTR lpResource = HB_PARSTR( 3, &hResource, NULL );
 
-   if( !lpResource && HB_ISNUM( 3 ) )
+   if( !lpResource && HB_IS_PARAM_NUM( 3 ) )
       lpResource = MAKEINTRESOURCE( hb_parni( 3 ) );
 
    Animate_OpenEx( ( HWND ) HB_PARHANDLE( 1 ),

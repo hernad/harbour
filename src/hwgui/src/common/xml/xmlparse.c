@@ -234,7 +234,7 @@ HB_FUNC( HBXML_PRELOAD )
    unsigned char *ucSource = (unsigned char *)hb_parc(1);
    unsigned char *ptr = ucSource;
    unsigned long ulNew = 0;
-   unsigned long ulLen = ((HB_ISNUM(2))? (unsigned long)hb_parnl(2) : (unsigned long)hb_parclen(1));
+   unsigned long ulLen = ((HB_IS_PARAM_NUM(2))? (unsigned long)hb_parnl(2) : (unsigned long)hb_parclen(1));
    unsigned char *ptrnew = (unsigned char *) malloc( ulLen+1 );
    int i, nlen;
    int iChar;
@@ -637,7 +637,7 @@ HB_FUNC( HBXML_GETDOC )
       ptr = ( unsigned char * ) hb_parc( 2 );
       ulDataLen = hb_parclen(2);
    }
-   else if( HB_ISNUM( 2 ) )
+   else if( HB_IS_PARAM_NUM( 2 ) )
    {
       HB_FHANDLE hInput = ( HB_FHANDLE ) hb_parnint( 2 );
       unsigned long ulLen = hb_fsSeek( hInput, 0, FS_END ), ulRead;

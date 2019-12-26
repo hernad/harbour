@@ -377,7 +377,7 @@ HB_FUNC( HWG_DRAWEDGE )
 
 HB_FUNC( HWG_LOADICON )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       HB_RETHANDLE( LoadIcon( NULL, MAKEINTRESOURCE( hb_parni( 1 ) ) ) );
    else
    {
@@ -393,7 +393,7 @@ HB_FUNC( HWG_LOADIMAGE )
    void *hString = NULL;
 
    HB_RETHANDLE( LoadImage( HB_ISNIL( 1 ) ? GetModuleHandle( NULL ) : ( HINSTANCE ) hb_parnl( 1 ),      // handle of the instance that contains the image
-               HB_ISNUM( 2 ) ? MAKEINTRESOURCE( hb_parni( 2 ) ) : HB_PARSTR( 2, &hString, NULL ),       // name or identifier of image
+               HB_IS_PARAM_NUM( 2 ) ? MAKEINTRESOURCE( hb_parni( 2 ) ) : HB_PARSTR( 2, &hString, NULL ),       // name or identifier of image
                ( UINT ) hb_parni( 3 ),  // type of image
                hb_parni( 4 ),   // desired width
                hb_parni( 5 ),   // desired height
@@ -404,7 +404,7 @@ HB_FUNC( HWG_LOADIMAGE )
 
 HB_FUNC( HWG_LOADBITMAP )
 {
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       if( !HB_ISNIL( 2 ) && hb_parl( 2 ) )
          HB_RETHANDLE( LoadBitmap( NULL, MAKEINTRESOURCE( hb_parni( 1 ) ) ) );
@@ -432,8 +432,8 @@ HB_FUNC( HWG_WINDOW2BITMAP )
    HDC hDC = GetWindowDC( hWnd );
    HDC hDCmem = CreateCompatibleDC( hDC );
    HBITMAP hBitmap;
-   int x1 = HB_ISNUM(2)? hb_parni(2):0, y1 = HB_ISNUM(3)? hb_parni(3):0;
-   int width= HB_ISNUM(4)? hb_parni(4):0, height = HB_ISNUM(5)? hb_parni(5):0;
+   int x1 = HB_IS_PARAM_NUM(2)? hb_parni(2):0, y1 = HB_IS_PARAM_NUM(3)? hb_parni(3):0;
+   int width= HB_IS_PARAM_NUM(4)? hb_parni(4):0, height = HB_IS_PARAM_NUM(5)? hb_parni(5):0;
    RECT rc;
 
    if( width == 0 || height == 0 )
@@ -585,10 +585,10 @@ HB_FUNC( HWG_SPREADBITMAP )
    RECT rc;
    int nLeft, nWidth, nHeight;
 
-   rc.left = (HB_ISNUM(3))? hb_parni(3) : 0;
-   rc.top = (HB_ISNUM(4))? hb_parni(4) : 0;
-   rc.right = (HB_ISNUM(5))? hb_parni(5) : 0;
-   rc.bottom = (HB_ISNUM(6))? hb_parni(6) : 0;
+   rc.left = (HB_IS_PARAM_NUM(3))? hb_parni(3) : 0;
+   rc.top = (HB_IS_PARAM_NUM(4))? hb_parni(4) : 0;
+   rc.right = (HB_IS_PARAM_NUM(5))? hb_parni(5) : 0;
+   rc.bottom = (HB_IS_PARAM_NUM(6))? hb_parni(6) : 0;
 
    SelectObject( hDCmem, hBitmap );
    GetObject( hBitmap, sizeof( BITMAP ), ( LPVOID ) & bitmap );
@@ -1433,7 +1433,7 @@ HB_FUNC( HWG_DRAWGRADIENT )
 {
    HDC hDC = ( HDC ) HB_PARHANDLE( 1 );
    int x1 = hb_parni( 2 ), y1 = hb_parni( 3 ), x2 = hb_parni( 4 ), y2 = hb_parni( 5 );
-   int type = ( HB_ISNUM(6) ) ? hb_parni( 6 ) : 1;
+   int type = ( HB_IS_PARAM_NUM(6) ) ? hb_parni( 6 ) : 1;
    PHB_ITEM pArrColor = hb_param( 7, HB_IT_ARRAY );
    long int color;
    int red[GRADIENT_MAX_COLORS], green[GRADIENT_MAX_COLORS], blue[GRADIENT_MAX_COLORS], index;

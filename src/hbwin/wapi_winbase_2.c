@@ -76,7 +76,7 @@ HB_FUNC( WAPI_FORMATMESSAGE )
       nSize = hb_parns( 6 );
       if( ( dwFlags & FORMAT_MESSAGE_ALLOCATE_BUFFER ) == 0 )
       {
-         if( nSize == 0 && ! HB_ISNUM( 6 ) )
+         if( nSize == 0 && ! HB_IS_PARAM_NUM( 6 ) )
             nSize = hb_parclen( 5 );
          if( nSize > 0 )
             lpBuffer = ( LPTSTR ) hb_xgrab( nSize * sizeof( TCHAR ) );
@@ -95,7 +95,7 @@ HB_FUNC( WAPI_FORMATMESSAGE )
       DWORD dwRetVal =
          FormatMessage( dwFlags,
                         HB_ISCHAR( 2 ) ? ( LPCVOID ) HB_PARSTR( 2, &hSource, NULL ) : hb_parptr( 2 ),
-                        HB_ISNUM( 3 ) ? ( DWORD ) hb_parnl( 3 ) : hbwapi_GetLastError() /* dwMessageId */,
+                        HB_IS_PARAM_NUM( 3 ) ? ( DWORD ) hb_parnl( 3 ) : hbwapi_GetLastError() /* dwMessageId */,
                         ( DWORD ) hb_parnldef( 4, MAKELANGID( LANG_NEUTRAL, SUBLANG_DEFAULT ) ) /* dwLanguageId */,
                         lpBuffer,
                         ( DWORD ) nSize,

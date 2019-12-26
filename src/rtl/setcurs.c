@@ -69,6 +69,6 @@ HB_FUNC( SETCURSOR )
 
    hb_retni( iCursor );
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
       hb_gtSetCursor( hb_parni( 1 ) );
 }

@@ -94,9 +94,9 @@ void hb_random_seed( HB_I32 seed )
 
 static void hb_random( double dRnd )
 {
-   if( ! HB_ISNUM( 1 ) )
+   if( ! HB_IS_PARAM_NUM( 1 ) )
       hb_retnd( dRnd );
-   else if( ! HB_ISNUM( 2 ) )
+   else if( ! HB_IS_PARAM_NUM( 2 ) )
       hb_retnd( dRnd * hb_parnd( 1 ) );
    else
    {
@@ -129,9 +129,9 @@ HB_FUNC( HB_RANDNUM )
 
 static void hb_randomint( double dRnd )
 {
-   if( ! HB_ISNUM( 1 ) )
+   if( ! HB_IS_PARAM_NUM( 1 ) )
       hb_retni( dRnd >= 0.5 ? 0 : 1 );
-   else if( ! HB_ISNUM( 2 ) )
+   else if( ! HB_IS_PARAM_NUM( 2 ) )
       hb_retnint( ( HB_MAXINT ) ( 1 + ( dRnd * hb_parnint( 1 ) ) ) );
    else
    {

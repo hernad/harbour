@@ -1228,9 +1228,9 @@ HB_FUNC( HWG_MAKELPARAM )
 HB_FUNC( HWG_SETWINDOWPOS )
 {
    BOOL res;
-   HWND hWnd = ( HB_ISNUM( 1 ) ||
+   HWND hWnd = ( HB_IS_PARAM_NUM( 1 ) ||
          HB_ISPOINTER( 1 ) ) ? ( HWND ) HB_PARHANDLE( 1 ) : NULL;
-   HWND hWndInsertAfter = ( HB_ISNUM( 2 ) ||
+   HWND hWndInsertAfter = ( HB_IS_PARAM_NUM( 2 ) ||
          HB_ISPOINTER( 2 ) ) ? ( HWND ) HB_PARHANDLE( 2 ) : NULL;
    int X = hb_parni( 3 );
    int Y = hb_parni( 4 );

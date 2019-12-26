@@ -317,7 +317,7 @@ HB_FUNC( HWG_CHOOSECOLOR )
    cc.lStructSize = sizeof( CHOOSECOLOR );
    cc.hwndOwner = GetActiveWindow(  );
    cc.lpCustColors = rgb;
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       cc.rgbResult = ( COLORREF ) hb_parnl( 1 );
       nStyle |= CC_RGBINIT;

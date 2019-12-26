@@ -675,7 +675,7 @@ HB_FUNC( HB_HRBRUN )
    HB_USHORT nParam = 1;
    HB_SIZE nLen;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       usMode = ( HB_USHORT ) hb_parni( 1 );
       nParam++;
@@ -726,7 +726,7 @@ HB_FUNC( HB_HRBLOAD )
    HB_USHORT nParam = 1;
    HB_SIZE nLen;
 
-   if( HB_ISNUM( 1 ) )
+   if( HB_IS_PARAM_NUM( 1 ) )
    {
       usMode = ( HB_USHORT ) hb_parni( 1 );
       nParam++;

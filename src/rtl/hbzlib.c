@@ -243,7 +243,7 @@ HB_FUNC( HB_ZCOMPRESSBOUND )
 {
    if( HB_ISCHAR( 1 ) )
       hb_retnint( s_zlibCompressBound( hb_parclen( 1 ) ) );
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
       hb_retnint( s_zlibCompressBound( hb_parns( 1 ) ) );
    else
       hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
@@ -303,7 +303,7 @@ HB_FUNC( HB_ZCOMPRESS )
          }
          else
          {
-            if( HB_ISNUM( 2 ) )
+            if( HB_IS_PARAM_NUM( 2 ) )
             {
                nDstLen = hb_parns( 2 );
                pDest = ( char * ) hb_xalloc( nDstLen + 1 );
@@ -371,7 +371,7 @@ HB_FUNC( HB_ZUNCOMPRESS )
          }
          else
          {
-            nDstLen = HB_ISNUM( 2 ) ? ( HB_SIZE ) hb_parns( 2 ) :
+            nDstLen = HB_IS_PARAM_NUM( 2 ) ? ( HB_SIZE ) hb_parns( 2 ) :
                            s_zlibUncompressedSize( szData, nLen, &iResult );
             if( iResult == Z_OK )
             {
@@ -414,7 +414,7 @@ HB_FUNC( HB_GZCOMPRESSBOUND )
 {
    if( HB_ISCHAR( 1 ) )
       hb_retnint( s_zlibCompressBound( ( uLong ) hb_parclen( 1 ) ) + 12 );
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
       hb_retnint( s_zlibCompressBound( ( uLong ) hb_parns( 1 ) ) + 12 );
    else
       hb_errRT_BASE_SubstR( EG_ARG, 3012, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
@@ -450,7 +450,7 @@ HB_FUNC( HB_GZCOMPRESS )
          }
          else
          {
-            if( HB_ISNUM( 2 ) )
+            if( HB_IS_PARAM_NUM( 2 ) )
             {
                nDstLen = hb_parns( 2 );
                pDest = ( char * ) hb_xalloc( nDstLen + 1 );

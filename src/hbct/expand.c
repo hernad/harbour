@@ -68,7 +68,7 @@ HB_FUNC( EXPAND )
             iRepl = 1;
             cRepl = hb_parc( 2 )[ 0 ];
          }
-         else if( i == 2 && iRepl == 0 && HB_ISNUM( 2 ) )
+         else if( i == 2 && iRepl == 0 && HB_IS_PARAM_NUM( 2 ) )
          {
             iRepl = 1;
             cRepl = 0;
@@ -77,7 +77,7 @@ HB_FUNC( EXPAND )
          {
             if( iRepl < 1 )
                iRepl = 1;
-            if( HB_ISNUM( 3 ) )
+            if( HB_IS_PARAM_NUM( 3 ) )
                cRepl = ( char ) hb_parni( 3 );
             else if( HB_ISCHAR( 3 ) )
                cRepl = hb_parc( 3 )[ 0 ];

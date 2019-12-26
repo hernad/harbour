@@ -132,7 +132,7 @@ HB_FUNC( __NATMSG )
    if( hb_pcount() == 0 )
       /* TODO: Replace this with Language API call. */
       hb_retc_const( "Invalid argument" );
-   else if( HB_ISNUM( 1 ) )
+   else if( HB_IS_PARAM_NUM( 1 ) )
       hb_retc_const( hb_nationGetMsg( hb_parni( 1 ) ) );
    else
       hb_retc_null();

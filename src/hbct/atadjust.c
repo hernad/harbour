@@ -49,7 +49,7 @@
 
 HB_FUNC( ATADJUST )
 {
-   if( HB_ISCHAR( 1 ) && HB_ISCHAR( 2 ) && HB_ISNUM( 3 ) )
+   if( HB_ISCHAR( 1 ) && HB_ISCHAR( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       const char * pcStringToMatch = hb_parc( 1 );
       HB_SIZE sStrToMatchLen = hb_parclen( 1 );
@@ -105,7 +105,7 @@ HB_FUNC( ATADJUST )
          sAdjustPosition--;     /* makes live easier since C indices start at zero ! */
 
       /* nth match or last match ? */
-      if( HB_ISNUM( 4 ) && ( nCounter = hb_parns( 4 ) ) != 0 )
+      if( HB_IS_PARAM_NUM( 4 ) && ( nCounter = hb_parns( 4 ) ) != 0 )
       {
          /* find the <nCounter>th match */
          const char * pcSubStr;
@@ -184,7 +184,7 @@ HB_FUNC( ATADJUST )
          else
             cFillChar = 0x20;
       }
-      else if( HB_ISNUM( 6 ) )
+      else if( HB_IS_PARAM_NUM( 6 ) )
          cFillChar = ( char ) ( hb_parnl( 6 ) % 256 );
       else
          cFillChar = 0x20;

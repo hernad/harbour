@@ -765,7 +765,7 @@ HB_FUNC( HWG_TAB_HITTEST )
    HWND hTab = ( HWND ) HB_PARHANDLE( 1 );
    int res;
 
-   if( hb_pcount(  ) > 1 && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( hb_pcount(  ) > 1 && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       ht.pt.x = hb_parni( 2 );
       ht.pt.y = hb_parni( 3 );
@@ -1011,7 +1011,7 @@ HB_FUNC( HWG_TREEHITTEST )
    TV_HITTESTINFO ht;
    HWND hTree = ( HWND ) HB_PARHANDLE( 1 );
 
-   if( hb_pcount(  ) > 1 && HB_ISNUM( 2 ) && HB_ISNUM( 3 ) )
+   if( hb_pcount(  ) > 1 && HB_IS_PARAM_NUM( 2 ) && HB_IS_PARAM_NUM( 3 ) )
    {
       ht.pt.x = hb_parni( 2 );
       ht.pt.y = hb_parni( 3 );
@@ -2028,14 +2028,14 @@ HB_FUNC( HWG_CREATEREBAR )
 HB_FUNC( HWG_REBARSETIMAGELIST )
 {
    HWND hWnd = ( HWND ) HB_PARHANDLE( 1 );
-   HIMAGELIST p = ( HB_ISNUM( 2 ) ||
+   HIMAGELIST p = ( HB_IS_PARAM_NUM( 2 ) ||
          HB_ISPOINTER( 2 ) ) ? ( HIMAGELIST ) HB_PARHANDLE( 2 ) : NULL;
    REBARINFO rbi;
 
    memset( &rbi, '\0', sizeof( rbi ) );
    rbi.cbSize = sizeof( REBARINFO );
-   rbi.fMask = ( HB_ISNUM( 2 ) || HB_ISPOINTER( 2 ) ) ? RBIM_IMAGELIST : 0;
-   rbi.himl = ( HB_ISNUM( 2 ) ||
+   rbi.fMask = ( HB_IS_PARAM_NUM( 2 ) || HB_ISPOINTER( 2 ) ) ? RBIM_IMAGELIST : 0;
+   rbi.himl = ( HB_IS_PARAM_NUM( 2 ) ||
          HB_ISPOINTER( 2 ) ) ? ( HIMAGELIST ) p : ( HIMAGELIST ) NULL;
    SendMessage( hWnd, RB_SETBARINFO, 0, ( LPARAM ) & rbi );
 }

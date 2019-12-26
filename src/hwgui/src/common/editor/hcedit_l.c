@@ -633,9 +633,9 @@ HB_FUNC( HCED_SETCOLOR )
 {
    TEDIT *pted = ( TEDIT * ) HB_PARHANDLE( 1 );
 
-   if( HB_ISNUM(2) )
+   if( HB_IS_PARAM_NUM(2) )
       pted->fg = (long) hb_parnl(2);
-   if( HB_ISNUM(3) )
+   if( HB_IS_PARAM_NUM(3) )
       pted->bg = (long) hb_parnl(3);
 }
 
@@ -966,9 +966,9 @@ HB_FUNC( HCED_LINEOUT )
 HB_FUNC( HCED_SETBORDER )
 {
    TEDIT *pted = ( TEDIT * ) HB_PARHANDLE( 1 );
-   if( HB_ISNUM(2) )
+   if( HB_IS_PARAM_NUM(2) )
       pted->nBorder = hb_parnl(2);
-   if( HB_ISNUM(3) )
+   if( HB_IS_PARAM_NUM(3) )
       pted->lBorderClr = hb_parnl(3);
 }
 

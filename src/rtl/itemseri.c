@@ -1878,7 +1878,7 @@ HB_FUNC( HB_SERIALIZE )
       cdpIn = pszCdpIn ? hb_cdpFindExt( pszCdpIn ) : hb_vmCDP();
       cdpOut = pszCdpOut ? hb_cdpFindExt( pszCdpOut ) : hb_vmCDP();
 
-      if( HB_ISNUM( 2 ) )
+      if( HB_IS_PARAM_NUM( 2 ) )
          iFlags = hb_parni( 2 );
       else
          iFlags = hb_parl( 2 ) ? HB_SERIALIZE_NUMSIZE : 0;
