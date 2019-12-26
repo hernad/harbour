@@ -149,7 +149,6 @@ PRG_HEADERS := \
    hbpgsql.hbx \
    sddpg.hbx\
    hbmzip.ch \
-   hbmzip.hbx \
    hbxlsxwriter.ch \
    hbssl.ch \
    hbssl.hbx \
