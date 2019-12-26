@@ -52,11 +52,9 @@
 #define ME_UNKEY        1       /* Unknown key, memo unaltered */
 #define ME_UNKEYX       2       /* Unknown key, memo altered */
 #define ME_INIT         3       /* Initialization mode */
-#ifndef HB_CLP_STRICT
 #define ME_REQUEST      4       /* MemoEdit() requests an input from */
                                 /* the user function, e.g. after */
                                 /* ME_PASTE */  /* Xbase++ extension */
-#endif
 
 /* User callback return codes */
 #define ME_DEFAULT      0       /* Perform default action */
@@ -66,9 +64,7 @@
 #define ME_TOGGLESCROLL 35      /* Toggle scrolling mode */
 #define ME_WORDRIGHT    100     /* Perform word-right operation */
 #define ME_BOTTOMRIGHT  101     /* Perform bottom-right operation */
-#ifndef HB_CLP_STRICT
 #define ME_PASTE        110     /* Paste string into buffer */  /* Xbase++ extension */
-#endif
 
 /* NOTE: Return codes 1-31 cause MemoEdit() to perform the */
 /*       edit action corresponding to the key whose value is returned. */

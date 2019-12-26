@@ -130,15 +130,12 @@ HB_FUNC( TRANSFORM )
                case ')':
                   uiPicFlags |= PF_PARNEGWOS;
                   break;
-#ifndef HB_CLP_STRICT
-               /* Xbase++ and FoxPro compatibility */
                case 'l':
                case 'L':
                case '0':
                   uiPicFlags |= PF_PADL;  /* FoxPro/XPP extension */
                   cParamL = '0';
                   break;
-#endif
                case 'b':
                case 'B':
                   uiPicFlags |= PF_LEFT;
@@ -576,8 +573,6 @@ HB_FUNC( TRANSFORM )
                while( ( HB_SIZE ) iCount + 1 < i && szResult[ iCount + 1 ] == ' ' )
                   ++iCount;
 
-#ifndef HB_CLP_STRICT
-               /* This is not Clipper compatible */
                if( szResult[ iCount ] >= '1' && szResult[ iCount ] <= '9' &&
                    ( nPicLen == 0 || szPic[ iCount ] == '9' ||
                      szPic[ iCount ] != szResult[ iCount ] ) )
@@ -592,15 +587,13 @@ HB_FUNC( TRANSFORM )
                   }
                }
                else
-#endif
                   szResult[ iCount ] = '(';
 
                szResult[ i++ ] = ')';
             }
             else if( ( uiPicFlags & PF_PARNEG ) )
             {
-#ifndef HB_CLP_STRICT
-               /* This is not Clipper compatible */
+
                if( *szResult >= '1' && *szResult <= '9' &&
                    ( nPicLen == 0 || *szPic == '9' || *szPic != *szResult ) )
                {
@@ -612,7 +605,6 @@ HB_FUNC( TRANSFORM )
                         szResult[ iCount ] = '*';
                   }
                }
-#endif
                *szResult       = '(';
                szResult[ i++ ] = ')';
                nOffset = 1;
@@ -648,7 +640,6 @@ HB_FUNC( TRANSFORM )
          szResult = ( char * ) hb_xgrab( 13 );
          szDateFormat = hb_setGetDateFormat();
 
-#ifndef HB_CLP_STRICT
          if( uiPicFlags & PF_BRITISH )
          {
             /* When @E is used CA-Cl*pper do not update date format
@@ -690,33 +681,10 @@ HB_FUNC( TRANSFORM )
             szNewFormat[ nFor ] = '\0';
             szDateFormat = szNewFormat;
          }
-#endif
 
          hb_dateFormat( hb_itemGetDS( pValue, szDate ), szResult, szDateFormat );
          nResultPos = strlen( szResult );
 
-#ifdef HB_CLP_STRICT
-         if( uiPicFlags & PF_BRITISH )
-         {
-            /* replicated wrong Clipper behavior, see note above.
-             * It's not exact CA-Cl*pper behavior because it does
-             * not check for size of results and can extract data
-             * from static memory buffer used in previous conversions
-             * (see my note for @E in string conversion above)
-             * but this is buffer overflow and I do not plan to
-             * replicated it too [druzus]
-             */
-            if( nResultPos >= 5 )
-            {
-               szNewFormat[ 0 ] = szResult[ 0 ];
-               szNewFormat[ 1 ] = szResult[ 1 ];
-               szResult[ 0 ] = szResult[ 3 ];
-               szResult[ 1 ] = szResult[ 4 ];
-               szResult[ 3 ] = szNewFormat[ 0 ];
-               szResult[ 4 ] = szNewFormat[ 1 ];
-            }
-         }
-#endif
          if( uiPicFlags & PF_REMAIN )
          {
             /* Here we also respect the date format modified for @E [druzus]
@@ -752,7 +720,7 @@ HB_FUNC( TRANSFORM )
          if( ( uiPicFlags & ( PF_DATE | PF_TIME ) ) != PF_DATE )
             szTimeFormat = hb_setGetTimeFormat();
 
-#ifndef HB_CLP_STRICT
+
          if( szDateFormat && ( uiPicFlags & PF_BRITISH ) )
          {
             /* When @E is used CA-Cl*pper do not update date format
@@ -794,7 +762,6 @@ HB_FUNC( TRANSFORM )
             szNewFormat[ nFor ] = '\0';
             szDateFormat = szNewFormat;
          }
-#endif
 
          hb_itemGetTDT( pValue, &lDate, &lTime );
          if( szTimeFormat )
@@ -811,28 +778,7 @@ HB_FUNC( TRANSFORM )
          }
          nResultPos = strlen( szResult );
 
-#ifdef HB_CLP_STRICT
-         if( uiPicFlags & PF_BRITISH )
-         {
-            /* replicated wrong Clipper behavior, see note above.
-             * It's not exact CA-Cl*pper behavior because it does
-             * not check for size of results and can extract data
-             * from static memory buffer used in previous conversions
-             * (see my note for @E in string conversion above)
-             * but this is buffer overflow and I do not plan to
-             * replicated it too [druzus]
-             */
-            if( nResultPos >= 5 )
-            {
-               szNewFormat[ 0 ] = szResult[ 0 ];
-               szNewFormat[ 1 ] = szResult[ 1 ];
-               szResult[ 0 ] = szResult[ 3 ];
-               szResult[ 1 ] = szResult[ 4 ];
-               szResult[ 3 ] = szNewFormat[ 0 ];
-               szResult[ 4 ] = szNewFormat[ 1 ];
-            }
-         }
-#endif
+
          if( szDateFormat && ( uiPicFlags & PF_REMAIN ) )
          {
             /* Here we also respect the date format modified for @E [druzus]

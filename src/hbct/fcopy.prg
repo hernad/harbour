@@ -60,11 +60,9 @@
 
 #include "fileio.ch"
 
-#ifdef HB_CLP_STRICT
-   #define F_BLOCK  512
-#else
-   #define F_BLOCK  65536
-#endif
+
+#define F_BLOCK  65536
+
 
 THREAD STATIC t_hSrcFile
 THREAD STATIC t_lSetDaTi := .T.

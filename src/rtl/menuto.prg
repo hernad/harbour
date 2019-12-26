@@ -67,17 +67,13 @@ FUNCTION __MenuTo( bBlock, cVariable )
 
    LOCAL lDeclared
    LOCAL bAction
-#ifdef HB_COMPAT_C53
    LOCAL nMouseClik
-#endif
 
    LOCAL nPointer
    LOCAL cColor
    LOCAL cColorSelect
    LOCAL cColorNormal
-#ifndef HB_CLP_STRICT
    LOCAL nHiLited
-#endif
 
    // Detect if a memvar was passed
    lDeclared := ! __mvExist( cVariable )
@@ -111,12 +107,7 @@ FUNCTION __MenuTo( bBlock, cVariable )
          n := nArrLen
       ENDIF
 
-      //
-
-#ifndef HB_CLP_STRICT
       nHiLited := 0
-#endif
-
       nSaveCursor := SetCursor( iif( Set( _SET_INTENSITY ), SC_NONE, NIL ) )
       cSaveReadVar := ReadVar( hb_asciiUpper( cVariable ) )
       xMsg := ""
@@ -162,20 +153,17 @@ FUNCTION __MenuTo( bBlock, cVariable )
             cColorSelect := cColorNormal
          ENDIF
 
-#ifndef HB_CLP_STRICT
          // avoid flicker
          IF nHiLited != n
             nHiLited := n
-#endif
             // highlight the prompt
             DispOutAt( ;
                t_aLevel[ nPointer - 1 ][ n ][ _ITM_ROW ], ;
                t_aLevel[ nPointer - 1 ][ n ][ _ITM_COL ], ;
                t_aLevel[ nPointer - 1 ][ n ][ _ITM_PROMPT ], ;
                cColorSelect )
-#ifndef HB_CLP_STRICT
+
          ENDIF
-#endif
 
          IF lExit
             EXIT
@@ -208,7 +196,6 @@ FUNCTION __MenuTo( bBlock, cVariable )
 
          // check for keystrokes
          SWITCH nKeyStd
-#ifdef HB_COMPAT_C53
          CASE K_MOUSEMOVE
             EXIT
          CASE K_LBUTTONDOWN
@@ -223,7 +210,6 @@ FUNCTION __MenuTo( bBlock, cVariable )
                lExit := .T.
             ENDIF
             EXIT
-#endif
          CASE K_DOWN
          CASE K_RIGHT
             IF ++n > nArrLen
@@ -264,19 +250,15 @@ FUNCTION __MenuTo( bBlock, cVariable )
          ENDSWITCH
 
          IF n != 0
-#ifndef HB_CLP_STRICT
             // avoid flicker
             IF nHiLited != n
                nHiLited := 0
-#endif
                DispOutAt( ;
                   t_aLevel[ nPointer - 1 ][ q ][ _ITM_ROW ], ;
                   t_aLevel[ nPointer - 1 ][ q ][ _ITM_COL ], ;
                   t_aLevel[ nPointer - 1 ][ q ][ _ITM_PROMPT ], ;
                   cColorNormal )
-#ifndef HB_CLP_STRICT
             ENDIF
-#endif
          ENDIF
 
       ENDDO
@@ -300,8 +282,6 @@ FUNCTION __MenuTo( bBlock, cVariable )
 
    RETURN n
 
-#ifdef HB_COMPAT_C53
-
 STATIC FUNCTION HitTest( aMenu, nMRow, nMCol )
 
    LOCAL aMenuItem
@@ -317,4 +297,3 @@ STATIC FUNCTION HitTest( aMenu, nMRow, nMCol )
 
    RETURN 0
 
-#endif

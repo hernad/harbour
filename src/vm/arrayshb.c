@@ -92,11 +92,7 @@ HB_FUNC( ARRAY )
 
          if( hb_parns( iParam ) < 0 ) /* || hb_parns( iParam ) <= 4096 */
          {
-#ifdef HB_CLP_STRICT
-            hb_errRT_BASE( EG_BOUND, 1131, NULL, hb_langDGetErrorDesc( EG_ARRDIMENSION ), 0 );
-#else
             hb_errRT_BASE( EG_BOUND, 1131, NULL, hb_langDGetErrorDesc( EG_ARRDIMENSION ), HB_ERR_ARGS_BASEPARAMS );
-#endif
             bError = HB_TRUE;
             break;
          }
@@ -124,8 +120,6 @@ HB_FUNC( AADD )
       hb_errRT_BASE_SubstR( EG_ARG, 1123, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-/* NOTE: CA-Cl*pper 5.3 and older will return NIL on bad parameter, 5.3a,b
-         will throw a runtime error. [vszakats] */
 
 HB_FUNC( ASIZE )
 {
@@ -139,14 +133,10 @@ HB_FUNC( ASIZE )
 
       hb_itemReturn( pArray ); /* ASize() returns the array itself */
    }
-#ifdef HB_COMPAT_C53 /* From CA-Cl*pper 5.3a */
    else
-#ifdef HB_CLP_STRICT
-      hb_errRT_BASE( EG_ARG, 2023, NULL, HB_ERR_FUNCNAME, 0 );
-#else
+
       hb_errRT_BASE( EG_ARG, 2023, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#endif
-#endif
+
 }
 
 HB_FUNC( ATAIL )
@@ -233,14 +223,7 @@ HB_FUNC( AFILL )
       }
    }
    else
-#ifdef HB_CLP_STRICT
-      /* NOTE: In CA-Cl*pper AFill() is written in a manner that it will
-               call AEval() to do the job, so the error (if any) will also be
-               thrown by AEval().  [vszakats] */
-      hb_errRT_BASE( EG_ARG, 2017, NULL, "AEVAL", 0 );
-#else
       hb_errRT_BASE( EG_ARG, 6004, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#endif
 }
 
 HB_FUNC( ASCAN )

@@ -63,16 +63,7 @@ PROCEDURE __Dir( cFileMask )
 
    IF cFileMask == ""
 
-      /* NOTE: Although Cl*pper has this string in the national language
-               module, it will not use it from there.
-               This is hard-wired to English. So this is a small
-               incompatibility. */
-
-#ifdef HB_CLP_STRICT
-      QOut( "Database Files    # Records    Last Update     Size" )
-#else
       QOut( __natMsg( _DIR_HEADER ) )
-#endif
 
       AEval( hb_vfDirectory( hb_FNameMerge( Set( _SET_DEFAULT ), "*", ".dbf" ) ), ;
              {| aDirEntry | PutDbf( aDirEntry ) } )

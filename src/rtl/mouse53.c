@@ -49,8 +49,6 @@
 
 /* Harbour callable interface */
 
-#ifdef HB_COMPAT_C53
-
 HB_FUNC( MPRESENT )
 {
    hb_retl( hb_mouseIsPresent() );
@@ -152,8 +150,6 @@ HB_FUNC( MSETBOUNDS )
                       HB_ISNUM( 3 ) ? hb_parni( 3 ) : hb_gtMaxRow(),
                       HB_ISNUM( 4 ) ? hb_parni( 4 ) : hb_gtMaxCol() );
 }
-
-#endif
 
 HB_FUNC( HB_MGETBOUNDS )
 {

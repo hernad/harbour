@@ -97,12 +97,8 @@ HB_EXTERN_BEGIN
 #define HB_B_FULL_W           { 0x2588, 0x2588, 0x2588, 0x2588, 0x2588, 0x2588, 0x2588, 0x2588, 0x0000 }
 
 
-#if defined( HB_COMPAT_C53 ) && ! defined( HB_CLP_STRICT )
-#  define HB_DEFAULT_INKEY_BUFSIZE  50
-#else
-#  define HB_DEFAULT_INKEY_BUFSIZE  15
-#endif
 
+#  define HB_DEFAULT_INKEY_BUFSIZE  50
 
 #define HB_STDIN_HANDLE    0
 #define HB_STDOUT_HANDLE   1

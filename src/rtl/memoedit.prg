@@ -78,11 +78,8 @@ CREATE CLASS HBMemoEditor INHERIT HBEditor
 ENDCLASS
 
 METHOD UserFunctionIsValid() CLASS HBMemoEditor
-#ifdef HB_CLP_STRICT
-   RETURN HB_ISSTRING( ::xUserFunction )
-#else
+
    RETURN HB_ISSTRING( ::xUserFunction ) .OR. HB_ISEVALITEM( ::xUserFunction )
-#endif
 
 METHOD MemoInit( xUserFunction ) CLASS HBMemoEditor
 
@@ -260,11 +257,9 @@ METHOD HandleUserKey( nKey, nUdfReturn ) CLASS HBMemoEditor
       ::super:MoveCursor( K_CTRL_END )
       EXIT
 
-#ifndef HB_CLP_STRICT
-   CASE ME_PASTE  /* Xbase++ compatibility */
+   CASE ME_PASTE
       hb_gtInfo( HB_GTI_CLIPBOARDPASTE )
       EXIT
-#endif
 
    CASE ME_IGNORE
       /* do nothing */

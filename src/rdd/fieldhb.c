@@ -47,7 +47,6 @@
 
 #include "hbdefs.h"
 
-#ifndef HB_CLP_STRICT
 
 /* NOTE: These functions are a new Harbour functions implemented in the
          original CA-Cl*pper namespace. These should have been marked as
@@ -57,4 +56,3 @@ HB_FUNC_TRANSLATE( FIELDLEN, HB_FIELDLEN )
 HB_FUNC_TRANSLATE( FIELDDEC, HB_FIELDDEC )
 HB_FUNC_TRANSLATE( FIELDTYPE, HB_FIELDTYPE )
 
-#endif

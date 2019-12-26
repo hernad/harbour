@@ -914,9 +914,6 @@ METHOD LoadReportFile( cFrmFile AS STRING ) CLASS HBReportForm
             // Process report eject and plain attributes option byte
             nOptionByte := hb_BPeek( cParamsBuff, OPTION_OFFSET )
 
-#ifdef HB_CLP_STRICT
-            IF nOptionByte <= 8  /* Bug compatibility with CA-Cl*pper for corrupted input files */
-#endif
                IF hb_bitAnd( nOptionByte, 4 ) != 0
                   aReport[ RPT_PLAIN ] := .T.          // Plain page
                ENDIF
@@ -926,9 +923,6 @@ METHOD LoadReportFile( cFrmFile AS STRING ) CLASS HBReportForm
                IF hb_bitAnd( nOptionByte, 1 ) != 0
                   aReport[ RPT_BEJECT ] := .F.         // Page eject before report
                ENDIF
-#ifdef HB_CLP_STRICT
-            ENDIF
-#endif
 
             // Page heading, report title
             // Retrieve the header stored in the .frm file

@@ -47,7 +47,6 @@
 
 #pragma -gc0
 
-#ifdef HB_COMPAT_C53
 
 PROCEDURE GUIReader( oGet, oGetlist, oMenu, aMsg )
 
@@ -161,4 +160,3 @@ FUNCTION ReadStats( nElement, xNewValue )
 
    RETURN NIL
 
-#endif

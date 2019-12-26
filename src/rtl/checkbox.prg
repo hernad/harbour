@@ -59,7 +59,6 @@
          functions to generate screen output. Harbour uses Disp*()
          functions only. [vszakats] */
 
-#ifdef HB_COMPAT_C53
 
 CREATE CLASS CheckBox FUNCTION HBCheckBox
 
@@ -363,4 +362,3 @@ FUNCTION _CheckBox_( lState, cCaption, cMessage, cColorSpec, bFBlock, bSBlock, c
 FUNCTION CheckBox( nRow, nCol, cCaption )
    RETURN HBCheckBox():New( nRow, nCol, cCaption )
 
-#endif

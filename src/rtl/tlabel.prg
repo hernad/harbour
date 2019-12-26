@@ -330,10 +330,6 @@ METHOD LoadLabel( cLblFile ) CLASS HBLabelForm
    LOCAL cFieldText                       // Text expression container
    LOCAL err                              // error object
 
-#ifdef HB_CLP_STRICT
-   LOCAL cPath             // iteration variable
-#endif
-
    // Create and initialize default label array
    LOCAL aLabel[ LBL_COUNT ]
 
@@ -347,27 +343,8 @@ METHOD LoadLabel( cLblFile ) CLASS HBLabelForm
    aLabel[ LBL_FIELDS ]  := {}             // Array of label fields
 
    // Open the label file
-#ifdef HB_CLP_STRICT
-   IF ( hFile := hb_vfOpen( cLblFile, FO_READ ) ) == NIL .AND. ;
-      Empty( hb_FNameDir( cLblFile ) )
-
-      // Search through default path; attempt to open label file
-      FOR EACH cPath IN hb_ATokens( StrTran( Set( _SET_DEFAULT ), ",", ";" ), ";" )
-         IF ( hFile := hb_vfOpen( hb_DirSepAdd( cPath ) + cLblFile, FO_READ ) ) != NIL
-            EXIT
-         ENDIF
-      NEXT
-   ENDIF
-#else
-   /* The Cl*pper 5.x documentation says that _SET_PATH is also
-      searched here - just like it is for .frm files -, but the
-      implementation is missing this logic. It is safe to assume
-      that the documented behavior is the intended one to maintain
-      dBase compatibility. This is fixed in Harbour, unless strict
-      compatibility is selected.
-      [vszakats] */
    hFile := hb_vfOpen( cLblFile, HB_FO_DEFAULTS )
-#endif
+
 
    // File error
    IF hFile == NIL

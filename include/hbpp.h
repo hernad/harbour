@@ -237,10 +237,7 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
 #define HB_PP_TOKEN_ISEOC(t)     ( HB_PP_TOKEN_ISEOL(t) || \
                                    HB_PP_TOKEN_TYPE((t)->type) == HB_PP_TOKEN_EOC )
 
-#ifdef HB_CLP_STRICT
-#  define HB_PP_TOKEN_ISEOS(t)   HB_PP_TOKEN_ISEOL(t)
-#  define HB_PP_TOKEN_ISEOP(t,l) HB_PP_TOKEN_ISEOL(t)
-#else
+
 /* End Of Subst - define how many tokens in line should be translated,
                   Clipper translates whole line */
 #  define HB_PP_TOKEN_ISEOS(t)   ( HB_PP_TOKEN_ISEOL(t) || \
@@ -251,7 +248,7 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
 /* End Of Pattern - the second parameter define if it's direct or indirect
                     pattern */
 #  define HB_PP_TOKEN_ISEOP(t,l) ( (l) ? HB_PP_TOKEN_ISEOL(t) : HB_PP_TOKEN_ISEOC(t) )
-#endif
+
 
 #define HB_PP_TOKEN_ISDIRECTIVE(t)  ( HB_PP_TOKEN_TYPE((t)->type) == HB_PP_TOKEN_DIRECTIVE || \
                                       HB_PP_TOKEN_TYPE((t)->type) == HB_PP_TOKEN_HASH )
@@ -305,23 +302,11 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
    with a code example so I'll be able if it should be implemented or not.
    Now I simply disabled HB_PP_TOKEN_NEEDRIGHT() macro.
  */
-#ifndef HB_CLP_STRICT
-#define HB_PP_TOKEN_NEEDRIGHT(t) ( HB_FALSE )
-#else
-#define HB_PP_TOKEN_NEEDRIGHT(t) ( HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_PLUS || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MINUS || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MULT || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_DIV || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MOD || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_POWER )
-#endif
 
-#ifdef HB_CLP_STRICT
-#  define HB_PP_TOKEN_ISUNARY(t) ( HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MINUS || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_DEC || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_INC || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_AMPERSAND )
-#else
+#define HB_PP_TOKEN_NEEDRIGHT(t) ( HB_FALSE )
+
+
+
 #  define HB_PP_TOKEN_ISUNARY(t) ( HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MINUS || \
                                    HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_DEC || \
                                    HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_INC || \
@@ -329,19 +314,10 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
                                    HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_PLUS || \
                                    HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_NOT || \
                                    HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_REFERENCE )
-#endif
+
 
 #define HB_PP_TOKEN_ISMATCH(t)   ( (t) && ( (t)->type & HB_PP_TOKEN_MATCHMARKER ) != 0 )
 
-#if 0
-#define HB_PP_TOKEN_ISRESULT(t)  ( HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_REGULAR || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_STRDUMP || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_STRSTD || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_STRSMART || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_BLOCK || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_LOGICAL || \
-                                   HB_PP_TOKEN_TYPE(t) == HB_PP_RMARKER_NUL )
-#endif
 
 #define HB_PP_TOKEN_ISEXPVAL(t)     ( HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_KEYWORD || \
                                       HB_PP_TOKEN_TYPE(t) == HB_PP_TOKEN_MACROVAR || \
@@ -354,16 +330,7 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
                                       ( (t)->pNext && HB_PP_TOKEN_ISUNARY( (t)->type ) && \
                                         HB_PP_TOKEN_ISEXPVAL( (t)->pNext->type ) ) )
 
-#ifdef HB_CLP_STRICT
-/* Clipper supports quoting by [] for 1st token in the line so we
-   are not checking for HB_PP_TOKEN_NUL in this macro */
-#define HB_PP_TOKEN_CANQUOTE(t)     ( HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_KEYWORD && \
-                                      HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_MACROVAR && \
-                                      HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_MACROTEXT && \
-                                      HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_RIGHT_PB && \
-                                      HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_RIGHT_SB && \
-                                      HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_RIGHT_CB )
-#else
+
 /* Disable string quoting by [] for next token if current one is
    constant value - it's not Clipper compatible but we need it for
    accessing string characters by array index operator or introduce
@@ -379,7 +346,6 @@ typedef HB_PP_MSG_FUNC_( ( * PHB_PP_MSG_FUNC ) );
                                       HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_DATE && \
                                       HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_TIMESTAMP && \
                                       HB_PP_TOKEN_TYPE(t) != HB_PP_TOKEN_LOGICAL )
-#endif
 
 typedef struct _HB_PP_TOKEN
 {
@@ -440,11 +406,9 @@ HB_PP_TOKEN, * PHB_PP_TOKEN;
 /* For platforms which does not use ASCII based character tables this macros
    have to be changed to use valid C functions, e.g.:
       isalpha(), isdigit(), ... */
-#ifdef HB_CLP_STRICT
-#  define HB_PP_ISILLEGAL(c)     ( (c) < 32 || (c) >= 126 )
-#else
+
 #  define HB_PP_ISILLEGAL(c)     ( (c) < 32 || (c) == 127 )
-#endif
+
 #define HB_PP_ISTEXTCHAR(c)      ( (unsigned char) (c) >= 128 )
 #define HB_PP_ISBLANK(c)         ( (c) == ' ' || (c) == '\t' )
 #define HB_PP_ISDIGIT(c)         HB_ISDIGIT( c )

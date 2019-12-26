@@ -52,15 +52,6 @@
 #include "button.ch"
 #include "color.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-/* NOTE: CA-Cl*pper 5.3 uses a mixture of QQOut(), DevOut(), Disp*()
-         functions to generate screen output. Harbour uses Disp*()
-         functions only. [vszakats] */
-
-#ifdef HB_COMPAT_C53
-
 CREATE CLASS PopupMenu FUNCTION HBPopupMenu
 
    EXPORTED:
@@ -540,15 +531,9 @@ METHOD border( cBorder ) CLASS PopupMenu
 
 METHOD bottom( nBottom ) CLASS PopupMenu
 
-#ifdef HB_CLP_STRICT
-   IF nBottom != NIL
-      ::nBottom := __eInstVar53( Self, "BOTTOM", nBottom, "N", 1001 )
-   ENDIF
-#else
    IF PCount() > 0
       ::nBottom := iif( nBottom == NIL, NIL, __eInstVar53( Self, "BOTTOM", nBottom, "N", 1001 ) )
    ENDIF
-#endif
 
    RETURN ::nBottom
 
@@ -569,43 +554,27 @@ METHOD itemCount() CLASS PopupMenu
 
 METHOD left( nLeft ) CLASS PopupMenu
 
-#ifdef HB_CLP_STRICT
-   IF nLeft != NIL
-      ::nLeft := __eInstVar53( Self, "LEFT", nLeft, "N", 1001 )
-   ENDIF
-#else
+
    IF PCount() > 0
       ::nLeft := iif( nLeft == NIL, NIL, __eInstVar53( Self, "LEFT", nLeft, "N", 1001 ) )
    ENDIF
-#endif
+
 
    RETURN ::nLeft
 
 METHOD right( nRight ) CLASS PopupMenu
 
-#ifdef HB_CLP_STRICT
-   IF nRight != NIL
-      ::nRight := __eInstVar53( Self, "RIGHT", nRight, "N", 1001 )
-   ENDIF
-#else
    IF PCount() > 0
       ::nRight := iif( nRight == NIL, NIL, __eInstVar53( Self, "RIGHT", nRight, "N", 1001 ) )
    ENDIF
-#endif
 
    RETURN ::nRight
 
 METHOD top( nTop ) CLASS PopupMenu
 
-#ifdef HB_CLP_STRICT
-   IF nTop != NIL
-      ::nTop := __eInstVar53( Self, "TOP", nTop, "N", 1001 )
-   ENDIF
-#else
    IF PCount() > 0
       ::nTop := iif( nTop == NIL, NIL, __eInstVar53( Self, "TOP", nTop, "N", 1001 ) )
    ENDIF
-#endif
 
    RETURN ::nTop
 
@@ -647,4 +616,3 @@ METHOD New( nTop, nLeft, nBottom, nRight ) CLASS PopupMenu
 FUNCTION Popup( nTop, nLeft, nBottom, nRight )
    RETURN HBPopupMenu():New( nTop, nLeft, nBottom, nRight )
 
-#endif

@@ -55,8 +55,5 @@
          library or user code would also define this function.
          [vszakats] */
 
-#ifndef HB_CLP_STRICT
-
 HB_FUNC_TRANSLATE( PVALUE, HB_PVALUE )
 
-#endif

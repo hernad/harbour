@@ -67,7 +67,6 @@ CREATE CLASS Get
 
    PROTECTED:
 
-   /* === Start of CA-Cl*pper compatible TGet instance area === */
    VAR bBlock                           /* 01. */
    VAR xSubScript                       /* 02. */
    VAR cPicture                         /* 03. */
@@ -78,18 +77,15 @@ CREATE CLASS Get
    VAR cInternal1     HIDDEN            /* 08. U2Bin( ::nRow ) + U2Bin( ::nCol ) + trash. Not implemented in Harbour. */
    VAR xExitState                       /* 09. */
    VAR bReader                          /* 10. */
-#ifdef HB_COMPAT_C53
    VAR oControl                         /* 11. CA-Cl*pper 5.3 only. */
    VAR cCaption                 INIT "" /* 12. CA-Cl*pper 5.3 only. */
    VAR nCapCol                  INIT 0  /* 13. CA-Cl*pper 5.3 only. */
    VAR nCapRow                  INIT 0  /* 14. CA-Cl*pper 5.3 only. */
    VAR cMessage                 INIT "" /* 15. CA-Cl*pper 5.3 only. */
    VAR nDispLen                         /* 16. CA-Cl*pper 5.3 places it here. */
-#endif
    VAR cType                            /* +1. Only accessible in CA-Cl*pper when ::hasFocus == .T. In CA-Cl*pper the field may contain random chars after the first one, which is the type. */
    VAR cBuffer                          /* +2. Only accessible in CA-Cl*pper when ::hasFocus == .T. */
    VAR xVarGet                          /* +3. Only accessible in CA-Cl*pper when ::hasFocus == .T. */
-   /* === End of CA-Cl*pper compatible TGet instance area === */
 
    EXPORTED:
 
@@ -116,14 +112,12 @@ CREATE CLASS Get
    ACCESS colorSpec METHOD getColorSpec()
    ASSIGN colorSpec METHOD setColorSpec( cColorSpec )
    METHOD display()
-#ifdef HB_COMPAT_C53
    METHOD hitTest( nMRow, nMCol )
    METHOD control( oControl ) SETGET    /* NOTE: Undocumented CA-Cl*pper 5.3 method. */
    METHOD message( cMessage ) SETGET    /* NOTE: Undocumented CA-Cl*pper 5.3 method. */
    METHOD caption( cCaption ) SETGET    /* NOTE: Undocumented CA-Cl*pper 5.3 method. */
    METHOD capRow( nCapRow ) SETGET      /* NOTE: Undocumented CA-Cl*pper 5.3 method. */
    METHOD capCol( nCapCol ) SETGET      /* NOTE: Undocumented CA-Cl*pper 5.3 method. */
-#endif
    METHOD killFocus()
    ACCESS minus METHOD getMinus()
    ASSIGN minus METHOD setMinus( lMinus )
@@ -173,9 +167,6 @@ CREATE CLASS Get
 
    PROTECTED:
 
-#ifndef HB_COMPAT_C53
-   VAR nDispLen                /* NOTE: This one is placed inside the instance area for CA-Cl*pper 5.3 [vszakats] */
-#endif
    VAR cColorSpec
    VAR nPos           INIT 0
    VAR lChanged       INIT .F.
@@ -249,10 +240,8 @@ METHOD display() CLASS Get
    LOCAL nRowPos
    LOCAL nColPos
 
-#ifdef HB_COMPAT_C53
    LOCAL nPos
    LOCAL cCaption
-#endif
 
    IF ::hasFocus
       cBuffer   := ::cBuffer
@@ -284,8 +273,6 @@ METHOD display() CLASS Get
       nDispPos := 1
    ENDIF
 
-#ifdef HB_COMPAT_C53
-
    /* Handle C5.3 caption. */
 
    IF ! Empty( ::cCaption )
@@ -304,18 +291,8 @@ METHOD display() CLASS Get
          hb_DispOutAt( ::nCapRow, ::nCapCol + nPos - 1, hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, GET_CLR_ACCEL ) )
       ENDIF
 
-      /* should we set fixed cursor position here?
-       * The above code which can left cursor in the middle of shown screen
-       * suggests that we shouldn't. If necessary please fix me.
-       */
-#if 0
-      nRowPos := ::nCapRow
-      nColPos := ::nCapCol + hb_ULen( cCaption )
-#endif
-
    ENDIF
 
-#endif
 
    /* Display the GET */
 
@@ -329,14 +306,8 @@ METHOD display() CLASS Get
       nColPos := ::nCol + Min( ::nDispLen, hb_ULen( cBuffer ) )
 
       IF Set( _SET_DELIMITERS ) .AND. ! ::hasFocus
-#ifdef HB_COMPAT_C53
          hb_DispOutAt( nRowPos, ::nCol - 1, hb_USubStr( Set( _SET_DELIMCHARS ), 1, 1 ), hb_ColorIndex( ::cColorSpec, GET_CLR_UNSELECTED ) )
          hb_DispOutAt( nRowPos, nColPos   , hb_USubStr( Set( _SET_DELIMCHARS ), 2, 1 ), hb_ColorIndex( ::cColorSpec, GET_CLR_UNSELECTED ) )
-#else
-         /* NOTE: C5.2 will use the default color. We're replicating this here. [vszakats] */
-         hb_DispOutAt( nRowPos, ::nCol - 1, hb_USubStr( Set( _SET_DELIMCHARS ), 1, 1 ) )
-         hb_DispOutAt( nRowPos, nColPos   , hb_USubStr( Set( _SET_DELIMCHARS ), 2, 1 ) )
-#endif
          ++nColPos
       ENDIF
    ENDIF
@@ -920,24 +891,19 @@ METHOD setColorSpec( cColorSpec ) CLASS Get
 
    IF HB_ISSTRING( cColorSpec )
 
-#ifdef HB_COMPAT_C53
+
       ::cColorSpec := ;
          hb_NToColor( nClrUns := Max( hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_UNSELECTED ) ), 0 ) ) + ;
          "," + hb_NToColor( iif( ( nClrOth := hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_ENHANCED ) ) ) != -1, nClrOth, nClrUns ) ) + ;
          "," + hb_NToColor( iif( ( nClrOth := hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_CAPTION  ) ) ) != -1, nClrOth, nClrUns ) ) + ;
          "," + hb_NToColor( iif( ( nClrOth := hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_ACCEL    ) ) ) != -1, nClrOth, nClrUns ) )
-#else
-      ::cColorSpec := ;
-         hb_NToColor( nClrUns := Max( hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_UNSELECTED ) ), 0 ) ) + ;
-         "," + hb_NToColor( iif( ( nClrOth := hb_ColorToN( hb_ColorIndex( cColorSpec, GET_CLR_ENHANCED ) ) ) != -1, nClrOth, nClrUns ) )
-#endif
+
 
    /* NOTE: CA-Cl*pper oddity. [vszakats] */
    ELSEIF ValType( cColorSpec ) $ "UNDTBA"
 
       RETURN NIL
 
-#ifdef HB_COMPAT_C53
    /* NOTE: This code doesn't seem to make any sense, but seems to
             replicate some original C5.3 behaviour. */
    ELSE
@@ -954,7 +920,6 @@ METHOD setColorSpec( cColorSpec ) CLASS Get
             hb_ColorIndex( SetColor(), CLR_STANDARD ) + "," + ;
             hb_ColorIndex( SetColor(), CLR_STANDARD )
       ENDIF
-#endif
    ENDIF
 
    RETURN cColorSpec
@@ -1482,7 +1447,6 @@ METHOD reform() CLASS Get
 
 #endif
 
-#ifdef HB_COMPAT_C53
 
 METHOD hitTest( nMRow, nMCol ) CLASS Get
 
@@ -1543,7 +1507,6 @@ METHOD message( cMessage ) CLASS Get
 
    RETURN ::cMessage
 
-#endif
 
 /* --- */
 
@@ -1758,12 +1721,8 @@ METHOD Input( cChar ) CLASS Get
          EXIT
 
       CASE "L"
-         #ifdef HB_CLP_STRICT
-            #define _YN_NAT  ""
-         #else
             #define _YN_NAT  hb_langMessage( HB_LANG_ITEM_BASE_TEXT + 1 ) + ;
                              hb_langMessage( HB_LANG_ITEM_BASE_TEXT + 2 )
-         #endif
          IF ! Upper( cChar ) $ "YNTF" + _YN_NAT
             RETURN ""
          ENDIF
@@ -1964,18 +1923,14 @@ METHOD New( nRow, nCol, bVarBlock, cVarName, cPicture, cColorSpec ) CLASS Get
       bVarBlock := iif( HB_ISSTRING( cVarName ), MemVarBlock( cVarName ), NIL )
    ENDIF
    IF cColorSpec == NIL
-#ifdef HB_COMPAT_C53
+
       cColorSpec := ;
          hb_ColorIndex( SetColor(), iif( Set( _SET_INTENSITY ), CLR_UNSELECTED, CLR_STANDARD ) ) + "," + ;
          hb_ColorIndex( SetColor(), iif( Set( _SET_INTENSITY ), CLR_ENHANCED, CLR_STANDARD ) ) + "," + ;
          hb_ColorIndex( SetColor(), CLR_STANDARD ) + "," + ;
          iif( IsDefColor(), iif( Set( _SET_INTENSITY ), "W+/N", "W/N" ), ;
             hb_ColorIndex( SetColor(), iif( Set( _SET_INTENSITY ), CLR_BACKGROUND, CLR_STANDARD ) ) )
-#else
-      cColorSpec := ;
-         hb_ColorIndex( SetColor(), iif( Set( _SET_INTENSITY ), CLR_UNSELECTED, CLR_STANDARD ) ) + "," + ;
-         hb_ColorIndex( SetColor(), iif( Set( _SET_INTENSITY ), CLR_ENHANCED, CLR_STANDARD ) )
-#endif
+
    ENDIF
 
    ::nRow      := nRow

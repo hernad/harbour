@@ -51,15 +51,6 @@
 #include "button.ch"
 #include "color.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-/* NOTE: CA-Cl*pper 5.3 uses a mixture of QQOut(), DevOut(), Disp*()
-         functions to generate screen output. Harbour uses Disp*()
-         functions only. [vszakats] */
-
-#ifdef HB_COMPAT_C53
-
 CREATE CLASS RadioButtn FUNCTION HBRadioButton
 
    EXPORTED:
@@ -352,4 +343,3 @@ METHOD New( nRow, nCol, cCaption, cData ) CLASS RadioButtn
 FUNCTION RadioButto( nRow, nCol, cCaption, cData ) /* NOTE: cData argument is undocumented */
    RETURN HBRadioButton():New( nRow, nCol, cCaption, cData )
 
-#endif

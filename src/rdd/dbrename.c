@@ -46,7 +46,6 @@
 
 #include "hbdefs.h"
 
-#ifndef HB_CLP_STRICT
 
 /* NOTE: This function is a new Harbour function implemented in the
          original CA-Cl*pper namespace. This should have been
@@ -54,4 +53,3 @@
 
 HB_FUNC_TRANSLATE( DBRENAME, HB_DBRENAME )
 
-#endif

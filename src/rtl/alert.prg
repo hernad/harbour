@@ -71,10 +71,7 @@ FUNCTION Alert( cMessage, aOptions, xColorNorm )
    DO CASE
    CASE Len( aOptionsOK ) == 0
       aOptionsOK := { "Ok" }
-#ifdef HB_CLP_STRICT
-   CASE Len( aOptionsOK ) > 4  /* NOTE: Clipper allows only four options [vszakats] */
-      ASize( aOptionsOK, 4 )
-#endif
+
    ENDCASE
 
    RETURN hb_gtAlert( cMessage, aOptionsOK, xColorNorm, xColorHigh )
@@ -146,10 +143,6 @@ FUNCTION hb_Alert( xMessage, aOptions, xColorNorm, nDelay )
    DO CASE
    CASE Len( aOptionsOK ) == 0
       aOptionsOK := { "Ok" }
-#ifdef HB_CLP_STRICT
-   CASE Len( aOptionsOK ) > 4  /* NOTE: Clipper allows only four options [vszakats] */
-      ASize( aOptionsOK, 4 )
-#endif
    ENDCASE
 
    RETURN hb_gtAlert( cMessage, aOptionsOK, xColorNorm, xColorHigh, nDelay )

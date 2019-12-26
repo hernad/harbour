@@ -59,13 +59,6 @@ HB_FUNC( CHR )
                can be divided by 256 but it's not zero, in this case it
                will return an empty string instead of a Chr( 0 ). [vszakats] */
 
-      /* Believe it or not, Cl*pper does this! */
-#ifdef HB_CLP_STRICT
-      char szChar[ 2 ];
-      szChar[ 0 ] = hb_parnl( 1 ) % 256;
-      szChar[ 1 ] = '\0';
-      hb_retclen( szChar, 1 );
-#else
       PHB_CODEPAGE cdp = hb_vmCDP();
       if( HB_CDP_ISCHARUNI( cdp ) )
       {
@@ -78,7 +71,6 @@ HB_FUNC( CHR )
       }
       else
          hb_retclen( hb_szAscii[ hb_parni( 1 ) & 0xFF ], 1 );
-#endif
    }
    else
       hb_errRT_BASE_SubstR( EG_ARG, 1104, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );

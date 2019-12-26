@@ -92,7 +92,6 @@ static void hb_mlGetEOLs( PHB_MLC_INFO pMLC, int iParam )
          because there was no other idea which seemed natural enough.
          Clipper will ignore these parameters and use CRLF EOL hard
          coded. [vszakats] */
-#ifndef HB_CLP_STRICT /* HB_EXTENSION */
    nLen = hb_parclen( iParam );
    if( nLen )
    {
@@ -127,10 +126,6 @@ static void hb_mlGetEOLs( PHB_MLC_INFO pMLC, int iParam )
          }
       }
    }
-#else
-   HB_SYMBOL_UNUSED( iParam );
-   HB_SYMBOL_UNUSED( nLen );
-#endif
 
    if( iEOLs == 0 )
    {
@@ -159,10 +154,6 @@ static HB_BOOL hb_mlInit( PHB_MLC_INFO pMLC, int iParAdd )
       pMLC->nTabSize = hb_parnsdef( 3 + iParAdd, 4 );
       pMLC->fWordWrap = hb_parldef( 4 + iParAdd, HB_TRUE );
 
-#ifdef HB_CLP_STRICT
-      if( pMLC->nLineLength > 254 )
-         pMLC->nLineLength = 79;
-#endif
       if( pMLC->nTabSize >= pMLC->nLineLength )
          pMLC->nTabSize = pMLC->nLineLength - 1;
       if( pMLC->nTabSize == 0 )
@@ -572,13 +563,8 @@ HB_FUNC( HB_MLEVAL )
       if( ! HB_CDP_ISCHARIDX( cdp ) )
          cdp = NULL;
 
-#ifdef HB_CLP_STRICT
-      if( nLineLength > 254 )
-         nLineLength = 79;
-#else
       if( nLineLength > 0xFFFF )
          nLineLength = 0xFFFF;
-#endif
       if( nTabSize >= nLineLength )
          nTabSize = nLineLength - 1;
       if( nTabSize == 0 )

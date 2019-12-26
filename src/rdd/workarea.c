@@ -333,14 +333,6 @@ static HB_ERRCODE hb_waCreateFields( AREAP pArea, PHB_ITEM pStruct )
          case 'C':
             dbFieldInfo.uiType = HB_FT_STRING;
             dbFieldInfo.uiLen = uiLen;
-/* Too many people reported the behavior with code below as a
-   Clipper compatibility bug so I commented this code, Druzus.
-#ifdef HB_CLP_STRICT
-            dbFieldInfo.uiLen = uiLen;
-#else
-            dbFieldInfo.uiLen = uiLen + uiDec * 256;
-#endif
-*/
             dbFieldInfo.uiFlags &= HB_FF_NULLABLE | HB_FF_BINARY |
                                    HB_FF_COMPRESSED | HB_FF_ENCRYPTED |
                                    HB_FF_UNICODE;

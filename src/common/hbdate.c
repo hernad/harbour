@@ -76,11 +76,7 @@
 #endif
 
 
-#ifdef HB_CLP_STRICT
-   #define HB_DATE_YEAR_LIMIT      2999
-#else
-   #define HB_DATE_YEAR_LIMIT      9999
-#endif
+#define HB_DATE_YEAR_LIMIT      9999
 
 #define HB_STR_DATE_BASE           1721060 /* 0000-01-01 */
 #define HB_SYS_DATE_BASE           2440588 /* 1970-01-01 */

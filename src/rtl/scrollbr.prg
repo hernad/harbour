@@ -49,14 +49,6 @@
 #include "button.ch"
 #include "color.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-/* NOTE: CA-Cl*pper 5.3 uses a mixture of QQOut(), DevOut(), Disp*()
-         functions to generate screen output. Harbour uses Disp*()
-         functions only. [vszakats] */
-
-#ifdef HB_COMPAT_C53
 
 CREATE CLASS ScrollBar FUNCTION HBScrollBar
 
@@ -432,5 +424,3 @@ METHOD New( nStart, nEnd, nOffset, bSBlock, nOrient ) CLASS ScrollBar
 
 FUNCTION ScrollBar( nStart, nEnd, nOffset, bSBlock, nOrient )
    RETURN HBScrollBar():New( nStart, nEnd, nOffset, bSBlock, nOrient )
-
-#endif

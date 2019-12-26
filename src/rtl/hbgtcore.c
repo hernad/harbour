@@ -591,23 +591,17 @@ static void hb_gt_def_ColorsToString( PHB_GT pGT, int * pColors, int iColorCount
                      which is quite ugly, otherwise it will put the "+" to the
                      first half and the "*" to the second (like "W+/B*"), which
                      is how it should be done. [vszakats] */
-#ifdef HB_CLP_STRICT
-            if( ( pColors[ iColorIndex ] & 0x80 ) != 0 )
-               pszColorString[ iPos++ ] = '*';
-#endif
 
             if( ( pColors[ iColorIndex ] & 0x08 ) != 0 )
                pszColorString[ iPos++ ] = '+';
 
             pszColorString[ iPos++ ] = '/';
          }
-#ifndef HB_CLP_STRICT
          else
          {
             if( ( pColors[ iColorIndex ] & 0x80 ) != 0 )
                pszColorString[ iPos++ ] = '*';
          }
-#endif
          nColor = ( pColors[ iColorIndex ] >> 4 ) & 7;
       }
    }
@@ -2142,7 +2136,6 @@ static int hb_gt_def_Alert( PHB_GT pGT, PHB_ITEM pMessage, PHB_ITEM pOptions,
                      szMsgDsp[ ulDst++ ] = '\n';
                      ulLast = ulDst;
                   }
-#ifndef HB_CLP_STRICT
                   else
                   {
                      ulCurrWidth--;
@@ -2155,7 +2148,6 @@ static int hb_gt_def_Alert( PHB_GT pGT, PHB_ITEM pMessage, PHB_ITEM pOptions,
                         ulWidth = ulCurrWidth;
                      ulCurrWidth = ulSpace1 = ulSpace2 = 0;
                   }
-#endif
                }
             }
             ++ulMsg;
@@ -2273,7 +2265,6 @@ static int hb_gt_def_Alert( PHB_GT pGT, PHB_ITEM pMessage, PHB_ITEM pOptions,
                   iPos = 1;
                dDelay = 0.0;
             }
-#ifdef HB_COMPAT_C53
             else if( iKey == K_LBUTTONDOWN )
             {
                int iMRow, iMCol;
@@ -2293,7 +2284,6 @@ static int hb_gt_def_Alert( PHB_GT pGT, PHB_ITEM pMessage, PHB_ITEM pOptions,
                   }
                }
             }
-#endif
             else if( ( nChar = hb_inkeyKeyString( iKey, szKey, sizeof( szKey ) ) ) > 0 )
             {
                for( i = 1; i <= iOptions; ++i )

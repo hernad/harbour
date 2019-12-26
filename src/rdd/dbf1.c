@@ -2956,21 +2956,7 @@ static HB_ERRCODE hb_dbfRecId( DBFAREAP pArea, PHB_ITEM pRecNo )
    HB_TRACE( HB_TR_DEBUG, ( "hb_dbfRecId(%p, %p)", ( void * ) pArea, ( void * ) pRecNo ) );
 
    errCode = SELF_RECNO( &pArea->area, &ulRecNo );
-
-#ifdef HB_CLP_STRICT
-   /* this is for strict Clipper compatibility but IMHO Clipper should not
-      do that and always set fixed size independent to the record number */
-   if( ulRecNo < 10000000 )
-   {
-      hb_itemPutNLLen( pRecNo, ulRecNo, 7 );
-   }
-   else
-   {
-      hb_itemPutNLLen( pRecNo, ulRecNo, 10 );
-   }
-#else
    hb_itemPutNInt( pRecNo, ulRecNo );
-#endif
    return errCode;
 }
 
@@ -4417,14 +4403,7 @@ static HB_ERRCODE hb_dbfOpen( DBFAREAP pArea, LPDBOPENINFO pOpenInfo )
       uiFields -= uiSkip;
    }
 
-   /* CL5.3 allow to create and open DBFs without fields */
-#ifdef HB_CLP_STRICT
-   if( uiFields == 0 )
-   {
-      errCode = HB_FAILURE;
-   }
-   else
-#endif
+
    {
       errCode = SELF_SETFIELDEXTENT( &pArea->area, uiFields );
       if( errCode != HB_SUCCESS )

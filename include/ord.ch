@@ -75,7 +75,6 @@
  * in Cl*pper
  */
 
-#ifdef HB_COMPAT_C53
 
 #xtranslate ORDCOND( [FOR <for>]                             ;
                      [<all:ALL>] [WHILE <while>]             ;
@@ -88,7 +87,6 @@
                      RecNo(), <next>, <rec>,                 ;
                      [<.rest.>], [<.descend.>] )
 
-#endif
 
 #include "dbinfo.ch"
 

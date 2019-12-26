@@ -52,10 +52,6 @@
 #include "inkey.ch"
 #include "setcurs.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-#ifdef HB_COMPAT_C53
 
 /* Standard Menu System Modal handling for Menu Items */
 FUNCTION MenuModal( oTopMenu, nSelection, nMsgRow, nMsgLeft, nMsgRight, cMsgColor, GetList )
@@ -160,4 +156,3 @@ FUNCTION IsQuick( oMenu, nKey, /* @ */ nID )
 
    RETURN .F.
 
-#endif

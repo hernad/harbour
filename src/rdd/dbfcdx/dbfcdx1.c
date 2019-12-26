@@ -7647,19 +7647,7 @@ static HB_ERRCODE hb_cdxOrderCreate( CDXAREAP pArea, LPDBORDERCREATEINFO pOrderI
       hb_cdxErrorRT( pArea, bType == 'U' ? EG_DATATYPE : EG_DATAWIDTH, EDBF_INVALIDKEY, NULL, 0, 0, NULL );
       return HB_FAILURE;
    }
-#if defined( HB_COMPAT_C53 ) && defined( HB_CLP_STRICT )
-   else if( bType == 'C' && uiLen > CDX_MAXKEY )
-   {
-      if( hb_cdxErrorRT( pArea, EG_DATAWIDTH, EDBF_INVALIDKEY, NULL, 0, EF_CANDEFAULT, NULL ) == E_DEFAULT )
-         uiLen = CDX_MAXKEY;
-      else
-      {
-         hb_vmDestroyBlockOrMacro( pKeyExp );
-         SELF_GOTO( &pArea->dbfarea.area, ulRecNo );
-         return HB_FAILURE;
-      }
-   }
-#endif
+
    if( pArea->dbfarea.area.lpdbOrdCondInfo )
    {
       fAscend = ! pArea->dbfarea.area.lpdbOrdCondInfo->fDescending;

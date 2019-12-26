@@ -75,11 +75,7 @@ FUNCTION __eInstVar52( oVar, cMethod, xValue, cType, nSubCode, xMin, xMax )
       oError:severity := ES_ERROR
       oError:cansubstitute := .T.
       oError:subsystem := oVar:className
-#ifdef HB_CLP_STRICT
-      HB_SYMBOL_UNUSED( cMethod )
-#else
       oError:operation := cMethod
-#endif
       oError:subcode := nSubCode
       oError:args := { xValue }
       xValue := Eval( ErrorBlock(), oError )

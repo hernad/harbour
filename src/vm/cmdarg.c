@@ -537,11 +537,7 @@ static char * hb_cmdargGet( const char * pszName, HB_BOOL bRetValue )
       if( pszEnvVar )
          hb_xfree( pszEnvVar );
 
-#ifdef HB_CLP_STRICT
-      pszEnvVar = hb_getenv( "CLIPPER" );
-#else
       pszEnvVar = NULL;
-#endif
    }
 
    if( pszEnvVar && pszEnvVar[ 0 ] != '\0' )
@@ -844,11 +840,7 @@ void hb_cmdargProcess( void )
 
       {
          char buffer[ 128 ];
-#if defined( HB_CLP_STRICT )
-         hb_snprintf( buffer, sizeof( buffer ), "DS avail=%" HB_PFS "uKB  OS avail=%" HB_PFS "uKB  EMM avail=%" HB_PFS "uKB", hb_xquery( HB_MEM_BLOCK ), hb_xquery( HB_MEM_VM ), hb_xquery( HB_MEM_EMS ) );
-#else
          hb_snprintf( buffer, sizeof( buffer ), "DS avail=%" HB_PFS "uKB  OS avail=%" HB_PFS "uKB  EMM avail=%" HB_PFS "uKB  MemStat:%s  MT:%s", hb_xquery( HB_MEM_BLOCK ), hb_xquery( HB_MEM_VM ), hb_xquery( HB_MEM_EMS ), hb_xquery( HB_MEM_USEDMAX ) ? "On" : "Off", hb_vmIsMt() ? "On" : "Off" );
-#endif
          hb_conOutErr( buffer, 0 );
          hb_conOutErr( hb_conNewLine(), 0 );
       }

@@ -109,13 +109,6 @@ HB_FUNC( STRZERO )
             hb_retc_null();
       }
       else
-#ifdef HB_CLP_STRICT
-         /* NOTE: In CA-Cl*pper StrZero() is written in Clipper, and will call
-                  Str() to do the job, the error (if any) will also be thrown
-                  by Str().  [vszakats] */
-         hb_errRT_BASE_SubstR( EG_ARG, 1099, NULL, "STR", HB_ERR_ARGS_BASEPARAMS );
-#else
          hb_errRT_BASE_SubstR( EG_ARG, 6003, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#endif
    }
 }

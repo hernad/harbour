@@ -54,11 +54,9 @@
    #include <unistd.h>
 #endif
 
-#ifdef HB_CLP_STRICT
-   #define BUFFER_SIZE  8192
-#else
-   #define BUFFER_SIZE  65536
-#endif
+
+#define BUFFER_SIZE  65536
+
 
 static HB_BOOL hb_copyfile( const char * pszSource, const char * pszDest )
 {

@@ -54,12 +54,8 @@
    It can be used in codeblocks, too. */
 #define HB_SYMBOL_UNUSED( symbol )  ( ( symbol ) )
 
-#ifdef HB_CLP_STRICT
-   #command END SEQUENCE      => end
-   #command ENDSEQUENCE       => end
-#else
-   #command END SEQUENCE      => endsequence
-#endif
+#command END SEQUENCE      => endsequence
+
 /* Harbour extensions */
 #command END SWITCH        => endswitch
 #command END WITH          => endwith
@@ -188,34 +184,34 @@
 #command SET KEY <n> [TO]              => SetKey( <n>, NIL )
 #command SET FUNCTION <n> [TO] [<f>]   => __SetFunction( <n>, <f> )
 
-#ifdef HB_COMPAT_C53
-   #command SET EVENTMASK TO <x>        => Set( _SET_EVENTMASK, <x> )
-   #command SET VIDEOMODE TO <x>        => Set( _SET_VIDEOMODE, <x> )
-   #command SET SCOPETOP TO             => ordScope( 0, nil )
-   #command SET SCOPETOP TO <x>         => ordScope( 0, <x> )
-   #command SET SCOPEBOTTOM TO          => ordScope( 1, nil )
-   #command SET SCOPEBOTTOM TO <x>      => ordScope( 1, <x> )
-   #command SET SCOPE TO                => ordScope( 0, nil ) ; ordScope( 1, nil )
-   #command SET SCOPE TO <x>, <y>       => ordScope( 0, <x> ) ; ordScope( 1, <y> )
-   #command SET SCOPE TO <x>            => ordScope( 0, <x> ) ; ordScope( 1, <x> )
-   #command SET SCOPE TO , <x>          => ordScope( 1, <x> )
-   #command SET ORDER TO                => ordSetFocus( 0 )
-   #command SET DESCENDING ON           => ordDescend( ,, .T. )
-   #command SET DESCENDING OFF          => ordDescend( ,, .F. )
-   #command SET AUTORDER TO             => Set( _SET_AUTORDER, 0 )
-   #command SET AUTORDER TO <x>         => Set( _SET_AUTORDER, <x> )
-   #command SET AUTOSHARE TO            => Set( _SET_AUTOSHARE, 0 )
-   #command SET AUTOSHARE TO <x>        => Set( _SET_AUTOSHARE, <x> )
-   #command SET MBLOCKSIZE TO <x>       => Set( _SET_MBLOCKSIZE, <x> )
-   #command SET MEMOBLOCK TO <x>        => Set( _SET_MBLOCKSIZE, <x> )
-   #command SET MFILEEXT TO <x>         => Set( _SET_MFILEEXT, <x> )
-   #command SET STRICTREAD <x:ON,OFF,&> => Set( _SET_STRICTREAD, <(x)> )
-   #command SET STRICTREAD (<x>)        => Set( _SET_STRICTREAD, <x> )
-   #command SET OPTIMIZE <x:ON,OFF,&>   => Set( _SET_OPTIMIZE, <(x)> )
-   #command SET OPTIMIZE (<x>)          => Set( _SET_OPTIMIZE, <x> )
-   #command SET AUTOPEN <x:ON,OFF,&>    => Set( _SET_AUTOPEN, <(x)> )
-   #command SET AUTOPEN (<x>)           => Set( _SET_AUTOPEN, <x> )
-#endif
+
+#command SET EVENTMASK TO <x>        => Set( _SET_EVENTMASK, <x> )
+#command SET VIDEOMODE TO <x>        => Set( _SET_VIDEOMODE, <x> )
+#command SET SCOPETOP TO             => ordScope( 0, nil )
+#command SET SCOPETOP TO <x>         => ordScope( 0, <x> )
+#command SET SCOPEBOTTOM TO          => ordScope( 1, nil )
+#command SET SCOPEBOTTOM TO <x>      => ordScope( 1, <x> )
+#command SET SCOPE TO                => ordScope( 0, nil ) ; ordScope( 1, nil )
+#command SET SCOPE TO <x>, <y>       => ordScope( 0, <x> ) ; ordScope( 1, <y> )
+#command SET SCOPE TO <x>            => ordScope( 0, <x> ) ; ordScope( 1, <x> )
+#command SET SCOPE TO , <x>          => ordScope( 1, <x> )
+#command SET ORDER TO                => ordSetFocus( 0 )
+#command SET DESCENDING ON           => ordDescend( ,, .T. )
+#command SET DESCENDING OFF          => ordDescend( ,, .F. )
+#command SET AUTORDER TO             => Set( _SET_AUTORDER, 0 )
+#command SET AUTORDER TO <x>         => Set( _SET_AUTORDER, <x> )
+#command SET AUTOSHARE TO            => Set( _SET_AUTOSHARE, 0 )
+#command SET AUTOSHARE TO <x>        => Set( _SET_AUTOSHARE, <x> )
+#command SET MBLOCKSIZE TO <x>       => Set( _SET_MBLOCKSIZE, <x> )
+#command SET MEMOBLOCK TO <x>        => Set( _SET_MBLOCKSIZE, <x> )
+#command SET MFILEEXT TO <x>         => Set( _SET_MFILEEXT, <x> )
+#command SET STRICTREAD <x:ON,OFF,&> => Set( _SET_STRICTREAD, <(x)> )
+#command SET STRICTREAD (<x>)        => Set( _SET_STRICTREAD, <x> )
+#command SET OPTIMIZE <x:ON,OFF,&>   => Set( _SET_OPTIMIZE, <(x)> )
+#command SET OPTIMIZE (<x>)          => Set( _SET_OPTIMIZE, <x> )
+#command SET AUTOPEN <x:ON,OFF,&>    => Set( _SET_AUTOPEN, <(x)> )
+#command SET AUTOPEN (<x>)           => Set( _SET_AUTOPEN, <x> )
+
 
 #command ?  [<explist,...>]         => QOut( <explist> )
 #command ?? [<explist,...>]         => QQOut( <explist> )
@@ -225,9 +221,8 @@
                                        text QOut, __TextRestore
 #command TEXT TO PRINTER            => __TextSave( "PRINTER" ) ;;
                                        text QOut, __TextRestore
-#ifdef HB_COMPAT_C53
-   #xcommand TEXTBLOCK <*cText*>    =>
-#endif
+
+#xcommand TEXTBLOCK <*cText*>    =>
 
 #command CLS                        => Scroll() ; SetPos( 0, 0 )
 #command CLEAR SCREEN               => CLS
@@ -345,13 +340,10 @@
 #command FIND := <xpr>           => ( find := <xpr> )
 #command FIND = <xpr>            => ( find := <xpr> )
 #command CONTINUE                => __dbContinue()
-#ifdef HB_COMPAT_C53
-   #command SEEK <exp> [<soft: SOFTSEEK>] [<last: LAST>] => ;
+
+#command SEEK <exp> [<soft: SOFTSEEK>] [<last: LAST>] => ;
             dbSeek( <exp>, iif( <.soft.>, .T., NIL ), iif( <.last.>, .T., NIL ) )
-#else
-   #command SEEK <exp> [<soft: SOFTSEEK>] => ;
-            dbSeek( <exp>, iif( <.soft.>, .T., NIL ) )
-#endif
+
 #command LOCATE [FOR <for>] [WHILE <while>] [NEXT <next>] ;
                 [RECORD <rec>] [<rest:REST>] [ALL] => ;
          __dbLocate( <{for}>, <{while}>, <next>, <rec>, <.rest.> )
@@ -566,7 +558,6 @@
 #command @ <row>, <col> GET <v> [<exp,...>] COLOR <clr> [<nextexp,...>] => ;
          @ <row>, <col> GET <v> [ <exp>] SEND colorDisp( <clr> ) [ <nextexp>]
 
-#ifdef HB_COMPAT_C53
 
    #command READ [MENU <oMenu>] ;
                  [MSG AT <row>, <left>, <right> [MSG COLOR <color>]] => ;
@@ -669,15 +660,7 @@
      [ ; ATail( GetList ):Control:Message := <msg>] ;
      [ ; ATail( GetList ):<snd>] [ ; ATail( GetList ):Control:<gsnd>]
 
-#else
 
-   #command @ <row>, <col> GET <v> [PICTURE <pic>] ;
-                           [VALID <valid>] [WHEN <when>] [SEND <snd>] => ;
-         SetPos( <row>, <col> ) ; AAdd( GetList, ;
-            _GET_( <v>, <"v">, <pic>, <{valid}>, <{when}> ):Display() ) ;
-      [; ATail( GetList ):<snd>]
-
-#endif /* HB_COMPAT_C53 */
 
 
 /* Harbour extensions */

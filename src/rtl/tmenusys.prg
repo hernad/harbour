@@ -57,7 +57,6 @@
 /* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
          it has all related variables and methods. */
 
-#ifdef HB_COMPAT_C53
 
 /* Some helper constants for the ReadStats() calls. */
 #define SNLASTEXIT      6
@@ -608,4 +607,3 @@ METHOD New( oMenu ) CLASS HBMenuSys
 
    RETURN Self
 
-#endif

@@ -52,10 +52,6 @@
 #include "color.ch"
 #include "inkey.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-#ifdef HB_COMPAT_C53
 
 CREATE CLASS TopBarMenu FUNCTION HBTopBarMenu
 
@@ -464,4 +460,3 @@ METHOD New( nRow, nLeft, nRight ) CLASS TopBarMenu
 FUNCTION TopBar( nRow, nLeft, nRight )
    RETURN HBTopBarMenu():New( nRow, nLeft, nRight )
 
-#endif

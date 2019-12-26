@@ -50,9 +50,6 @@
          original CA-Cl*pper namespace. This should have been marked as
          HB_EXTENSION, but it's not. */
 
-#ifdef HB_COMPAT_C53
-
 FUNCTION RadioButton( nRow, nCol, cCaption, cData )  /* NOTE: cData argument is undocumented */
    RETURN HBRadioButton():New( nRow, nCol, cCaption, cData )
 
-#endif

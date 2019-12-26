@@ -1447,32 +1447,20 @@ HB_BOOL hb_arrayCopy( PHB_ITEM pSrcArray, PHB_ITEM pDstArray, HB_SIZE * pnStart,
       else
          nTarget = 1;
 
-#ifdef HB_COMPAT_C53 /* From CA-Cl*pper 5.3a */
+
       if( nStart <= nSrcLen )
-#else
-      if( nSrcLen > 0 )
-#endif
       {
          HB_SIZE nCount;
-#ifndef HB_COMPAT_C53 /* From CA-Cl*pper 5.3a */
-         if( nStart > nSrcLen )
-            nStart = nSrcLen;
-#endif
+
          if( pnCount && ( *pnCount <= nSrcLen - nStart ) )
             nCount = *pnCount;
          else
             nCount = nSrcLen - nStart + 1;
 
-/* This is probably a bug, present in all versions of CA-Cl*pper. */
-#if defined( HB_CLP_STRICT ) || 1
          if( nDstLen > 0 )
          {
             if( nTarget > nDstLen )
                nTarget = nDstLen;
-#else
-         if( nTarget <= nDstLen )
-         {
-#endif
             if( pDstBaseArray->pItems + nTarget != pSrcBaseArray->pItems + nStart )
             {
                if( nCount > nDstLen - nTarget )

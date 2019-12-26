@@ -188,11 +188,7 @@ FUNCTION AChoice( nTop, nLeft, nBottom, nRight, acItems, xSelect, xUserFunc, nPo
             ENDIF
          ENDIF
 
-#ifdef HB_CLP_STRICT
-      CASE nKeyStd == K_UP
-#else
       CASE nKeyStd == K_UP .OR. nKeyStd == K_MWFORWARD
-#endif
 
          IF nPos == nFrstItem
             nMode := AC_HITTOP
@@ -226,12 +222,8 @@ FUNCTION AChoice( nTop, nLeft, nBottom, nRight, acItems, xSelect, xUserFunc, nPo
             ENDIF
          ENDIF
 
-#ifdef HB_CLP_STRICT
-      CASE nKeyStd == K_DOWN
-#else
       CASE nKeyStd == K_DOWN .OR. nKeyStd == K_MWBACKWARD
-#endif
-
+      
          // Find the next selectable item to display
          IF nPos == nLastItem
             nMode := AC_HITBOTTOM

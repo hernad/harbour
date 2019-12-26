@@ -141,15 +141,13 @@ FUNCTION Browse( nTop, nLeft, nBottom, nRight )
 
       SWITCH nKeyStd
 
-#ifdef HB_COMPAT_C53
+
       CASE K_LBUTTONDOWN
       CASE K_LDBLCLK
          TBMouse( oBrw, MRow(), MCol() )
          EXIT
-#endif
-#ifndef HB_CLP_STRICT
+
       CASE K_MWFORWARD
-#endif
       CASE K_UP
          IF lAppend
             lRefresh := .T.
@@ -158,9 +156,7 @@ FUNCTION Browse( nTop, nLeft, nBottom, nRight )
          ENDIF
          EXIT
 
-#ifndef HB_CLP_STRICT
       CASE K_MWBACKWARD
-#endif
       CASE K_DOWN
          IF lAppend
             oBrw:HitBottom := .T.

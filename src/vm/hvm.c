@@ -1206,7 +1206,6 @@ void hb_vmInit( HB_BOOL bStartMainProc )
             s_pSymStart = NULL;
 #endif
 
-#ifndef HB_CLP_STRICT
          if( bStartMainProc && ! s_pSymStart )
          {
             if( pszMain )
@@ -1214,7 +1213,6 @@ void hb_vmInit( HB_BOOL bStartMainProc )
             else
                hb_errInternal( HB_EI_VMNOSTARTUP, NULL, NULL, NULL );
          }
-#endif
       }
    }
 
@@ -3924,7 +3922,6 @@ static void hb_vmExactlyEqual( void )
       pItem1->type = HB_IT_LOGICAL;
       pItem1->item.asLogical.value = fResult;
    }
-#ifndef HB_CLP_STRICT
    else if( HB_IS_BLOCK( pItem1 ) && HB_IS_BLOCK( pItem2 ) )
    {
       HB_BOOL fResult = pItem1->item.asBlock.value == pItem2->item.asBlock.value;
@@ -3934,7 +3931,6 @@ static void hb_vmExactlyEqual( void )
       pItem1->type = HB_IT_LOGICAL;
       pItem1->item.asLogical.value = fResult;
    }
-#endif
    else if( HB_IS_SYMBOL( pItem1 ) && HB_IS_SYMBOL( pItem2 ) )
    {
       pItem1->item.asLogical.value =
@@ -5268,11 +5264,7 @@ static void hb_vmArrayPush( void )
                hb_objOperatorCall( HB_OO_OP_ARRAYINDEX, pArray, pArray, pIndex, NULL ) )
          hb_stackPop();
       else
-#ifdef HB_CLP_STRICT
-         hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ), 0 );
-#else
          hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ), 2, pArray, pIndex );
-#endif
    }
    else if( hb_objOperatorCall( HB_OO_OP_ARRAYINDEX, pArray, pArray, pIndex, NULL ) )
       hb_stackPop();
@@ -5364,11 +5356,7 @@ static void hb_vmArrayPushRef( void )
          return;
       }
       else
-#ifdef HB_CLP_STRICT
-         hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ), 0 );
-#else
          hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ), 2, pArray, pIndex );
-#endif
    }
    else if( hb_objHasOperator( pArray, HB_OO_OP_ARRAYINDEX ) )
    {
@@ -5465,11 +5453,7 @@ static void hb_vmArrayPop( void )
          hb_stackPop();
       }
       else
-#ifdef HB_CLP_STRICT
-         hb_errRT_BASE( EG_BOUND, 1133, NULL, hb_langDGetErrorDesc( EG_ARRASSIGN ), 0 );
-#else
          hb_errRT_BASE( EG_BOUND, 1133, NULL, hb_langDGetErrorDesc( EG_ARRASSIGN ), 1, pIndex );
-#endif
    }
    else if( hb_objOperatorCall( HB_OO_OP_ARRAYINDEX, pArray, pArray, pIndex, pValue ) )
    {
@@ -8867,28 +8851,9 @@ void hb_vmRequestBreak( PHB_ITEM pItem )
    }
    else
    {
-#ifdef HB_CLP_STRICT
-      /*
-       * do not execute EXIT procedures to be as close as possible
-       * buggy Clipper behavior. [druzus]
-       */
-      s_fDoExitProc = HB_FALSE;
-      hb_stackSetActionRequest( HB_QUIT_REQUESTED );
-#else
-      /*
-       * Clipper has a bug here. Tests shows that it set exception flag
-       * and then tries to execute EXIT procedures so the first one is
-       * immediately interrupted. Because Clipper does not check the
-       * exception flag often enough then it's possible to execute one
-       * function from first EXIT PROC. Using small trick with
-       * QOut( Type( cPrivateVar ) ) in the EXIT procedure (Type() is
-       * not normal function) we can also check that it tries to execute
-       * EXIT procedures exactly here before leave current function.
-       * So to be as close as possible the Clipper intentional behavior
-       * we execute hb_vmRequestQuit() here. [druzus]
-       */
+
       hb_vmRequestQuit();
-#endif
+
    }
 }
 
@@ -11574,12 +11539,8 @@ static void hb_vmArrayItemPush( HB_SIZE nIndex )
                                  hb_stackItemFromTop( -1 ), NULL ) )
             hb_stackPop();
          else
-#ifdef HB_CLP_STRICT
-            hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ), 0 );
-#else
             hb_errRT_BASE( EG_BOUND, 1132, NULL, hb_langDGetErrorDesc( EG_ARRACCESS ),
                            2, pArray, hb_stackItemFromTop( -1 ) );
-#endif
       }
    }
    else if( HB_IS_HASH( pArray ) )
@@ -11659,12 +11620,9 @@ static void hb_vmArrayItemPop( HB_SIZE nIndex )
             hb_stackPop();
          }
          else
-#ifdef HB_CLP_STRICT
-            hb_errRT_BASE( EG_BOUND, 1133, NULL, hb_langDGetErrorDesc( EG_ARRASSIGN ), 0 );
-#else
+
             hb_errRT_BASE( EG_BOUND, 1133, NULL, hb_langDGetErrorDesc( EG_ARRASSIGN ),
                            1, hb_stackItemFromTop( -1 ) );
-#endif
       }
    }
    else if( HB_IS_HASH( pArray ) )

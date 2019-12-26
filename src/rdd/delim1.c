@@ -315,12 +315,6 @@ static int hb_delimNextChar( DELIMAREAP pArea )
       if( ch != '\032' )
          return ch;
 
-      /* Cl*pper stops farther file processing when first EOF
-         character is read [druzus] */
-#ifdef HB_CLP_STRICT
-      pArea->nBufferRead = pArea->nBufferIndex = 0;
-      return -2;
-#endif
    }
 }
 
@@ -474,17 +468,6 @@ static HB_ERRCODE hb_delimGoTo( DELIMAREAP pArea, HB_ULONG ulRecNo )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_delimGoTo(%p, %lu)", ( void * ) pArea, ulRecNo ) );
 
-#ifndef HB_CLP_STRICT
-   if( pArea->fReadonly && ulRecNo >= pArea->ulRecNo )
-   {
-      while( pArea->ulRecNo < ulRecNo && pArea->fPositioned )
-      {
-         if( hb_delimNextRecord( pArea ) != HB_SUCCESS )
-            return HB_FAILURE;
-      }
-      return HB_SUCCESS;
-   }
-#endif
    /* generate RTE */
    return SUPER_GOTO( &pArea->area, ulRecNo );
 }
@@ -496,10 +479,6 @@ static HB_ERRCODE hb_delimGoToId( DELIMAREAP pArea, PHB_ITEM pItem )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_delimGoToId(%p, %p)", ( void * ) pArea, ( void * ) pItem ) );
 
-#ifndef HB_CLP_STRICT
-   if( HB_IS_NUMERIC( pItem ) )
-      return SELF_GOTO( &pArea->area, hb_itemGetNL( pItem ) );
-#endif
    /* generate RTE */
    return SUPER_GOTOID( &pArea->area, pItem );
 }
@@ -597,21 +576,8 @@ static HB_ERRCODE hb_delimRecId( DELIMAREAP pArea, PHB_ITEM pRecNo )
    HB_TRACE( HB_TR_DEBUG, ( "hb_delimRecId(%p,%p)", ( void * ) pArea, ( void * ) pRecNo ) );
 
    errCode = SELF_RECNO( &pArea->area, &ulRecNo );
-
-#ifdef HB_CLP_STRICT
-   /* this is for strict Clipper compatibility but IMHO Clipper should not
-      do that and always set fixed size independent to the record number */
-   if( ulRecNo < 10000000 )
-   {
-      hb_itemPutNLLen( pRecNo, ulRecNo, 7 );
-   }
-   else
-   {
-      hb_itemPutNLLen( pRecNo, ulRecNo, 10 );
-   }
-#else
    hb_itemPutNInt( pRecNo, ulRecNo );
-#endif
+
    return errCode;
 }
 
@@ -1056,7 +1022,6 @@ static HB_ERRCODE hb_delimInfo( DELIMAREAP pArea, HB_USHORT uiIndex, PHB_ITEM pI
                pArea->cDelim = '\0';
                pArea->cSeparator = ' ';
             }
-#ifndef HB_CLP_STRICT
             else if( hb_stricmp( szDelim, "PIPE" ) == 0 )
             {
                pArea->cDelim = '\0';
@@ -1068,9 +1033,6 @@ static HB_ERRCODE hb_delimInfo( DELIMAREAP pArea, HB_USHORT uiIndex, PHB_ITEM pI
                pArea->cSeparator = '\t';
             }
             else
-#else
-            else if( *szDelim )
-#endif
             {
                pArea->cDelim = *szDelim;
             }
@@ -1081,7 +1043,6 @@ static HB_ERRCODE hb_delimInfo( DELIMAREAP pArea, HB_USHORT uiIndex, PHB_ITEM pI
           * array. e.g.:
           *    COPY TO test DELIMITED WITH ({"", "|"})
           */
-#ifndef HB_CLP_STRICT
          else if( hb_itemType( pItem ) & HB_IT_ARRAY )
          {
             char cSeparator;
@@ -1093,7 +1054,6 @@ static HB_ERRCODE hb_delimInfo( DELIMAREAP pArea, HB_USHORT uiIndex, PHB_ITEM pI
             if( cSeparator )
                pArea->cSeparator = cSeparator;
          }
-#endif
          break;
 
       case DBI_SEPARATOR:

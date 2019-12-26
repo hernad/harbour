@@ -3731,19 +3731,12 @@ FUNCTION __dbgTextToArray( cString )
 FUNCTION __dbgValToStr( uVal )
 
    SWITCH ValType( uVal )
-#ifdef HB_CLP_STRICT
-   CASE "C"
-   CASE "M" ; RETURN '"' + uVal + '"'
-   CASE "D" ; RETURN DToC( uVal )
-   CASE "T" ; RETURN hb_TToC( uVal )
-   CASE "O" ; RETURN "{ ... }"
-#else
+
    CASE "C"
    CASE "M" ; RETURN hb_StrToExp( uVal )
    CASE "D" ; RETURN hb_BLeft( hb_TSToStr( uVal, .F. ), 10 )
    CASE "T" ; RETURN hb_TSToStr( uVal, .T. )
    CASE "O" ; RETURN "Class " + uVal:ClassName() + " object"
-#endif
    CASE "N" ; RETURN Str( uVal )
    CASE "L" ; RETURN iif( uVal, ".T.", ".F." )
    CASE "S" ; RETURN "@" + uVal:name + "()"
@@ -3763,19 +3756,11 @@ FUNCTION __dbgValToStr( uVal )
 FUNCTION __dbgValToExp( uVal )
 
    SWITCH ValType( uVal )
-#ifdef HB_CLP_STRICT
-   CASE "C"
-   CASE "M" ; RETURN '"' + uVal + '"'
-   CASE "D" ; RETURN 'CToD("' + DToC( uVal ) + '")'
-   CASE "T" ; RETURN 'hb_CToT("' + hb_TToC( uVal ) + '")'
-   CASE "O" ; RETURN "Object"
-#else
    CASE "C"
    CASE "M" ; RETURN hb_StrToExp( uVal )
    CASE "D" ; RETURN 'd"' + hb_BLeft( hb_TSToStr( uVal, .F. ), 10 ) + '"'
    CASE "T" ; RETURN 't"' + hb_TSToStr( uVal, .T. ) + '"'
    CASE "O" ; RETURN "{ " + uVal:className() + " Object }"
-#endif
    CASE "N" ; RETURN hb_ntos( uVal )
    CASE "L" ; RETURN iif( uVal, ".T.", ".F." )
    CASE "S" ; RETURN "@" + uVal:name + "()"

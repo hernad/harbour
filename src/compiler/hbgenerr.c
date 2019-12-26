@@ -45,7 +45,7 @@ const char * const hb_comp_szErrors[] =
    "%s statement with no loop in sight",
    "Syntax error '%s' in '%s'",
    "Incomplete statement or unbalanced delimiters",
-   "Incorrect number of arguments in %s %s",
+   "Incorrect number of arguments in %s %s",   // E0021
    "Invalid lvalue '%s'",
    "Invalid use of '@' (pass by reference) '%s'",
    "Formal parameters already declared",

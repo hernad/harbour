@@ -135,15 +135,11 @@ void hb_verBuildInfoCB( PHB_OUT_FUNC pOutFunc )
 #if defined( __cplusplus )
    ( pOutFunc )( " (C++ mode)", 0 );
 #endif
-#if ! defined( HB_COMPAT_C53 )
-   ( pOutFunc )( " (no Clipper 5.3b)", 0 );
-#endif
+
 #if ! defined( HB_CLP_UNDOC )
    ( pOutFunc )( " (no Clipper 5.x undoc)", 0 );
 #endif
-#if defined( HB_CLP_STRICT )
-   ( pOutFunc )( " (Clipper 5.x strict)", 0 );
-#endif
+
    ( pOutFunc )( hb_conNewLine(), 0 );
 
    ( pOutFunc )( "---------------------------", 0 );

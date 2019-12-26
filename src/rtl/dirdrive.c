@@ -63,9 +63,6 @@ HB_FUNC( HB_DIRDELETE )
       hb_retni( F_ERROR );
 }
 
-/* NOTE: Clipper 5.3 functions */
-
-#ifdef HB_COMPAT_C53
 
 HB_FUNC( DIRCHANGE )
 {
@@ -126,7 +123,5 @@ HB_FUNC( DISKNAME )
    hb_retc_null();
 #endif
 }
-
-#endif
 
 #endif

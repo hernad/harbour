@@ -7984,21 +7984,7 @@ static HB_ERRCODE hb_nsxOrderListFocus( NSXAREAP pArea, LPDBORDERINFO pOrderInfo
    {
       LPTAGINFO pTag = hb_nsxFindTag( pArea, pOrderInfo->itmOrder,
                                       pOrderInfo->atomBagName );
-      /*
-       * In Clipper 5.3 DBFCDX (COMIX) when bad name or order is given
-       * tag number is set to 0 (natural record order). CL52 RDDs and
-       * SIX3 drivers do not change order in such case.
-       * I'd like to keep the same behavior in all native [x]Harbour
-       * RDDs and I chosen DBFCDX one as default. [druzus]
-       */
-#ifdef HB_CLP_STRICT
-      if( pTag ||
-          ( HB_IS_NUMERIC( pOrderInfo->itmOrder ) &&
-            hb_itemGetNI( pOrderInfo->itmOrder ) == 0 ) ||
-          ( HB_IS_STRING( pOrderInfo->itmOrder ) &&
-            hb_itemGetCLen( pOrderInfo->itmOrder ) == 0 ) )
-#endif
-         pArea->lpCurTag = pTag;
+      pArea->lpCurTag = pTag;
    }
 
    return HB_SUCCESS;

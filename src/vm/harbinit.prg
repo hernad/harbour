@@ -48,21 +48,6 @@
 
 ANNOUNCE SYSINIT
 
-#ifdef HB_CLP_STRICT
-
-/* NOTE: For complete compatibility */
-PROCEDURE CLIPPER520()
-   RETURN
-
-#ifdef HB_COMPAT_C53
-
-/* NOTE: For complete compatibility */
-PROCEDURE CLIPPER530()
-   RETURN
-
-#endif
-
-#endif
 
 /* This functions is called when new HVM stack is created at application
  * startup or in MT mode when new HVM thread is registered to initialize

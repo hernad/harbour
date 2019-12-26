@@ -527,7 +527,7 @@ double hb_numInt( double dNum )
 {
    double dInt;
 
-#if defined( HB_DBLFL_PREC_FACTOR ) && ! defined( HB_CLP_STRICT )
+#if defined( HB_DBLFL_PREC_FACTOR )
    /* Similar hack as in round to make this functions compatible */
    dNum *= HB_DBLFL_PREC_FACTOR;
 #endif

@@ -55,59 +55,8 @@ REQUEST Delim
 
 FUNCTION __dbDelim( lExport, cFile, cDelimArg, aFields, bFor, bWhile, nNext, nRecord, lRest, cCodePage )
 
-#ifdef HB_CLP_STRICT
-
-   LOCAL nSrcArea
-   LOCAL nDstArea
-   LOCAL aStruct
-   LOCAL cRDD := "DELIM"
-
-   IF lExport
-      nSrcArea := Select()
-   ELSE
-      nDstArea := Select()
-   ENDIF
-
-   IF Empty( aStruct := __dbStructFilter( dbStruct(), aFields ) )
-      RETURN .F.
-   ENDIF
-
-   IF lExport
-      dbCreate( cFile, aStruct, cRDD, .T., "", cDelimArg )
-      nDstArea := Select()
-      IF nDstArea == nSrcArea
-         nDstArea := NIL
-      ENDIF
-      dbSelectArea( nSrcArea )
-   ELSE
-      IF ! __dbOpenSDF( cFile, aStruct, cRDD, .T., "", cDelimArg )
-         RETURN .F.
-      ENDIF
-      nSrcArea := Select()
-   ENDIF
-
-   IF nDstArea != NIL
-      __dbTrans( nDstArea, aStruct, bFor, bWhile, nNext, nRecord, lRest )
-   ENDIF
-
-   IF lExport
-      IF nDstArea != NIL
-         dbSelectArea( nDstArea )
-         dbCloseArea()
-      ENDIF
-      dbSelectArea( nSrcArea )
-   ELSE
-      dbSelectArea( nSrcArea )
-      dbCloseArea()
-      dbSelectArea( nDstArea )
-   ENDIF
-
-   RETURN .T.
-
-#else
 
    RETURN iif( lExport, ;
       __dbCopy( cFile, aFields, bFor, bWhile, nNext, nRecord, lRest, "DELIM",, cCodePage, cDelimArg ), ;
       __dbApp( cFile, aFields, bFor, bWhile, nNext, nRecord, lRest, "DELIM",, cCodePage, cDelimArg ) )
 
-#endif

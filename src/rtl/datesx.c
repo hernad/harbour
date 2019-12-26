@@ -58,7 +58,6 @@
          source file to avoid linking errors when a 3rd party
          library would also define this function. [vszakats] */
 
-#ifndef HB_CLP_STRICT
 
 HB_FUNC( STOD )
 {
@@ -67,4 +66,3 @@ HB_FUNC( STOD )
    hb_retds( hb_itemGetCLen( pDateString ) >= 7 ? hb_itemGetCPtr( pDateString ) : NULL );
 }
 
-#endif

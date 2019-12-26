@@ -45,7 +45,6 @@
  *
  */
 
-#ifdef HB_COMPAT_C53
 
 #include "inkey.ch"
 
@@ -54,9 +53,7 @@
 #define SXREADVAR       9
 
 FUNCTION ReadModal( GetList, nPos, oMenu, nMsgRow, nMsgLeft, nMsgRight, cMsgColor )
-#else
-FUNCTION ReadModal( GetList )
-#endif
+
 
    LOCAL oGetList
    LOCAL oSaveGetList
@@ -69,33 +66,22 @@ FUNCTION ReadModal( GetList )
    oGetList := HBGetList():New( GetList )
 
    oSaveGetList := __GetListActive()
-#ifdef HB_COMPAT_C53
-// oSaveGetList:ReadStats( SLUPDATED, .F. )
-// oSaveGetList:ReadStats( SXREADVAR, ReadVar( "" ) )
-// oSaveGetList:ReadStats( SOACTIVEGET, GetActive( NIL ) )
-#endif
+
 
    __GetListSetActive( oGetList )
    __GetListLast( oGetList )
 
-#ifdef HB_COMPAT_C53
    oGetList:ReadModal( nPos, oMenu, nMsgRow, nMsgLeft, nMsgRight, cMsgColor )
-#else
-   oGetList:ReadModal()
-#endif
+
 
    __GetListSetActive( oSaveGetList )
-#ifdef HB_COMPAT_C53
-// oSaveGetList:ReadStats( SLUPDATED, oGetList:Updated() )
-// ReadVar( oSaveGetList:ReadStats( SXREADVAR ) )
-// GetActive( oSaveGetList:ReadStats( SOACTIVEGET ) )
-#endif
+
 
    SetPos( MaxRow() - 1, 0 )
 
    RETURN oGetList:Updated()
 
-#ifdef HB_COMPAT_C53
+
 PROCEDURE GetReader( oGet, oGetList, oMenu, aMsg )
 
    HB_SYMBOL_UNUSED( oGetList )
@@ -103,13 +89,7 @@ PROCEDURE GetReader( oGet, oGetList, oMenu, aMsg )
    oGet:Reader( oMenu, aMsg )
 
    RETURN
-#else
-PROCEDURE GetReader( oGet )
 
-   oGet:Reader()
-
-   RETURN
-#endif
 
 FUNCTION GetActive( oGet )
 
@@ -151,59 +131,42 @@ PROCEDURE GetDoSetKey( bKeyBlock, oGet )
 
    RETURN
 
-#ifdef HB_COMPAT_C53
+
 PROCEDURE GetApplyKey( oGet, nKey, oGetList, oMenu, aMsg )
 
    IF ! HB_ISOBJECT( oGetList )
       oGetList := __GetListActive()
    ENDIF
-#else
-PROCEDURE GetApplyKey( oGet, nKey )
 
-   LOCAL oGetList := __GetListActive()
-#endif
 
    IF oGetList != NIL
-#ifdef HB_COMPAT_C53
+
       oGetList:GetApplyKey( nKey, oGet, oMenu, aMsg )
-#else
-      oGetList:GetApplyKey( nKey, oGet )
-#endif
    ENDIF
 
    RETURN
 
-#ifdef HB_COMPAT_C53
+
 FUNCTION GetPreValidate( oGet, aMsg )
-#else
-FUNCTION GetPreValidate( oGet )
-#endif
+
    LOCAL oGetList := __GetListActive()
 
    IF oGetList != NIL
-#ifdef HB_COMPAT_C53
       RETURN oGetList:GetPreValidate( oGet, aMsg )
-#else
-      RETURN oGetList:GetPreValidate( oGet )
-#endif
+
    ENDIF
 
    RETURN .F.
 
-#ifdef HB_COMPAT_C53
+
 FUNCTION GetPostValidate( oGet, aMsg )
-#else
-FUNCTION GetPostValidate( oGet )
-#endif
+
 
    LOCAL oGetList := __GetListActive()
 
    IF oGetList != NIL
-#ifdef HB_COMPAT_C53
       RETURN oGetList:GetPostValidate( oGet, aMsg )
-#else
-      RETURN oGetList:GetPostValidate( oGet )
-#endif
+
    ENDIF
 
    RETURN .F.

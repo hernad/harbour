@@ -334,10 +334,6 @@ STATIC FUNCTION DbfInfo()
       CASE "M"
          cValue := xValue
          EXIT
-#ifdef HB_CLP_STRICT
-      CASE "L"
-         cValue := iif( xValue, "T", "F" )
-#endif
       OTHERWISE
          cValue := __dbgValToStr( xValue )
       ENDSWITCH

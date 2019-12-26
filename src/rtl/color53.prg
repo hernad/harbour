@@ -46,8 +46,6 @@
 
 #pragma -gc0
 
-#ifdef HB_COMPAT_C53
-
 FUNCTION GetClrPair( cColor, nColor )
 
    LOCAL nPos
@@ -213,5 +211,3 @@ FUNCTION ApplyDefau( cColor, xClr1, xClr2, xClr3, xClr4, xClr5, xClr6, xClr7, xC
    NEXT
 
    RETURN cClrDefa
-
-#endif

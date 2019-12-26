@@ -52,8 +52,6 @@
 
 /* NOTE: You can fine-tune here, which Cl*pper features you want to include. */
 
-/* #define HB_CLP_STRICT */       /* Enable Cl*pper 5.2e/5.3b strict compatibility */
 #define HB_CLP_UNDOC              /* Enable Cl*pper 5.2e/5.3b undocumented features */
-#define HB_COMPAT_C53             /* Enable Cl*pper 5.3b extensions */
 
 #endif /* HB_SETUP_CH_ */

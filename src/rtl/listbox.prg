@@ -54,15 +54,6 @@
 #include "inkey.ch"
 #include "setcurs.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-/* NOTE: CA-Cl*pper 5.3 uses a mixture of QQOut(), DevOut(), Disp*()
-         functions to generate screen output. Harbour uses Disp*()
-         functions only. [vszakats] */
-
-#ifdef HB_COMPAT_C53
-
 #define _ITEM_cText         1
 #define _ITEM_xData         2
 
@@ -313,12 +304,9 @@ METHOD findText( cText, nPos, lCaseSensitive, lExact ) CLASS ListBox
    LOCAL nPosFound
    LOCAL bSearch
 
-#ifndef HB_CLP_STRICT
-   /* NOTE: Cl*pper will RTE if passed a non-string cText */
    IF ! HB_ISSTRING( cText )
       RETURN 0
    ENDIF
-#endif
 
    hb_default( @nPos, 1 )
    hb_default( @lCaseSensitive, .T. )
@@ -1109,11 +1097,7 @@ FUNCTION _ListBox_( nTop, nLeft, nBottom, nRight, xPos, aItems, cCaption, ;
             o:addItem( xItem )
          CASE Len( xItem ) == _ITEM_cText
             o:addItem( xItem[ _ITEM_cText ] )
-#ifdef HB_CLP_STRICT
-         OTHERWISE  /* Cl*pper will RTE on empty subarray */
-#else
          CASE Len( xItem ) >= _ITEM_xData
-#endif
             o:addItem( xItem[ _ITEM_cText ], xItem[ _ITEM_xData ] )
          ENDCASE
       NEXT
@@ -1133,5 +1117,3 @@ FUNCTION _ListBox_( nTop, nLeft, nBottom, nRight, xPos, aItems, cCaption, ;
    ENDIF
 
    RETURN o
-
-#endif

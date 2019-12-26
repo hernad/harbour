@@ -157,14 +157,5 @@ HB_FUNC( ALLTRIM )
          hb_retclen( szText, nLen );
    }
    else
-#ifdef HB_COMPAT_C53
-      /* NOTE: This runtime error appeared in CA-Cl*pper 5.3 [vszakats] */
-#ifdef HB_CLP_STRICT
-      hb_errRT_BASE_SubstR( EG_ARG, 2022, NULL, HB_ERR_FUNCNAME, 0 );
-#else
-      hb_errRT_BASE_SubstR( EG_ARG, 2022, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-#endif
-#else
       hb_retc_null();
-#endif
 }

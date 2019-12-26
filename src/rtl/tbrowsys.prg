@@ -46,7 +46,6 @@
 
 #pragma -gc0
 
-#ifdef HB_COMPAT_C53
 
 #include "button.ch"
 #include "tbrowse.ch"
@@ -96,4 +95,3 @@ PROCEDURE TBSBlock() /* TODO */
 PROCEDURE TBSkip() /* TODO */
    RETURN
 
-#endif

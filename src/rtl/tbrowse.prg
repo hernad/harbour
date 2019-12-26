@@ -108,7 +108,6 @@ CREATE CLASS TBrowse
  * so also some code which access them directly by array indexes should work
  */
 
-   /* === Start of CA-Cl*pper compatible TBrowse instance area === */
    VAR cargo      AS USUAL          EXPORTED    // 01. User-definable variable
 
    PROTECTED:
@@ -132,17 +131,15 @@ CREATE CLASS TBrowse
 
    VAR dummy                   INIT ""          // 14. ??? In Clipper it's character variable with internal C level structure containing browse data
 
-#ifdef HB_COMPAT_C53
    VAR cBorder    AS CHARACTER                  // 15. character value defining characters drawn around object
    VAR cMessage                                 // 16. character string displayed on status bar
    VAR keys       AS ARRAY                      // 17. array with SetKey() method values
    VAR styles     AS ARRAY                      // 18. array with SetStyle() method values
-#endif
-   /* === End of CA-Cl*pper compatible TBrowse instance area === */
+
 
    EXPORTED:
 
-#ifdef HB_COMPAT_C53
+
 #ifdef HB_BRW_STATICMOUSE
    VAR mRowPos    AS INTEGER INIT 0             // numeric value indicating the data row of the mouse position
    VAR mColPos    AS INTEGER INIT 0             // numeric value indicating the data column of the mouse position
@@ -159,7 +156,6 @@ CREATE CLASS TBrowse
    METHOD nCol SETGET                           // screen column number for the actual cell
    METHOD border( cBorder ) SETGET              // get/set character value used for TBrowse are border
    METHOD message( cMessage ) SETGET            // get/set character string displayed on status bar
-#endif
 
    METHOD nTop( nTop ) SETGET                   // get/set top row number for the TBrowse display
    METHOD nLeft( nLeft ) SETGET                 // get/set leftmost column for the TBrowse display
@@ -504,12 +500,7 @@ METHOD dispRow( nRow ) CLASS TBrowse
                hb_DispOutAt( nRowPos, nColPos, ;
                              hb_ULeft( cValue, ::n_Right - nColPos + 1 ), cColor )
             ELSE
-#ifdef HB_CLP_STRICT
-               hb_DispOutAt( nRowPos, nColPos, ;
-                             hb_ULeft( cValue, aCol[ _TBCI_COLWIDTH ] - aCol[ _TBCI_CELLPOS ] ), cColor )
-#else
                hb_DispOutAt( nRowPos, nColPos, cValue, cColor )
-#endif
             ENDIF
          ENDIF
       NEXT
@@ -1365,20 +1356,6 @@ METHOD doConfigure() CLASS TBrowse
                aCol[ _TBCI_CELLPOS ] := Int( ( aCol[ _TBCI_COLWIDTH ] - aCol[ _TBCI_CELLWIDTH ] ) / 2 )
             ENDIF
          ENDIF
-#ifdef HB_CLP_STRICT
-         /* This is bug in CA-Cl*pper TBrowse. It causes that column
-          * is not well centered when picture increase the field size
-          * it also has other bad side effects in Clipper. :hiLite()
-          * method does not check for the cell size and shows the whole
-          * formatted string starting from the middle of column. When
-          * string is long enough it causes buffer overflow and other
-          * TBrowse data becomes corrupted. I do not want to replicate
-          * it. [druzus]
-          */
-         IF cType == "L"
-            aCol[ _TBCI_CELLPOS ] := Int( aCol[ _TBCI_COLWIDTH ] / 2 )
-         ENDIF
-#endif
       ENDIF
    NEXT
 
@@ -2138,16 +2115,12 @@ METHOD delColumn( nColumn ) CLASS TBrowse
 
    LOCAL oCol
 
-   /* NOTE: CA-Cl*pper doesn't check the parameters. */
-#ifndef HB_CLP_STRICT
+
    IF nColumn >= 1 .AND. nColumn <= ::colCount
-#endif
       oCol := ::columns[ nColumn ]
       hb_ADel( ::columns, nColumn, .T. )
       ::configure( _TBR_CONF_COLUMNS )
-#ifndef HB_CLP_STRICT
    ENDIF
-#endif
 
    RETURN oCol
 
@@ -2155,15 +2128,10 @@ METHOD delColumn( nColumn ) CLASS TBrowse
 /* Insert a column object in a browse */
 METHOD insColumn( nColumn, oCol ) CLASS TBrowse
 
-   /* NOTE: CA-Cl*pper doesn't check the parameters. */
-#ifndef HB_CLP_STRICT
    IF nColumn >= 1 .AND. nColumn <= ::colCount + 1
-#endif
       hb_AIns( ::columns, nColumn, oCol, .T. )
       ::configure( _TBR_CONF_COLUMNS )
-#ifndef HB_CLP_STRICT
    ENDIF
-#endif
 
    RETURN oCol
 
@@ -2181,35 +2149,21 @@ METHOD setColumn( nColumn, oCol ) CLASS TBrowse
       /* NOTE: CA-Cl*pper doesn't check nColumn range (and type in C5.3 - I didn't implement this behaviour),
                but crashes instead. */
 
-#ifndef HB_CLP_STRICT
       IF nColumn >= 1 .AND. nColumn <= ::colCount
-#endif
          oPrevCol := ::columns[ nColumn ]
          ::columns[ nColumn ] := oCol
          ::configure( _TBR_CONF_COLUMNS )
-#ifndef HB_CLP_STRICT
       ENDIF
-#endif
    ENDIF
 
-   /* NOTE: CA-Cl*pper 5.2 NG says this will return the previously set
-            column, but it's returning Self instead. In C5.3 this bug
-            was fixed and it works as expected (except when wrong
-            parameter is passed, when it returns NIL). [vszakats] */
-#ifdef HB_CLP_STRICT
-   RETURN Self
-#else
    RETURN oPrevCol
-#endif
 
 
 /* Gets a specific TBColumn object */
 METHOD getColumn( nColumn ) CLASS TBrowse
-#ifdef HB_CLP_STRICT
-   RETURN ::columns[ nColumn ]
-#else
+
    RETURN iif( nColumn >= 1 .AND. nColumn <= ::colCount, ::columns[ nColumn ], NIL )
-#endif
+
 
 
 METHOD footSep( cFootSep ) CLASS TBrowse
@@ -2270,22 +2224,17 @@ METHOD goBottomBlock( bBlock ) CLASS TBrowse
 METHOD nTop( nTop ) CLASS TBrowse
 
    IF nTop != NIL
-#ifdef HB_COMPAT_C53
+
       ::n_Top := __eInstVar53( Self, "NTOP", nTop, "N", 1001 )
       IF ! Empty( ::cBorder )
          ::n_Top++
       ENDIF
-#else
-      ::n_Top := __eInstVar53( Self, "NTOP", nTop, "N", 1001, {| o, x | HB_SYMBOL_UNUSED( o ), x >= 0 } )
-#endif
       ::configure( _TBR_CONF_COLUMNS )
    ENDIF
 
-#ifdef HB_COMPAT_C53
    IF ! Empty( ::cBorder )
       RETURN ::n_Top - 1
    ENDIF
-#endif
 
    RETURN ::n_Top
 
@@ -2293,22 +2242,16 @@ METHOD nTop( nTop ) CLASS TBrowse
 METHOD nLeft( nLeft ) CLASS TBrowse
 
    IF nLeft != NIL
-#ifdef HB_COMPAT_C53
       ::n_Left := __eInstVar53( Self, "NLEFT", nLeft, "N", 1001 )
       IF ! Empty( ::cBorder )
          ::n_Left++
       ENDIF
-#else
-      ::n_Left := __eInstVar53( Self, "NLEFT", nLeft, "N", 1001, {| o, x | HB_SYMBOL_UNUSED( o ), x >= 0 } )
-#endif
       ::configure( _TBR_CONF_COLUMNS )
    ENDIF
 
-#ifdef HB_COMPAT_C53
    IF ! Empty( ::cBorder )
       RETURN ::n_Left - 1
    ENDIF
-#endif
 
    RETURN ::n_Left
 
@@ -2317,19 +2260,15 @@ METHOD nBottom( nBottom ) CLASS TBrowse
 
    IF nBottom != NIL
       ::n_Bottom := __eInstVar53( Self, "NBOTTOM", nBottom, "N", 1001, {| o, x | x >= o:nTop } )
-#ifdef HB_COMPAT_C53
       IF ! Empty( ::cBorder )
          ::n_Bottom--
       ENDIF
-#endif
       ::configure( _TBR_CONF_COLUMNS )
    ENDIF
 
-#ifdef HB_COMPAT_C53
    IF ! Empty( ::cBorder )
       RETURN ::n_Bottom + 1
    ENDIF
-#endif
 
    RETURN ::n_Bottom
 
@@ -2338,23 +2277,19 @@ METHOD nRight( nRight ) CLASS TBrowse
 
    IF nRight != NIL
       ::n_Right := __eInstVar53( Self, "NRIGHT", nRight, "N", 1001, {| o, x | x >= o:nLeft } )
-#ifdef HB_COMPAT_C53
       IF ! Empty( ::cBorder )
          ::n_Right--
       ENDIF
-#endif
       ::configure( _TBR_CONF_COLUMNS )
    ENDIF
 
-#ifdef HB_COMPAT_C53
    IF ! Empty( ::cBorder )
       RETURN ::n_Right + 1
    ENDIF
-#endif
 
    RETURN ::n_Right
 
-#ifdef HB_COMPAT_C53
+
 METHOD nRow() CLASS TBrowse
 
    IF ::nConfigure != 0
@@ -2639,10 +2574,8 @@ METHOD setKey( nKey, bBlock ) CLASS TBrowse
          { K_ESC        , {|   |               TBR_EXIT       } }, ;
          { K_LBUTTONDOWN, {| o | TBMouse( o, MRow(), MCol() ) } } }
 
-      #ifndef HB_CLP_STRICT
          AAdd( ::keys, { K_MWFORWARD  , {| o | o:Up()      , TBR_CONTINUE   } } )
          AAdd( ::keys, { K_MWBACKWARD , {| o | o:Down()    , TBR_CONTINUE   } } )
-      #endif
    ENDIF
 
    IF ( nPos := AScan( ::keys, {| x | x[ _TBC_SETKEY_KEY ] == nKey } ) ) == 0
@@ -2719,4 +2652,3 @@ FUNCTION TBMouse( oBrw, nMRow, nMCol )
    ENDIF
 
    RETURN TBR_EXCEPTION
-#endif

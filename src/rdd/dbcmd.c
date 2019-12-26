@@ -324,9 +324,6 @@ HB_FUNC( DBCREATE )
     * level, [druzus]
     */
    if( ! pStruct ||
-#ifdef HB_CLP_STRICT
-       hb_arrayLen( pStruct ) == 0 ||
-#endif
        ! szFileName )
    {
       hb_errRT_DBCMD( EG_ARG, EDBCMD_DBCMDBADPARAMETER, NULL, HB_ERR_FUNCNAME );
@@ -380,11 +377,7 @@ HB_FUNC( HB_DBCREATETEMP )
     * if some RDD wants to block it then they should serve it in lower
     * level, [druzus]
     */
-   if( ! szAlias || ! pStruct
-#ifdef HB_CLP_STRICT
-       || hb_arrayLen( pStruct ) == 0
-#endif
-       )
+   if( ! szAlias || ! pStruct )
    {
       hb_errRT_DBCMD( EG_ARG, EDBCMD_DBCMDBADPARAMETER, NULL, HB_ERR_FUNCNAME );
       return;
@@ -1655,13 +1648,11 @@ HB_FUNC( SELECT )
 
       if( szAlias )
       {
-#if defined( HB_CLP_STRICT ) || 1
          /*
           * I do not like this Clipper behavior, in some constructions
           * programmer may use "<aliasNum>" in some others not. [Druzus]
           */
          if( hb_rddVerifyAliasName( szAlias ) == HB_SUCCESS )
-#endif
             hb_rddGetAliasNumber( szAlias, &iArea );
       }
       hb_retni( iArea );
@@ -2297,7 +2288,6 @@ HB_FUNC( HB_WAEVAL )
       hb_errRT_DBCMD( EG_ARG, EDBCMD_USE_BADPARAMETER, NULL, HB_ERR_FUNCNAME );
 }
 
-#ifndef HB_CLP_STRICT
 
 HB_FUNC( __DBSKIPPER )
 {
@@ -2326,11 +2316,7 @@ HB_FUNC( __DBSKIPPER )
              * the condition: ulRecNo != ulRecords + 1 can be true also for
              * normal records not only for the phantom EOF record. [druzus]
              */
-#if 0
-            HB_ULONG ulRecNo = 0;
-            if( SELF_RECNO( pArea, &ulRecNo ) == HB_SUCCESS &&
-                ulRecNo != ulRecords + 1 )
-#endif
+
             {
                while( lSkipped < lRecs )
                {
@@ -2367,4 +2353,3 @@ HB_FUNC( __DBSKIPPER )
       hb_errRT_DBCMD( EG_NOTABLE, EDBCMD_NOTABLE, NULL, HB_ERR_FUNCNAME );
 }
 
-#endif

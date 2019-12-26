@@ -53,8 +53,6 @@
 #include "hbvm.h"
 #include "hbset.h"
 
-#ifdef HB_COMPAT_C53
-
 HB_FUNC( ORDKEYCOUNT )
 {
    AREAP pArea = ( AREAP ) hb_rddGetCurrentWorkAreaPointer();
@@ -456,5 +454,3 @@ HB_FUNC( DBFILEPUT )
    else
       hb_errRT_DBCMD( EG_NOTABLE, EDBCMD_NOTABLE, NULL, HB_ERR_FUNCNAME );
 }
-
-#endif

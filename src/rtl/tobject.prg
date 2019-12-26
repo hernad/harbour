@@ -61,9 +61,8 @@ FUNCTION HBObject()
 
          oClass := HBClass():New( "HBObject",, @HBObject() )
 
-#ifndef HB_CLP_STRICT
          oClass:AddInline( "ISDERIVEDFROM"   , {| Self, xPar1 | __objDerivedFrom( Self, xPar1 ) }, HB_OO_CLSTP_EXPORTED ) /* Xbase++ compatibility */
-#endif
+
          /* Class(y) */
          oClass:AddInline( "ISKINDOF"        , {| Self, xPar1 | __objDerivedFrom( Self, xPar1 ) }, HB_OO_CLSTP_EXPORTED )
 
@@ -76,40 +75,6 @@ FUNCTION HBObject()
 
          oClass:AddInline( "MSGNOTFOUND"     , {| Self, cMsg | ::Error( "Message not found", ::className(), cMsg, iif( hb_LeftEq( cMsg, "_" ), 1005, 1004 ) ) }, HB_OO_CLSTP_EXPORTED )
 
-#if 0
-         oClass:AddMultiData( , , HB_OO_CLSTP_EXPORTED, { "CLASS" }, .F. )
-
-         oClass:AddInline( "ADDMETHOD" , {| Self, cMeth, pFunc, nScopeMeth         | __clsAddMsg( __classH( Self ), cMeth, pFunc, HB_OO_MSG_METHOD, , iif( nScopeMeth == NIL, 1, nScopeMeth ) ) }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "ADDVAR"    , {| Self, cVAR, nScopeMeth, uiData, hClass | __clsAddMsg( hClass := __classH( Self ),       cVar , uidata := __cls_IncData( hClass ), HB_OO_MSG_ACCESS, , iif( nScopeMeth == NIL, 1, nScopeMeth ) )  , ;
-                                                                                     __clsAddMsg( hClass                    , "_" + cVar , uiData                           , HB_OO_MSG_ASSIGN, , iif( nScopeMeth == NIL, 1, nScopeMeth ) ) }, HB_OO_CLSTP_EXPORTED )
-
-         /* These ones exist within Class(y), so we will probably try to implement it */
-
-         oClass:AddInline( "asString"       , {| Self | ::class:name + " object"   }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "asExpStr"       , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "basicSize"      , {| Self | Len( Self )                }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "become"         , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "isEqual"        , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "isScalar"       , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "copy"           , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "deepCopy"       , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-
-         oClass:AddInline( "deferred"       , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-
-         oClass:AddInline( "exec"           , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "error"          , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "hash"           , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "null"           , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "size"           , {| Self | Len( Self )                }, HB_OO_CLSTP_EXPORTED )
-
-         /* No idea when those two could occur !!? */
-         oClass:AddInline( "wrongClass"     , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-         oClass:AddInline( "badMethod"      , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-
-         /* this one exist within VO and seem to be Auto Called when object ran out of scope */
-         oClass:AddInline( "Axit"           , {| Self |                            }, HB_OO_CLSTP_EXPORTED )
-#endif
-
          oClass:Create()
 
       ALWAYS
@@ -120,12 +85,6 @@ FUNCTION HBObject()
 
    ENDIF
 
-#if 0
-   oInstance := s_oClass:Instance()
-   oInstance:class := s_oClass
-
-   RETURN oInstance
-#endif
 
    RETURN s_oClass:Instance()
 

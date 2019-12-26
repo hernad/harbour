@@ -7610,14 +7610,7 @@ static HB_ERRCODE hb_ntxOrderListFocus( NTXAREAP pArea, LPDBORDERINFO pOrderInfo
        * but not in DBFCDX. I'd like to keep the same behavior in
        * [x]Harbour RDDs and I chosen DBFCDX one as default. [druzus]
        */
-#ifdef HB_CLP_STRICT
-      if( pTag ||
-          ( HB_IS_NUMERIC( pOrderInfo->itmOrder ) &&
-            hb_itemGetNI( pOrderInfo->itmOrder ) == 0 ) ||
-          ( HB_IS_STRING( pOrderInfo->itmOrder ) &&
-            hb_itemGetCLen( pOrderInfo->itmOrder ) == 0 ) )
-#endif
-         pArea->lpCurTag = pTag;
+      pArea->lpCurTag = pTag;
    }
 
    return HB_SUCCESS;

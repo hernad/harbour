@@ -1,0 +1,85 @@
+HB_COMP_ERR_EXIT_IN_SEQUENCE
+
+if( pLast->wSeqCounter != pFunc->wSeqCounter )
+{
+         /* Attempt to LOOP from BEGIN/END sequence
+          * Current SEQUENCE counter is different then at the beginning of loop
+          * Notice that LOOP is allowed in RECOVER code when there is no
+          * ALWAYS block
+          */
+         hb_compGenError( HB_COMP_PARAM, hb_comp_szErrors, 'E', HB_COMP_ERR_EXIT_IN_SEQUENCE, "LOOP", NULL );
+}
+
+
+hberrors.h
+==============================================================
+
+#define HB_COMP_ERR_CHECKING_ARGS               21
+
+
+src/compiler/hbgenerr.c
+===============================================================
+
+const char * const hb_comp_szErrors[] =
+{
+   "Statement not allowed outside of procedure or function",
+   "Redefinition of procedure or function '%s'",
+   "Duplicate variable declaration '%s'",
+   "%s declaration follows executable statement",
+   "Outer codeblock variable '%s' is out of reach",
+   "Invalid numeric format '.'",
+   "Unterminated string '%s'",
+   "Redefinition of predefined function %s as '%s'",
+   "Illegal variable '%s' initializer '%s'",
+   "ENDIF does not match IF",
+   "ENDDO does not match WHILE",
+   "ENDCASE does not match DO CASE",
+   "NEXT does not match FOR",
+   "ELSE does not match IF",
+   "ELSEIF does not match IF",
+   "Syntax error '%s'",
+   "Unclosed control structure '%s'",
+   "%s statement with no loop in sight",
+   "Syntax error '%s' in '%s'",
+   "Incomplete statement or unbalanced delimiters",
+   "Incorrect number of arguments in %s %s",   // E0021
+
+   ...
+}
+
+
+
+
+HB_FUNC( ROUND )
+{
+   PHB_ITEM pNumber = hb_param( 1, HB_IT_NUMERIC );
+
+   if( pNumber && HB_ISNUM( 2 ) )
+   {
+      int iDec = hb_parni( 2 );
+
+#ifdef HB_CLP_STRICT
+      /* In CA-Cl*pper Round() always returns double item, what in some
+       * applications may be important due to different formatting rules
+       * when SET FIXED is ON [druzus]
+       */
+      hb_retndlen( hb_numRound( hb_itemGetND( pNumber ), iDec ), 0, HB_MAX( iDec, 0 ) );
+#else
+      if( iDec == 0 && HB_IS_NUMINT( pNumber ) )
+         hb_retnint( hb_itemGetNInt( pNumber ) );
+      else
+         hb_retnlen( hb_numRound( hb_itemGetND( pNumber ), iDec ), 0, HB_MAX( iDec, 0 ) );
+#endif
+   }
+   else
+      hb_errRT_BASE_SubstR( EG_ARG, 1094, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
+}
+
+
+
+OUT - clipper compatibility
+===========================
+
+HB_COMPAT_C53 - always on
+HB_CLP_STRICT - always off
+HB_CLP_UNDOC - always on

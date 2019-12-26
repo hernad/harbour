@@ -136,12 +136,7 @@ void hb_conInit( void )
        * dangerous because it can redirect error messages to data files
        * [druzus]
        */
-#ifdef HB_CLP_STRICT
-      else if( iStderr > 0 ) /* //STDERR:x */
-         s_hFilenoStderr = ( HB_FHANDLE ) iStderr;
-#endif
    }
-#endif
 
    /*
     * Some compilers open stdout and stderr in text mode, but

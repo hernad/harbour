@@ -53,15 +53,6 @@
 #include "color.ch"
 #include "setcurs.ch"
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-/* NOTE: CA-Cl*pper 5.3 uses a mixture of QQOut(), DevOut(), Disp*()
-         functions to generate screen output. Harbour uses Disp*()
-         functions only. [vszakats] */
-
-#ifdef HB_COMPAT_C53
-
 CREATE CLASS RadioGroup FUNCTION HBRadioGroup
 
    EXPORTED:
@@ -656,5 +647,3 @@ FUNCTION _RadioGrp_( nTop, nLeft, nBottom, nRight, xValue, aItems, cCaption, cMe
    ENDIF
 
    RETURN o
-
-#endif

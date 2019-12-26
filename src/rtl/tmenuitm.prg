@@ -52,10 +52,6 @@
 
 #define IS_IN( str, list )  ( "|" + ( str ) + "|" $ "|" + ( list ) + "|" )
 
-/* NOTE: Harbour doesn't support CA-Cl*pper 5.3 GUI functionality, but
-         it has all related variables and methods. */
-
-#ifdef HB_COMPAT_C53
 
 CREATE CLASS MenuItem FUNCTION HBMenuItem
 
@@ -213,7 +209,5 @@ FUNCTION __MIRow( o, nRow )
    ENDIF
 
    RETURN -1
-
-#endif
 
 #endif

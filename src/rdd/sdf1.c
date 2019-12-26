@@ -202,7 +202,6 @@ static HB_ERRCODE hb_sdfGoTo( SDFAREAP pArea, HB_ULONG ulRecNo )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_sdfGoTo(%p, %lu)", ( void * ) pArea, ulRecNo ) );
 
-#ifndef HB_CLP_STRICT
    if( pArea->fReadonly && ulRecNo >= pArea->ulRecNo )
    {
       while( pArea->ulRecNo < ulRecNo && pArea->fPositioned )
@@ -212,7 +211,6 @@ static HB_ERRCODE hb_sdfGoTo( SDFAREAP pArea, HB_ULONG ulRecNo )
       }
       return HB_SUCCESS;
    }
-#endif
    /* generate RTE */
    return SUPER_GOTO( &pArea->area, ulRecNo );
 }
@@ -224,10 +222,9 @@ static HB_ERRCODE hb_sdfGoToId( SDFAREAP pArea, PHB_ITEM pItem )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_sdfGoToId(%p, %p)", ( void * ) pArea, ( void * ) pItem ) );
 
-#ifndef HB_CLP_STRICT
    if( HB_IS_NUMERIC( pItem ) )
       return SELF_GOTO( &pArea->area, hb_itemGetNL( pItem ) );
-#endif
+
    /* generate RTE */
    return SUPER_GOTOID( &pArea->area, pItem );
 }
@@ -326,7 +323,6 @@ static HB_ERRCODE hb_sdfRecId( SDFAREAP pArea, PHB_ITEM pRecNo )
 
    errCode = SELF_RECNO( &pArea->area, &ulRecNo );
 
-#ifdef HB_CLP_STRICT
    /* this is for strict Clipper compatibility but IMHO Clipper should not
       do that and always set fixed size independent to the record number */
    if( ulRecNo < 10000000 )
@@ -337,9 +333,6 @@ static HB_ERRCODE hb_sdfRecId( SDFAREAP pArea, PHB_ITEM pRecNo )
    {
       hb_itemPutNLLen( pRecNo, ulRecNo, 10 );
    }
-#else
-   hb_itemPutNInt( pRecNo, ulRecNo );
-#endif
    return errCode;
 }
 

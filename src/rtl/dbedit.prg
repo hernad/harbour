@@ -198,15 +198,11 @@ FUNCTION dbEdit( nTop, nLeft, nBottom, nRight, ;
          IF oBrowse:stabilize()
             EXIT
          ENDIF
-#ifdef HB_COMPAT_C53
+
          IF nKeyStd != 0 .AND. nKeyStd != K_MOUSEMOVE
             EXIT
          ENDIF
-#else
-         IF nKeyStd != 0
-            EXIT
-         ENDIF
-#endif
+
       ENDDO
 
       IF nKeyStd == 0
@@ -216,12 +212,8 @@ FUNCTION dbEdit( nTop, nLeft, nBottom, nRight, ;
          ENDIF
          IF lContinue .AND. lFlag
             oBrowse:hiLite()
-#ifdef HB_COMPAT_C53
             DO WHILE ( nKeyStd := hb_keyStd( nKey := Inkey( 0, hb_bitOr( Set( _SET_EVENTMASK ), HB_INKEY_EXT ) ) ) ) == K_MOUSEMOVE
             ENDDO
-#else
-            nKeyStd := hb_keyStd( nKey := Inkey( 0, hb_bitOr( Set( _SET_EVENTMASK ), HB_INKEY_EXT ) ) )
-#endif
             oBrowse:deHilite()
             IF ( bBlock := SetKey( nKey ) ) != NIL .OR. ;
                ( bBlock := SetKey( nKeyStd ) ) != NIL
@@ -253,12 +245,10 @@ FUNCTION dbEdit( nTop, nLeft, nBottom, nRight, ;
          ENDIF
 #endif
          SWITCH nKeyStd
-#ifdef HB_COMPAT_C53
          CASE K_LBUTTONDOWN
          CASE K_LDBLCLK
             TBMouse( oBrowse, MRow(), MCol() )
             EXIT
-#endif
          CASE K_DOWN          ; oBrowse:down()     ; EXIT
          CASE K_UP            ; oBrowse:up()       ; EXIT
          CASE K_PGDN          ; oBrowse:pageDown() ; EXIT

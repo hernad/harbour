@@ -50,7 +50,6 @@
 #include "hbapierr.h"
 #include "hbapiitm.h"
 
-#ifndef HB_CLP_STRICT
 
 /* NOTE: This function is a new Harbour function implemented in the
          original CA-Cl*pper namespace. This should have been
@@ -103,5 +102,3 @@ HB_FUNC( ORDWILDSEEK )
    else
       hb_errRT_DBCMD( EG_NOTABLE, EDBCMD_NOTABLE, NULL, HB_ERR_FUNCNAME );
 }
-
-#endif
