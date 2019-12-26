@@ -100,9 +100,9 @@ _DET_VAR_INC_ := HB_INC_ZLIB
 _DET_VAR_HAS_ := HB_HAS_ZLIB
 _DET_FLT_PLAT :=
 _DET_FLT_COMP :=
-_DET_INC_DEFP := $(LIB_BIN_ROOT)/zlib/include /usr/local/include /usr/include
-_DET_INC_LOCL := x
-_DET_INC_HEAD := /zlib.h
+_DET_INC_DEFP := $(LIB_BIN_ROOT)/zlib/include
+_DET_INC_LOCL := 
+_DET_INC_HEAD := 
 _DET_INC_HEAD := 
 include $(TOP)$(ROOT)config/detfun.mk
 
