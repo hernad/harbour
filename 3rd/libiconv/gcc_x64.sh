@@ -11,6 +11,7 @@ cd $LIB_SRC
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 sh  ./configure --prefix=$PREFIX
 make clean install
+
+git checkout -f .
 cd ..
 
-#ls $PREFIX

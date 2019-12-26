@@ -28,5 +28,6 @@ sh  ./configure \
  
 make install
 
+git checkout -f .
 cd ..
 
