@@ -28,11 +28,15 @@ ifneq ($(HB_LINKING_RTL),)
    endif
    ifneq ($(HB_HAS_ZLIB),)
       SYSLIBS += z
-      SYSLIBPATHS += $(HB_HAS_ZLIB)/../lib
+      SYSLIBPATHS += $(HB_HAS_ZLIB)../lib
    endif
    ifneq ($(HB_HAS_POSTGRESQL),)
       SYSLIBS += pq
-      SYSLIBPATHS += $(HB_HAS_POSTGRESQL)/../lib
+      SYSLIBPATHS += $(HB_HAS_POSTGRESQL)../lib
+   endif
+   ifneq ($(HB_HAS_OPENSSL),)
+      SYSLIBS += ssl
+      SYSLIBPATHS += $(HB_HAS_SSL)../lib
    endif
 
    SYSLIBS += dl
