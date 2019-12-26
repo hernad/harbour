@@ -72,14 +72,10 @@ ifeq ($($(_DET_VAR_HAS_)),)
                      $(_DET_VAR_HAS_) := .
                   endif
                   ifeq ($($(_DET_VAR_HAS_)),)
-                     ifneq ($(HB_BUILD_3RDEXT),no)
-                        $(_DET_VAR_HAS_) := $(subst $(subst x, ,x),$(PTHSEP),$(_DET_INC_DEFP))
-                     endif
+                     $(_DET_VAR_HAS_) := $(subst $(subst x, ,x),$(PTHSEP),$(_DET_INC_DEFP))
                      $(_DET_VAR_HAS_) := $($(_DET_VAR_HAS_))$(PTHSEP)$(_DET_INC_LOCL)
                   else ifeq ($($(_DET_VAR_HAS_)),nolocal)
-                     ifneq ($(HB_BUILD_3RDEXT),no)
-                        $(_DET_VAR_HAS_) := $(subst $(subst x, ,x),$(PTHSEP),$(_DET_INC_DEFP))
-                     endif
+                     $(_DET_VAR_HAS_) := $(subst $(subst x, ,x),$(PTHSEP),$(_DET_INC_DEFP))
                   endif
                   ifeq ($($(_DET_VAR_INC_)),local)
                      $(_DET_VAR_HAS_) := $(_DET_INC_LOCL)
@@ -94,6 +90,7 @@ ifeq ($($(_DET_VAR_HAS_)),)
                            endif
                            $(call do_info,$(_DET_RES_TEXT))
                         else
+                           $(info 1=$(_DET_INC_LOCL) 2=$(_DET_INC_HEAD) 3=$($(_DET_VAR_HAS_)))
                            $(_DET_VAR_HAS_) := $(subst $(_DET_INC_HEAD),,$($(_DET_VAR_HAS_)))
                            # detect if the component was found in locally hosted dir
                            ifneq ($(_DET_INC_LOCL),)
