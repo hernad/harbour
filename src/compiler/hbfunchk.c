@@ -44,6 +44,7 @@ static const HB_FUNCINFO s_stdFunc[] =
    { "AT"        , 2,  2 },
    { "BOF"       , 0,  0 },
    { "BREAK"     , 0,  1 },
+   { "BROWSE"    , 4,  4 }, /*Browse( nTop, nLeft, nBottom, nRight ) */
    { "CDOW"      , 1,  1 },
    { "CHR"       , 1,  1 },
    { "CMONTH"    , 1,  1 },
@@ -141,7 +142,6 @@ HB_BOOL hb_compFunCallCheck( HB_COMP_DECL, const char * szFuncCall, int iArgs )
       {
          char szMsg[ 64 ];
 
-         if( HB_COMP_ISSUPPORTED( HB_COMPFLAG_HARBOUR ) )
          {
             if( pFunc->iMinParam == pFunc->iMaxParam )
                hb_snprintf( szMsg, sizeof( szMsg ), "\nPassed: %i, expected: %i", iArgs, pFunc->iMinParam );
@@ -152,8 +152,6 @@ HB_BOOL hb_compFunCallCheck( HB_COMP_DECL, const char * szFuncCall, int iArgs )
             else
                hb_snprintf( szMsg, sizeof( szMsg ), "\nPassed: %i, expected from: %i to: %i", iArgs, pFunc->iMinParam, pFunc->iMaxParam );
          }
-         else
-            szMsg[ 0 ] = '\0';
 
          hb_compGenError( HB_COMP_PARAM, hb_comp_szErrors, 'E', HB_COMP_ERR_CHECKING_ARGS, szFuncCall, szMsg );
 
