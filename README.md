@@ -34,9 +34,9 @@ Download [latest release](https://github.com/hernad/harbour/releases) into ~/Dow
 
 # Windows x64
 
-
-Prerequisite: Microsoft Visual C++ build tools 2015:
-
+Prerequisites: 
+- Microsoft Visual C++ build tools 2015
+- Extract windows-x64 binary zip into %ROOT_DIR%\harbour
 
     set VCBUILDTOOLS_PATH="C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat"    
     set BUILD_ARCH=x64
@@ -63,7 +63,9 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
 
 # Windows x86
 
-Prerequisite: Microsoft Visual C++ build tools 2015:
+Prerequisites: 
+- Microsoft Visual C++ build tools 2015
+- Extract windows-x86 binary zip into %ROOT_DIR%\harbour
 
     set VCBUILDTOOLS_PATH="C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat"    
     set BUILD_ARCH=x86
