@@ -58,6 +58,8 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
     hbmk2 hello.prg -static
     REM We should have our first x64 program saying "Hello world"
     hello.exe
+    REM netio management console is here?
+    netio --help
 
 # Windows x86
 
@@ -83,9 +85,10 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
     hbmk2 hello.prg -static
     REM We should have our first x86 program saying "Hello world"
     hello.exe
+    REM netio management console is here?
+    netio --help
 
 # Source code
-
 
 ## Linux
 
