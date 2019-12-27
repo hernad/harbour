@@ -38,6 +38,8 @@ Prerequisites:
 - Microsoft Visual C++ build tools 2015
 - Extract windows-x64 binary zip into %ROOT_DIR%\harbour
 
+Run this in commant prompt:
+
     set VCBUILDTOOLS_PATH="C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat"    
     set BUILD_ARCH=x64
     set VCBUILDTOOLS=amd64
@@ -64,8 +66,10 @@ Prerequisites:
 # Windows x86
 
 Prerequisites: 
-- Microsoft Visual C++ build tools 2015
-- Extract windows-x86 binary zip into %ROOT_DIR%\harbour
+* Microsoft Visual C++ build tools 2015
+* Extract windows-x86 binary zip into %ROOT_DIR%\harbour
+
+Run this in command prompt:
 
     set VCBUILDTOOLS_PATH="C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat"    
     set BUILD_ARCH=x86
