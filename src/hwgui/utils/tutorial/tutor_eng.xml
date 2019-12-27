@@ -975,7 +975,7 @@ Local e5 := 10320.54
 Local e6 := "Max Lenght = 15"
 Local e7 := "Password"
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Get a value"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Get a value"  ;
          AT 210,10  SIZE 300,320 FONT oFont
 
    SET KEY FSHIFT,VK_F3 TO hwg_Msginfo("Shift-F3") 
@@ -1081,7 +1081,7 @@ Function Colors
    LOCAL cColor := "000000", nColor := 0
 
    INIT DIALOG oDlg TITLE "Colors"     ;
-        AT 0,0  SIZE 480,310 CLIPPER ON INIT {|| hwg_Settimer(oDlg,oPanel,oEditC,oUpR,oUpG,oUpB,oEditN)}
+        AT 0,0  SIZE 480,310 NEXT_GET_WITH_ENTER ON INIT {|| hwg_Settimer(oDlg,oPanel,oEditC,oUpR,oUpG,oUpB,oEditN)}
        
    @ 60, 20 PANEL oPanel SIZE 360, 120 STYLE SS_OWNERDRAW ON SIZE {||.t.}
    oPanel:bPaint := {|o|ppaint(o,oEditN)}

@@ -41,7 +41,7 @@ Return Nil
 Function Test()
         PREPARE FONT oFont NAME "Courier New" WIDTH 0 HEIGHT -11
         
-        INIT DIALOG oForm CLIPPER NOEXIT TITLE "File Viewer";
+        INIT DIALOG oForm NEXT_GET_WITH_ENTER NOEXIT TITLE "File Viewer";
              FONT oFont ;
              AT 0, 0 SIZE 700, 425 ;
              STYLE DS_CENTER + WS_VISIBLE + WS_POPUP + WS_VISIBLE + WS_CAPTION + WS_SYSMENU
@@ -72,6 +72,7 @@ Function FileOpen()
         fname := hwg_Selectfile( "Select File", "*.*")
     
         Zap
-        APPEND FROM (fname) SDF
+        APPEND FROM (fname) SDF
+
 Return Test()
 

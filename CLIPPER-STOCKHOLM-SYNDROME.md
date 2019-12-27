@@ -5,7 +5,7 @@ Harbour [source code base (harbour-core)](https://github.com/hernad/harbour-core
 
 I have started "DE-Clipperization" of harbour in project [agile harbour](https://github.com/hernad/harbour). 
 Searching "CLIPPER" in that code base resulted with 1678 mentions in 187 files.
-Because of that, this morning (27.12.2019) I deleted old ChangeLog.txt. Now, result is **610** mention in 186 files. 
+Because of that, this morning (27.12.2019) I deleted old ChangeLog.txt. After that, the result is **610** mentions in 186 files. 
 
 It seems to me that this community has CLIPPER Stockholm syndrome. We shoud get rid of that. 
 Continous mentioning of old days and clipper is contra-productive especially for somebody outside that story.

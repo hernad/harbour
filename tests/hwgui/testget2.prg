@@ -38,7 +38,7 @@ Local e7 := "Password"
 
 Private oSayT
 
-   INIT DIALOG oModDlg CLIPPER NOEXIT TITLE "Get a value"  ;
+   INIT DIALOG oModDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Get a value"  ;
    AT 210,10  SIZE 300,320                  ;
    FONT oFont ;
    ON INIT {|| hwg_Settimer(oModDlg,@oTimer)}
@@ -120,7 +120,7 @@ Function TestBallon
    hwg_Settooltipballoon(.t.)
 
 
-   INIT DIALOG oWnd CLIPPER TITLE "Dialog text Balon" ;
+   INIT DIALOG oWnd NEXT_GET_WITH_ENTER TITLE "Dialog text Balon" ;
       AT 100,100 SIZE 140,100
 
    @ 20,20 BUTTON "Button 1" ON CLICK {||hwg_Msginfo("Button 1")} SIZE 100,40 ;

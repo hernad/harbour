@@ -2236,7 +2236,7 @@ STATIC FUNCTION hu_Get( cTitle, tpict, txget )
    LOCAL oDlg
 
    INIT DIALOG oDlg TITLE cTitle AT 0, 0 SIZE 300, 100 ;
-      FONT HWindow():GetMain():oFont CLIPPER ;
+      FONT HWindow():GetMain():oFont NEXT_GET_WITH_ENTER ;
       STYLE WS_POPUP + WS_VISIBLE + WS_CAPTION + WS_SYSMENU + WS_SIZEBOX + DS_CENTER
 
    @ 20, 15 GET txget SIZE 260, 26 PICTURE tpict STYLE ES_AUTOHSCROLL

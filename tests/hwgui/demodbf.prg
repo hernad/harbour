@@ -60,7 +60,7 @@ Private oBotNew, oBotEdit,oBotRet, oBotNext, oBotSave, oBottop, oBotBott, oBotDe
 
    PREPARE FONT oFontBtn NAME "Arial" WIDTH 0 HEIGHT -12
 
-   INIT DIALOG Tel_Ferramentas CLIPPER NOEXIT TITLE Titulo SIZE 530, 320 Font oFontBtn
+   INIT DIALOG Tel_Ferramentas NEXT_GET_WITH_ENTER NOEXIT TITLE Titulo SIZE 530, 320 Font oFontBtn
 
    OpenDbf()
 

@@ -40,15 +40,17 @@ Function Main()
         res := PQexec(conn, 'CLOSE cursor_1')
         PQclear(res)    
         
-        res = PQexec(conn, "END")
-        PQclear(res)
+        res = PQexec(conn, "END")
+
+        PQclear(res)
+
 
         PQClose(conn)
         
 Return Nil
 
 Function Test()
-        PREPARE FONT oFont NAME "Courier New" WIDTH 0 HEIGHT -11
+        PREPARE FONT oFontNEXT_GET_WITH_ENTERCourier New" WIDTH 0 HEIGHT -11
         
         INIT DIALOG oForm CLIPPER NOEXIT TITLE "Postgres Demo";
              FONT oFont ;
@@ -151,10 +153,12 @@ Function CriaBase()
             quit
         endif
 
-        res := PQexec(conn, "drop table test")
+        res := PQexec(conn, "drop table test")
+
         PQclear(res)    
 
-        res := PQexec(conn, "create table test (code numeric(10), creation date, descr char(40))")
+        res := PQexec(conn, "create table test (code numeric(10), creation date, descr char(40))")
+
         PQclear(res)    
 
         For i := 1 to 100
@@ -162,7 +166,8 @@ Function CriaBase()
             PQclear(res)    
         Next  
         
-        res = PQexec(conn, "BEGIN")
+        res = PQexec(conn, "BEGIN")
+
         PQclear(res)    
 
         res := PQexec(conn, 'DECLARE cursor_1 NO SCROLL CURSOR WITH HOLD FOR SELECT * FROM test')        

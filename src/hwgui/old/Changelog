@@ -6788,7 +6788,7 @@
       ! minor fix.
    * source/hdialog.prg
      * FUNCTION DlgCommand()
-      ! fixed GetSkip in mode CLIPPER
+      ! fixed GetSkip in mode NEXT_GET_WITH_ENTER
    * source/hedit.prg
      * STATIC FUNCTION NextFocusContainer( oParent, hCtrl, nSkip )
       ! fixed navegation!
@@ -11715,7 +11715,7 @@
 
 2009-08-11 03:15 UTC-0300 Luis Fernando Basso <lfbasso at via-rs.net>
   * include\hwgui.ch
-    + add CLAUSE CLIPPER in INIT WINDOW behavior equal to DIALOG
+    + add CLAUSE NEXT_GET_WITH_ENTER in INIT WINDOW behavior equal to DIALOG
     + add CLAUSE MODAL in ACTIVATE WINDOW to emulate the same form mdichild DIALOG
   * include\windows.ch
     + added news constants
@@ -14180,7 +14180,7 @@
 
 2008-07-18 02:05 UTC+0100 Maurizio la Cecilia <m.lacecilia@gmail.com>
   * source\hdialog.prg
-    * fixed behaviour of enter key in CLIPPER NOEXIT dialogs
+    * fixed behaviour of enter key in NEXT_GET_WITH_ENTER NOEXIT dialogs
   * source\hrect.prg
     * added missed parameter in create methods
 
@@ -14896,7 +14896,7 @@
 
 2008-05-03 10:00 Luiz Rafael Culik <Luiz at xharbour.com.br>
    * source/hcontrol.prg
-    ! Fixed Enter Key on  Buttonex when Dialog is not set to CLIPPER
+    ! Fixed Enter Key on  Buttonex when Dialog is not set to NEXT_GET_WITH_ENTER
 
 2008-04-30 23:00 Luiz Rafael Culik <Luiz at xharbour.com.br>
   * source/draw.c

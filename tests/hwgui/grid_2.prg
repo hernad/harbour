@@ -42,7 +42,7 @@ Return Nil
 Function Test()
         PREPARE FONT oFont NAME "Courier New" WIDTH 0 HEIGHT -11
         
-        INIT DIALOG oForm CLIPPER NOEXIT TITLE "Postgres Sample";
+        INIT DIALOG oForm NEXT_GET_WITH_ENTER NOEXIT TITLE "Postgres Sample";
              FONT oFont ;
              AT 0, 0 SIZE 700, 425 ;
              STYLE DS_CENTER + WS_VISIBLE + WS_POPUP + WS_VISIBLE + WS_CAPTION + WS_SYSMENU
@@ -63,25 +63,42 @@ Function Test()
 Return Nil
 
 Function ConnectGrid()
-    Local cHost := 'Localhost'
-    Local cDatabase := 'test'
-    Local cUser := 'Rodrigo'
-    Local cPass := 'moreno'
-    Local oRow, i
-    
-    oServer := TPQServer():New(cHost, cDatabase, cUser, cPass)
-
-    if oServer:NetErr()
-        ? oServer:Error()
-        quit
-    end
+    Local cHost := 'Localhost'
+
+    Local cDatabase := 'test'
+
+    Local cUser := 'Rodrigo'
+
+    Local cPass := 'moreno'
+
+    Local oRow, i
+
     
-    if oServer:TableExists('test')
+
+    oServer := TPQServer():New(cHost, cDatabase, cUser, cPass)
+
+
+
+    if oServer:NetErr()
+
+        ? oServer:Error()
+
+        quit
+
+    end
+
+    
+    if oServer:TableExists('test')
+
         oServer:DeleteTable('Test')
-    endif        
-    
-    oServer:CreateTable('Test', {{'col1', 'N', 6, 0},;
-                                 {'col2', 'C', 40,0},;
+    endif        
+
+    
+
+    oServer:CreateTable('Test', {{'col1', 'N', 6, 0},;
+
+                                 {'col2', 'C', 40,0},;
+
                                  {'col3', 'D', 8, 0}})
         
     oQuery := oServer:Query('SELECT * FROM test')

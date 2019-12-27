@@ -403,7 +403,7 @@ Local oDlg, oTAB
 Local oGet1, oGet2, oVar1:="1", oVar2:="2"
 Local oGet3, oGet4, oVar3:="3", oVar4:="4", oGet5, oVar5 := "5"
 
-INIT DIALOG oDlg CLIPPER NOEXIT AT 0, 0 SIZE 200, 200
+INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT AT 0, 0 SIZE 200, 200
 
 @ 10, 10 TAB oTab ITEMS {} SIZE 180, 180 ;
    ON LOSTFOCUS {||hwg_Msginfo("Lost Focus")};

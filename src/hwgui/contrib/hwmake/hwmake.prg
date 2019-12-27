@@ -72,7 +72,7 @@ Private oIcon := HIcon():AddResource("PIM")
 
    PREPARE FONT oFont NAME "MS Sans Serif" WIDTH 0 HEIGHT -12
    
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "HwGUI Build Projects for BCC55" ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "HwGUI Build Projects for BCC55" ;
         AT 213,195 SIZE 513,295  font oFont ICON oIcon
 
    ADD STATUS oStatus TO oDlg ;

@@ -41,7 +41,7 @@ PRIVATE oButton1, oExeName, oLabel1, oLibFolder, oButton4, oLabel2, oIncFolder, 
 
    PREPARE FONT oFont NAME "MS Sans Serif" WIDTH 0 HEIGHT -12
    
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "HwGUI Build For Pelles C Compiler" ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "HwGUI Build For Pelles C Compiler" ;
         AT 213,195 SIZE 513,265  font oFont
 
    @ 14,16 TAB oTAB ITEMS {} SIZE 391,242

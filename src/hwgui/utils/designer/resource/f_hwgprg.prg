@@ -1263,7 +1263,7 @@ FUNCTION Ctrl2Prg
 
    // NANDO POS
    IF oForm:GetProp( "lClipper" ) = "True"
-      FWrite( han, ' CLIPPER '  )
+      FWrite( han, ' NEXT_GET_WITH_ENTER '  )
    ENDIF
    IF oForm:GetProp( "lExitOnEnter" ) = "True"
       //-Fwrite( han,  ' ;' + hb_OsNewline() + SPACE(8) + 'NOEXIT'  )

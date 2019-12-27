@@ -562,7 +562,7 @@ HWGUI 2.02 ( 23.07.2002 )
     control definition commands ) the parent window and Control's ID - so
     commands became simpler and more close to Clipper's.
 
-    New clause is added to DIALOG definition - 'CLIPPER'. If DIALOG is defined
+    New clause is added to DIALOG definition - 'NEXT_GET_WITH_ENTER'. If DIALOG is defined
     with this clause, you can move between GET's with ENTER key.
 
 [+] HBrowse: added possibility to display bitmaps in columns.

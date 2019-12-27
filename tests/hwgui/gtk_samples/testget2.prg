@@ -37,7 +37,7 @@ Local e7 := "Password"
 
 Private oSayT
 
-   INIT DIALOG oModDlg CLIPPER NOEXIT TITLE "Get a value"  ;
+   INIT DIALOG oModDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Get a value"  ;
    AT 210,10  SIZE 300,320 ;
    ON INIT {|| SetTimer(oModDlg,@oTimer)}   
    // FONT oFont  

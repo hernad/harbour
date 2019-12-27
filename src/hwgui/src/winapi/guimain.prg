@@ -160,7 +160,7 @@ FUNCTION hwg_MsgGet( cTitle, cText, nStyle, x, y, nDlgStyle, cRes )
    nDlgStyle := iif( nDlgStyle == Nil, 0, nDlgStyle )
 
    INIT DIALOG oDlg TITLE cTitle AT x, y SIZE 300, 140 ;
-      FONT oFont CLIPPER STYLE WS_POPUP + WS_VISIBLE + WS_CAPTION + WS_SYSMENU + WS_SIZEBOX + nDlgStyle
+      FONT oFont NEXT_GET_WITH_ENTER STYLE WS_POPUP + WS_VISIBLE + WS_CAPTION + WS_SYSMENU + WS_SIZEBOX + nDlgStyle
 
    IF !Empty( cText )
       @ 20, 10 SAY cText SIZE 260, 22

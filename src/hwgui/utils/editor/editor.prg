@@ -655,7 +655,7 @@ STATIC FUNCTION insBlock()
       RETURN Nil
    ENDIF
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Insert block"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Insert block"  ;
       AT 210, 10  SIZE 300, 230 FONT HWindow():GetMain():oFont
 
    @ 20, 20 SAY "Style:" SIZE 90, 22 TRANSPARENT
@@ -880,7 +880,7 @@ STATIC FUNCTION setCell()
       aAttr := oEdit:getClassAttr( cClsName )
    ENDIF
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Set cell properties"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Set cell properties"  ;
       AT 210, 10  SIZE 400, 410 FONT HWindow():GetMain():oFont
 
    textTab( , aAttr, 16 )
@@ -967,7 +967,7 @@ STATIC FUNCTION setPara()
    tc := tColor; tb := bColor; nsb := nSize; nfb := nFamily
    lbb := lb; lib := li; lub := lu; lsb := ls
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Set paragraph properties"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Set paragraph properties"  ;
       AT 210, 10  SIZE 400, 460 FONT HWindow():GetMain():oFont
 
    @ 10, 10 TAB oTab ITEMS {} SIZE 380,380 ON SIZE ANCHOR_TOPABS+ANCHOR_LEFTABS+ANCHOR_BOTTOMABS+ANCHOR_RIGHTABS
@@ -1118,7 +1118,7 @@ STATIC FUNCTION setSpan()
       ENDIF
    ENDIF
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Set span properties"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Set span properties"  ;
       AT 210, 10  SIZE 400, 460 FONT HWindow():GetMain():oFont
 
    @ 10, 10 TAB oTab ITEMS {} SIZE 380,380 ON SIZE ANCHOR_TOPABS+ANCHOR_LEFTABS+ANCHOR_BOTTOMABS+ANCHOR_RIGHTABS
@@ -1554,7 +1554,7 @@ STATIC FUNCTION setDoc()
    ENDIF
    arr[1] := nFormat; arr[2] := nOrient; arr[3] := nMargL; arr[4] := nMargR; arr[5] := nMargT; arr[6] := nMargB
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Document properties"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Document properties"  ;
       AT 210, 10  SIZE 440, 370 FONT HWindow():GetMain():oFont
 
    @ 20, 20 SAY "Size:" SIZE 100, 24
@@ -1704,7 +1704,7 @@ STATIC FUNCTION InsUrl( nType )
       RETURN Nil
    ENDIF
 
-   INIT DIALOG oDlg CLIPPER NOEXIT TITLE "Insert URL"  ;
+   INIT DIALOG oDlg NEXT_GET_WITH_ENTER NOEXIT TITLE "Insert URL"  ;
       AT 210, 10  SIZE 400, 190 FONT HWindow():GetMain():oFont ;
       ON INIT {||Iif(nType==2,oProto:Disable(),.t.)}
 
