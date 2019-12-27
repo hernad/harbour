@@ -36,7 +36,7 @@ Download [latest release](https://github.com/hernad/harbour/releases) into ~/Dow
 
 Prerequisites: 
 - Microsoft Visual C++ build tools 2015
-- Extract windows-x64 binary zip into %ROOT_DIR%\harbour
+- Extract windows-x64 binary zip into %ROOT_DIR%\harbour (e.g. c:\Users\hernad\ah\harbour)
 
 Run this in commant prompt:
 
@@ -67,7 +67,7 @@ Run this in commant prompt:
 
 Prerequisites: 
 * Microsoft Visual C++ build tools 2015
-* Extract windows-x86 binary zip into %ROOT_DIR%\harbour
+* Extract windows-x86 binary zip into %ROOT_DIR%\harbour (e.g. c:\Users\hernad\ah\harbour)
 
 Run this in command prompt:
 
