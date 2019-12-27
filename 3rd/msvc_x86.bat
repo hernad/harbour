@@ -41,3 +41,8 @@ set CURL_BUILD=
 cd %ROOT_3RD%\curl
 call msvc_x86.bat
 IF DEFINED DEBUG_BUILD pause
+
+set SQLITE3_BUILD=
+cd %ROOT_3RD%\sqlite3
+call msvc_x86.bat
+IF DEFINED DEBUG_BUILD pause

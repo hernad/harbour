@@ -19,6 +19,6 @@ ifneq ($(HB_HAS_ZLIB),)
    include $(TOP)$(ROOT)config/lib.mk
    include $(TOP)$(ROOT)config/dir.mk
 else
-   $(error ! Error: zlib [hbpgsql] component required, but not available)
+   $(error ! Error: zlib [hbzlib] component required, but not available)
 endif
 

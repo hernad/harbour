@@ -171,61 +171,56 @@ install:: first
 
 endif
 
-
 ifeq ($(HB_PLATFORM),win)
-
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_CURL)../lib/curl.lib)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/curl.lib)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
-
+   SRCLIB3 := $(subst /,$(DIRSEP),$(HB_HAS_CURL)/../lib/libcurl_a.lib)
+   DESTLIB3 := $(subst /,$(DIRSEP),$(LIB_DIR)/libcurl_a.lib)
+   DESTDIR3 := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
 else
-
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_CURL)../lib/libcurl.a)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libcurl.a)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
-
+   SRCLIB3 := $(subst /,$(DIRSEP),$(HB_HAS_CURL)../lib/libcurl.a)
+   DESTLIB3 := $(subst /,$(DIRSEP),$(LIB_DIR)/libcurl.a)
+   DESTDIR3 := $(subst /,$(DIRSEP),$(LIB_DIR))
 endif
 
 curlLib::
-	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR3)),,$(MD) $(DESTDIR3))
+	$(if $(wildcard $(DESTLIB3)),,$(CP) $(SRCLIB3) $(DESTLIB3))
 
 
 ifeq ($(HB_PLATFORM),win)
 
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.lib)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
+SRCLIB2 := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)/../lib/libpq.lib)
+DESTLIB2 := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
+DESTDIR2 := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
 
 else
 
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.a)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.a)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
+SRCLIB2 := $(subst /,$(DIRSEP),$(HB_HAS_POSTGRESQL)../lib/libpq.a)
+DESTLIB2 := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.a)
+DESTDIR2 := $(subst /,$(DIRSEP),$(LIB_DIR))
 
 endif
 
 libpqLib::
-	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR2)),,$(MD) $(DESTDIR2))
+	$(if $(wildcard $(DESTLIB2)),,$(CP) $(SRCLIB2) $(DESTLIB2))
 
 
 ifeq ($(HB_PLATFORM),win)
 
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)../lib/sqlite3.lib)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
+SRCLIB4 := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)/../lib/sqlite3.lib)
+DESTLIB4 := $(subst /,$(DIRSEP),$(LIB_DIR)/libpq.lib)
+DESTDIR4 := $(subst /,$(DIRSEP),$(LIB_DIR)/lib)
 
 else
 
-SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)../lib/libsqlite3.a)
-DESTLIB := $(subst /,$(DIRSEP),$(LIB_DIR)/libsqlite3.a)
-DESTDIR := $(subst /,$(DIRSEP),$(LIB_DIR))
+SRCLIB4 := $(subst /,$(DIRSEP),$(HB_HAS_SQLITE3)../lib/libsqlite3.a)
+DESTLIB4 := $(subst /,$(DIRSEP),$(LIB_DIR)/libsqlite3.a)
+DESTDIR4 := $(subst /,$(DIRSEP),$(LIB_DIR))
 
 
 endif
 
 libSqlite3::
-	$(if $(wildcard $(DESTDIR)),,$(MD) $(DESTDIR))
-	$(if $(wildcard $(DESTLIB)),,$(CP) $(SRCLIB) $(DESTLIB))
+	$(if $(wildcard $(DESTDIR4)),,$(MD) $(DESTDIR4))
+	$(if $(wildcard $(DESTLIB4)),,$(CP) $(SRCLIB4) $(DESTLIB4))
 
