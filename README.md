@@ -56,7 +56,7 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
     set PROG=? 'Hello world'
     echo %CMD% > hello.prg
     hbmk2 hello.prg -static
-    REM We should our first program saying "Hello world"
+    REM We should have our first x64 program saying "Hello world"
     hello.exe
 
 # Windows x86
@@ -81,7 +81,7 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
     set PROG=? 'Hello world'
     echo %CMD% > hello.prg
     hbmk2 hello.prg -static
-    REM We should our first program saying "Hello world"
+    REM We should have our first x86 program saying "Hello world"
     hello.exe
 
 # Source code
