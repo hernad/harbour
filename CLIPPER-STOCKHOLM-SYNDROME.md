@@ -1,8 +1,7 @@
 Clipper Stockholm syndrome
 =================================
 
-Harbour [source code base](https://github.com/hernad/harbour-core) is so occupied by Clipper. I have searched term "CLIPPER" in vscode harbour-core.
-There are **2345** mentions in 330 files.
+Harbour [source code base (harbour-core)](https://github.com/hernad/harbour-core) is so occupied by Clipper. I have searched term "CLIPPER", and there are **2345** mentions in **330 files**.
 
 I have started "DE-Clipperization" of harbour in project [agile harbour](https://github.com/hernad/harbour). 
 Searching "CLIPPER" in that code base resulted with 1678 mentions in 187 files.
