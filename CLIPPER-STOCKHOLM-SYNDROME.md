@@ -15,4 +15,4 @@ In practice, as a programmer, I really don't care about Clipper compatibility. S
 HB_COMPAT_C53 - always on, HB_CLP_STRICT - always off, HB_CLP_UNDOC - always on.
 
 Clipper is dead. We are harbour community. We should ask ourselves what we shoud make with harbour and harbour only.
-Your material is an great example that we can produce much more that we could 25 years ago with clipper.
+
