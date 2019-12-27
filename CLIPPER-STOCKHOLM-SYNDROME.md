@@ -14,5 +14,5 @@ Continous mentioning of old days and clipper is contra-productive especially for
 In practice, as a programmer, I really don't care about Clipper compatibility. So I have reached  so much clarity removing these switches:
 HB_COMPAT_C53 - always on, HB_CLP_STRICT - always off, HB_CLP_UNDOC - always on.
 
-Clipper is dead. We are harbour community. We should ask ourselves what we shoud make with harbour and harbour only.
+Clipper is dead. We are harbour community. We should ask ourselves what we can make with harbour and harbour only.
 
