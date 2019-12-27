@@ -4,7 +4,7 @@
 
 Download [latest release](https://github.com/hernad/harbour/releases) into ~/Downloads
 
-    export ROOT_DIR=/home/hernad/ah
+    export ROOT_DIR=$HOME/ah
     mkdir -p $ROOT_DIR
     cd $ROOT_DIR
     # centos7, fedora30
