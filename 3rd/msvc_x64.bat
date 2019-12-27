@@ -44,5 +44,5 @@ IF DEFINED DEBUG_BUILD pause
 
 set SQLITE3_BUILD=
 cd %ROOT_3RD%\sqlite3
-call msvc_x86.bat
+call msvc_x64.bat
 IF DEFINED DEBUG_BUILD pause
