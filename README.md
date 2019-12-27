@@ -59,6 +59,30 @@ Prerequisite: Microsoft Visual C++ build tools 2015:
     REM We should our first program saying "Hello world"
     hello.exe
 
+# Windows x86
+
+Prerequisite: Microsoft Visual C++ build tools 2015:
+
+    set VCBUILDTOOLS_PATH="C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat"    
+    set BUILD_ARCH=x86
+    set VCBUILDTOOLS=x86
+    set LIB_BIN_ROOT=%ROOT_DIR%\3rd\%BUILD_ARCH%
+    set PATH=c:\windows;c:\windows\system32
+    set PATH=%PATH%;C:\Program Files\Git\cmd
+    set PATH=%PATH%;C:\Users\%USERNAME%\AppData\Local\Programs\Microsoft VS Code\bin
+    set ROOT_DIR=\users\%USERNAME%\ah
+    set HB_INSTALL_PREFIX=%ROOT_DIR%\harbour
+    call %VCBUILDTOOLS_PATH% %VCBUILDTOOLS%
+    set PATH=%HB_INSTALL_PREFIX%\bin;%PATH%
+    mkdir %ROOT_DIR%
+    cd %ROOT_DIR%
+    mkdir %ROOT_DIR%\proj1
+    cd %ROOT_DIR%\proj1
+    set PROG=? 'Hello world'
+    echo %CMD% > hello.prg
+    hbmk2 hello.prg -static
+    REM We should our first program saying "Hello world"
+    hello.exe
 
 # Source code
 
