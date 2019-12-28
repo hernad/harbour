@@ -2,7 +2,7 @@ Agile Ernad
 ===============
 
 Regarding harbour, I have been living in comfort zone during last 5-10 years. 
-I am not big "fun" of the language. It is my tool. So, that is the reason I have been totally relied on Viktor Szakats/Przemyslaw Czerpak with only change in the [postgresql libraries part](https://github.com/hernad/harbour-core)  - my-master branch, which Viktor didn't want to accept.
+I am not big "fun" of the language. It is my tool. So, that is the reason I have been totally relied on Viktor Szakats/Przemyslaw Czerpak with only change in the [postgresql libraries part](https://github.com/hernad/harbour-core) (my-master branch, which Viktor didn't want to accept).
  
 The departure of these developers alarmed me that I shouldn't be passive. If I am passive, regardless the project is open-source, the vendor-lock in can be repeated in other form with [NOBODY-KNOWS-AND-NOBODY-CARES lock-in](https://github.com/hernad/harbour/blob/master/HARBOUR_AND_ME.md#year-1998-after-the-war-in-bosnia-i-have-catched-ptsd-caused-by-vendor-lock-in-sindrom-)
 
