@@ -55,7 +55,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
    LOCAL cPostgreSQLBin, cPostgreSQLLib, cZlibDir
-   LOCAL cLibDest, cBinDest
+   LOCAL cLibDest, cBinDest, cCurlBin, cCurlLib, cSqlite3Bin
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -144,8 +144,17 @@ PROCEDURE Main( ... )
          cPostgreSQLLib :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cPostgreSQLLib +=  hb_ps() + "postgresql" + hb_ps() + "lib" + hb_ps()
 
+         cCurlBin :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cCurlBin +=  hb_ps() + "curl" + hb_ps() + "bin" + hb_ps()
+
+         cCurlLib :=  GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cCurlLib +=  hb_ps() + "curl" + hb_ps() + "lib" + hb_ps()
+
          cZlibDir := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cZlibDir +=  hb_ps() + "zlib" + hb_ps() + "lib" + hb_ps()
+
+         cSqlite3Bin := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cSqlite3Bin +=  hb_ps() + "sqlite3" + hb_ps() + "bin" + hb_ps()
          
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
             aLibs := { ;
@@ -158,8 +167,6 @@ PROCEDURE Main( ... )
                cPostgreSQLBin + "libpgtypes.dll", ;
                cPostgreSQLBin + "libiconv.dll", ;
                cPostgreSQLBin + "libpq.dll", ;
-               cPostgreSQLBin + "libxml2.dll", ;
-               cPostgreSQLBin + "libxml2.dll", ;
                cPostgreSQLBin + "libxml2.dll", ;
                cPostgreSQLBin + "createdb.exe", ;
                cPostgreSQLBin + "createuser.exe", ;
@@ -192,7 +199,9 @@ PROCEDURE Main( ... )
                cPostgreSQLBin + "reindexdb.exe", ;
                cPostgreSQLBin + "vacuumdb.exe", ;
                cPostgreSQLBin + "vacuumlo.exe", ;
-               cPostgreSQLBin + "zic.exe" ;
+               cPostgreSQLBin + "zic.exe", ;
+               cCurlBin + "curl.exe", ;
+               cSqlite3Bin + "sqlite3.exe" ;
             }
             
             cBinDest := GetEnvC( "HB_INSTALL_BIN" )
