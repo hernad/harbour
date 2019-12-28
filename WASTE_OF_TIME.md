@@ -42,3 +42,34 @@ Most of source written with spanish comments, so hard to understand. I suppose m
 He have published wiki `How to install Harbour on Ubuntu`, on [harbour.wiki](https://harbour.wiki/index.asp?page=PublicArticles).
 Regarding the goal "Introducing language to the newbie on ubuntu linux", I think it should be written totally different.
 But I appreciate hard work put on that!
+
+
+
+Answer
+===================
+
+Hi Lailton Fernando Mariano,
+I appreciate your and other's feedback.
+
+I understand that you don't like my work. And, that is ok.
+Anyway, I think it is NOT acceptable in one open-source project mark other's work and efforts as WASTE OF TIME.
+My work may be not useful  to you and others. But it should be appreciated anyway.
+The most important assets in open-source project are PEOPLE (with their skills) and TIME (given to the project).
+Be aware, you are not my boss who gave me a salary for bad result. The way of communication in an healthy 
+open-source community should be different. 
+It should be allowed to say: "You are WRONG", but never: "YOUR WORK IS WASTE OF TIME"!
+
+I have investigated about your and other participants open-source work  in this discussion:
+
+https://github.com/hernad/harbour/blob/master/WASTE_OF_TIME.md
+
+I consider that my and everyone else's CREDIBILITY in open-source project should be measured at first place 
+through their direct CONTRIBUTIONS with source code and documentation to the project.
+
+This community has big problem because participants spend to much time on discussions (and I suppose) 
+particular closed-source projects), despite direct contributing with source code and documentation.
+
+My decision to take substantial time to answer you as such can be a waste of time.
+But that judgement is mine. You are free to read or not. You are free use it or not.
+That is open-source spirit.
+
