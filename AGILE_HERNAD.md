@@ -12,7 +12,7 @@ Readings on this group (harbour users) have largely motivated me to do this step
 
 > I prefer meritocracy over democracy in software development!
 
-I am programmer. I live building and deploying harbour /  nodejs / electron / postgresql PL/PgSQL projects. Every of those tools are mine. If they are jeopardized, I am jeopardized.
+I am programmer. I live building and deploying linux / python/ansible / harbour /  nodejs / electron / postgresql PL/PgSQL projects. Every of those tools are mine. If they are jeopardized, I am jeopardized.
 
 I don't know what is the future for me or this community. I am glad that I am not passive observer in this story. 
 
