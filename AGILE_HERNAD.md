@@ -14,7 +14,7 @@ I am programmer. I live building and deploying harbour /  nodejs / electron / p
 
 I don't know what is the future for me or this community. I am glad that I am not passive observer in this story. 
 
-I see my work as contributon to the harbour community, you see me as distractor. Never mind. 
+I see my work as contributon to the harbour community, other can see that as a distraction to avoid. Never mind. 
 
 I am alive, active and agile. These are most important things :).
 
