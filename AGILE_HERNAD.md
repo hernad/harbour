@@ -13,6 +13,9 @@ Readings on this group (harbour users) have largely motivated me to do this step
 I am programmer. I live building and deploying harbour /  nodejs / electron / postgresql PL/PgSQL projects. Every of those tools are mine. If they are jeopardized, I am jeopardized.
 
 I don't know what is the future for me or this community. I am glad that I am not passive observer in this story. 
-I see me as contributor, you see me as distractor. Never mind. I am active and agile.
+
+I see my work as contributon to the harbour community, you see me as distractor. Never mind. 
+
+I am alive, active and agile. These are most important things :).
 
 Regards, Ernad 
