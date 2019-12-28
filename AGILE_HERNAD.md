@@ -10,7 +10,7 @@ During [last 7 days](https://github.com/hernad/harbour/pulse), after 376 commits
 
 Readings on this group (harbour users) have largely motivated me to do this step. To much talk about boad, unfocused ideas. To much talks like we are living in '90s of last century. And very often, the loudest voices by people who don't use it for living! 
 
-> I prefer meritocracy over democracy in software development,
+> I prefer meritocracy over democracy in software development!
 
 I am programmer. I live building and deploying harbour /  nodejs / electron / postgresql PL/PgSQL projects. Every of those tools are mine. If they are jeopardized, I am jeopardized.
 
