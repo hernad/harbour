@@ -8,7 +8,7 @@ The departure of these developers alarmed me that I shouldn't be passive. If I 
 
 During [last 7 days](https://github.com/hernad/harbour/pulse), after 376 commits, I have learned about language a lot. I have approved to myself that I have enough C/Makefile/build systems knowledge to take care about my important tool.
 
-Readings on this group (harbour users) have largely motivated me to do this step. To much talk about boad, unfocused ideas. To much talks like we are living in '90s of last century. And very often, the loudest voices by people who don't use it for living! 
+Readings on this group (harbour users) have largely motivated me to do this step. To much talk about broad, unfocused ideas. To much talks like we are living in '90s of last century. And very often, the loudest voices by people who don't use it for living! 
 
 > I prefer meritocracy over democracy in software development!
 
