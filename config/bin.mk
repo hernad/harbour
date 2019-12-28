@@ -65,6 +65,13 @@ else
             RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
             $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
          endif
+         # copy the static zlib.lib also
+         SRCLIB := $(subst /,$(DIRSEP),$(HB_HAS_ZLIB)/../lib/zlib.lib)
+         DESTLIB := $(subst /,$(DIRSEP),$(TOP)$(ROOT)lib/$(PLAT_COMP)/zlib.lib)
+         ifeq ($(wildcard $(DESTLIB)),)
+            RET := $(shell $(CP) $(SRCLIB) $(DESTLIB))
+            $(info SHELL='$(SHELL)' cmd='$(CP)' '$(SRCLIB)' '$(DESTLIB)' => $(RET) )
+         endif
       else
          HB_LIBS_TPL += z
       endif

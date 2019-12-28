@@ -123,6 +123,7 @@ PROCEDURE Main( ... )
             aLibs := { ;
                cSrcLibDir + "\libpq.lib", ;
                cSrcLibDir + "\zdll.lib",   ;
+               cSrcLibDir + "\zdlib.lib",   ;
                cSrcLibDir + "\sqlite3.lib" ;
             }
          ELSE
