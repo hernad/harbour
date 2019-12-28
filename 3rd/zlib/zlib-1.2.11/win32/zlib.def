@@ -92,9 +92,27 @@ EXPORTS
     inflateResetKeep
     deflateResetKeep
     gzopen_w
+    zipOpen
+    zipOpen2
     zipOpen2_64
+    zipOpenNewFileInZip4
     zipOpenNewFileInZip4_64
     zipWriteInFileInZip
     zipCloseFileInZip
+    zipCloseFileInZipRaw
     zipClose
     fill_win32_filefunc64W
+    unzOpen
+    unzClose
+    unzGetGlobalInfo
+    unzGetGlobalComment
+    unzGoToFirstFile
+    unzGoToNextFile
+    unzGetCurrentFileInfo
+    unzOpenCurrentFilePassword
+    unzOpenCurrentFile2
+    unzCloseCurrentFile
+    unzReadCurrentFile
+    unzGetLocalExtrafield
+    unzGetOffset
+    unzSetOffset
