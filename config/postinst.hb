@@ -157,7 +157,7 @@ PROCEDURE Main( ... )
          cSqlite3Bin := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cSqlite3Bin +=  hb_ps() + "sqlite3" + hb_ps() + "bin" + hb_ps()
          
-         cSqlite3Bin := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cOpenSSLLib := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cOpenSSLLib +=  hb_ps() + "openssl" + hb_ps() + "lib" + hb_ps()
          
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
@@ -275,6 +275,8 @@ PROCEDURE Main( ... )
                cPostgreSQLLib + "utf8_and_sjis.so", ;
                cPostgreSQLLib + "utf8_and_uhc.so", ;
                cPostgreSQLLib + "utf8_and_win.so", ;
+               cOpenSSLLib + "libssl.a", ;
+               cOpenSSLLib + "libcrypto.a", ;
                cOpenSSLLib + "libssl.so", ;
                cOpenSSLLib + "libcrypto.so" ;
             }
