@@ -55,7 +55,7 @@ PROCEDURE Main( ... )
    LOCAL cDynVersionless
    LOCAL cFile, cSrcLibDir, aLibs
    LOCAL cPostgreSQLBin, cPostgreSQLLib, cZlibDir
-   LOCAL cLibDest, cBinDest, cCurlBin, cCurlLib, cSqlite3Bin
+   LOCAL cLibDest, cBinDest, cCurlBin, cCurlLib, cSqlite3Bin, cOpenSSLLib
 
    IF HB_ISSTRING( hb_PValue( 1 ) ) .AND. Lower( hb_PValue( 1 ) ) == "-rehbx"
       mk_extern_core_manual( hb_PValue( 2 ), hb_PValue( 3 ) )
@@ -156,6 +156,9 @@ PROCEDURE Main( ... )
 
          cSqlite3Bin := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
          cSqlite3Bin +=  hb_ps() + "sqlite3" + hb_ps() + "bin" + hb_ps()
+         
+         cSqlite3Bin := GetEnvC( "ROOT_DIR" ) + hb_ps() +  "3rd" + hb_ps() + GetEnvC( "BUILD_ARCH" )
+         cOpenSSLLib +=  hb_ps() + "openssl" + hb_ps() + "lib" + hb_ps()
          
          IF hb_Version( HB_VERSION_BUILD_PLAT ) == "win"
             aLibs := { ;
@@ -271,7 +274,9 @@ PROCEDURE Main( ... )
                cPostgreSQLLib + "utf8_and_sjis2004.so", ;
                cPostgreSQLLib + "utf8_and_sjis.so", ;
                cPostgreSQLLib + "utf8_and_uhc.so", ;
-               cPostgreSQLLib + "utf8_and_win.so" ;
+               cPostgreSQLLib + "utf8_and_win.so", ;
+               cOpenSSLLib + "libssl.so", ;
+               cOpenSSLLib + "libcrypto.so"
             }
             cBinDest := GetEnvC( "HB_INSTALL_BIN" )
             cLibDest := GetEnvC( "HB_INSTALL_LIB" )
