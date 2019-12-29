@@ -276,7 +276,7 @@ PROCEDURE Main( ... )
                cPostgreSQLLib + "utf8_and_uhc.so", ;
                cPostgreSQLLib + "utf8_and_win.so", ;
                cOpenSSLLib + "libssl.so", ;
-               cOpenSSLLib + "libcrypto.so"
+               cOpenSSLLib + "libcrypto.so" ;
             }
             cBinDest := GetEnvC( "HB_INSTALL_BIN" )
             cLibDest := GetEnvC( "HB_INSTALL_LIB" )
