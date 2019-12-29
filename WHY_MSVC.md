@@ -28,7 +28,7 @@ To be precise, I have **NO PLAN**  plan to exclude mingw windows targets. I am j
 
 ## Using Microsoft Visual C++ and software freedom 
 
-Eric Lendvai have sad:
+There was question on `harbour-users` group:
 
 > But I am a little surprised when you mention "software freedom" and you only support MSVC, a non open source compiler under Windows. Mingw (gcc) is open source and quite good under Windows.
 
@@ -36,7 +36,7 @@ The software freedom is mentioned [here](https://github.com/hernad/harbour/blob/
 
 > If somebody share my needs and goals, please fork! Use, test, submit your pull requestes. Forking is base of creativity and software freedom.
 
-I have explained my reasons to `focus` on MSVC, but for me there are more important things to discuall on the topic:
+I have explained my reasons to `focus` on MSVC, but for me there are more important things to discuss on the topic:
 
 Windows is closed platform. You sould pay to use that. Using their closed source compiler doesn't matters. If it saves engineering resources to get Windows binaries, it is the best choice.
 The same thing as using proprietary clang based compiler on Apple/MacOS. The C compiler is commodity today. Nobody more is trying to make business based on it. So, we can consider them as a part of Operating system. Even Microsoft did that move with providing `msvc` free of charge :). Consequently, the main thing connected to `software freedom` should be this question:
