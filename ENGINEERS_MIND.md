@@ -7,7 +7,7 @@ Everything I need from `harbour` as a tool I get from Viktor's work.
 I know, I will angry many with this careless and superficial statement :).
 Nevertheless, as an engineer my goal is to provide my application to work.
 
-I am taking this because I have read a lot of discussions about this, but never find engineering task list like this:
+I am taking this because I have read a lot of discussions about this, but never find engineering `task list`, something like this:
 
 - Example: my `applicationX` (link to source code repository of application) doesn't work in hb3.4 because of this and this. It is working in hb3.2 perfectly
 - My `applicationY` shows memory leaks here built with `hb3.4`, everything is ok when I build with `hb3.2`
