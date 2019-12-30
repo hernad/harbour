@@ -21,7 +21,10 @@ World has changed during last 10 years in the area of programming languages.
 Comparing with 90s of last century, this is another planet.
 
 We should embrace this fact.
+
 There are many new threats.
+
 There many new opportunities.
+
 For work we do, for projects we like and support.
-For every of us.
+
