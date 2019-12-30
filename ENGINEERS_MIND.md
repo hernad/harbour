@@ -4,7 +4,7 @@ Engineer's mind
 Harbour's community is breaking heads about what to do with [harbour/core](https://github.com/harbour/core) <-> [vszakats/hb](https://github.com/vszakats/hb) repositories.
 For myself, I have never take time to investigate these changes. Because I don't care.
 Everything I need from `harbour` as a tool I get from Viktor's work.
-I know, I will angry many with this careless and superficial statement :).
+I know, I will angry many with this selfish, careless and superficial statement :).
 Nevertheless, as an engineer my goal is to provide my application to work.
 
 I am taking this because I have read a lot of discussions about this, but never find engineering `task list`, something like this:
