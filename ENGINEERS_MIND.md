@@ -21,5 +21,4 @@ This my opinion how engineers should talk. Everything else I consider as no-engi
 So, I don't use `hb3.2` not because it doesn't work for me (I don't know), but because `hb3.4` and now this project provides
 it what I need - my applications to work.
 
-Regards,
 Ernad
