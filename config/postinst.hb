@@ -278,7 +278,9 @@ PROCEDURE Main( ... )
                cOpenSSLLib + "libssl.a", ;
                cOpenSSLLib + "libcrypto.a", ;
                cOpenSSLLib + "libssl.so", ;
-               cOpenSSLLib + "libcrypto.so" ;
+               cOpenSSLLib + "libcrypto.so", ;
+               cCurlBin + "curl" + ;
+               cSqlite3Bin + "sqlite3" ;
             }
             cBinDest := GetEnvC( "HB_INSTALL_BIN" )
             cLibDest := GetEnvC( "HB_INSTALL_LIB" )
