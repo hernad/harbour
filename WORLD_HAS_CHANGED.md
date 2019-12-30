@@ -3,7 +3,7 @@ Search github.com by language "harbour"
 
 https://github.com/search?p=3&q=language%3Aharbour&type=Repositories
 
-around 30 projects, majority of them javascript projects where .hb files are html template files.
+around 30 projects, majority of them are javascript projects where .hb files are html template files.
 
 Yes, I know. User should search for xBase like this:
 
