@@ -60,3 +60,24 @@ My application F18:
 
 - F18 4.4.20 (built with ah 4.7.2)
 - F18 4.5.0 (built with ah 4.8.0)
+
+
+## "Fork", that ugly word
+
+I am really suprised by people's reactions. I have put my efforts to explain topic, then I realize that first thing 
+in their mind is `He want's to promote his project`?! Because of that, I suppose they cannot focus on my explanation at all:
+
+
+    I am explaining you that  answer to your question is firmly connected with building policies of the tool you are using.
+
+    You can apply that on any project. I have used my projects FOR THE SAKE OF EXPLANATION. And it is something you can observe and analyze. All of my projects are open-source, so it is allowed to you. You will not be infected looking at my solutions.
+
+    My intention to write this wasn't to use my project, then to share my engineering knowledge. So, It would be nice to say: "Thank you Ernad", not to think that I want you to attract you to my "fork". Especially because this community consider forks as ugly things (which they are not).
+
+    So you have to learn: Be grateful to others when they share knowledge. Knowledge is the most important thing in every industry, especially in software industry.
+
+    Let me get back: 
+
+    Your project can take better building policies and make your life easier and your productivity greater.
+    Without that you are going to have `building hell`.
+    Simple as that.
