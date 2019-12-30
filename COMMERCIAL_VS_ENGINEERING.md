@@ -1,7 +1,7 @@
 COMMERCIAL vs ENGINEERING interests
 ======================================
 
-Ther were an discussion on `harbour-users` group. One have compared agile harbour with xharbour.
+Ther were an discussion on `harbour-users` group. One have compared `agile harbour` with `xharbour`.
 
 I have sublimated that comparison like this:
 
