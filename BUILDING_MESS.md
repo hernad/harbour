@@ -65,8 +65,7 @@ My application F18:
 ## "Fork", that ugly word
 
 I am really suprised by people's reactions. I have put my efforts to explain topic, then I realize that first thing 
-in their mind is `He want's to promote his project`?! Because of that, I suppose they cannot focus on my explanation at all:
-
+in their mind is `He want's to promote his project`?! Because of that, I suppose they cannot focus on my explanations at all. I don't get it.  My reply was this:
 
 > I am explaining you that  answer to your question is firmly connected with building policies of the tool you are using.
 
@@ -76,5 +75,5 @@ in their mind is `He want's to promote his project`?! Because of that, I suppose
 
 > So you have to learn: Be grateful to others when they share knowledge. Knowledge is the most important thing in every industry, especially in software industry.
 
-> Let me get back:  Your project can take better building policies and make your life easier and your productivity greater. Without that you are going to have `building hell`.
+> Let me get back: Your project can take better building policies and make your life easier and your productivity greater. Without that you are going to have `building hell`.
 Simple as that.
