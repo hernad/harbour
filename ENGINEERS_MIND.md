@@ -16,7 +16,7 @@ I am taking this because I have read a lot of discussions about this, but never 
 - ...
 - Nth case
 
-This my opinion how engineers should talk. Everything else I consider as no-engineering talks I honestly don't care.
+This is my opinion how engineers should talk. Everything else I consider as no-engineering talks I honestly don't care.
 
 So, I don't use `hb3.2` not because it doesn't work for me (I don't know), but because `hb3.4` and now this project provides
 it what I need - my applications to work.
