@@ -47,3 +47,16 @@ You can imagine, I can set publishing different versions of my application at on
 I am doing that already here: https://github.com/hernad/vscode-f18/blob/4/ext/constants.ts#L8
 There are three channels of application user can have: S - standard, E - edge, X - experimental.
 
+## Avoid Side-by-side libraries!
+
+Side-by-side usage should be avoided wherever you can.
+ Because of clarity. Binding everything in one build chain is the clearest approach.
+In my example:
+
+- agile harbour 4.8.0  <-> postgresql 12.2
+- agile harbour 4.7.2  <-> postgresql 12.1
+
+My application F18:
+
+- F18 4.4.20 (built with ah 4.7.2)
+- F18 4.5.0 (built with ah 4.8.0)
