@@ -28,12 +28,17 @@ PATH="$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin;$PATH"
 [ -f config.log ] && rm config.log
 
 autoconf -f
+CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/zlib/include  -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include"
+
 sh ./configure \
-  CPPFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include" \
-  CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2 -I$ROOT_3RD/libxslt/include -I$ROOT_3RD/uuid/include -I$ROOT_3RD/openssl/include" \
-  LDFLAGS="-L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
+  CFLAGS="$CFLAGS" \
+  CPPFLAGS="$CFLAGS" \
+  LDFLAGS="-L$ROOT_3RD/libxml2/lib -L$ROOT_3RD/zlib/lib  -L$ROOT_3RD/libxslt/lib -L$ROOT_3RD/uuid/lib -L$ROOT_3RD/openssl/lib" \
   --prefix=$PREFIX \
-  --with-openssl
+  --with-openssl \
+  --with-zlib \
+  --without-libssh \
+  --without-libssh2
 
 make install
 cd ..
