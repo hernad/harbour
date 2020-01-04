@@ -1,7 +1,6 @@
 ROOT := ../
 
 C_HEADERS := \
-   clipdefs.h \
    extend.h \
    hbapi.h \
    hbapicdp.h \
