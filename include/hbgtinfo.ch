@@ -189,14 +189,6 @@
 #define HB_GTI_KBD_RWIN         0x008000
 #define HB_GTI_KBD_MENU         0x010000
 
-#ifdef HB_LEGACY_LEVEL4
-/* Harbour GT callback events - WORK IN PROGRESS */
-#define HB_GTE_ACTIVATE         1
-#define HB_GTE_SETFOCUS         2
-#define HB_GTE_KILLFOCUS        3
-#define HB_GTE_CLOSE            4
-#define HB_GTE_RESIZED          5
-#endif
 
 /* Harbour GT resizing mode constants */
 #define HB_GTI_RESIZEMODE_FONT  0   /* Default */

@@ -239,11 +239,7 @@ EXTERNAL hbmk_KEYW
 #define _OUT_EOL                hb_eol()   /* used when displaying text */
 #define _FIL_EOL                Chr( 10 )  /* used when creating source files */
 
-#ifdef HB_LEGACY_LEVEL4
-   #define _HBMK_PLUGIN_APIVER  2
-#else
-   #define _HBMK_PLUGIN_APIVER  3
-#endif
+#define _HBMK_PLUGIN_APIVER  3
 
 #define _HBMK_IMPLIB_NOTFOUND   -1
 #define _HBMK_IMPLIB_OK         0

@@ -86,10 +86,6 @@ THREAD STATIC t_hHT                // data for HTML tags
 THREAD STATIC t_cHtmlCP := ""
 THREAD STATIC t_aHtmlUnicEntities  // HTML character entities
 THREAD STATIC t_cHtmlUnicChars
-#ifdef HB_LEGACY_LEVEL4
-THREAD STATIC t_aHtmlAnsiEntities  // HTML character entities (ANSI character set)
-THREAD STATIC t_cHtmlAnsiChars
-#endif
 THREAD STATIC t_lInit := .F.       // initialization flag for HTML data
 
 #ifdef _DEBUG_
@@ -1566,15 +1562,9 @@ FUNCTION THtmlInit( lInit )
    IF ! hb_defaultValue( lInit, .T. )
       t_aHA := NIL
       t_hHT := NIL
-#ifdef HB_LEGACY_LEVEL4
-      t_aHtmlAnsiEntities := NIL
-#endif
       t_lInit := .F.
    ELSEIF ! t_lInit
       t_aHA := Array( HTML_ATTR_COUNT )
-#ifdef HB_LEGACY_LEVEL4
-      _Init_Html_AnsiCharacterEntities()
-#endif
       _Init_Html_Attributes()
       _Init_Html_TagTypes()
       t_lInit := .T.
@@ -4202,7 +4192,6 @@ STATIC FUNCTION THtmlAttr_XMP()
       t_aHA[ HTML_ATTR_SDAPREF          ], ;
       t_aHA[ HTML_ATTR_UNKNOWN          ] }
 
-#ifdef HB_LEGACY_LEVEL4
 
 // Converts an HTML formatted text string to the ANSI character set
 FUNCTION HtmlToANSI( cHtmlText )
@@ -4354,7 +4343,6 @@ STATIC PROCEDURE _Init_Html_AnsiCharacterEntities()
 
    RETURN
 
-#endif
 
 // Converts an HTML formatted text string to the current character set
 FUNCTION tip_HtmlToStr( cHtmlText )

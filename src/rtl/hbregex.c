@@ -558,14 +558,6 @@ HB_FUNC( HB_REGEX )
 /* NOTE: Deprecated compatibility function.
          Please use hb_regexLike() and hb_regexHas() instead. */
 
-#if defined( HB_LEGACY_LEVEL4 )
-
-HB_FUNC( HB_REGEXMATCH )
-{
-   hb_retl( hb_regex( hb_parl( 5 ) ? 1 /* LIKE */ : 2 /* HAS */ ) );
-}
-
-#endif
 
 HB_FUNC( HB_REGEXLIKE )
 {

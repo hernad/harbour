@@ -462,15 +462,6 @@ HB_FUNC( BIO_NEW_FD )
       hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
 }
 
-#if defined( HB_LEGACY_LEVEL4 )
-HB_FUNC( BIO_NEW_FILE )
-{
-   if( HB_ISCHAR( 1 ) )
-      hb_BIO_ret( BIO_new_file( hb_parc( 1 ), hb_parcx( 2 ) ) );
-   else
-      hb_errRT_BASE( EG_ARG, 2010, NULL, HB_ERR_FUNCNAME, HB_ERR_ARGS_BASEPARAMS );
-}
-#endif
 
 HB_FUNC( BIO_NEW_MEM_BUF )
 {

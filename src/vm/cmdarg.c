@@ -894,45 +894,6 @@ const char * hb_verCommitInfo( void )
    return HB_VER_COMMIT_INFO;
 }
 
-#if defined( HB_LEGACY_LEVEL4 )
-
-/* Source repository revision number */
-int hb_verRevision( void )
-{
-   return HB_VER_COMMIT_REV;
-}
-
-/* Source repository revision number */
-int hb_verSvnID( void )
-{
-   return HB_VER_COMMIT_REV;
-}
-
-/* ChangeLog ID string */
-const char * hb_verChangeLogID( void )
-{
-   return HB_VER_COMMIT_ID_SHORT;
-}
-
-/* ChangeLog ID string */
-const char * hb_verSvnChangeLogID( void )
-{
-   return HB_VER_COMMIT_ID_SHORT;
-}
-
-/* ChangeLog last entry string */
-const char * hb_verChangeLogLastEntry( void )
-{
-   return HB_VER_COMMIT_INFO;
-}
-
-/* ChangeLog last entry string */
-const char * hb_verSvnLastEntry( void )
-{
-   return HB_VER_COMMIT_INFO;
-}
-
-#endif
 
 /* build time C compiler flags in HB_USER_CFLAGS envvar */
 const char * hb_verFlagsC( void )

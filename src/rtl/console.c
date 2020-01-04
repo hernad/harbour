@@ -188,15 +188,6 @@ HB_FUNC( HB_EOL )
    hb_retc_const( s_szEOL );
 }
 
-#if defined( HB_LEGACY_LEVEL4 )
-
-/* Deprecated */
-HB_FUNC( HB_OSNEWLINE )
-{
-   hb_retc_const( s_szEOL );
-}
-
-#endif
 
 HB_FUNC( HB_STREOL )
 {

@@ -1614,7 +1614,6 @@ INIT PROCEDURE ARRAYRDD_INIT()
 
    RETURN
 
-#ifdef HB_LEGACY_LEVEL4
 
 FUNCTION hb_FileArrayRdd( cFullName )
    RETURN hb_dbExists( cFullName )
@@ -1622,7 +1621,6 @@ FUNCTION hb_FileArrayRdd( cFullName )
 FUNCTION hb_EraseArrayRdd( cFullName )
    RETURN hb_dbDrop( cFullName )
 
-#endif
 
 /* hb_SetArrayRdd( aArray ) --> NIL
    This function set DBF with aArray like APPEND FROM aArray in an empty DBF */

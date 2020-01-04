@@ -47,10 +47,6 @@
 #ifndef HB_COMMON_CH_
 #define HB_COMMON_CH_
 
-#if defined( HB_LEGACY_LEVEL4 )
-   #include "hbhash.ch"
-#endif
-
 /* Friendly logical aliases */
 #define TRUE                    .T.
 #define FALSE                   .F.

@@ -45,10 +45,8 @@
  *
  */
 
-#if defined( HB_LEGACY_LEVEL4 )
 FUNCTION hb_MailAssemble( ... )
    RETURN tip_MailAssemble( ... )
-#endif
 
 FUNCTION tip_MailAssemble( ;
       cFrom, ;       /* Required. Email address of the sender */

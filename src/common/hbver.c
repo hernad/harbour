@@ -1330,10 +1330,3 @@ char * hb_verPCode( void )
 
    return pszPCode;
 }
-
-#if defined( HB_LEGACY_LEVEL4 )
-char * hb_verBuildDate( void )
-{
-   return ( char * ) hb_xgrabz( 1 );
-}
-#endif

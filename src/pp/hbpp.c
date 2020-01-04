@@ -445,11 +445,6 @@ static int hb_pp_generateVerInfo( char * szVerFile,
          hb_xfree( pszEnv );
       }
 
-#if defined( HB_LEGACY_LEVEL4 )
-      fprintf( fout, "\n#define HB_VER_CHLID            HB_VER_COMMIT_ID_SHORT\n" );
-      fprintf( fout, "\n#define HB_VER_LENTRY           HB_VER_COMMIT_INFO\n" );
-#endif
-
       fclose( fout );
    }
 
@@ -533,10 +528,6 @@ static int hb_pp_TimeStampToNum( PHB_PP_STATE pState, char * pszLog, char * pszY
    hb_pp_addDefine( pState, "HB_VER_COMMIT_YEAR", pszYear );
    hb_pp_delDefine( pState, "HB_VER_COMMIT_REV" );
    hb_pp_addDefine( pState, "HB_VER_COMMIT_REV", szRevID );
-#if defined( HB_LEGACY_LEVEL4 )
-   hb_pp_delDefine( pState, "HB_VER_SVNID" );
-   hb_pp_addDefine( pState, "HB_VER_SVNID", szRevID );
-#endif
 
    return ( int ) hb_strValInt( szRevID, &iLen );
 }
@@ -750,9 +741,6 @@ static int hb_pp_parseRepoVer( PHB_PP_STATE pState, const char * pszFileName,
    hb_pp_addDefine( pState, "HB_VER_COMMIT_ID", szId );
    hb_pp_addDefine( pState, "HB_VER_COMMIT_ID_SHORT", szIdShort );
    hb_pp_addDefine( pState, "HB_VER_ORIGIN_URL", szURL );
-#if defined( HB_LEGACY_LEVEL4 )
-   hb_pp_addDefine( pState, "HB_VER_CHLID", szId );
-#endif
 
    *pszCommitID = hb_strdup( szId );
    *pszCommitIDShort = hb_strdup( szIdShort );

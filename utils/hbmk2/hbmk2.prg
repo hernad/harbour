@@ -1713,8 +1713,8 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          /* do nothing */
       CASE hb_LeftEq( cParamL, "-comp=" ) .OR. ;
             hb_LeftEq( cParamL, "-plat=" ) .OR. ;
-            hb_LeftEq( cParamL, "-compiler=" ) .OR. ; /* Compatibility HB_LEGACY_LEVEL4 */
-            hb_LeftEq( cParamL, "-platform=" ) .OR. ; /* Compatibility HB_LEGACY_LEVEL4 */
+            hb_LeftEq( cParamL, "-compiler=" ) .OR. ;
+            hb_LeftEq( cParamL, "-platform=" ) .OR. ; 
             hb_LeftEq( cParamL, "-cpu=" ) .OR. ;
             hb_LeftEq( cParamL, "-build=" ) .OR. ;
             hb_LeftEq( cParamL, "-lang=" ) .OR. ;
@@ -1847,10 +1847,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       CASE cParamL == "-gui"             ; hbmk[ _HBMK_lGUI ]       := .T. ; hbmk[ _HBMK_lCLI ] := .F.
       CASE cParamL == "-std"             ; hbmk[ _HBMK_lGUI ]       := .F. ; hbmk[ _HBMK_lCLI ] := .F.
       CASE cParamL == "-cli"             ; hbmk[ _HBMK_lGUI ]       := .F. ; hbmk[ _HBMK_lCLI ] := .T.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-mwindows"        ; hbmk[ _HBMK_lGUI ]       := .T. ; LegacyWarning( hbmk, aParam, "-gui" )
-      CASE cParamL == "-mconsole"        ; hbmk[ _HBMK_lGUI ]       := .F. ; LegacyWarning( hbmk, aParam, "-std" )
-#endif
 
       CASE cParamL == "-mt"              ; hbmk[ _HBMK_lMT ]        := .T.
       CASE cParamL == "-st"              ; hbmk[ _HBMK_lMT ]        := .F.
@@ -1876,14 +1872,8 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          hbmk[ _HBMK_lBLDFLGL ] := "l" $ cParam
       CASE cParamL == "-debug"           ; hbmk[ _HBMK_lDEBUG ]       := .T.
       CASE cParamL == "-debug-"          ; hbmk[ _HBMK_lDEBUG ]       := .F.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-nodebug"         ; hbmk[ _HBMK_lDEBUG ]       := .F. ; LegacyWarning( hbmk, aParam, "-debug-" )
-#endif
       CASE cParamL == "-optim"           ; hbmk[ _HBMK_lOPTIM ]       := .T.
       CASE cParamL == "-optim-"          ; hbmk[ _HBMK_lOPTIM ]       := .F.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-nooptim"         ; hbmk[ _HBMK_lOPTIM ]       := .F. ; LegacyWarning( hbmk, aParam, "-optim-" )
-#endif
       CASE cParamL == "-debugtime"       ; hbmk[ _HBMK_lDEBUGTIME ]   := .T.
       CASE cParamL == "-debuginc"        ; hbmk[ _HBMK_lDEBUGINC ]    := .T.
       CASE cParamL == "-debugstub"       ; hbmk[ _HBMK_lDEBUGSTUB ]   := .T.
@@ -1937,9 +1927,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
       CASE cParamL == "-inithbl"         ; hbmk[ _HBMK_lInitHBL ]     := .T.
       CASE cParamL == "-minipo"          ; hbmk[ _HBMK_lMINIPO ]      := .T.
       CASE cParamL == "-minipo-"         ; hbmk[ _HBMK_lMINIPO ]      := .F.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-nominipo"        ; hbmk[ _HBMK_lMINIPO ]      := .F. ; LegacyWarning( hbmk, aParam, "-minipo-" )
-#endif
       CASE cParamL == "-clean"           ; hbmk[ _HBMK_lINC ]         := .T. ; hbmk[ _HBMK_lCLEAN ] := .T.
       CASE cParamL == "-inc"
 
@@ -1984,11 +1971,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          CASE SubStr( cParamL, 6 + 1 ) == "no"  ; hbmk[ _HBMK_nWARN ] := _WARN_NO
          CASE SubStr( cParamL, 6 + 1 ) == "low" ; hbmk[ _HBMK_nWARN ] := _WARN_LOW
          CASE SubStr( cParamL, 6 + 1 ) == "max" ; hbmk[ _HBMK_nWARN ] := _WARN_MAX
-#ifdef HB_LEGACY_LEVEL4
-         OTHERWISE                              ; hbmk[ _HBMK_nWARN ] := _WARN_YES ; LegacyWarning( hbmk, aParam, "-warn=yes" )
-#else
          OTHERWISE                              ; InvalidOptionValue( hbmk, aParam )
-#endif
          ENDCASE
 
       CASE cParamL == "-nowarn"             ; hbmk[ _HBMK_nWARN ] := _WARN_NO ; LegacyWarning( hbmk, aParam, "-warn=no" )
@@ -2010,11 +1993,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          CASE SubStr( cParamL, 7 + 1 ) == "min"  ; hbmk[ _HBMK_nCOMPR ] := _COMPR_MIN
          CASE SubStr( cParamL, 7 + 1 ) == "high" ; hbmk[ _HBMK_nCOMPR ] := _COMPR_HIGH
          CASE SubStr( cParamL, 7 + 1 ) == "max"  ; hbmk[ _HBMK_nCOMPR ] := _COMPR_MAX
-#ifdef HB_LEGACY_LEVEL4
-         OTHERWISE                               ; hbmk[ _HBMK_nCOMPR ] := _COMPR_DEF ; LegacyWarning( hbmk, aParam, "-compr=yes" )
-#else
          OTHERWISE                               ; InvalidOptionValue( hbmk, aParam )
-#endif
          ENDCASE
 
       CASE cParamL == "-nocompr"            ; hbmk[ _HBMK_nCOMPR ] := _COMPR_OFF ; LegacyWarning( hbmk, aParam, "-compr=no" )
@@ -2025,11 +2004,7 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          CASE SubStr( cParamL, 6 + 1 ) == "full"   ; hbmk[ _HBMK_nHEAD ] := _HEAD_FULL
          CASE SubStr( cParamL, 6 + 1 ) == "native" ; hbmk[ _HBMK_nHEAD ] := _HEAD_NATIVE
          CASE SubStr( cParamL, 6 + 1 ) == "dep"    ; hbmk[ _HBMK_nHEAD ] := _HEAD_DEP
-#ifdef HB_LEGACY_LEVEL4
-         OTHERWISE                                 ; hbmk[ _HBMK_nHEAD ] := _HEAD_FULL ; LegacyWarning( hbmk, aParam, "-head=full" )
-#else
          OTHERWISE                                 ; InvalidOptionValue( hbmk, aParam )
-#endif
          ENDCASE
 
       CASE cParamL == "-head"                  ; hbmk[ _HBMK_nHEAD ] := _HEAD_FULL ; LegacyWarning( hbmk, aParam, "-head=full" )
@@ -2080,9 +2055,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          ENDIF
 
       CASE cParamL == "-run-"            ; hbmk[ _HBMK_lRUN ]       := .F.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-norun"           ; hbmk[ _HBMK_lRUN ]       := .F. ; LegacyWarning( hbmk, aParam, "-run-" )
-#endif
 
       CASE cParamL == "-trace"
 
@@ -2091,9 +2063,6 @@ STATIC FUNCTION __hbmk( aArgs, nArgTarget, nLevel, /* @ */ lPause, /* @ */ lExit
          ENDIF
 
       CASE cParamL == "-trace-"          ; hbmk[ _HBMK_lTRACE ]     := .F.
-#ifdef HB_LEGACY_LEVEL4
-      CASE cParamL == "-notrace"         ; hbmk[ _HBMK_lTRACE ]     := .F. ; LegacyWarning( hbmk, aParam, "-trace-" )
-#endif
       CASE cParamL == "-traceonly"       ; hbmk[ _HBMK_lTRACE ]     := .T. ; hbmk[ _HBMK_lDONTEXEC ] := .T.
 
       CASE cParamL == "--hbdirbin"       ; hbmk[ _HBMK_lStopAfterInit ] := .T.
@@ -10033,9 +10002,6 @@ STATIC FUNCTION HBC_ProcessOne( hbmk, cFileName, nNestingLevel )
          DO CASE
          CASE ValueIsT( cLine )        ; hbmk[ _HBMK_nCOMPR ] := _COMPR_DEF
          CASE ValueIsF( cLine )        ; hbmk[ _HBMK_nCOMPR ] := _COMPR_OFF
-#ifdef HB_LEGACY_LEVEL4
-         CASE Lower( cLine ) == "def"  ; hbmk[ _HBMK_nCOMPR ] := _COMPR_DEF
-#endif
          CASE Lower( cLine ) == "min"  ; hbmk[ _HBMK_nCOMPR ] := _COMPR_MIN
          CASE Lower( cLine ) == "high" ; hbmk[ _HBMK_nCOMPR ] := _COMPR_HIGH
          CASE Lower( cLine ) == "max"  ; hbmk[ _HBMK_nCOMPR ] := _COMPR_MAX
@@ -10282,23 +10248,11 @@ STATIC FUNCTION ValueIsT( cString )
 
    cString := Lower( cString )
 
-#ifdef HB_LEGACY_LEVEL4 /* cleanup surrounding code after removing this */
-   IF cString == "1"
-      RETURN .T.
-   ENDIF
-#endif
-
    RETURN cString == "yes"
 
 STATIC FUNCTION ValueIsF( cString )
 
    cString := Lower( cString )
-
-#ifdef HB_LEGACY_LEVEL4 /* cleanup surrounding code after removing this */
-   IF cString == "0"
-      RETURN .T.
-   ENDIF
-#endif
 
    RETURN cString == "no"
 

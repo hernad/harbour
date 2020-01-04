@@ -98,94 +98,6 @@ HB_EXTERN_BEGIN
 #define HB_IT_EVALITEM  ( HB_IT_BLOCK | HB_IT_SYMBOL )
 #define HB_IT_HASHKEY   ( HB_IT_INTEGER | HB_IT_LONG | HB_IT_DOUBLE | HB_IT_DATE | HB_IT_TIMESTAMP | HB_IT_STRING | HB_IT_POINTER )
 
-#if 0
-
-/*
- * In Harbour VM HB_IT_BYREF is never ORed with item type. It can be used
- * as stand alone type for locals and statics passed by reference or with
- * HB_IT_MEMVAR for memvars passed by reference so this macro is less usable.
- * only the hb_parinfo() function can return HB_TYPE as HB_IT_BYREF ORed
- * with real type but this value is never set as item type.
- */
-
-#define HB_IS_OF_TYPE( p, t ) ( ( HB_ITEM_TYPE( p ) & ~HB_IT_BYREF ) == t )
-
-/*
- * These macros are slower but can be usable in debugging some code.
- * They are a little bit more safe in buggy code but they can
- * also hide bugs which should be exploited as soon as possible to
- * know that something is wrong and has to be fixed.
- * the version below which check only chosen bits allow compiler to
- * use some optimizations if used CPU supports it. E.g. on standard
- * x86 machines they can save few CPU cycles. [druzus]
- */
-
-#define HB_IS_NIL( p )        HB_IS_OF_TYPE( p, HB_IT_NIL )
-#define HB_IS_ARRAY( p )      HB_IS_OF_TYPE( p, HB_IT_ARRAY )
-#define HB_IS_BLOCK( p )      HB_IS_OF_TYPE( p, HB_IT_BLOCK )
-#define HB_IS_DATE( p )       HB_IS_OF_TYPE( p, HB_IT_DATE )
-#define HB_IS_TIMESTAMP( p )  HB_IS_OF_TYPE( p, HB_IT_TIMESTAMP )
-#define HB_IS_DOUBLE( p )     HB_IS_OF_TYPE( p, HB_IT_DOUBLE )
-#define HB_IS_INTEGER( p )    HB_IS_OF_TYPE( p, HB_IT_INTEGER )
-#define HB_IS_LOGICAL( p )    HB_IS_OF_TYPE( p, HB_IT_LOGICAL )
-#define HB_IS_LONG( p )       HB_IS_OF_TYPE( p, HB_IT_LONG )
-#define HB_IS_SYMBOL( p )     HB_IS_OF_TYPE( p, HB_IT_SYMBOL )
-#define HB_IS_POINTER( p )    HB_IS_OF_TYPE( p, HB_IT_POINTER )
-#define HB_IS_HASH( p )       HB_IS_OF_TYPE( p, HB_IT_HASH )
-#define HB_IS_MEMO( p )       HB_IS_OF_TYPE( p, HB_IT_MEMO )
-#define HB_IS_MEMVAR( p )     HB_IS_OF_TYPE( p, HB_IT_MEMVAR )
-#define HB_IS_ENUM( p )       HB_IS_OF_TYPE( p, HB_IT_ENUM )
-#define HB_IS_EXTREF( p )     HB_IS_OF_TYPE( p, HB_IT_EXTREF )
-#define HB_IS_STRING( p )     ( ( HB_ITEM_TYPE( p ) & ~( HB_IT_BYREF | HB_IT_MEMOFLAG ) ) == HB_IT_STRING )
-#define HB_IS_BYREF( p )      ( ( HB_ITEM_TYPE( p ) & HB_IT_BYREF ) != 0 )
-#define HB_IS_NUMERIC( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_NUMERIC ) != 0 )
-#define HB_IS_NUMINT( p )     ( ( HB_ITEM_TYPE( p ) & HB_IT_NUMINT ) != 0 )
-#define HB_IS_DATETIME( p )   ( ( HB_ITEM_TYPE( p ) & HB_IT_DATETIME ) != 0 )
-#define HB_IS_COMPLEX( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_COMPLEX ) != 0 )
-#define HB_IS_GCITEM( p )     ( ( HB_ITEM_TYPE( p ) & HB_IT_GCITEM ) != 0 )
-#define HB_IS_EVALITEM( p )   ( ( HB_ITEM_TYPE( p ) & HB_IT_EVALITEM ) != 0 )
-#define HB_IS_HASHKEY( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_HASHKEY ) != 0 )
-#define HB_IS_BADITEM( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_COMPLEX ) != 0 && ( HB_ITEM_TYPE( p ) & ~( HB_IT_COMPLEX | HB_IT_MEMOFLAG ) ) != 0 )
-#define HB_IS_OBJECT( p )     ( HB_IS_ARRAY( p ) && HB_ARRAY_OBJ( p ) )
-#define HB_IS_NUMBER( p )     HB_IS_NUMERIC( p )
-
-#elif 0
-
-/*
- * these macros illustrates possible HB_TYPE bit combinations in HVM,
- * they are the safest one in buggy code which may produce wrong item
- * signatures but also they can be slower on some machines
- */
-#define HB_IS_NIL( p )        ( HB_ITEM_TYPE( p ) == HB_IT_NIL )
-#define HB_IS_ARRAY( p )      ( HB_ITEM_TYPE( p ) == HB_IT_ARRAY )
-#define HB_IS_BLOCK( p )      ( HB_ITEM_TYPE( p ) == HB_IT_BLOCK )
-#define HB_IS_DATE( p )       ( HB_ITEM_TYPE( p ) == HB_IT_DATE )
-#define HB_IS_TIMESTAMP( p )  ( HB_ITEM_TYPE( p ) == HB_IT_TIMESTAMP )
-#define HB_IS_DOUBLE( p )     ( HB_ITEM_TYPE( p ) == HB_IT_DOUBLE )
-#define HB_IS_INTEGER( p )    ( HB_ITEM_TYPE( p ) == HB_IT_INTEGER )
-#define HB_IS_LOGICAL( p )    ( HB_ITEM_TYPE( p ) == HB_IT_LOGICAL )
-#define HB_IS_LONG( p )       ( HB_ITEM_TYPE( p ) == HB_IT_LONG )
-#define HB_IS_SYMBOL( p )     ( HB_ITEM_TYPE( p ) == HB_IT_SYMBOL )
-#define HB_IS_POINTER( p )    ( HB_ITEM_TYPE( p ) == HB_IT_POINTER )
-#define HB_IS_HASH( p )       ( HB_ITEM_TYPE( p ) == HB_IT_HASH )
-#define HB_IS_MEMO( p )       ( HB_ITEM_TYPE( p ) == HB_IT_MEMO )
-#define HB_IS_MEMVAR( p )     ( HB_ITEM_TYPE( p ) == ( HB_IT_MEMVAR | HB_IT_BYREF ) )
-#define HB_IS_ENUM( p )       ( HB_ITEM_TYPE( p ) == ( HB_IT_ENUM | HB_IT_BYREF ) )
-#define HB_IS_EXTREF( p )     ( HB_ITEM_TYPE( p ) == ( HB_IT_EXTREF | HB_IT_BYREF ) )
-#define HB_IS_STRING( p )     ( ( HB_ITEM_TYPE( p ) & ~HB_IT_MEMOFLAG ) == HB_IT_STRING )
-#define HB_IS_BYREF( p )      ( ( HB_ITEM_TYPE( p ) & ~HB_IT_MEMVAR ) == HB_IT_BYREF )
-#define HB_IS_NUMERIC( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_NUMERIC ) != 0 )
-#define HB_IS_NUMINT( p )     ( ( HB_ITEM_TYPE( p ) & HB_IT_NUMINT ) != 0 )
-#define HB_IS_DATETIME( p )   ( ( HB_ITEM_TYPE( p ) & HB_IT_DATETIME ) != 0 )
-#define HB_IS_COMPLEX( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_COMPLEX ) != 0 )
-#define HB_IS_GCITEM( p )     ( ( HB_ITEM_TYPE( p ) & HB_IT_GCITEM ) != 0 )
-#define HB_IS_EVALITEM( p )   ( ( HB_ITEM_TYPE( p ) & HB_IT_EVALITEM ) != 0 )
-#define HB_IS_HASHKEY( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_HASHKEY ) != 0 )
-#define HB_IS_BADITEM( p )    ( ( HB_ITEM_TYPE( p ) & HB_IT_COMPLEX ) != 0 && ( HB_ITEM_TYPE( p ) & ~( HB_IT_COMPLEX | HB_IT_MEMOFLAG ) ) != 0 )
-#define HB_IS_OBJECT( p )     ( HB_IS_ARRAY( p ) && HB_ARRAY_OBJ( p ) )
-#define HB_IS_NUMBER( p )     HB_IS_NUMERIC( p )
-
-#else
 
 /*
  * these ones are can be the most efficiently optimized on some CPUs
@@ -219,8 +131,6 @@ HB_EXTERN_BEGIN
 #define HB_IS_OBJECT( p )     ( HB_IS_ARRAY( p ) && HB_ARRAY_OBJ( p ) )
 #define HB_IS_NUMBER( p )     HB_IS_NUMERIC( p )
 
-#endif
-
 
 #define HB_ISNIL( n )         ( hb_extIsNil( n ) )                         /* NOTE: Intentionally using a different method */
 #define HB_ISCHAR( n )        ( hb_param( n, HB_IT_STRING ) != NULL )
@@ -239,24 +149,7 @@ HB_EXTERN_BEGIN
 #define HB_ISEVALITEM( n )    ( hb_param( n, HB_IT_EVALITEM ) != NULL )
 #define HB_ISDATETIME( n )    ( hb_param( n, HB_IT_DATETIME ) != NULL )
 
-/* Compatibility #defines, deprecated */
-#if defined( HB_LEGACY_LEVEL4 ) && defined( HB_LEGACY_TYPES_ON )
-   #define ISNIL( n )            HB_ISNIL( n )
-   #define ISCHAR( n )           HB_ISCHAR( n )
-   #define ISNUM( n )            HB_IS_PARAM_NUM( n )
-   #define ISLOG( n )            HB_ISLOG( n )
-   #define ISDATE( n )           HB_ISDATE( n )
-   #define ISTIMESTAMP( n )      HB_ISTIMESTAMP( n )
-   #define ISMEMO( n )           HB_ISMEMO( n )
-   #define ISBYREF( n )          HB_ISBYREF( n )
-   #define ISARRAY( n )          HB_ISARRAY( n )
-   #define ISOBJECT( n )         HB_ISOBJECT( n )
-   #define ISBLOCK( n )          HB_ISBLOCK( n )
-   #define ISPOINTER( n )        HB_ISPOINTER( n )
-   #define ISHASH( n )           HB_ISHASH( n )
-   #define ISSYMBOL( n )         HB_ISSYMBOL( n )
-   #define ISDATETIME( n )       HB_ISDATETIME( n )
-#endif
+
 
 #ifdef _HB_API_INTERNAL_
 
@@ -530,15 +423,6 @@ extern void *     hb_xRefResize( void * pMem, HB_SIZE nSave, HB_SIZE nSize, HB_S
 
 #endif /* _HB_API_INTERNAL_ */
 
-#if defined( HB_LEGACY_LEVEL4 )
-#  define HB_ITEM_PTR         PHB_ITEM
-#  define HB_BASEARRAY_PTR    PHB_BASEARRAY
-#  define HB_CODEBLOCK_PTR    PHB_CODEBLOCK
-#  define HB_MACRO_PTR        PHB_MACRO
-#  define HB_ERROR_INFO_PTR   PHB_ERROR_INFO
-#  define HB_HASH_TABLE_PTR   PHB_HASH_TABLE
-#  define HB_GARBAGE_FUNC_PTR PHB_GARBAGE_FUNC
-#endif
 
 #define hb_xgrabz( n )        memset( hb_xgrab( ( n ) ), 0, ( n ) )
 #define hb_xmemdup( p, n )    memcpy( hb_xgrab( ( n ) ), ( p ), ( n ) )
@@ -1197,15 +1081,6 @@ extern HB_EXPORT const char * hb_verCommitID( void );        /* retrieves a stat
 extern HB_EXPORT const char * hb_verCommitIDShort( void );   /* retrieves a static buffer containing source repository hash/id (short version) */
 extern HB_EXPORT int          hb_verCommitRev( void );       /* retrieves source repository revision number */
 extern HB_EXPORT const char * hb_verCommitInfo( void );      /* retrieves a static buffer containing source repository last commit header */
-#if defined( HB_LEGACY_LEVEL4 )
-extern HB_EXPORT char *       hb_verBuildDate( void );       /* retrieves a newly allocated buffer containing build date and time */
-extern HB_EXPORT int          hb_verRevision( void );        /* retrieves source repository revision number */
-extern HB_EXPORT const char * hb_verChangeLogID( void );     /* retrieves a static buffer containing ChangeLog ID string */
-extern HB_EXPORT const char * hb_verChangeLogLastEntry( void ); /* retrieves a static buffer containing ChangeLog last entry string */
-extern HB_EXPORT int          hb_verSvnID( void );           /* retrieves source repository revision number */
-extern HB_EXPORT const char * hb_verSvnChangeLogID( void );  /* retrieves a static buffer containing ChangeLog ID string */
-extern HB_EXPORT const char * hb_verSvnLastEntry( void );    /* retrieves a static buffer containing ChangeLog last entry string */
-#endif
 extern HB_EXPORT const char * hb_verFlagsC( void );          /* retrieves a static buffer containing build time C compiler flags in HB_USER_CFLAGS envvar */
 extern HB_EXPORT const char * hb_verFlagsL( void );          /* retrieves a static buffer containing build time linker flags in HB_USER_LDFLAGS envvar */
 extern HB_EXPORT const char * hb_verFlagsPRG( void );        /* retrieves a static buffer containing build time Harbour compiler flags in HB_USER_PRGFLAGS envvar */

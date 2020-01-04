@@ -345,81 +345,6 @@ typedef HB_UCHAR            HB_U8;
 #  endif
 #endif
 
-/* Legacy Windows/Clipper-style types */
-
-#if defined( HB_LEGACY_LEVEL4 ) && defined( HB_LEGACY_TYPES_ON )
-
-   #if ! defined( HB_DONT_DEFINE_BOOL )
-      #undef BOOL                         /* boolean */
-      typedef HB_BOOL BOOL;
-   #endif
-
-   #undef FALSE
-   #define FALSE  0
-   #undef TRUE
-   #define TRUE   ( ! 0 )
-
-   #undef UINT                            /* varies with platform */
-   typedef HB_UINT UINT;
-
-   #undef SCHAR                           /* 1 byte signed */
-   typedef HB_SCHAR SCHAR;
-
-   #undef UCHAR                           /* 1 byte unsigned */
-   typedef HB_UCHAR UCHAR;
-
-   #if ! defined( HB_DONT_DEFINE_BYTE )
-      #undef BYTE                            /* 1 byte unsigned */
-      typedef HB_UCHAR BYTE;
-   #endif
-
-   #undef SHORT                           /* 2 bytes signed */
-   typedef HB_SHORT SHORT;
-
-   #undef USHORT                          /* 2 bytes unsigned */
-   typedef HB_USHORT USHORT;
-
-   #if ! defined( HB_DONT_DEFINE_LONG )
-      #undef LONG                         /* 4 or 8 bytes signed */
-      typedef HB_LONG LONG;
-   #endif
-
-   #undef ULONG                           /* 4 or 8 bytes unsigned */
-   typedef HB_ULONG ULONG;
-
-   #if ! defined( _WINNT_H )
-      #if ! defined( HB_LONG_LONG_OFF )
-         #if ! defined( LONGLONG )
-            typedef HB_LONGLONG LONGLONG;
-         #endif
-         #if ! defined( ULONGLONG )
-            typedef HB_ULONGLONG ULONGLONG;
-         #endif
-      #endif
-   #endif
-
-   #if ! defined( UINT16 )
-       typedef HB_U16        UINT16;
-   #endif
-   #if ! defined( INT16 )
-       typedef HB_I16        INT16;
-   #endif
-   #if ! defined( UINT32 )
-       typedef HB_U32        UINT32;
-   #endif
-   #if ! defined( INT32 )
-       typedef HB_I32        INT32;
-   #endif
-   #if ! defined( HB_LONG_LONG_OFF )
-      #if ! defined( UINT64 )
-          typedef HB_U64        UINT64;
-      #endif
-      #if ! defined( INT64 )
-          typedef HB_I64        INT64;
-      #endif
-   #endif
-
-#endif
 
 #ifndef HB_LONG_DOUBLE_OFF
    typedef long double  HB_MAXDBL;
@@ -1557,7 +1482,7 @@ typedef HB_U32 HB_FATTR;
 
 #endif
 
-#if defined( HB_OS_WIN ) && defined( HB_LEGACY_LEVEL4 )
+#if defined( HB_OS_WIN )
    #if defined( UNICODE )
       #define HB_TCHAR_COPYTO( d, s, l )     hb_mbntowccpy( d, s, l )
       #define HB_TCHAR_COPYFROM( d, s, l )   hb_wcntombcpy( d, s, l )
