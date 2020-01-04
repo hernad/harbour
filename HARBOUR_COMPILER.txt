@@ -347,3 +347,51 @@ HB_CLP_UNDOC - always on
 
 
 HB_ISNUM => HB_IS_PARAM_NUM
+
+
+HB_MACRO_SUPPORT ?
+====================
+macro.y, macro.yyc
+
+#define  HB_MACRO_SUPPORT
+
+YACC_SOURCE := macro.y
+
+macroa.c, macrob.c, macrolex.c, hvmall.c, macro.c, hvmall.c
+#define HB_MACRO_SUPPORT
+
+macro.c:
+         case HB_SM_HARBOUR:
+         /* enable/disable extended Harbour compatibility */
+         case HB_SM_XBASE:
+         /* enable/disable extended Xbase++ compatibility */
+         case HB_SM_ARRSTR:
+         /* enable/disable processing of strings as an array of bytes */
+         case HB_SM_SHORTCUTS:
+            /* enable/disable support for shortcut logical operators */
+            hb_retl( hb_macroFlags() & flags );
+            pValue = hb_param( 2, HB_IT_LOGICAL );
+            if( pValue )
+               hb_macroSetMacro( hb_itemGetL( pValue ), flags );
+            break;
+
+NO difference?!
+
+macro.c:
+      struMacro.mode      = HB_MODE_MACRO;
+      struMacro.supported = HB_SM_SHORTCUTS | HB_SM_HARBOUR | HB_SM_ARRSTR;
+      struMacro.Flags     = HB_MACRO_GEN_PUSH | HB_MACRO_GEN_REFER;
+      struMacro.uiNameLen = HB_SYMBOL_NAME_LEN;
+      struMacro.status    = HB_MACRO_CONT;
+      struMacro.string    = pItem->item.asString.value;
+      struMacro.length    = pItem->item.asString.length;
+
+
+
+#ifndef HB_NO_DEBUG = OUT
+
+
+HB_VM_VT
+
+
+HB_STACK_TLS_PRELOAD ?

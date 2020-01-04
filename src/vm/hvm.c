@@ -193,7 +193,6 @@ static void    hb_vmReleaseLocalSymbols( void );  /* releases the memory of the 
 
 static void    hb_vmMsgIndexReference( PHB_ITEM pRefer, PHB_ITEM pObject, PHB_ITEM pIndex ); /* create object index reference */
 
-#ifndef HB_NO_DEBUG
 static void    hb_vmLocalName( HB_USHORT uiLocal, const char * szLocalName ); /* locals and parameters index and name information for the debugger */
 static void    hb_vmStaticName( HB_BYTE bIsGlobal, HB_USHORT uiStatic, const char * szStaticName ); /* statics vars information for the debugger */
 static void    hb_vmModuleName( const char * szModuleName ); /* PRG and function name information for the debugger */
@@ -205,7 +204,6 @@ static void    hb_vmDebuggerEndProc( void );     /* notifies the debugger for an
 
 static PHB_DYNS s_pDynsDbgEntry = NULL;   /* Cached __DBGENTRY symbol */
 static HB_DBGENTRY_FUNC s_pFunDbgEntry;   /* C level debugger entry */
-#endif
 
 static HB_BOOL s_fInternalsEnabled = HB_TRUE;
 
@@ -960,9 +958,7 @@ void hb_vmThreadQuit( void )
    hb_stackRemove( 1 );          /* clear stack items, leave only initial symbol item */
    hb_memvarsClear( HB_TRUE );   /* clear all PUBLIC (and PRIVATE if any) variables */
    hb_vmSetI18N( NULL );         /* remove i18n translation table */
-#ifndef HB_NO_DEBUG
    hb_vmDebuggerExit( HB_FALSE );   /* deactivate debugger */
-#endif
    hb_gtRelease( NULL );
    hb_vmStackRelease();          /* release HVM stack and remove it from linked HVM stacks list */
 }
@@ -1123,7 +1119,6 @@ void hb_vmInit( HB_BOOL bStartMainProc )
    /* lock main HVM thread */
    hb_vmLock();
 
-#ifndef HB_NO_DEBUG
    s_pDynsDbgEntry = hb_dynsymFind( "__DBGENTRY" );
    if( s_pDynsDbgEntry )
    {
@@ -1133,7 +1128,6 @@ void hb_vmInit( HB_BOOL bStartMainProc )
       if( ! s_pFunDbgEntry )
          s_pFunDbgEntry = hb_vmDebugEntry;
    }
-#endif
 
    /* Call functions that initializes static variables
     * Static variables have to be initialized before any INIT functions
@@ -1258,10 +1252,8 @@ int hb_vmQuit( void )
 
    hb_itemClear( hb_stackReturnItem() );
    hb_gcCollectAll( HB_TRUE );
-#ifndef HB_NO_DEBUG
    /* deactivate debugger */
    hb_vmDebuggerExit( HB_TRUE );
-#endif
 
    /* stop executing PCODE (HVM reenter request) */
    s_fHVMActive = HB_FALSE;
@@ -1824,10 +1816,8 @@ void hb_vmExecute( const HB_BYTE * pCode, PHB_SYMB pSymbols )
                                     hb_stackBaseItem()->item.asSymbol.stackstate->uiLineNo ) );
 
             hb_stackBaseItem()->item.asSymbol.stackstate->uiLineNo = HB_PCODE_MKUSHORT( &pCode[ 1 ] );
-#ifndef HB_NO_DEBUG
             if( hb_stackBaseItem()->item.asSymbol.stackstate->fDebugging )
                hb_vmDebuggerShowLine( hb_stackBaseItem()->item.asSymbol.stackstate->uiLineNo );
-#endif
             pCode += 3;
             break;
 
@@ -1876,29 +1866,23 @@ void hb_vmExecute( const HB_BYTE * pCode, PHB_SYMB pSymbols )
          }
 
          case HB_P_LOCALNAME:
-#ifndef HB_NO_DEBUG
             hb_vmLocalName( HB_PCODE_MKUSHORT( &pCode[ 1 ] ),
                             ( const char * ) pCode + 3 );
-#endif
             pCode += 3;
             while( *pCode++ )
                ;
             break;
 
          case HB_P_STATICNAME:
-#ifndef HB_NO_DEBUG
             hb_vmStaticName( pCode[ 1 ], HB_PCODE_MKUSHORT( &pCode[ 2 ] ),
                              ( const char * ) pCode + 4 );
-#endif
             pCode += 4;
             while( *pCode++ )
                ;
             break;
 
          case HB_P_MODULENAME:
-#ifndef HB_NO_DEBUG
             hb_vmModuleName( ( const char * ) pCode + 1 );
-#endif
             pCode++;
             while( *pCode++ )
                ;
@@ -2571,36 +2555,9 @@ void hb_vmExecute( const HB_BYTE * pCode, PHB_SYMB pSymbols )
 
          case HB_P_POPVARIABLE:
          {
-            /*
-               2004-03-19 Ron Pinkas
-               Test with Clipper shows that for assignment, MEMVAR context
-               is always used even if MEMVAR does NOT exists, and a FIELD
-               with this name exists!!!
-               Here is the Test Used - Clipper produced NO runtime error -
-               indicating MEMVAR was created.
-                 PROCEDURE Main()
-                    USE test.dbf
-                    First := First
-                    dbCloseArea()
-                    ? First
-                    RETURN
-             */
-#if 0
-            /* Pops a value from the eval stack and uses it to set
-             * a new value of a variable of unknown type.
-             */
-            PHB_SYMB pSymbol = pSymbols + HB_PCODE_MKUSHORT( &pCode[ 1 ] );
 
-            if( pSymbol->pDynSym && hb_dynsymGetMemvar( pSymbol->pDynSym ) )
-               /* If exist a memory symbol with this name use it */
-               hb_memvarSetValue( pSymbol, hb_stackItemFromTop( -1 ) );
-            else if( hb_rddFieldPut( hb_stackItemFromTop( -1 ), pSymbol ) == HB_FAILURE )
-               /* Try with a field and after create a memvar */
-               hb_memvarSetValue( pSymbol, hb_stackItemFromTop( -1 ) );
-#else
             hb_memvarSetValue( pSymbols + HB_PCODE_MKUSHORT( &pCode[ 1 ] ),
                                hb_stackItemFromTop( -1 ) );
-#endif
             hb_stackPop();
             HB_TRACE( HB_TR_INFO, ( "(hb_vmPopVariable)" ) );
             pCode += 3;
@@ -5971,10 +5928,8 @@ void hb_vmProc( HB_USHORT uiParams )
    else
       hb_errRT_BASE_SubstR( EG_NOFUNC, 1001, NULL, pSym->szName, HB_ERR_ARGS_BASEPARAMS );
 
-#ifndef HB_NO_DEBUG
    if( sStackState.fDebugging )
       hb_vmDebuggerEndProc();
-#endif
 
    hb_stackOldFrame( &sStackState );
 }
@@ -6061,10 +6016,8 @@ void hb_vmDo( HB_USHORT uiParams )
          hb_errRT_BASE_SubstR( EG_NOFUNC, 1001, NULL, pSym->szName, HB_ERR_ARGS_BASEPARAMS );
    }
 
-#ifndef HB_NO_DEBUG
    if( sStackState.fDebugging )
       hb_vmDebuggerEndProc();
-#endif
 
    hb_stackOldFrame( &sStackState );
 }
@@ -6120,10 +6073,8 @@ void hb_vmSend( HB_USHORT uiParams )
    else
       hb_errRT_BASE_SubstR( EG_NOMETHOD, 1004, NULL, pSym->szName, HB_ERR_ARGS_SELFPARAMS );
 
-#ifndef HB_NO_DEBUG
    if( sStackState.fDebugging )
       hb_vmDebuggerEndProc();
-#endif
 
    hb_stackOldFrame( &sStackState );
 }
@@ -6176,10 +6127,8 @@ void hb_vmEval( HB_USHORT uiParams )
       hb_mthAddTime( clock() - ulClock );
 #endif
 
-#ifndef HB_NO_DEBUG
    if( sStackState.fDebugging )
       hb_vmDebuggerEndProc();
-#endif
 
    hb_stackOldFrame( &sStackState );
 }
@@ -6316,7 +6265,6 @@ void hb_vmFunction( HB_USHORT uiParams )
 }
 
 
-#ifndef HB_NO_DEBUG
 static void hb_vmDebugEntry( int nMode, int nLine, const char * szName, int nIndex, PHB_ITEM pFrame )
 {
    HB_STACK_TLS_PRELOAD
@@ -6461,7 +6409,6 @@ static void hb_vmModuleName( const char * szModuleName ) /* PRG and function nam
       hb_stackBaseItem()->item.asSymbol.stackstate->fDebugging = HB_TRUE;
    }
 }
-#endif
 
 static void hb_vmFrame( HB_USHORT usLocals, unsigned char ucParams )
 {
@@ -6473,29 +6420,6 @@ static void hb_vmFrame( HB_USHORT usLocals, unsigned char ucParams )
 
    pBase = hb_stackBaseItem();
 
-#if 0
-   /* This old code which clears additional parameters to make space for
-    * local variables without updating pBase->item.asSymbol.paramdeclcnt
-    */
-   iTotal = pBase->item.asSymbol.paramcnt - ucParams;
-   if( iTotal > 0 )
-   {
-      pBase->item.asSymbol.paramcnt = ucParams;
-      do
-      {
-         hb_itemClear( hb_stackItemFromTop( -iTotal ) );
-      }
-      while( --iTotal > 0 );
-   }
-
-   iTotal = usLocals + ucParams;
-   if( iTotal )
-   {
-      iTotal -= pBase->item.asSymbol.paramcnt;
-      while( --iTotal >= 0 )
-         HB_VM_PUSHNIL();
-   }
-#else
    pBase->item.asSymbol.paramdeclcnt = ucParams;
 
    iTotal = ucParams - pBase->item.asSymbol.paramcnt;
@@ -6505,7 +6429,6 @@ static void hb_vmFrame( HB_USHORT usLocals, unsigned char ucParams )
 
    while( --iTotal >= 0 )
       HB_VM_PUSHNIL();
-#endif
 }
 
 static void hb_vmVFrame( HB_USHORT usLocals, unsigned char ucParams )
@@ -9533,10 +9456,9 @@ void hb_xvmSetLine( HB_USHORT uiLine )
    HB_TRACE( HB_TR_DEBUG, ( "hb_xvmSetLine(%hu)", uiLine ) );
 
    hb_stackBaseItem()->item.asSymbol.stackstate->uiLineNo = uiLine;
-#ifndef HB_NO_DEBUG
    if( hb_stackBaseItem()->item.asSymbol.stackstate->fDebugging )
       hb_vmDebuggerShowLine( uiLine );
-#endif
+
 }
 
 void hb_xvmFrame( int iLocals, int iParams )
@@ -11760,36 +11682,22 @@ void hb_xvmLocalName( HB_USHORT uiLocal, const char * szLocalName )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_xvmLocalName(%hu, %s)", uiLocal, szLocalName ) );
 
-#ifndef HB_NO_DEBUG
+
    hb_vmLocalName( uiLocal, szLocalName );
-#else
-   HB_SYMBOL_UNUSED( uiLocal );
-   HB_SYMBOL_UNUSED( szLocalName );
-#endif
 }
 
 void hb_xvmStaticName( HB_BYTE bIsGlobal, HB_USHORT uiStatic, const char * szStaticName )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_xvmStaticName(%d, %hu, %s)", ( int ) bIsGlobal, uiStatic, szStaticName ) );
 
-#ifndef HB_NO_DEBUG
    hb_vmStaticName( bIsGlobal, uiStatic, szStaticName );
-#else
-   HB_SYMBOL_UNUSED( bIsGlobal );
-   HB_SYMBOL_UNUSED( uiStatic );
-   HB_SYMBOL_UNUSED( szStaticName );
-#endif
 }
 
 void hb_xvmModuleName( const char * szModuleName )
 {
    HB_TRACE( HB_TR_DEBUG, ( "hb_xvmModuleName(%s)", szModuleName ) );
 
-#ifndef HB_NO_DEBUG
    hb_vmModuleName( szModuleName );
-#else
-   HB_SYMBOL_UNUSED( szModuleName );
-#endif
 }
 
 HB_BOOL hb_xvmMacroArrayGen( HB_USHORT uiArgSets )
@@ -12004,27 +11912,21 @@ void hb_xvmWithObjectMessage( PHB_SYMB pSymbol )
 
 void hb_vmRequestDebug( void )
 {
-#ifndef HB_NO_DEBUG
    HB_STACK_TLS_PRELOAD
 
    HB_TRACE( HB_TR_DEBUG, ( "hb_vmRequestDebug()" ) );
 
    *( hb_stackDebugRequest() ) = HB_TRUE;
-#endif
+
 }
 
 HB_BOOL hb_dbg_InvokeDebug( HB_BOOL bInvoke )
 {
-#ifndef HB_NO_DEBUG
    HB_STACK_TLS_PRELOAD
    HB_BOOL * pfRequest = hb_stackDebugRequest();
    HB_BOOL bRequest = *pfRequest;
    *pfRequest = bInvoke;
    return bRequest;
-#else
-   HB_SYMBOL_UNUSED( bInvoke );
-   return HB_FALSE;
-#endif
 }
 
 HB_DBGENTRY_FUNC hb_dbg_SetEntry( HB_DBGENTRY_FUNC pFunDbgEntry )
@@ -12033,13 +11935,8 @@ HB_DBGENTRY_FUNC hb_dbg_SetEntry( HB_DBGENTRY_FUNC pFunDbgEntry )
 
    HB_TRACE( HB_TR_DEBUG, ( "hb_dbg_SetEntry(%p)", ( void * ) pFunDbgEntry ) );
 
-#ifndef HB_NO_DEBUG
    pPrevFunc = s_pFunDbgEntry;
    s_pFunDbgEntry = pFunDbgEntry;
-#else
-   HB_SYMBOL_UNUSED( pFunDbgEntry );
-   pPrevFunc = NULL;
-#endif
 
    return pPrevFunc;
 }
@@ -12067,14 +11964,10 @@ HB_FUNC( __DBGINVOKEDEBUG )
 
    if( hb_vmInternalsEnabled() )
    {
-#ifndef HB_NO_DEBUG
       HB_BOOL * pfRequest = hb_stackDebugRequest();
 
       hb_retl( *pfRequest );
       *pfRequest = hb_parl( 1 );
-#else
-      hb_retl( HB_FALSE );
-#endif
    }
    else
       hb_retl( HB_FALSE );
