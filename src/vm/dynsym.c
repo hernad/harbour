@@ -63,7 +63,6 @@ typedef struct _HB_SYM_HOLDER
 }
 HB_SYM_HOLDER, * PHB_SYM_HOLDER;
 
-#if defined( HB_MT_VM )
 
 #  include "hbthread.h"
 
@@ -72,15 +71,6 @@ HB_SYM_HOLDER, * PHB_SYM_HOLDER;
 #  define HB_DYNSYM_UNLOCK()    hb_threadLeaveCriticalSection( &s_dynsMtx )
 
 #  define hb_dynsymHandles( p )     hb_stackGetDynHandle( p )
-
-#else
-
-#  define HB_DYNSYM_LOCK()      do {} while( 0 )
-#  define HB_DYNSYM_UNLOCK()    do {} while( 0 )
-
-#  define hb_dynsymHandles( p )     ( p )
-
-#endif /* HB_MT_VM */
 
 
 static PDYNHB_ITEM s_pDynItems = NULL;    /* Pointer to dynamic items */

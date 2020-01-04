@@ -60,7 +60,6 @@
 #     define HB_SM_DEFAULT  ( HB_SM_SHORTCUTS | HB_SM_HARBOUR )
 #endif
 
-#if defined( HB_MT_VM )
 
 static void hb_macroFlagsInit( void * pFlags )
 {
@@ -79,13 +78,6 @@ static void hb_macroFlagsSet( int flag )
    *( ( int * ) hb_stackGetTSD( &s_macroFlags ) ) = flag;
 }
 
-#else
-
-static int s_macroFlags = HB_SM_DEFAULT;
-#  define hb_macroFlags()        s_macroFlags
-#  define hb_macroFlagsSet( f )  do { s_macroFlags = ( f ); } while( 0 )
-
-#endif
 
 #define HB_SM_ISUSERCP()         ( HB_CDP_ISCHARUNI( hb_vmCDP() ) ? HB_COMPFLAG_USERCP : 0 )
 

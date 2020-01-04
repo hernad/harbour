@@ -13,17 +13,7 @@ ifeq ($(HB_PLATFORM),win)
    endif
 else
    ifeq ($(HB_PLATFORM),cygwin)
-      C_MAIN := mainwin.c
-   else
-      ifeq ($(HB_PLATFORM),wce)
-         C_MAIN := mainwin.c
-      else
-         ifeq ($(HB_PLATFORM),os2)
-            C_MAIN := mainstd.c
-         else
-            C_MAIN := main.c
-         endif
-      endif
+      C_MAIN := mainwin.c   
    endif
 endif
 
@@ -84,6 +74,6 @@ PRG_SOURCES := \
 
 LIBNAME := hbvmmt
 
-HB_CFLAGS += -DHB_MT_VM
+#HB_CFLAGS += -DHB_MT_VM
 
 include $(TOP)$(ROOT)config/lib.mk

@@ -56,7 +56,7 @@
 
 HB_EXTERN_BEGIN
 
-#if defined( HB_MT_VM ) && defined( _HB_API_INTERNAL_ )
+#if defined( _HB_API_INTERNAL_ )
 #  include "hbthread.h"
 #endif
 
@@ -133,14 +133,12 @@ typedef struct
 }
 HB_PRIVATE_STACK, * PHB_PRIVATE_STACK;
 
-#if defined( HB_MT_VM )
 typedef struct
 {
    void *     pMemvar;        /* memvar pointer ( publics & privates ) */
    HB_USHORT  uiArea;         /* Workarea number */
 }
 HB_DYN_HANDLES, * PHB_DYN_HANDLES;
-#endif
 
 /* stack managed by the virtual machine */
 typedef struct
@@ -170,7 +168,6 @@ typedef struct
    int        iKeyPoll;       /* counter for GT/keyboard polling */
    HB_BOOL    fDebugRequest;  /* request debugger activation */
    void *     pDebugInfo;     /* internal debugger structure */
-#if defined( HB_MT_VM )
    int        iUnlocked;      /* counter for nested hb_vmUnlock() calls */
    PHB_DYN_HANDLES pDynH;     /* dynamic symbol handles */
    int        iDynH;          /* number of dynamic symbol handles */
@@ -179,18 +176,13 @@ typedef struct
    HB_TRACEINFO traceInfo;    /* MT safe buffer for HB_TRACE data */
    char *     pDirBuffer;     /* MT safe buffer for hb_fsCurDir() results */
    void *     allocator;      /* memory manager global struct pointer */
-#endif
 } HB_STACK, * PHB_STACK;
 
 #if defined( _HB_STACK_MACROS_ )
-#  if defined( HB_MT_VM )
+
 #     if defined( HB_USE_TLS )
 #        if ! defined( _HB_STACK_LOCAL_MACROS_ )
-#           if defined( __BORLANDC__ )
-               extern PHB_STACK HB_TLS_ATTR hb_stack_ptr;
-#           else
                extern HB_TLS_ATTR PHB_STACK hb_stack_ptr;
-#           endif
 #        endif
 #     else
 #        if ! defined( _HB_STACK_LOCAL_MACROS_ )
@@ -251,12 +243,7 @@ typedef struct
 #        define hb_stack            ( * hb_stack_ptr )
 #        define hb_stack_ref()      ( hb_stack_ptr )
 #     endif
-#  else
-#     if ! defined( _HB_STACK_LOCAL_MACROS_ )
-         extern HB_STACK hb_stack;
-#     endif
-#     define hb_stack_ref()         ( &hb_stack )
-#  endif
+
 #endif
 #if ! defined( HB_STACK_TLS_PRELOAD )
 #  if defined( HB_STACK_PRELOAD )
@@ -354,7 +341,6 @@ extern void        hb_stackSetI18N( void * );
 extern void        hb_stackIsStackRef( void *, PHB_TSD_FUNC );
 extern void        hb_stackUpdateAllocator( void *, PHB_ALLOCUPDT_FUNC, int );
 
-#if defined( HB_MT_VM )
    extern void *           hb_stackList( void );
    extern void             hb_stackListSet( void * pStackLst );
    extern void             hb_stackIdSetActionRequest( void * pStackID, HB_USHORT uiAction );
@@ -367,7 +353,6 @@ extern void        hb_stackUpdateAllocator( void *, PHB_ALLOCUPDT_FUNC, int );
    extern int              hb_stackLock( void );
    extern int              hb_stackLockCount( void );
    extern void *           hb_stackAllocator( void );
-#endif
 
 #endif /* _HB_API_INTERNAL_ */
 
@@ -406,7 +391,6 @@ extern void        hb_stackUpdateAllocator( void *, PHB_ALLOCUPDT_FUNC, int );
 #define hb_stackSetI18N( p )        do { hb_stack.pI18N = ( p ); } while( 0 )
 
 #define hb_stackId( )               ( ( void * ) hb_stack_ref() )
-#if defined( HB_MT_VM )
 #  define hb_stackList()            ( hb_stack.pStackLst )
 #  define hb_stackListSet( p )      do { hb_stack.pStackLst = ( p ); } while( 0 )
 #  define hb_stackDynHandlesCount() ( hb_stack.iDynH )
@@ -415,7 +399,6 @@ extern void        hb_stackUpdateAllocator( void *, PHB_ALLOCUPDT_FUNC, int );
 #  define hb_stackUnlock()          ( ++hb_stack.iUnlocked )
 #  define hb_stackLock()            ( --hb_stack.iUnlocked )
 #  define hb_stackLockCount()       ( hb_stack.iUnlocked )
-#endif
 
 #define hb_stackAllocItem( )        ( ( ++hb_stack.pPos == hb_stack.pEnd ? \
                                         hb_stackIncrease() : ( void ) 0 ), \

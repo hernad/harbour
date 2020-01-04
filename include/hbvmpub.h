@@ -131,10 +131,6 @@ struct _HB_SYMB;
    typedef struct _HB_DYNS
    {
       struct _HB_SYMB * pSymbol; /* pointer to its relative local symbol */
-#  if ! defined( HB_MT_VM )
-      void *    pMemvar;          /* memvar pointer ( publics & privates ) */
-      HB_USHORT uiArea;           /* Workarea number */
-#  endif /* ! HB_MT_VM */
       HB_USHORT uiSymNum;         /* dynamic symbol number */
 #  if ! defined( HB_NO_PROFILER )
       HB_ULONG  ulCalls;          /* profiler support */
@@ -183,15 +179,8 @@ struct _HB_SYMB;
     * This will allow us to fully redesign dynamic symbol internals
     * in the future if it will be necessary. [druzus]
     */
-#if 0
-   struct _HB_SYMB;
-   typedef struct
-   {
-      struct _HB_SYMB * pSymbol; /* pointer to its relative local symbol */
-   } _HB_DYNS, * PHB_DYNS;
-#else
+
    typedef void *  PHB_DYNS;
-#endif
 
 #endif /* ! _HB_API_INTERNAL_ */
 

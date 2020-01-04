@@ -368,8 +368,6 @@ typedef struct _HB_THREADSTATE
 #endif
 } HB_THREADSTATE, * PHB_THREADSTATE;
 
-#if defined( HB_MT_VM )
-
 extern void hb_threadInit( void );
 extern void hb_threadExit( void );
 
@@ -434,8 +432,6 @@ extern HB_BOOL hb_threadMutexSyncWait( PHB_ITEM pItemMtx, HB_ULONG ulMilliSec, P
 #     define hb_tls_get(k)    ( *k )
 #  endif
 #endif /* ! HB_USE_TLS */
-
-#endif /* HB_MT_VM */
 
 #endif /* _HB_API_INTERNAL_ */
 

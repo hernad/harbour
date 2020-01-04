@@ -59,10 +59,6 @@
 #include "hbset.h"
 #include "hbstack.h"
 
-#if ! defined( HB_MT_VM )
-#  define hb_dynsymGetMemvar( p )     ( ( PHB_ITEM ) ( p )->pMemvar )
-#  define hb_dynsymSetMemvar( p, h )  do { ( p )->pMemvar = ( h ); } while( 0 )
-#endif
 
 #define TABLE_INITHB_VALUE    100
 #define TABLE_EXPANDHB_VALUE  50
@@ -803,18 +799,6 @@ int hb_memvarScope( const char * szVarName, HB_SIZE nLength )
       return HB_MV_NOT_FOUND;
 }
 
-#if ! defined( HB_MT_VM )
-/* Releases memory occupied by a variable
- */
-static HB_DYNS_FUNC( hb_memvarClear )
-{
-   if( pDynSymbol != ( PHB_DYNS ) Cargo &&
-       hb_dynsymGetMemvar( pDynSymbol ) )
-      hb_memvarDetachDynSym( pDynSymbol, NULL );
-
-   return HB_TRUE;
-}
-#endif
 
 /* Clear all memvar variables optionally without GetList PUBLIC variable */
 void hb_memvarsClear( HB_BOOL fAll )
@@ -829,16 +813,12 @@ void hb_memvarsClear( HB_BOOL fAll )
    hb_stackClearMemvarsBase();
    hb_stackGetPrivateStack()->base = 0;
    hb_memvarSetPrivatesBase( 0 );
-#if ! defined( HB_MT_VM )
-   hb_dynsymEval( hb_memvarClear, ( void * ) pGetList );
-#else
    /* this is a little bit hacked but many times faster version
     * of memvars clearing because it scans only given thread stack
     * not global dynamic symbol table. It noticeable reduce the cost
     * of HVM thread releasing.
     */
    hb_stackClearMemvars( pGetList ? ( int ) pGetList->uiSymNum : -1 );
-#endif
 }
 
 /* Checks passed dynamic symbol if it is a PUBLIC variable and
@@ -993,13 +973,9 @@ PHB_ITEM hb_memvarSaveInArray( int iScope, HB_BOOL fCopy )
    if( iScope == ( HB_MV_PUBLIC | HB_MV_PRIVATE ) )
       iScope = 0;
 
-#if ! defined( HB_MT_VM )
-   MVInfo.pDyns = ( PHB_DYNS * ) hb_xgrab( hb_dynsymCount() *
-                                           sizeof( PHB_DYNS ) );
-#else
+
    MVInfo.pDyns = ( PHB_DYNS * ) hb_xgrab( hb_stackDynHandlesCount() *
                                            sizeof( PHB_DYNS ) );
-#endif
    MVInfo.nCount = 0;
    MVInfo.iScope = iScope;
 

@@ -2752,9 +2752,7 @@ HB_BOOL hb_osUseCP( void )
 {
    HB_STACK_TLS_PRELOAD
 
-#if defined( HB_MT_VM )
    if( hb_stackId() )
-#endif
    {
       PHB_CODEPAGE cdpOS = ( PHB_CODEPAGE ) hb_stackSetStruct()->hb_set_oscp;
       if( cdpOS )

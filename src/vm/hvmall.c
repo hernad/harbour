@@ -79,7 +79,6 @@
 #include "hbstack.h"
 
 #if defined( _HB_STACK_MACROS_ ) && defined( _HB_STACK_LOCAL_MACROS_ )
-#  if defined( HB_MT_VM )
 #     if defined( HB_USE_TLS )
 #        if defined( __BORLANDC__ )
             static PHB_STACK HB_TLS_ATTR hb_stack_ptr = NULL;
@@ -92,7 +91,7 @@
 #  else
       static HB_STACK hb_stack;
 #  endif
-#endif
+
 
 
 #include "hvm.c"

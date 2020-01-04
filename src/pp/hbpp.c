@@ -280,9 +280,7 @@ static int hb_pp_preprocesfile( PHB_PP_STATE pState, const char * szRuleFile, co
       foutr = hb_fopen( szRuleFile, "w" );
       if( ! foutr )
       {
-#if ! defined( HB_OS_WIN_CE )
          perror( szRuleFile );
-#endif
          iResult = 1;
       }
       else
@@ -344,9 +342,7 @@ static int hb_pp_generateVerInfo( char * szVerFile,
    fout = hb_fopen( szVerFile, "w" );
    if( ! fout )
    {
-#if ! defined( HB_OS_WIN_CE )
       perror( szVerFile );
-#endif
       iResult = 1;
    }
    else

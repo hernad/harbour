@@ -346,7 +346,6 @@ static HB_USHORT s_uiObjectClass    = 0;
  * class definitions so we do not have to worry about runtime
  * s_pClasses reallocation, [druzus]
  */
-#if defined( HB_MT_VM )
 
 #  include "hbthread.h"
 
@@ -355,13 +354,6 @@ static HB_USHORT s_uiObjectClass    = 0;
 #  define HB_CLASS_UNLOCK()   hb_threadLeaveCriticalSection( &s_clsMtx )
    static HB_CRITICAL_NEW( s_clsMtx );
 
-#else
-
-#  define HB_CLASS_POOL_SIZE  0
-#  define HB_CLASS_LOCK()     do {} while( 0 )
-#  define HB_CLASS_UNLOCK()   do {} while( 0 )
-
-#endif
 
 #define HB_CLASS_POOL_RESIZE  64
 
@@ -1144,9 +1136,7 @@ void hb_clsInit( void )
    s_pClasses = ( PCLASS * ) hb_xgrab( ( ( HB_SIZE ) s_uiClsSize + 1 ) * sizeof( PCLASS ) );
    s_pClasses[ 0 ] = NULL;
 
-#if defined( HB_MT_VM )
    s_pClassMtx = hb_threadMutexCreate();
-#endif
 }
 
 /* initialize Classy/OO system .prg functions */
@@ -4292,14 +4282,11 @@ HB_FUNC( __SENDER )
 
 HB_FUNC( __CLSSYNCSIGNAL )
 {
-#if defined( HB_MT_VM )
    hb_threadMutexSyncSignal( hb_param( 1, HB_IT_ANY ) );
-#endif /* HB_MT_VM */
 }
 
 HB_FUNC( __CLSSYNCWAIT )
 {
-#if defined( HB_MT_VM )
    HB_STACK_TLS_PRELOAD
    PHB_ITEM pMutex = NULL;
    HB_ULONG ulMilliSec = HB_THREAD_INFINITE_WAIT;
@@ -4341,7 +4328,6 @@ HB_FUNC( __CLSSYNCWAIT )
    }
 
    hb_retl( hb_threadMutexSyncWait( hb_param( 1, HB_IT_ANY ), ulMilliSec, pMutex ) );
-#endif /* HB_MT_VM */
 }
 
 /* __classH( <obj> ) --> <hClass>

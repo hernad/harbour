@@ -391,8 +391,7 @@ macro.c:
 #ifndef HB_NO_DEBUG = OUT
 
 
-HB_VM_VT
-
+HB_MT_VM
 
 HB_STACK_TLS_PRELOAD ?
 
