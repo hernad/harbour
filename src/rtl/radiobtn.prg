@@ -216,7 +216,7 @@ METHOD hitTest( nMRow, nMCol ) CLASS RadioButtn
 METHOD bitmaps( aBitmaps ) CLASS RadioButtn
 
    IF aBitmaps != NIL
-      ::aBitmaps := __eInstVar53( Self, "BITMAPS", aBitmaps, "A", 1001, {|| Len( aBitmaps ) == 2 } )
+      ::aBitmaps := checkVariableTypeAndValidBlock( Self, "BITMAPS", aBitmaps, "A", 1001, {|| Len( aBitmaps ) == 2 } )
    ENDIF
 
    RETURN ::aBitmaps
@@ -227,7 +227,7 @@ METHOD buffer() CLASS RadioButtn
 METHOD data( cData ) CLASS RadioButtn
 
    IF PCount() > 0
-      ::cData := iif( cData == NIL, NIL, __eInstVar53( Self, "DATA", cData, "C", 1001 ) )
+      ::cData := iif( cData == NIL, NIL, checkVariableTypeAndValidBlock( Self, "DATA", cData, "C", 1001 ) )
    ENDIF
 
    RETURN iif( ::cData == NIL, __Caption( ::Caption ), ::cData )
@@ -235,7 +235,7 @@ METHOD data( cData ) CLASS RadioButtn
 METHOD capCol( nCapCol ) CLASS RadioButtn
 
    IF nCapCol != NIL
-      ::nCapCol := __eInstVar53( Self, "CAPCOL", nCapCol, "N", 1001 )
+      ::nCapCol := checkVariableTypeAndValidBlock( Self, "CAPCOL", nCapCol, "N", 1001 )
    ENDIF
 
    RETURN ::nCapCol
@@ -243,7 +243,7 @@ METHOD capCol( nCapCol ) CLASS RadioButtn
 METHOD capRow( nCapRow ) CLASS RadioButtn
 
    IF nCapRow != NIL
-      ::nCapRow := __eInstVar53( Self, "CAPROW", nCapRow, "N", 1001 )
+      ::nCapRow := checkVariableTypeAndValidBlock( Self, "CAPROW", nCapRow, "N", 1001 )
    ENDIF
 
    RETURN ::nCapRow
@@ -251,7 +251,7 @@ METHOD capRow( nCapRow ) CLASS RadioButtn
 METHOD caption( cCaption ) CLASS RadioButtn
 
    IF cCaption != NIL
-      ::cCaption := __eInstVar53( Self, "CAPTION", cCaption, "C", 1001 )
+      ::cCaption := checkVariableTypeAndValidBlock( Self, "CAPTION", cCaption, "C", 1001 )
    ENDIF
 
    RETURN ::cCaption
@@ -259,7 +259,7 @@ METHOD caption( cCaption ) CLASS RadioButtn
 METHOD col( nCol ) CLASS RadioButtn
 
    IF nCol != NIL
-      ::nCol := __eInstVar53( Self, "COL", nCol, "N", 1001 )
+      ::nCol := checkVariableTypeAndValidBlock( Self, "COL", nCol, "N", 1001 )
    ENDIF
 
    RETURN ::nCol
@@ -267,7 +267,7 @@ METHOD col( nCol ) CLASS RadioButtn
 METHOD colorSpec( cColorSpec ) CLASS RadioButtn
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
          {|| ! Empty( hb_ColorIndex( cColorSpec, 6 ) ) .AND. Empty( hb_ColorIndex( cColorSpec, 7 ) ) } )
    ENDIF
 
@@ -276,7 +276,7 @@ METHOD colorSpec( cColorSpec ) CLASS RadioButtn
 METHOD fBlock( bFBlock ) CLASS RadioButtn
 
    IF PCount() > 0
-      ::bFBlock := iif( bFBlock == NIL, NIL, __eInstVar53( Self, "FBLOCK", bFBlock, "B", 1001 ) )
+      ::bFBlock := iif( bFBlock == NIL, NIL, checkVariableTypeAndValidBlock( Self, "FBLOCK", bFBlock, "B", 1001 ) )
    ENDIF
 
    RETURN ::bFBlock
@@ -287,7 +287,7 @@ METHOD hasFocus() CLASS RadioButtn
 METHOD row( nRow ) CLASS RadioButtn
 
    IF nRow != NIL
-      ::nRow := __eInstVar53( Self, "ROW", nRow, "N", 1001 )
+      ::nRow := checkVariableTypeAndValidBlock( Self, "ROW", nRow, "N", 1001 )
    ENDIF
 
    RETURN ::nRow
@@ -295,7 +295,7 @@ METHOD row( nRow ) CLASS RadioButtn
 METHOD sBlock( bSBlock ) CLASS RadioButtn
 
    IF PCount() > 0
-      ::bSBlock := iif( bSBlock == NIL, NIL, __eInstVar53( Self, "SBLOCK", bSBlock, "B", 1001 ) )
+      ::bSBlock := iif( bSBlock == NIL, NIL, checkVariableTypeAndValidBlock( Self, "SBLOCK", bSBlock, "B", 1001 ) )
    ENDIF
 
    RETURN ::bSBlock
@@ -303,7 +303,7 @@ METHOD sBlock( bSBlock ) CLASS RadioButtn
 METHOD style( cStyle ) CLASS RadioButtn
 
    IF cStyle != NIL
-      ::cStyle := __eInstVar53( Self, "STYLE", cStyle, "C", 1001, {|| cStyle == "" .OR. hb_ULen( cStyle ) == 4 } )
+      ::cStyle := checkVariableTypeAndValidBlock( Self, "STYLE", cStyle, "C", 1001, {|| cStyle == "" .OR. hb_ULen( cStyle ) == 4 } )
    ENDIF
 
    RETURN ::cStyle

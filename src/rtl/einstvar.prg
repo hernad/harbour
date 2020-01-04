@@ -47,9 +47,19 @@
 
 #include "error.ch"
 
-/* NOTE: In CA-Cl*pper 5.2/5.3 the cMethod argument seems to be ignored. */
 
-FUNCTION __eInstVar53( oVar, cMethod, xValue, cType, nSubCode, bValid )
+/*
+
+  Example:
+
+  ::n_Bottom := checkVariableTypeAndValidBlock( Self, "NBOTTOM", nBottom, "N", 1001, {| o, x | x >= o:nTop } )
+
+  // {| o, x | x >= o:nTop }  => if nBottom < o:nTop  then Raise runtime error
+
+
+*/
+
+FUNCTION checkVariableTypeAndValidBlock( oVar, cMethod, xValue, cType, nSubCode, bValid )
 
    LOCAL oError
 

@@ -1902,7 +1902,7 @@ METHOD freeze( nColumns ) CLASS TBrowse
 METHOD colorSpec( cColorSpec ) CLASS TBrowse
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001 )
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001 )
       ::configure( _TBR_CONF_COLORS )
    ENDIF
 
@@ -2143,8 +2143,8 @@ METHOD setColumn( nColumn, oCol ) CLASS TBrowse
 
    IF nColumn != NIL .AND. oCol != NIL
 
-      nColumn := __eInstVar53( Self, "COLUMN", nColumn, "N", 1001 )
-      oCol := __eInstVar53( Self, "COLUMN", oCol, "O", 1001 )
+      nColumn := checkVariableTypeAndValidBlock( Self, "COLUMN", nColumn, "N", 1001 )
+      oCol := checkVariableTypeAndValidBlock( Self, "COLUMN", oCol, "O", 1001 )
 
       /* NOTE: CA-Cl*pper doesn't check nColumn range (and type in C5.3 - I didn't implement this behaviour),
                but crashes instead. */
@@ -2169,7 +2169,7 @@ METHOD getColumn( nColumn ) CLASS TBrowse
 METHOD footSep( cFootSep ) CLASS TBrowse
 
    IF cFootSep != NIL
-      ::cFootSep := __eInstVar53( Self, "FOOTSEP", cFootSep, "C", 1001 )
+      ::cFootSep := checkVariableTypeAndValidBlock( Self, "FOOTSEP", cFootSep, "C", 1001 )
    ENDIF
 
    RETURN ::cFootSep
@@ -2178,7 +2178,7 @@ METHOD footSep( cFootSep ) CLASS TBrowse
 METHOD colSep( cColSep ) CLASS TBrowse
 
    IF cColSep != NIL
-      ::cColSep := __eInstVar53( Self, "COLSEP", cColSep, "C", 1001 )
+      ::cColSep := checkVariableTypeAndValidBlock( Self, "COLSEP", cColSep, "C", 1001 )
    ENDIF
 
    RETURN ::cColSep
@@ -2187,7 +2187,7 @@ METHOD colSep( cColSep ) CLASS TBrowse
 METHOD headSep( cHeadSep ) CLASS TBrowse
 
    IF cHeadSep != NIL
-      ::cHeadSep := __eInstVar53( Self, "HEADSEP", cHeadSep, "C", 1001 )
+      ::cHeadSep := checkVariableTypeAndValidBlock( Self, "HEADSEP", cHeadSep, "C", 1001 )
    ENDIF
 
    RETURN ::cHeadSep
@@ -2196,7 +2196,7 @@ METHOD headSep( cHeadSep ) CLASS TBrowse
 METHOD skipBlock( bSkipBlock ) CLASS TBrowse
 
    IF bSkipBlock != NIL
-      ::bSkipBlock := __eInstVar53( Self, "SKIPBLOCK", bSkipBlock, "B", 1001 )
+      ::bSkipBlock := checkVariableTypeAndValidBlock( Self, "SKIPBLOCK", bSkipBlock, "B", 1001 )
    ENDIF
 
    RETURN ::bSkipBlock
@@ -2205,7 +2205,7 @@ METHOD skipBlock( bSkipBlock ) CLASS TBrowse
 METHOD goTopBlock( bBlock ) CLASS TBrowse
 
    IF bBlock != NIL
-      ::bGoTopBlock := __eInstVar53( Self, "GOTOPBLOCK", bBlock, "B", 1001 )
+      ::bGoTopBlock := checkVariableTypeAndValidBlock( Self, "GOTOPBLOCK", bBlock, "B", 1001 )
    ENDIF
 
    RETURN ::bGoTopBlock
@@ -2215,7 +2215,7 @@ METHOD goBottomBlock( bBlock ) CLASS TBrowse
 
    IF bBlock != NIL
       /* NOTE: In CA-Cl*pper the string is: "GOBOTTOMBL" */
-      ::bGoBottomBlock := __eInstVar53( Self, "GOBOTTOMBLOCK", bBlock, "B", 1001 )
+      ::bGoBottomBlock := checkVariableTypeAndValidBlock( Self, "GOBOTTOMBLOCK", bBlock, "B", 1001 )
    ENDIF
 
    RETURN ::bGoBottomBlock
@@ -2225,7 +2225,7 @@ METHOD nTop( nTop ) CLASS TBrowse
 
    IF nTop != NIL
 
-      ::n_Top := __eInstVar53( Self, "NTOP", nTop, "N", 1001 )
+      ::n_Top := checkVariableTypeAndValidBlock( Self, "NTOP", nTop, "N", 1001 )
       IF ! Empty( ::cBorder )
          ::n_Top++
       ENDIF
@@ -2242,7 +2242,7 @@ METHOD nTop( nTop ) CLASS TBrowse
 METHOD nLeft( nLeft ) CLASS TBrowse
 
    IF nLeft != NIL
-      ::n_Left := __eInstVar53( Self, "NLEFT", nLeft, "N", 1001 )
+      ::n_Left := checkVariableTypeAndValidBlock( Self, "NLEFT", nLeft, "N", 1001 )
       IF ! Empty( ::cBorder )
          ::n_Left++
       ENDIF
@@ -2259,7 +2259,7 @@ METHOD nLeft( nLeft ) CLASS TBrowse
 METHOD nBottom( nBottom ) CLASS TBrowse
 
    IF nBottom != NIL
-      ::n_Bottom := __eInstVar53( Self, "NBOTTOM", nBottom, "N", 1001, {| o, x | x >= o:nTop } )
+      ::n_Bottom := checkVariableTypeAndValidBlock( Self, "NBOTTOM", nBottom, "N", 1001, {| o, x | x >= o:nTop } )
       IF ! Empty( ::cBorder )
          ::n_Bottom--
       ENDIF
@@ -2276,7 +2276,7 @@ METHOD nBottom( nBottom ) CLASS TBrowse
 METHOD nRight( nRight ) CLASS TBrowse
 
    IF nRight != NIL
-      ::n_Right := __eInstVar53( Self, "NRIGHT", nRight, "N", 1001, {| o, x | x >= o:nLeft } )
+      ::n_Right := checkVariableTypeAndValidBlock( Self, "NRIGHT", nRight, "N", 1001, {| o, x | x >= o:nLeft } )
       IF ! Empty( ::cBorder )
          ::n_Right--
       ENDIF
@@ -2495,7 +2495,7 @@ METHOD border( cBorder ) CLASS TBrowse
 
    IF cBorder != NIL
 
-      cBorder := __eInstVar53( Self, "BORDER", cBorder, "C", 1001 )
+      cBorder := checkVariableTypeAndValidBlock( Self, "BORDER", cBorder, "C", 1001 )
 
       IF cBorder == "" .OR. hb_ULen( cBorder ) == 8
 
@@ -2523,7 +2523,7 @@ METHOD border( cBorder ) CLASS TBrowse
 METHOD message( cMessage ) CLASS TBrowse
 
    IF cMessage != NIL
-      ::cMessage := __eInstVar53( Self, "MESSAGE", cMessage, "C", 1001 )
+      ::cMessage := checkVariableTypeAndValidBlock( Self, "MESSAGE", cMessage, "C", 1001 )
    ENDIF
 
    RETURN ::cMessage

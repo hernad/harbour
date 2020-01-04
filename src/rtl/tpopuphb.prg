@@ -65,7 +65,7 @@ ENDCLASS
 METHOD shadowed( lShadowed ) CLASS hb_PopupMenu
 
    IF lShadowed != NIL
-      ::lShadowed := __eInstVar53( Self, "SHADOWED", lShadowed, "L", 1001 )
+      ::lShadowed := checkVariableTypeAndValidBlock( Self, "SHADOWED", lShadowed, "L", 1001 )
    ENDIF
 
    RETURN ::lShadowed

@@ -524,7 +524,7 @@ METHOD setMetrics() CLASS PopupMenu
 METHOD border( cBorder ) CLASS PopupMenu
 
    IF cBorder != NIL
-      ::cBorder := __eInstVar53( Self, "BORDER", cBorder, "C", 1001, {|| cBorder == "" .OR. hb_ULen( cBorder ) == 11 } )
+      ::cBorder := checkVariableTypeAndValidBlock( Self, "BORDER", cBorder, "C", 1001, {|| cBorder == "" .OR. hb_ULen( cBorder ) == 11 } )
    ENDIF
 
    RETURN ::cBorder
@@ -532,7 +532,7 @@ METHOD border( cBorder ) CLASS PopupMenu
 METHOD bottom( nBottom ) CLASS PopupMenu
 
    IF PCount() > 0
-      ::nBottom := iif( nBottom == NIL, NIL, __eInstVar53( Self, "BOTTOM", nBottom, "N", 1001 ) )
+      ::nBottom := iif( nBottom == NIL, NIL, checkVariableTypeAndValidBlock( Self, "BOTTOM", nBottom, "N", 1001 ) )
    ENDIF
 
    RETURN ::nBottom
@@ -540,7 +540,7 @@ METHOD bottom( nBottom ) CLASS PopupMenu
 METHOD colorSpec( cColorSpec ) CLASS PopupMenu
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
          {|| ! Empty( hb_ColorIndex( cColorSpec, 5 ) ) .AND. Empty( hb_ColorIndex( cColorSpec, 6 ) ) } )
    ENDIF
 
@@ -556,7 +556,7 @@ METHOD left( nLeft ) CLASS PopupMenu
 
 
    IF PCount() > 0
-      ::nLeft := iif( nLeft == NIL, NIL, __eInstVar53( Self, "LEFT", nLeft, "N", 1001 ) )
+      ::nLeft := iif( nLeft == NIL, NIL, checkVariableTypeAndValidBlock( Self, "LEFT", nLeft, "N", 1001 ) )
    ENDIF
 
 
@@ -565,7 +565,7 @@ METHOD left( nLeft ) CLASS PopupMenu
 METHOD right( nRight ) CLASS PopupMenu
 
    IF PCount() > 0
-      ::nRight := iif( nRight == NIL, NIL, __eInstVar53( Self, "RIGHT", nRight, "N", 1001 ) )
+      ::nRight := iif( nRight == NIL, NIL, checkVariableTypeAndValidBlock( Self, "RIGHT", nRight, "N", 1001 ) )
    ENDIF
 
    RETURN ::nRight
@@ -573,7 +573,7 @@ METHOD right( nRight ) CLASS PopupMenu
 METHOD top( nTop ) CLASS PopupMenu
 
    IF PCount() > 0
-      ::nTop := iif( nTop == NIL, NIL, __eInstVar53( Self, "TOP", nTop, "N", 1001 ) )
+      ::nTop := iif( nTop == NIL, NIL, checkVariableTypeAndValidBlock( Self, "TOP", nTop, "N", 1001 ) )
    ENDIF
 
    RETURN ::nTop

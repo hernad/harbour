@@ -93,7 +93,7 @@ METHOD caption( cCaption ) CLASS MenuItem
 
    IF cCaption != NIL
 
-      ::cCaption := __eInstVar53( Self, "CAPTION", cCaption, "C", 1001 )
+      ::cCaption := checkVariableTypeAndValidBlock( Self, "CAPTION", cCaption, "C", 1001 )
 
       IF ::cCaption == HB_MENU_SEPARATOR_UNI
          ::__issep  := .T.
@@ -109,7 +109,7 @@ METHOD caption( cCaption ) CLASS MenuItem
 METHOD checked( lChecked ) CLASS MenuItem
 
    IF lChecked != NIL .AND. ! ::__issep
-      ::lChecked := __eInstVar53( Self, "CHECKED", lChecked, "L", 1001 )
+      ::lChecked := checkVariableTypeAndValidBlock( Self, "CHECKED", lChecked, "L", 1001 )
    ENDIF
 
    RETURN ::lChecked
@@ -120,7 +120,7 @@ METHOD data( boData ) CLASS MenuItem
       IF HB_ISEVALITEM( boData )
          ::boData := boData
       ELSE
-         ::boData := __eInstVar53( Self, "DATA", boData, "O", 1001, {|| IS_IN( boData:ClassName(), "POPUPMENU|HB_POPUPMENU" ) } )
+         ::boData := checkVariableTypeAndValidBlock( Self, "DATA", boData, "O", 1001, {|| IS_IN( boData:ClassName(), "POPUPMENU|HB_POPUPMENU" ) } )
       ENDIF
    ENDIF
 
@@ -129,7 +129,7 @@ METHOD data( boData ) CLASS MenuItem
 METHOD enabled( lEnabled ) CLASS MenuItem
 
    IF lEnabled != NIL .AND. ! ::__issep
-      ::lEnabled := __eInstVar53( Self, "ENABLED", lEnabled, "L", 1001 )
+      ::lEnabled := checkVariableTypeAndValidBlock( Self, "ENABLED", lEnabled, "L", 1001 )
    ENDIF
 
    RETURN ::lEnabled
@@ -137,7 +137,7 @@ METHOD enabled( lEnabled ) CLASS MenuItem
 METHOD id( nID ) CLASS MenuItem
 
    IF nID != NIL
-      ::nID := __eInstVar53( Self, "ID", nID, "N", 1001 )
+      ::nID := checkVariableTypeAndValidBlock( Self, "ID", nID, "N", 1001 )
    ENDIF
 
    RETURN ::nID
@@ -145,7 +145,7 @@ METHOD id( nID ) CLASS MenuItem
 METHOD message( cMessage ) CLASS MenuItem
 
    IF cMessage != NIL
-      ::cMessage := __eInstVar53( Self, "MESSAGE", cMessage, "C", 1001 )
+      ::cMessage := checkVariableTypeAndValidBlock( Self, "MESSAGE", cMessage, "C", 1001 )
    ENDIF
 
    RETURN ::cMessage
@@ -153,7 +153,7 @@ METHOD message( cMessage ) CLASS MenuItem
 METHOD shortcut( nShortcut ) CLASS MenuItem
 
    IF nShortcut != NIL
-      ::nShortcut := __eInstVar53( Self, "SHORTCUT", nShortcut, "N", 1001 )
+      ::nShortcut := checkVariableTypeAndValidBlock( Self, "SHORTCUT", nShortcut, "N", 1001 )
    ENDIF
 
    RETURN ::nShortcut
@@ -161,7 +161,7 @@ METHOD shortcut( nShortcut ) CLASS MenuItem
 METHOD style( cStyle ) CLASS MenuItem
 
    IF cStyle != NIL
-      ::cStyle := __eInstVar53( Self, "STYLE", cStyle, "C", 1001, {|| hb_ULen( cStyle ) == 2 } )
+      ::cStyle := checkVariableTypeAndValidBlock( Self, "STYLE", cStyle, "C", 1001, {|| hb_ULen( cStyle ) == 2 } )
    ENDIF
 
    RETURN ::cStyle

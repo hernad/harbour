@@ -1298,7 +1298,6 @@ DYNAMIC Year
 DYNAMIC _CheckBox_
 DYNAMIC _DBF
 DYNAMIC _dtxCondSet
-DYNAMIC _eInstVar
 DYNAMIC _GetNumCol
 DYNAMIC _IsGraphic
 DYNAMIC _ListBox_
@@ -1433,7 +1432,7 @@ DYNAMIC __dynsN2Sym
 DYNAMIC __dynsP2Name
 DYNAMIC __dynsVerify
 DYNAMIC __eInstVar52
-DYNAMIC __eInstVar53
+DYNAMIC checkVariableTypeAndValidBlock
 DYNAMIC __Eject
 DYNAMIC __errInHandler
 DYNAMIC __errRT_BASE

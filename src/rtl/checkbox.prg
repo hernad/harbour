@@ -224,7 +224,7 @@ METHOD display() CLASS CheckBox
 METHOD bitmaps( aBitmaps ) CLASS CheckBox
 
    IF aBitmaps != NIL
-      ::aBitmaps := __eInstVar53( Self, "BITMAPS", aBitmaps, "A", 1001 )
+      ::aBitmaps := checkVariableTypeAndValidBlock( Self, "BITMAPS", aBitmaps, "A", 1001 )
    ENDIF
 
    RETURN ::aBitmaps
@@ -235,7 +235,7 @@ METHOD buffer() CLASS CheckBox
 METHOD capCol( nCapCol ) CLASS CheckBox
 
    IF nCapCol != NIL
-      ::nCapCol := __eInstVar53( Self, "CAPCOL", nCapCol, "N", 1001 )
+      ::nCapCol := checkVariableTypeAndValidBlock( Self, "CAPCOL", nCapCol, "N", 1001 )
    ENDIF
 
    RETURN ::nCapCol
@@ -243,7 +243,7 @@ METHOD capCol( nCapCol ) CLASS CheckBox
 METHOD capRow( nCapRow ) CLASS CheckBox
 
    IF nCapRow != NIL
-      ::nCapRow := __eInstVar53( Self, "CAPROW", nCapRow, "N", 1001 )
+      ::nCapRow := checkVariableTypeAndValidBlock( Self, "CAPROW", nCapRow, "N", 1001 )
    ENDIF
 
    RETURN ::nCapRow
@@ -251,7 +251,7 @@ METHOD capRow( nCapRow ) CLASS CheckBox
 METHOD caption( cCaption ) CLASS CheckBox
 
    IF cCaption != NIL
-      ::cCaption := __eInstVar53( Self, "CAPTION", cCaption, "C", 1001 )
+      ::cCaption := checkVariableTypeAndValidBlock( Self, "CAPTION", cCaption, "C", 1001 )
    ENDIF
 
    RETURN ::cCaption
@@ -259,7 +259,7 @@ METHOD caption( cCaption ) CLASS CheckBox
 METHOD col( nCol ) CLASS CheckBox
 
    IF nCol != NIL
-      ::nCol := __eInstVar53( Self, "COL", nCol, "N", 1001 )
+      ::nCol := checkVariableTypeAndValidBlock( Self, "COL", nCol, "N", 1001 )
    ENDIF
 
    RETURN ::nCol
@@ -267,7 +267,7 @@ METHOD col( nCol ) CLASS CheckBox
 METHOD colorSpec( cColorSpec ) CLASS CheckBox
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
          {|| ! Empty( hb_ColorIndex( cColorSpec, 3 ) ) .AND. Empty( hb_ColorIndex( cColorSpec, 4 ) ) } )
    ENDIF
 
@@ -276,7 +276,7 @@ METHOD colorSpec( cColorSpec ) CLASS CheckBox
 METHOD fBlock( bFBlock ) CLASS CheckBox
 
    IF PCount() > 0
-      ::bFBlock := iif( bFBlock == NIL, NIL, __eInstVar53( Self, "FBLOCK", bFBlock, "B", 1001 ) )
+      ::bFBlock := iif( bFBlock == NIL, NIL, checkVariableTypeAndValidBlock( Self, "FBLOCK", bFBlock, "B", 1001 ) )
    ENDIF
 
    RETURN ::bFBlock
@@ -287,7 +287,7 @@ METHOD hasFocus() CLASS CheckBox
 METHOD message( cMessage ) CLASS CheckBox
 
    IF cMessage != NIL
-      ::cMessage := __eInstVar53( Self, "MESSAGE", cMessage, "C", 1001 )
+      ::cMessage := checkVariableTypeAndValidBlock( Self, "MESSAGE", cMessage, "C", 1001 )
    ENDIF
 
    RETURN ::cMessage
@@ -295,7 +295,7 @@ METHOD message( cMessage ) CLASS CheckBox
 METHOD row( nRow ) CLASS CheckBox
 
    IF nRow != NIL
-      ::nRow := __eInstVar53( Self, "ROW", nRow, "N", 1001 )
+      ::nRow := checkVariableTypeAndValidBlock( Self, "ROW", nRow, "N", 1001 )
    ENDIF
 
    RETURN ::nRow
@@ -303,7 +303,7 @@ METHOD row( nRow ) CLASS CheckBox
 METHOD sBlock( bSBlock ) CLASS CheckBox
 
    IF PCount() > 0
-      ::bSBlock := iif( bSBlock == NIL, NIL, __eInstVar53( Self, "SBLOCK", bSBlock, "B", 1001 ) )
+      ::bSBlock := iif( bSBlock == NIL, NIL, checkVariableTypeAndValidBlock( Self, "SBLOCK", bSBlock, "B", 1001 ) )
    ENDIF
 
    RETURN ::bSBlock
@@ -311,7 +311,7 @@ METHOD sBlock( bSBlock ) CLASS CheckBox
 METHOD style( cStyle ) CLASS CheckBox
 
    IF cStyle != NIL
-      ::cStyle := __eInstVar53( Self, "STYLE", cStyle, "C", 1001, {|| cStyle == "" .OR. hb_ULen( cStyle ) == 4 } )
+      ::cStyle := checkVariableTypeAndValidBlock( Self, "STYLE", cStyle, "C", 1001, {|| cStyle == "" .OR. hb_ULen( cStyle ) == 4 } )
    ENDIF
 
    RETURN ::cStyle

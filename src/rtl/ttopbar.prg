@@ -387,7 +387,7 @@ METHOD setItem( nPos, oItem ) CLASS TopBarMenu
 METHOD colorSpec( cColorSpec ) CLASS TopBarMenu
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
          {|| ! Empty( hb_ColorIndex( cColorSpec, 5 ) ) .AND. Empty( hb_ColorIndex( cColorSpec, 6 ) ) } )
    ENDIF
 
@@ -402,7 +402,7 @@ METHOD itemCount() CLASS TopBarMenu
 METHOD left( nLeft ) CLASS TopBarMenu
 
    IF nLeft != NIL
-      ::nLeft := __eInstVar53( Self, "LEFT", nLeft, "N", 1001 )
+      ::nLeft := checkVariableTypeAndValidBlock( Self, "LEFT", nLeft, "N", 1001 )
    ENDIF
 
    RETURN ::nLeft
@@ -410,7 +410,7 @@ METHOD left( nLeft ) CLASS TopBarMenu
 METHOD right( nRight ) CLASS TopBarMenu
 
    IF nRight != NIL
-      ::nRight := __eInstVar53( Self, "RIGHT", nRight, "N", 1001 )
+      ::nRight := checkVariableTypeAndValidBlock( Self, "RIGHT", nRight, "N", 1001 )
    ENDIF
 
    RETURN ::nRight
@@ -419,7 +419,7 @@ METHOD row( nRow ) CLASS TopBarMenu
 
    IF nRow != NIL
       /* NOTE: CA-Cl*pper 5.3 has a bug, where it would show "TOP" in case of an error. */
-      ::nRow := __eInstVar53( Self, "ROW", nRow, "N", 1001 )
+      ::nRow := checkVariableTypeAndValidBlock( Self, "ROW", nRow, "N", 1001 )
    ENDIF
 
    RETURN ::nRow

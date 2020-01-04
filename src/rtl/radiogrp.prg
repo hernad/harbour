@@ -485,7 +485,7 @@ METHOD changeButton( nUnselect, nSelect ) CLASS RadioGroup
 METHOD bottom( nBottom ) CLASS RadioGroup
 
    IF nBottom != NIL
-      ::nBottom := __eInstVar53( Self, "BOTTOM", nBottom, "N", 1001 )
+      ::nBottom := checkVariableTypeAndValidBlock( Self, "BOTTOM", nBottom, "N", 1001 )
    ENDIF
 
    RETURN ::nBottom
@@ -496,7 +496,7 @@ METHOD buffer() CLASS RadioGroup
 METHOD capCol( nCapCol ) CLASS RadioGroup
 
    IF nCapCol != NIL
-      ::nCapCol := __eInstVar53( Self, "CAPCOL", nCapCol, "N", 1001 )
+      ::nCapCol := checkVariableTypeAndValidBlock( Self, "CAPCOL", nCapCol, "N", 1001 )
    ENDIF
 
    RETURN ::nCapCol
@@ -504,7 +504,7 @@ METHOD capCol( nCapCol ) CLASS RadioGroup
 METHOD capRow( nCapRow ) CLASS RadioGroup
 
    IF nCapRow != NIL
-      ::nCapRow := __eInstVar53( Self, "CAPROW", nCapRow, "N", 1001 )
+      ::nCapRow := checkVariableTypeAndValidBlock( Self, "CAPROW", nCapRow, "N", 1001 )
    ENDIF
 
    RETURN ::nCapRow
@@ -512,7 +512,7 @@ METHOD capRow( nCapRow ) CLASS RadioGroup
 METHOD caption( cCaption ) CLASS RadioGroup
 
    IF cCaption != NIL
-      ::cCaption := __eInstVar53( Self, "CAPTION", cCaption, "C", 1001 )
+      ::cCaption := checkVariableTypeAndValidBlock( Self, "CAPTION", cCaption, "C", 1001 )
    ENDIF
 
    RETURN ::cCaption
@@ -520,7 +520,7 @@ METHOD caption( cCaption ) CLASS RadioGroup
 METHOD coldBox( cColdBox ) CLASS RadioGroup
 
    IF cColdBox != NIL
-      ::cColdBox := __eInstVar53( Self, "COLDBOX", cColdBox, "C", 1001, {|| cColdBox == "" .OR. hb_ULen( cColdBox ) == 8 } )
+      ::cColdBox := checkVariableTypeAndValidBlock( Self, "COLDBOX", cColdBox, "C", 1001, {|| cColdBox == "" .OR. hb_ULen( cColdBox ) == 8 } )
    ENDIF
 
    RETURN ::cColdBox
@@ -528,7 +528,7 @@ METHOD coldBox( cColdBox ) CLASS RadioGroup
 METHOD colorSpec( cColorSpec ) CLASS RadioGroup
 
    IF cColorSpec != NIL
-      ::cColorSpec := __eInstVar53( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
+      ::cColorSpec := checkVariableTypeAndValidBlock( Self, "COLORSPEC", cColorSpec, "C", 1001, ;
          {|| ! Empty( hb_ColorIndex( cColorSpec, 2 ) ) .AND. Empty( hb_ColorIndex( cColorSpec, 3 ) ) } )
    ENDIF
 
@@ -537,7 +537,7 @@ METHOD colorSpec( cColorSpec ) CLASS RadioGroup
 METHOD fBlock( bFBlock ) CLASS RadioGroup
 
    IF PCount() > 0
-      ::bFBlock := iif( bFBlock == NIL, NIL, __eInstVar53( Self, "FBLOCK", bFBlock, "B", 1001 ) )
+      ::bFBlock := iif( bFBlock == NIL, NIL, checkVariableTypeAndValidBlock( Self, "FBLOCK", bFBlock, "B", 1001 ) )
    ENDIF
 
    RETURN ::bFBlock
@@ -548,7 +548,7 @@ METHOD hasFocus() CLASS RadioGroup
 METHOD hotBox( cHotBox ) CLASS RadioGroup
 
    IF cHotBox != NIL
-      ::cHotBox := __eInstVar53( Self, "HOTBOX", cHotBox, "C", 1001, {|| cHotBox == "" .OR. hb_ULen( cHotBox ) == 8 } )
+      ::cHotBox := checkVariableTypeAndValidBlock( Self, "HOTBOX", cHotBox, "C", 1001, {|| cHotBox == "" .OR. hb_ULen( cHotBox ) == 8 } )
    ENDIF
 
    RETURN ::cHotBox
@@ -559,7 +559,7 @@ METHOD itemCount() CLASS RadioGroup
 METHOD left( nLeft ) CLASS RadioGroup
 
    IF nLeft != NIL
-      ::nLeft := __eInstVar53( Self, "LEFT", nLeft, "N", 1001 )
+      ::nLeft := checkVariableTypeAndValidBlock( Self, "LEFT", nLeft, "N", 1001 )
    ENDIF
 
    RETURN ::nLeft
@@ -567,7 +567,7 @@ METHOD left( nLeft ) CLASS RadioGroup
 METHOD message( cMessage ) CLASS RadioGroup
 
    IF cMessage != NIL
-      ::cMessage := __eInstVar53( Self, "MESSAGE", cMessage, "C", 1001 )
+      ::cMessage := checkVariableTypeAndValidBlock( Self, "MESSAGE", cMessage, "C", 1001 )
    ENDIF
 
    RETURN ::cMessage
@@ -575,7 +575,7 @@ METHOD message( cMessage ) CLASS RadioGroup
 METHOD right( nRight ) CLASS RadioGroup
 
    IF nRight != NIL
-      ::nRight := __eInstVar53( Self, "RIGHT", nRight, "N", 1001 )
+      ::nRight := checkVariableTypeAndValidBlock( Self, "RIGHT", nRight, "N", 1001 )
    ENDIF
 
    RETURN ::nRight
@@ -586,7 +586,7 @@ METHOD textValue() CLASS RadioGroup
 METHOD top( nTop ) CLASS RadioGroup
 
    IF nTop != NIL
-      ::nTop := __eInstVar53( Self, "TOP", nTop, "N", 1001 )
+      ::nTop := checkVariableTypeAndValidBlock( Self, "TOP", nTop, "N", 1001 )
    ENDIF
 
    RETURN ::nTop
