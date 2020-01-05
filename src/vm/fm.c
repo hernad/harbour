@@ -82,6 +82,7 @@
 
 #if defined( HB_OS_WIN )
 #  include <windows.h>
+#endif
 
 #  include "hbthread.h"
 #  include "hbatomic.h"
@@ -141,10 +142,6 @@
 #  if defined( _MSC_VER )
 #     if ! defined( USE_DL_PREFIX ) && ! defined( HB_FM_DLMT_ALLOC )
 #        define USE_DL_PREFIX
-#     endif
-#     if defined( HB_OS_WIN_CE )
-#        define ABORT  TerminateProcess( GetCurrentProcess(), 0 )
-#        define LACKS_FCNTL_H
 #     endif
 #     pragma warning( push )
 #     pragma warning( disable : 4702 )

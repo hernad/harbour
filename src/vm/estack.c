@@ -1210,8 +1210,8 @@ void hb_stackDispCall( void )
 /* The garbage collector interface */
 /* ------------------------------------------------------------------------ */
 
-/* helper function to scan all visible memvar variables
- */
+/* not used: helper function to scan all visible memvar variables
+
 static HB_DYNS_FUNC( hb_stackMemvarScan )
 {
    PHB_ITEM pMemvar;
@@ -1224,7 +1224,7 @@ static HB_DYNS_FUNC( hb_stackMemvarScan )
 
    return HB_TRUE;
 }
-
+*/
 
 /* Mark all memvars (PRIVATEs and PUBLICs) */
 static void hb_stackIsMemvarRef( PHB_STACK pStack )
