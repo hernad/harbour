@@ -22,7 +22,7 @@ include $(TOP)$(ROOT)config/global.mk
       pp{common,nortl} \
       compiler{pp} \
       main{compiler} \
-      vmmt{main} \
+      vm{main} \
       rtl{main} \
       macro \
       codepage \

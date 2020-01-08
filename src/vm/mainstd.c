@@ -60,8 +60,6 @@ int main( int argc, char * argv[] )
 {
    HB_TRACE( HB_TR_DEBUG, ( "main(%d, %p)", argc, ( void * ) argv ) );
 
-xxxx__x86_64
-
    hb_cmdargInit( argc, argv );
    hb_vmInit( HB_TRUE );
    return hb_vmQuit();

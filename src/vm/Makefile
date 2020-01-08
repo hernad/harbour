@@ -1,9 +1,9 @@
-ROOT := ../../../
+ROOT := ../../
 
 include $(TOP)$(ROOT)config/global.mk
 
-vpath %.c ../
-vpath %.prg ../
+#vpath %.c ../
+#vpath %.prg ../
 
 ifeq ($(HB_PLATFORM),win)
    ifneq ($(filter $(HB_COMPILER),mingw mingw64),)
