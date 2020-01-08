@@ -163,7 +163,7 @@ ifeq ($(HB_INIT_DONE),)
       endif
 
       # Enforce some basic settings for release packages
-      export __HB_BUILD_DYN :=
+      #export __HB_BUILD_DYN :=
       export HB_BUILD_OPTIM := yes
       export HB_BUILD_DEBUG := no
       export HB_BUILD_SHARED := no
@@ -188,11 +188,6 @@ ifeq ($(HB_INIT_DONE),)
       endif
    endif
 
-   ifneq ($(__HB_MT),)
-      ifeq ($(filter $(__HB_MT),yes no),)
-         export __HB_MT :=
-      endif
-   endif
 endif
 
 # Make platform detection
@@ -284,9 +279,9 @@ ifeq ($(HB_INIT_DONE),)
    ifneq ($(HB_BUILD_3RDEXT),)
       $(info ! HB_BUILD_3RDEXT: $(HB_BUILD_3RDEXT))
    endif
-   ifneq ($(HB_BUILD_PARTS),)
-      $(info ! HB_BUILD_PARTS: $(HB_BUILD_PARTS))
-   endif
+   #ifneq ($(HB_BUILD_PARTS),)
+   #   $(info ! HB_BUILD_PARTS: $(HB_BUILD_PARTS))
+   #endif
    ifneq ($(HB_BUILD_LIBPATH),)
       $(info ! HB_BUILD_LIBPATH: $(HB_BUILD_LIBPATH))
    endif
@@ -299,12 +294,9 @@ ifeq ($(HB_INIT_DONE),)
    ifneq ($(HB_INSTALL_IMPLIB),)
       $(info ! HB_INSTALL_IMPLIB: $(HB_INSTALL_IMPLIB))
    endif
-   ifneq ($(__HB_BUILD_DYN),)
-      $(info ! __HB_BUILD_DYN: $(__HB_BUILD_DYN))
-   endif
-   ifneq ($(__HB_MT),)
-      $(info ! __HB_MT: $(__HB_MT))
-   endif
+   #ifneq ($(__HB_BUILD_DYN),)
+   #   $(info ! __HB_BUILD_DYN: $(__HB_BUILD_DYN))
+   #endif
 endif
 
 # Shell detection
@@ -906,9 +898,9 @@ ifneq ($(HB_CC_DET),)
          HB_COMP_PATH := $(dir $(HB_CCPATH))
          HB_COMPILER := mingw
          export HB_BUILD_3RDEXT := no
-         ifneq ($(HB_BUILD_PARTS),all)
-            HB_BUILD_PARTS := lib
-         endif
+         #ifneq ($(HB_BUILD_PARTS),all)
+         #   HB_BUILD_PARTS := lib
+         #endif
       else
          $(error ! Harbour build could not find mingw32 cross-compiler. Please install it, or point HB_CCPATH/HB_CCPREFIX environment variables to it)
       endif
@@ -938,9 +930,9 @@ ifneq ($(HB_CC_DET),)
          HB_COMP_PATH := $(dir $(HB_CCPATH))
          HB_COMPILER := mingw64
          export HB_BUILD_3RDEXT := no
-         ifneq ($(HB_BUILD_PARTS),all)
-            HB_BUILD_PARTS := lib
-         endif
+         #ifneq ($(HB_BUILD_PARTS),all)
+         #   HB_BUILD_PARTS := lib
+         #endif
       else
          $(error ! Harbour build could not find mingw-w64 cross-compiler. Please install it, or point HB_CCPATH/HB_CCPREFIX environment variables to it)
       endif
@@ -1660,83 +1652,6 @@ ifeq ($(HB_HOST_INC),)
 endif
 
 ifeq ($(HB_INIT_DONE),)
-   ifneq ($(__HB_BUILD_DYN),no)
-
-      HB_IMPLIB_PLOC :=
-      HB_DYNLIB_PLOC :=
-      HB_DYNLIB_POST :=
-      HB_DYNLIB_PEXT :=
-      HB_DYNLIB_POSC :=
-      HB_DYNLIB_PEXC :=
-
-      ifneq ($(filter $(HB_PLATFORM),win cygwin),)
-
-         # harbour-xy[-subtype][.dll|.lib]
-
-         HB_DYNLIB_PLOC := -$(HB_VER_MAJOR)$(HB_VER_MINOR)
-         HB_IMPLIB_PLOC := _dll
-         ifneq ($(filter $(HB_PLATFORM),win),)
-            ifneq ($(filter $(HB_COMPILER),mingw mingw64 clang clang64),)
-               HB_IMPLIB_PLOC := .dll
-            endif
-         endif
-
-         ifeq ($(HB_PLATFORM),win)
-            ifeq ($(HB_COMPILER),bcc)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-bcc
-            else ifeq ($(HB_CPU),x86_64)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-x64
-            else ifeq ($(HB_CPU),ia64)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-ia64
-            endif
-         else ifeq ($(HB_PLATFORM),wce)
-            HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-wce
-            ifeq ($(HB_CPU),arm)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-arm
-            else ifeq ($(HB_CPU),x86)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-x86
-            else ifeq ($(HB_CPU),mips)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-mips
-            else ifeq ($(HB_CPU),sh)
-               HB_DYNLIB_PLOC := $(HB_DYNLIB_PLOC)-sh
-            endif
-         endif
-      else ifneq ($(filter $(HB_PLATFORM),dos os2),)
-         # harbour[.dll|.???]
-      else
-         HB_DYN_VERCPT := $(HB_VER_MAJOR).$(HB_VER_MINOR)
-         HB_DYN_VER := $(HB_VER_MAJOR).$(HB_VER_MINOR).$(HB_VER_RELEASE)
-
-         ifeq ($(HB_PLATFORM),darwin)
-            # libharbour.2.1.0.dylib
-            # libharbour.2.1.dylib ->
-            # libharbour.dylib ->
-            HB_DYNLIB_POST := .$(HB_DYN_VER)
-            HB_DYNLIB_POSC := .$(HB_DYN_VERCPT)
-         else
-            ifneq ($(HB_PLATFORM),android)
-               # libharbour.s?.2.1.0
-               # libharbour.s?.2.1 ->
-               # libharbour.s? ->
-               HB_DYNLIB_PEXT := .$(HB_DYN_VER)
-               HB_DYNLIB_PEXC := .$(HB_DYN_VERCPT)
-            endif
-         endif
-      endif
-
-      export HB_DYNLIB_POST
-      export HB_DYNLIB_PEXT
-      export HB_DYNLIB_POSC
-      export HB_DYNLIB_PEXC
-
-      export HB_DYNLIB_BASE := harbour$(HB_DYNLIB_PLOC)
-      export HB_IMPLIB_BASE := harbour$(HB_IMPLIB_PLOC)
-
-      ifeq ($(__HB_BUILD_DYN_2ND),yes)
-         export HB_DYNLIB_BASE_2ND := harbour2$(HB_DYNLIB_PLOC)
-         export HB_IMPLIB_BASE_2ND := harbour2$(HB_IMPLIB_PLOC)
-      endif
-   endif
 endif
 
 CXX :=

@@ -80,6 +80,8 @@
 #xtrans S_POP( <a> )          => ( <a>\[S_DATA, <a>\[S_NUM]] := NIL, S_SHRINK( <a> ) )
 #xtrans S_TOP( <a> )          => ( <a>\[S_DATA, <a>\[S_NUM]] )
 
+THREAD STATIC t_aHtmlAnsiEntities  // HTML character entities (ANSI character set)
+THREAD STATIC t_cHtmlAnsiChars
 
 THREAD STATIC t_aHA                // data for HTML attributes
 THREAD STATIC t_hHT                // data for HTML tags

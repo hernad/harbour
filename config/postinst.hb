@@ -316,8 +316,7 @@ PROCEDURE Main( ... )
 
 
 
-      IF ! Empty( GetEnvC( "HB_INSTALL_BIN" ) ) .AND. ;
-            ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
+      IF ! Empty( GetEnvC( "HB_INSTALL_BIN" ) ) //.AND. ! GetEnvC( "HB_BUILD_PARTS" ) == "lib"
 
          OutStd( "! Copying Harbour script files..." + hb_eol() )
 

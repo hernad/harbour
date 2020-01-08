@@ -148,7 +148,6 @@ C_SOURCES := \
    natmsgu.c \
    net.c \
    netusr.c \
-   oemansi.c \
    oldbox.c \
    oldclear.c \
    pad.c \
@@ -234,7 +233,6 @@ PRG_SOURCES := \
    dirscan.prg \
    einstv52.prg \
    einstvar.prg \
-   einstvau.prg \
    errsys.prg \
    getlist.prg \
    getsys.prg \

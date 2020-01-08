@@ -72,7 +72,7 @@ DYN_FILE :=
 IMP_FILE :=
 DEF_FILE := $(DEFNAME)
 
-ifneq ($(__HB_BUILD_DYN),no)
+#ifneq ($(__HB_BUILD_DYN),no)
 ifneq ($(DY_RULE),)
 
 DYN_NAME := $(DYN_PREF)$(DYNNAME)$(HB_DYNLIB_POST)$(DYN_EXT)$(HB_DYNLIB_PEXT)
@@ -119,4 +119,4 @@ endif
 endif
 endif
 endif
-endif
+#endif

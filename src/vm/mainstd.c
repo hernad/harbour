@@ -47,30 +47,12 @@
 #include "hbapi.h"
 #include "hbvm.h"
 
-#if ! ( defined( HB_DYNLIB ) && defined( __WATCOMC__ ) )
 
 HB_EXTERN_BEGIN
 #if defined( __MINGW32__ ) && ! defined( __clang__ )
 int _CRT_glob = 0;
-#elif defined( __DJGPP__ )
-
-#include <crt0.h>
-
-int _crt0_startup_flags = _CRT0_FLAG_USE_DOS_SLASHES;
-
-char ** __crt0_glob_function( char * _arg )
-{
-   /* This function disables command-line wildcard expansion. */
-   HB_SYMBOL_UNUSED( _arg );
-
-   return 0;
-}
 #endif
 
-#if defined( __WATCOMC__ ) && \
-   ( defined( HB_OS_LINUX ) || defined( HB_OS_OS2 ) || defined( HB_OS_WIN ) )
-void hb_forceLinkMainStd( void ) {}
-#endif
 
 HB_EXTERN_END
 
@@ -78,18 +60,9 @@ int main( int argc, char * argv[] )
 {
    HB_TRACE( HB_TR_DEBUG, ( "main(%d, %p)", argc, ( void * ) argv ) );
 
-#if defined( __DJGPP__ )
-   __system_flags =
-      __system_redirect |
-      __system_allow_long_cmds |
-      __system_emulate_command |
-      __system_handle_null_commands |
-      __system_emulate_chdir;
-#endif
+xxxx__x86_64
 
    hb_cmdargInit( argc, argv );
    hb_vmInit( HB_TRUE );
    return hb_vmQuit();
 }
-
-#endif

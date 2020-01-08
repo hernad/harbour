@@ -29,13 +29,13 @@ pptable.c : hbpp$(BIN_EXT)
 	$(HB_HOST_BIN_DIR)/hbpp$(HB_HOST_BIN_EXT) $(TOP)$(ROOT)include/hbstdgen.ch -opptable.c -q -c$(TOP)$(ROOT) -r$(TOP)$(ROOT)include/_repover.txt -v$(HB_VERHEADER)
 	-@$(RM) hbpp$(OBJ_EXT) $(if $(OBJ_DYN_SUFFIX),hbpp$(OBJ_DYN_SUFFIX)$(OBJ_EXT),)
 
-ifneq ($(HB_BUILD_PARTS),lib)
+#ifneq ($(HB_BUILD_PARTS),lib)
    ifneq ($(HB_INSTALL_BIN),)
       INSTALL_FILES := $(BIN_DIR)/hbpp$(BIN_EXT)
       INSTALL_DIR := $(HB_INSTALL_BIN)
       include $(TOP)$(ROOT)config/install.mk
    endif
-endif
+#endif
 
 clean::
 	$(if $(wildcard $(HB_VERHEADER)), -@$(RM) $(subst /,$(DIRSEP),$(HB_VERHEADER)),)

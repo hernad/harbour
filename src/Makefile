@@ -2,81 +2,18 @@ ROOT := ../
 
 include $(TOP)$(ROOT)config/global.mk
 
-ifeq ($(HB_BUILD_PARTS),compiler)
-
-   DIRS := \
-      common \
-      nortl \
-      pp{common,nortl} \
-      compiler{pp} \
-      main{compiler} \
-
-else
-
-   ifneq ($(__HB_BUILD_DYN),no)
-
-      DYNDIRLIST_BASE := \
-         src/common \
-         src/pp \
-         src/rtl \
-         src/macro \
-         src/lang \
-         src/debug \
-         src/codepage \
-         src/hbextern \
-         src/hbhpdf \
-         src/rdd \
-         src/rdd/dbfntx \
-         src/rdd/dbfnsx \
-         src/rdd/dbfcdx \
-         src/rdd/dbffpt \
-         src/rdd/hbsix \
-         src/rdd/hsx \
-         src/rdd/usrrdd \
-         src/rtl/gtstd \
-         src/rtl/gtcgi \
-         src/hbpgsql \
-         src/sddpg 
-
-      ifeq ($(HB_PLATFORM),win)
-         DYNDIRLIST_BASE += src/rtl/gtwin
-      endif
-      ifneq ($(HB_PLATFORM_UNIX),)
-         DYNDIRLIST_BASE += src/rtl/gttrm
-         ifneq ($(HB_HAS_X11),)
-            DYNDIRLIST_BASE += src/rtl/gtxwc
-         endif
-      endif
-
-      ifneq ($(HB_HAS_PCRE2_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/pcre2
-      endif
-      ifneq ($(HB_HAS_ZLIB_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/zlib
-      endif
-      ifneq ($(HB_HAS_PNG_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/png
-      endif
-      ifneq ($(HB_HAS_HARUPDF_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/libharu
-      endif
-      ifneq ($(HB_HAS_XLSWRITER_LOCAL),)
-         DYNDIRLIST_BASE += 3rd/xlsxwriter
-      endif
 
 
-      export DYNDIRLIST_BASE
-   endif
 
-   ifeq ($(HB_BUILD_PARTS),lib)
-      HB_COMP_DIR :=
-      HB_COMP_REF :=
-      HB_COMP_RF2 := {compiler}
-   else
+   #ifeq ($(HB_BUILD_PARTS),lib)
+   #   HB_COMP_DIR :=
+   #   HB_COMP_REF :=
+   #   HB_COMP_RF2 := {compiler}
+   #else
       HB_COMP_DIR := main{compiler}
       HB_COMP_REF := {main}
       HB_COMP_RF2 := {main}
-   endif
+   #endif
 
    DIRS := \
       3rd \
@@ -84,16 +21,16 @@ else
       nortl \
       pp{common,nortl} \
       compiler{pp} \
-      $(HB_COMP_DIR) \
-      vm$(HB_COMP_RF2) \
-      rtl$(HB_COMP_REF) \
+      main{compiler} \
+      vmmt{main} \
+      rtl{main} \
       macro \
       codepage \
       lang \
-      rdd$(HB_COMP_REF) \
-      hbextern$(HB_COMP_REF) \
-      hbhpdf$(HB_COMP_REF) \
-      debug$(HB_COMP_REF) \
+      rdd{main} \
+      hbextern{main} \
+      hbhpdf{main} \
+      debug{main} \
       hbpgsql \
       sddpg \
       hbmzip \
@@ -113,10 +50,6 @@ else
          DIRS += hbunix
       endif
 
-      ifneq ($(__HB_BUILD_DYN),no)
-         DIRS += dynlib{3rd,codepage,common,hbextern,hbhpdf,lang,macro,pp,rdd,rtl,vm}
-      endif
 
-endif
 
 include $(ROOT)config/dir.mk

@@ -13,16 +13,18 @@ ifeq ($(HB_PLATFORM),win)
    endif
 else
    ifeq ($(HB_PLATFORM),cygwin)
-      C_MAIN := mainwin.c   
+      C_MAIN := mainwin.c
+   else
+      C_MAIN := mainstd.c
    endif
 endif
 
-ifeq ($(HB_HVM_ALL),yes)
-
-C_SOURCES := \
-   hvmall.c \
-
-else
+#ifeq ($(HB_HVM_ALL),yes)
+#
+#C_SOURCES := \
+#   hvmall.c \
+#
+#else
 
 C_SOURCES := \
    hvm.c \
@@ -42,7 +44,7 @@ C_SOURCES := \
    set.c \
    thread.c \
 
-endif
+#endif
 
 C_SOURCES += \
    arrayshb.c \
