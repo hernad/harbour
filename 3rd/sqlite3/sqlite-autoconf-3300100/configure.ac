@@ -32,6 +32,7 @@ AC_CONFIG_FILES([Makefile sqlite3.pc])
 BUILD_CFLAGS=
 AC_SUBST(BUILD_CFLAGS)
 
+LT_INIT
 #-------------------------------------------------------------------------
 # Two options to enable readline compatible libraries: 
 #
