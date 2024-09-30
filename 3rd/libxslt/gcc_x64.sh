@@ -22,10 +22,11 @@ CPPFLAGS="$CFLAGS"
 mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
 #sh ./autogen.sh
-autoconf -f
+
+aclocal -I $ACDIR --force 
+libtoolize --force
 automake --add-missing
-autoreconf -i
-#aclocal --force
+autoreconf -f
 
 ./configure \
       CPPFLAGS="$CFLAGS" \
