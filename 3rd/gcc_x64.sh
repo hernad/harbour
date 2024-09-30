@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -o errexit
+
 source ../make_envars.sh
 export ZLIB_BUILD=
 
