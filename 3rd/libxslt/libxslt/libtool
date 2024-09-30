@@ -1,6 +1,6 @@
 #! /bin/sh
 # Generated automatically by config.status (libxslt) 1.1.34
-# Libtool was configured on host strix-1:
+# Libtool was configured on host len16-1:
 # NOTE: Changes made to this file will be lost: look at ltmain.sh.
 
 # Provide generalized library-building support services.
@@ -40,15 +40,6 @@ available_tags=''
 # Which release of libtool.m4 was used?
 macro_version=2.4.7
 macro_revision=2.4.7
-
-# Assembler program.
-AS="as"
-
-# DLL creation program.
-DLLTOOL="false"
-
-# Object dumper program.
-OBJDUMP="objdump"
 
 # Whether or not to build shared libraries.
 build_libtool_libs=yes
@@ -132,6 +123,9 @@ to_tool_file_cmd=func_convert_file_noop
 # A file(cmd) program that detects file types.
 FILECMD=":"
 
+# An object symbol dumper.
+OBJDUMP="objdump"
+
 # Method to check whether dependent libraries are shared objects.
 deplibs_check_method="pass_all"
 
@@ -143,6 +137,9 @@ file_magic_glob=""
 
 # Find potential files using nocaseglob when deplibs_check_method = "file_magic".
 want_nocaseglob="no"
+
+# DLL creation program.
+DLLTOOL="false"
 
 # Command to associate shared and link libraries.
 sharedlib_from_linklib_cmd="printf %s\\n"

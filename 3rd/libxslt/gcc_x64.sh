@@ -33,10 +33,15 @@ cp -av ../../libxml2/m4/* m4/
 
 cp -av ../configure.ac .
 
+echo step 1
 aclocal --force 
+echo step 2
 libtoolize --force
-automake --add-missing
+echo step 3
+automake --add-missing || true
+echo step 4
 autoreconf -f
+echo step 5
 
 ./configure \
       CPPFLAGS="$CFLAGS" \
