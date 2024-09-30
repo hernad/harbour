@@ -14,8 +14,8 @@ echo "========== $PREFIX ====================="
 ./configure \
 	--prefix=$PREFIX
 
-rm contrib/minizip/*.o
-rm contrib/minizip/*.lo
+rm -rf contrib/minizip/*.o
+rm -rf contrib/minizip/*.lo
 
 make \
 	CFLAGS="-DCREATE_DLL" \
