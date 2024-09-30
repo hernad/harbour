@@ -19,9 +19,9 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
 #   --with-zlib=$ROOT_3RD/zlib/include
    
 rm -f aclocal.m4 
-rm -rf m4
+#rm -rf m4
 
-aclocal -f --system-acdir=$ACDIR && libtoolize --force && autoreconf -f
+aclocal -I $ACDIR --force && libtoolize --force && autoreconf -f
 automake --add-missing
 
 #--without-python \
