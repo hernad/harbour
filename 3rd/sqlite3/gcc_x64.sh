@@ -29,6 +29,7 @@ mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
 
 aclocal -I $ACDIR --force 
+autoconf
 libtoolize --force
 automake --add-missing || true
 autoreconf -f || true

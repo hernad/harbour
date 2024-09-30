@@ -14,6 +14,7 @@ AC_INIT(sqlite, 3.30.1, http://www.sqlite.org)
 AC_CONFIG_SRCDIR([sqlite3.c])
 AC_CONFIG_AUX_DIR([.])
 
+LT_INIT
 # Use automake.
 AM_INIT_AUTOMAKE([foreign])
 
@@ -21,7 +22,7 @@ AC_SYS_LARGEFILE
 
 # Check for required programs.
 AC_PROG_CC
-AC_PROG_LIBTOOL
+#AC_PROG_LIBTOOL
 AC_PROG_MKDIR_P
 
 # Check for library functions that SQLite can optionally use.
@@ -211,7 +212,6 @@ AC_CHECK_HEADERS(zlib.h,[
 AC_SEARCH_LIBS(system,,,[SHELL_CFLAGS="-DSQLITE_NOHAVE_SYSTEM"])
 AC_SUBST(SHELL_CFLAGS)
 
-LT_INIT
 #-----------------------------------------------------------------------
 # UPDATE: Maybe it's better if users just set CFLAGS before invoking
 # configure. This option doesn't really add much...
@@ -236,5 +236,6 @@ LT_INIT
 # AC_MSG_RESULT($enable_tempstore)
 # AC_SUBST(TEMP_STORE)
 #-----------------------------------------------------------------------
+
 
 AC_OUTPUT
