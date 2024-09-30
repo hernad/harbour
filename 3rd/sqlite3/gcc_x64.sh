@@ -33,7 +33,7 @@ aclocal --force
 #autoconf
 libtoolize --force
 echo step 5
-automake --add-missing 
+automake --add-missing || true
 echo step 6
 autoreconf -f
 
