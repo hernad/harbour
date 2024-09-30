@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/ur/bin/env bash
 
 source ../../make_envars.sh
 

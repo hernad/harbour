@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit -o pipefail
+
 source make_envars.sh
 
 tools/rhel/git_clean_repos.sh
