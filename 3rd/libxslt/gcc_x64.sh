@@ -1,6 +1,6 @@
 #/usr/bin/env bash
 
-set -o errfail
+set -o errexit
 
 source ../../make_envars.sh
 
