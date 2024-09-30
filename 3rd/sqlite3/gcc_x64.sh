@@ -1,4 +1,4 @@
-#!/ur/bin/env bash
+#!/usr/bin/env bash
 
 source ../../make_envars.sh
 
@@ -22,6 +22,10 @@ CPPFLAGS="$CFLAGS"
 
 #sh ./autogen.sh
 rm -f aclocal.m4 
+
+mkdir -p m4
+cp -av ../../libxml2/m4/* m4/
+
 aclocal && libtoolize --force && autoreconf
 automake --add-missing
 
