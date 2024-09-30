@@ -6,7 +6,7 @@ LIB_NAME=libxml2
 LIB_SRC=libxml2
 PREFIX=$ROOT_3RD/libxml2
 
-echo M4DIR=$(pwd)/m4
+M4DIR=$(pwd)/m4
 
 cd $LIB_SRC
 
