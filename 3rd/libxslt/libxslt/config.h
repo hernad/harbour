@@ -1,129 +1,282 @@
-/*
- * Summary: Windows configuration header
- * Description: Windows configuration header
- *
- * Copy: See Copyright for the status of this software.
- *
- * Author: Igor Zlatkovic
- */
-#ifndef __LIBXSLT_WIN32_CONFIG__
-#define __LIBXSLT_WIN32_CONFIG__
+/* config.h.  Generated from config.h.in by configure.  */
+/* config.h.in.  Generated from configure.ac by autoheader.  */
 
-#define HAVE_CTYPE_H 1
-#define HAVE_STDLIB_H 1
-#define HAVE_STDARG_H 1
-#define HAVE_MALLOC_H 1
-#define HAVE_TIME_H 1
-#define HAVE_LOCALTIME 1
+/* Define to 1 if you have the 'clock_gettime' function. */
+#define HAVE_CLOCK_GETTIME 1
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#define HAVE_DLFCN_H 1
+
+/* Define to 1 if you have the <errno.h> header file. */
+#define HAVE_ERRNO_H 1
+
+/* Define if fabs is there */
+#define HAVE_FABS /**/
+
+/* Define to 1 if you have the <float.h> header file. */
+#define HAVE_FLOAT_H 1
+
+/* Define if floor is there */
+#define HAVE_FLOOR /**/
+
+/* Define to 1 if you have the 'fprintf' function. */
+#define HAVE_FPRINTF 1
+
+/* Define to 1 if you have the <fp_class.h> header file. */
+/* #undef HAVE_FP_CLASS_H */
+
+/* Define to 1 if you have the 'ftime' function. */
+#define HAVE_FTIME 1
+
+/* Define if gcrypt library is available. */
+/* #undef HAVE_GCRYPT */
+
+/* Define to 1 if you have the 'gettimeofday' function. */
+#define HAVE_GETTIMEOFDAY 1
+
+/* Define to 1 if you have the 'gmtime' function. */
 #define HAVE_GMTIME 1
-#define HAVE_TIME 1
+
+/* Define to 1 if you have the 'gmtime_r' function. */
+#define HAVE_GMTIME_R 1
+
+/* Define to 1 if you have the <ieeefp.h> header file. */
+/* #undef HAVE_IEEEFP_H */
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#define HAVE_INTTYPES_H 1
+
+/* Define if pthread library is there (-lpthread) */
+#define HAVE_LIBPTHREAD /**/
+
+/* Define to 1 if you have the <locale.h> header file. */
+#define HAVE_LOCALE_H 1
+
+/* Define to 1 if you have the 'localtime' function. */
+#define HAVE_LOCALTIME 1
+
+/* Define to 1 if you have the 'localtime_r' function. */
+#define HAVE_LOCALTIME_R 1
+
+/* Define to 1 if you have the <math.h> header file. */
 #define HAVE_MATH_H 1
-#define HAVE_FCNTL_H 1
 
-#include <io.h>
+/* Define to 1 if you have the <minix/config.h> header file. */
+/* #undef HAVE_MINIX_CONFIG_H */
 
-#define HAVE_ISINF
-#define HAVE_ISNAN
+/* Define to 1 if you have the <nan.h> header file. */
+/* #undef HAVE_NAN_H */
 
-#include <math.h>
-#if defined _MSC_VER || defined __MINGW32__
-/* MS C-runtime has functions which can be used in order to determine if
-   a given floating-point variable contains NaN, (+-)INF. These are
-   preferred, because floating-point technology is considered propriatary
-   by MS and we can assume that their functions know more about their
-   oddities than we do. */
-#include <float.h>
-/* Bjorn Reese figured a quite nice construct for isinf() using the
-   _fpclass() function. */
-#ifndef isinf
-#define isinf(d) ((_fpclass(d) == _FPCLASS_PINF) ? 1 \
-	: ((_fpclass(d) == _FPCLASS_NINF) ? -1 : 0))
+/* Define if pow is there */
+#define HAVE_POW /**/
+
+/* Define to 1 if you have the 'printf' function. */
+#define HAVE_PRINTF 1
+
+/* Define if <pthread.h> is there */
+#define HAVE_PTHREAD_H /**/
+
+/* Define to 1 if you have the 'snprintf' function. */
+#define HAVE_SNPRINTF 1
+
+/* Define to 1 if you have the 'sprintf' function. */
+#define HAVE_SPRINTF 1
+
+/* Define to 1 if you have the 'sscanf' function. */
+#define HAVE_SSCANF 1
+
+/* Define to 1 if you have the 'stat' function. */
+#define HAVE_STAT 1
+
+/* Define to 1 if you have the <stdarg.h> header file. */
+#define HAVE_STDARG_H 1
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#define HAVE_STDINT_H 1
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#define HAVE_STDIO_H 1
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#define HAVE_STDLIB_H 1
+
+/* Define to 1 if you have the <strings.h> header file. */
+#define HAVE_STRINGS_H 1
+
+/* Define to 1 if you have the <string.h> header file. */
+#define HAVE_STRING_H 1
+
+/* Define to 1 if you have the 'strxfrm_l' function. */
+#define HAVE_STRXFRM_L 1
+
+/* Define to 1 if you have the <sys/select.h> header file. */
+#define HAVE_SYS_SELECT_H 1
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#define HAVE_SYS_STAT_H 1
+
+/* Define to 1 if you have the <sys/timeb.h> header file. */
+#define HAVE_SYS_TIMEB_H 1
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#define HAVE_SYS_TIME_H 1
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#define HAVE_SYS_TYPES_H 1
+
+/* Define to 1 if you have the 'time' function. */
+#define HAVE_TIME 1
+
+/* Define to 1 if you have the <time.h> header file. */
+#define HAVE_TIME_H 1
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#define HAVE_UNISTD_H 1
+
+/* Define to 1 if you have the 'vfprintf' function. */
+#define HAVE_VFPRINTF 1
+
+/* Define to 1 if you have the 'vsnprintf' function. */
+#define HAVE_VSNPRINTF 1
+
+/* Define to 1 if you have the 'vsprintf' function. */
+#define HAVE_VSPRINTF 1
+
+/* Define to 1 if you have the <wchar.h> header file. */
+#define HAVE_WCHAR_H 1
+
+/* Define to 1 if you have the <xlocale.h> header file. */
+/* #undef HAVE_XLOCALE_H */
+
+/* Define to 1 if you have the '_stat' function. */
+/* #undef HAVE__STAT */
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#define LT_OBJDIR ".libs/"
+
+/* Name of package */
+#define PACKAGE "libxslt"
+
+/* Define to the address where bug reports for this package should be sent. */
+#define PACKAGE_BUGREPORT ""
+
+/* Define to the full name of this package. */
+#define PACKAGE_NAME "libxslt"
+
+/* Define to the full name and version of this package. */
+#define PACKAGE_STRING "libxslt 1.1.34"
+
+/* Define to the one symbol short name of this package. */
+#define PACKAGE_TARNAME "libxslt"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
+
+/* Define to the version of this package. */
+#define PACKAGE_VERSION "1.1.34"
+
+/* Define to 1 if all of the C89 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
+#define STDC_HEADERS 1
+
+/* Enable extensions on AIX, Interix, z/OS.  */
+#ifndef _ALL_SOURCE
+# define _ALL_SOURCE 1
 #endif
-/* _isnan(x) returns nonzero if (x == NaN) and zero otherwise. */
-#ifndef isnan
-#define isnan(d) (_isnan(d))
+/* Enable general extensions on macOS.  */
+#ifndef _DARWIN_C_SOURCE
+# define _DARWIN_C_SOURCE 1
 #endif
-#else /* _MSC_VER */
-static int isinf (double d) {
-    int expon = 0;
-    double val = frexp (d, &expon);
-    if (expon == 1025) {
-        if (val == 0.5) {
-            return 1;
-        } else if (val == -0.5) {
-            return -1;
-        } else {
-            return 0;
-        }
-    } else {
-        return 0;
-    }
-}
-static int isnan (double d) {
-    int expon = 0;
-    double val = frexp (d, &expon);
-    if (expon == 1025) {
-        if (val == 0.5) {
-            return 0;
-        } else if (val == -0.5) {
-            return 0;
-        } else {
-            return 1;
-        }
-    } else {
-        return 0;
-    }
-}
-#endif /* _MSC_VER */
-
-#include <direct.h>
-
-/* snprintf emulation taken from http://stackoverflow.com/a/8712996/1956010 */
-#if defined(_MSC_VER) && _MSC_VER < 1900
-
-#include <stdarg.h>
-#include <stdio.h>
-
-#define snprintf c99_snprintf
-#define vsnprintf c99_vsnprintf
-
-__inline int c99_vsnprintf(char *outBuf, size_t size, const char *format, va_list ap)
-{
-    int count = -1;
-
-    if (size != 0)
-        count = _vsnprintf_s(outBuf, size, _TRUNCATE, format, ap);
-    if (count == -1)
-        count = _vscprintf(format, ap);
-
-    return count;
-}
-
-__inline int c99_snprintf(char *outBuf, size_t size, const char *format, ...)
-{
-    int count;
-    va_list ap;
-
-    va_start(ap, format);
-    count = c99_vsnprintf(outBuf, size, format, ap);
-    va_end(ap);
-
-    return count;
-}
-
-#endif /* defined(_MSC_VER) && _MSC_VER < 1900 */
-
-#define HAVE_SYS_STAT_H
-#define HAVE__STAT
-#define HAVE_STRING_H
-
-#include <libxml/xmlversion.h>
-
-#ifndef ATTRIBUTE_UNUSED
-#define ATTRIBUTE_UNUSED
+/* Enable general extensions on Solaris.  */
+#ifndef __EXTENSIONS__
+# define __EXTENSIONS__ 1
+#endif
+/* Enable GNU extensions on systems that have them.  */
+#ifndef _GNU_SOURCE
+# define _GNU_SOURCE 1
+#endif
+/* Enable X/Open compliant socket functions that do not require linking
+   with -lxnet on HP-UX 11.11.  */
+#ifndef _HPUX_ALT_XOPEN_SOCKET_API
+# define _HPUX_ALT_XOPEN_SOCKET_API 1
+#endif
+/* Identify the host operating system as Minix.
+   This macro does not affect the system headers' behavior.
+   A future release of Autoconf may stop defining this macro.  */
+#ifndef _MINIX
+/* # undef _MINIX */
+#endif
+/* Enable general extensions on NetBSD.
+   Enable NetBSD compatibility extensions on Minix.  */
+#ifndef _NETBSD_SOURCE
+# define _NETBSD_SOURCE 1
+#endif
+/* Enable OpenBSD compatibility extensions on NetBSD.
+   Oddly enough, this does nothing on OpenBSD.  */
+#ifndef _OPENBSD_SOURCE
+# define _OPENBSD_SOURCE 1
+#endif
+/* Define to 1 if needed for POSIX-compatible behavior.  */
+#ifndef _POSIX_SOURCE
+/* # undef _POSIX_SOURCE */
+#endif
+/* Define to 2 if needed for POSIX-compatible behavior.  */
+#ifndef _POSIX_1_SOURCE
+/* # undef _POSIX_1_SOURCE */
+#endif
+/* Enable POSIX-compatible threading on Solaris.  */
+#ifndef _POSIX_PTHREAD_SEMANTICS
+# define _POSIX_PTHREAD_SEMANTICS 1
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-5:2014.  */
+#ifndef __STDC_WANT_IEC_60559_ATTRIBS_EXT__
+# define __STDC_WANT_IEC_60559_ATTRIBS_EXT__ 1
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-1:2014.  */
+#ifndef __STDC_WANT_IEC_60559_BFP_EXT__
+# define __STDC_WANT_IEC_60559_BFP_EXT__ 1
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-2:2015.  */
+#ifndef __STDC_WANT_IEC_60559_DFP_EXT__
+# define __STDC_WANT_IEC_60559_DFP_EXT__ 1
+#endif
+/* Enable extensions specified by C23 Annex F.  */
+#ifndef __STDC_WANT_IEC_60559_EXT__
+# define __STDC_WANT_IEC_60559_EXT__ 1
+#endif
+/* Enable extensions specified by ISO/IEC TS 18661-4:2015.  */
+#ifndef __STDC_WANT_IEC_60559_FUNCS_EXT__
+# define __STDC_WANT_IEC_60559_FUNCS_EXT__ 1
+#endif
+/* Enable extensions specified by C23 Annex H and ISO/IEC TS 18661-3:2015.  */
+#ifndef __STDC_WANT_IEC_60559_TYPES_EXT__
+# define __STDC_WANT_IEC_60559_TYPES_EXT__ 1
+#endif
+/* Enable extensions specified by ISO/IEC TR 24731-2:2010.  */
+#ifndef __STDC_WANT_LIB_EXT2__
+# define __STDC_WANT_LIB_EXT2__ 1
+#endif
+/* Enable extensions specified by ISO/IEC 24747:2009.  */
+#ifndef __STDC_WANT_MATH_SPEC_FUNCS__
+# define __STDC_WANT_MATH_SPEC_FUNCS__ 1
+#endif
+/* Enable extensions on HP NonStop.  */
+#ifndef _TANDEM_SOURCE
+# define _TANDEM_SOURCE 1
+#endif
+/* Enable X/Open extensions.  Define to 500 only if necessary
+   to make mbstate_t available.  */
+#ifndef _XOPEN_SOURCE
+/* # undef _XOPEN_SOURCE */
 #endif
 
-#define _WINSOCKAPI_
 
-#endif /* __LIBXSLT_WIN32_CONFIG__ */
+/* Version number of package */
+#define VERSION "1.1.34"
 
+/* Define if debugging support is enabled */
+#define WITH_DEBUGGER /**/
+
+/* Define if profiling support is enabled */
+#define WITH_PROFILER /**/

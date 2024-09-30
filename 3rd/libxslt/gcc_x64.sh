@@ -1,5 +1,7 @@
 #/usr/bin/env bash
 
+set -o errfail
+
 source ../../make_envars.sh
 
 LIB_NAME=libxslt
@@ -22,6 +24,8 @@ CPPFLAGS="$CFLAGS"
 mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
 #sh ./autogen.sh
+
+cp -av ../configure.ac .
 
 aclocal -I $ACDIR --force 
 libtoolize --force
