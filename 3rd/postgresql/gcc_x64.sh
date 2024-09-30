@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
 source ../../make_envars.sh
 
 LIB_NAME=postgresql
@@ -37,7 +39,7 @@ LD_LIBRARY_PATH+=":$ROOT_3RD/openssl/lib"
 export LD_LIBRARY_PATH
 echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 
-[ -f config.log ] && rm config.log
+#[ -f config.log ] && rm config.log
 CFLAGS="-I$ROOT_3RD/libxml2/include/libxml2"
 CFLAGS+=" -I$ROOT_3RD/libxslt/include"
 CFLAGS+=" -I$ROOT_3RD/uuid/include"
@@ -48,7 +50,8 @@ CPPFLAGS="$CFLAGS"
 
 echo "CFLAGS=$CFLAGS"
 
-autoconf -f
+autoconf -f || true
+autoconf -f || true
 sh ./configure \
   CPPFLAGS="$CFLAGS" \
   CFLAGS="$CFLAGS" \
