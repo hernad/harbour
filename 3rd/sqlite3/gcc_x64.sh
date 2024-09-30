@@ -30,8 +30,8 @@ cp -av ../../libxml2/m4/* m4/
 
 aclocal -I $ACDIR --force 
 libtoolize --force
-automake --add-missing
-autoreconf -f
+automake --add-missing || true
+autoreconf -f || true
 
 sh ./configure \
   CFLAGS="$CFLAGS" \
