@@ -11,16 +11,17 @@ cd $LIB_SRC
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 echo "===  zlib: $ROOT_3RD/zlib/include ==="
 
-#sh ./autogen.sh
+#sh ./autogen.sh -f
 #    --build=$PREFIX \
 #   --with-iconv=$ROOT_3RD/libiconv/include \
 #   --with-zlib=$ROOT_3RD/zlib/include
    
 rm -f aclocal.m4 
-aclocal && libtoolize --force && automake --add-missing && autoreconf
+rm -rf m4
+aclocal --system-acdir=$(pwd) && libtoolize --force && automake --add-missing && autoreconf -f
 automake --add-missing
 
-sh  ./configure \
+bash  ./configure \
    --without-python \
    --prefix=$PREFIX \
    --with-iconv=$ROOT_3RD/libiconv/include \
