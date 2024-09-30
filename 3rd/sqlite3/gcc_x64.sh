@@ -27,7 +27,7 @@ rm -f aclocal.m4
 
 mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
-cp -av configure.ac sqlite-autoconf-3300100/ 
+cp -av ../configure.ac configure.ac 
 
 aclocal --force 
 #autoconf
