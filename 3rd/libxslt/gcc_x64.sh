@@ -10,7 +10,9 @@ PREFIX=$ROOT_3RD/$LIB_NAME
 
 cd $LIB_SRC
 
-echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
+echo ""
+echo ""
+echo "=======================  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 
 
