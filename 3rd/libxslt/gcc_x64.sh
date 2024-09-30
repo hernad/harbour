@@ -27,7 +27,7 @@ cp -av ../../libxml2/m4/* m4/
 
 cp -av ../configure.ac .
 
-aclocal -I $ACDIR --force 
+aclocal --force 
 libtoolize --force
 automake --add-missing
 autoreconf -f
