@@ -13,6 +13,7 @@ AC_PREREQ(2.61)
 AC_INIT(sqlite, 3.30.1, http://www.sqlite.org)
 AC_CONFIG_SRCDIR([sqlite3.c])
 AC_CONFIG_AUX_DIR([.])
+AC_CONFIG_MACRO_DIRS([m4])
 
 LT_INIT
 # Use automake.

@@ -33,10 +33,9 @@ aclocal --force
 #autoconf
 libtoolize --force
 echo step 5
-autoreconf -f
-echo step 6
 automake --add-missing 
-
+echo step 6
+autoreconf -f
 
 sh ./configure \
   CFLAGS="$CFLAGS" \
