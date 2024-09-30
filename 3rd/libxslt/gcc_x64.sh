@@ -10,9 +10,11 @@ PREFIX=$ROOT_3RD/$LIB_NAME
 
 rm -rf ./$LIB_SRC || true
 
-git checkout -f -- libxsl
+git checkout -f -- $LIB_SRC
 
 cd $LIB_SRC
+
+cp ../configure.ac .
 
 echo ""
 echo ""
