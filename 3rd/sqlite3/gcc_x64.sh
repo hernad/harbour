@@ -28,11 +28,14 @@ rm -f aclocal.m4
 mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
 
-aclocal -I $ACDIR --force 
+aclocal --force 
 autoconf
 libtoolize --force
-automake --add-missing || true
-autoreconf -f || true
+echo step 5
+autoreconf -f
+echo step 6
+automake --add-missing 
+
 
 sh ./configure \
   CFLAGS="$CFLAGS" \
