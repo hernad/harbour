@@ -18,7 +18,7 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
    
 rm -f aclocal.m4 
 rm -rf m4
-aclocal --system-acdir=$(pwd) && libtoolize --force && automake --add-missing && autoreconf -f
+aclocal --system-acdir=../$(pwd) && libtoolize --force && automake --add-missing && autoreconf -f
 automake --add-missing
 
 bash  ./configure \
