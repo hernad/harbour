@@ -17,7 +17,7 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
 #   --with-zlib=$ROOT_3RD/zlib/include
    
 rm -f aclocal.m4 
-aclocal && libtoolize --force && autoreconf
+aclocal && libtoolize --force && automake --add-missing && autoreconf
 automake --add-missing
 
 sh  ./configure \
