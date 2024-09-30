@@ -6,7 +6,6 @@ LIB_NAME=postgresql
 LIB_SRC=postgresql-12.1
 PREFIX=$ROOT_3RD/$LIB_NAME
 
-rm -rf ./$LIB_SRC
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 [ -n "$ROOT_DIR" ] && rm -rf $ROOT_DIR/3rd/$LIB_NAME/$LIB_SRC
@@ -17,6 +16,7 @@ if [[ -f $ROOT_DIR/tools/rhel/x64/7z.sh ]] ; then
    SEVENZ_EXE=$ROOT_DIR/tools/rhel/x64/7z.sh
 fi
 
+rm -rf ./$LIB_SRC
 $SEVENZ_EXE x $LIB_SRC.7z
 
 cd $LIB_SRC
