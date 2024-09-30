@@ -20,7 +20,8 @@ echo "===  zlib: $ROOT_3RD/zlib/include ==="
    
 rm -f aclocal.m4 
 #rm -rf m4
-
+mkdir -p m4
+cp -av ../m4/* m4/ 
 aclocal -I $ACDIR --force && libtoolize --force && autoreconf -f
 automake --add-missing
 
