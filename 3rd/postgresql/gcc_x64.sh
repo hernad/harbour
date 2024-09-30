@@ -6,6 +6,7 @@ LIB_NAME=postgresql
 LIB_SRC=postgresql-12.1
 PREFIX=$ROOT_3RD/$LIB_NAME
 
+rm -rf ./$LIB_SRC
 echo "===  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
 
 [ -n "$ROOT_DIR" ] && rm -rf $ROOT_DIR/3rd/$LIB_NAME/$LIB_SRC
