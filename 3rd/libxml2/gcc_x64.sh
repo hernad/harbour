@@ -22,12 +22,13 @@ rm -f aclocal.m4
 #rm -rf m4
 mkdir -p m4
 cp -av $M4DIR/* m4/ 
-aclocal -I $ACDIR --force && libtoolize --force && autoreconf -f
+aclocal -I $ACDIR --force && libtoolize --force
 automake --add-missing
+autoreconf -f
 
-#--without-python \
 
 bash  ./configure \
+   --without-python \
    --prefix=$PREFIX \
    --with-iconv=$ROOT_3RD/libiconv/include \
    --with-zlib=$ROOT_3RD/zlib/include
