@@ -20,7 +20,7 @@ CFLAGS+=" -I$ROOT_3RD/zlib/include"
 CPPFLAGS="$CFLAGS"
 
 mkdir -p m4
-cp -av ../../libxml2/m4 m4/
+cp -av ../../libxml2/m4/* m4/
 #sh ./autogen.sh
 autoconf -f
 automake --add-missing
