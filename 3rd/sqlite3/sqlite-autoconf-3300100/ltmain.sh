@@ -1,1 +1,1 @@
-/usr/share/libtool/config/ltmain.sh
+/nix/store/zxd310724qbvhvia0dhb72jnpr8dpwfn-libtool-2.4.7/share/libtool/build-aux/ltmain.sh

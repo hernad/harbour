@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -o errexit
+
 source ../../make_envars.sh
 
 LIB_NAME=sqlite3
@@ -26,8 +28,10 @@ rm -f aclocal.m4
 mkdir -p m4
 cp -av ../../libxml2/m4/* m4/
 
-aclocal && libtoolize --force && autoreconf
+aclocal -I $ACDIR --force 
+libtoolize --force
 automake --add-missing
+autoreconf -f
 
 sh ./configure \
   CFLAGS="$CFLAGS" \
