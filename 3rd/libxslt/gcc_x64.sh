@@ -8,13 +8,15 @@ LIB_NAME=libxslt
 LIB_SRC=libxslt
 PREFIX=$ROOT_3RD/$LIB_NAME
 
+rm -rf ./$LIB_SRC || true
+
+git checkout -f -- libxsl
+
 cd $LIB_SRC
 
 echo ""
 echo ""
 echo "=======================  lib_src: $LIB_SRC ==== prefix: === $PREFIX ====================="
-
-
 
 PATH=$ROOT_3RD/libxml2/bin:$ROOT_3RD/libxslt/bin:$PATH
 
